@@ -1,0 +1,1302 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8944132842415589271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Abicraft.Nodes:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: 0.16241455, y: 575.4828}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: -8944132842415589271}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: -8944132842415589271}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: -8944132842415589271}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: 30, z: 0}
+--- !u!114 &-8065834418538302981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b52e0f29cda109438037db424baba19, type: 3}
+  m_Name: Camera
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -600, y: -456}
+  ports:
+    keys:
+    - camera
+    values:
+    - _fieldName: camera
+      _node: {fileID: -8065834418538302981}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: obj
+        node: {fileID: 2883027591732656293}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  camera: {fileID: 0}
+--- !u!114 &-7819639075876924825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Abicraft.Nodes:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: -50.90803, y: 417.57748}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: -7819639075876924825}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: -7819639075876924825}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: -7819639075876924825}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: 15, z: 0}
+--- !u!114 &-7290698830532094039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:AbicraftNodes.Math:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: -288.21176, y: -41.021538}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: -7290698830532094039}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: -7290698830532094039}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: -4869005120771772003}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: -7290698830532094039}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: -15, z: 0}
+--- !u!114 &-4869005120771772003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a523a392dfb564d99c6d03a8a5c0cb, type: 3}
+  m_Name: Skillshot
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: -72}
+  ports:
+    keys:
+    - direction
+    - missile
+    - speed
+    - maxRange
+    - In
+    - Out
+    values:
+    - _fieldName: direction
+      _node: {fileID: -4869005120771772003}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: directionOut
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: missile
+      _node: {fileID: -4869005120771772003}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: speed
+      _node: {fileID: -4869005120771772003}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: maxRange
+      _node: {fileID: -4869005120771772003}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: -4869005120771772003}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: -2130508272675593367}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -4869005120771772003}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  direction: {x: 0, y: 0, z: 0}
+  missile: {fileID: 7352726752509946184, guid: ee6400cc1113ef74ea7c23e148650343, type: 3}
+  speed: 2
+  maxRange: 100
+--- !u!114 &-2130508272675593367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9d4abd0f6982b43812454c000a8e83, type: 3}
+  m_Name: Block Execution
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -286.1856, y: -192.85149}
+  ports:
+    keys:
+    - In
+    - Out
+    - BlockForSeconds
+    values:
+    - _fieldName: In
+      _node: {fileID: -2130508272675593367}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: 4580997102685203291}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -2130508272675593367}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: In
+        node: {fileID: -4869005120771772003}
+        reroutePoints: []
+      - fieldName: In
+        node: {fileID: 8885769136421295141}
+        reroutePoints: []
+      - fieldName: In
+        node: {fileID: 3912157009617125307}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: BlockForSeconds
+      _node: {fileID: -2130508272675593367}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  BlockForSeconds: 0.05
+--- !u!114 &-1717918171320236418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:AbicraftNodes.Math:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: -289.21176, y: 95.97846}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: -1717918171320236418}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: -1717918171320236418}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 8885769136421295141}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: -1717918171320236418}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: 0, z: 0}
+--- !u!114 &-1490622299597701981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f34e9e89fe7954a80a9e88984f538a, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -728, y: 280}
+  ports:
+    keys:
+    - player
+    values:
+    - _fieldName: player
+      _node: {fileID: -1490622299597701981}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: obj
+        node: {fileID: 1619983675073015822}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  player: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0f08b2006ba554fa8284fc44ce7ee4, type: 3}
+  m_Name: Ability
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 4580997102685203291}
+  - {fileID: 8373534528004685150}
+  - {fileID: 2731691429481222445}
+  - {fileID: 4353119494301328028}
+  - {fileID: -8065834418538302981}
+  - {fileID: 2883027591732656293}
+  - {fileID: 6615163956007559683}
+  - {fileID: 1619983675073015822}
+  - {fileID: -1490622299597701981}
+  - {fileID: -2130508272675593367}
+  - {fileID: -4869005120771772003}
+  - {fileID: 8885769136421295141}
+  - {fileID: 3912157009617125307}
+  Cooldown: 0.1
+--- !u!114 &1619983675073015822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408bb153d4eb624aad05e1e9c3538db, type: 3}
+  m_Name: Shake
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -474.17776, y: 384.09717}
+  ports:
+    keys:
+    - obj
+    - In
+    - Out
+    - shakeDuration
+    - shakeAmount
+    - decreaseFactor
+    values:
+    - _fieldName: obj
+      _node: {fileID: 1619983675073015822}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: player
+        node: {fileID: -1490622299597701981}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: 1619983675073015822}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: 6615163956007559683}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 1619983675073015822}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: shakeDuration
+      _node: {fileID: 1619983675073015822}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: shakeAmount
+      _node: {fileID: 1619983675073015822}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decreaseFactor
+      _node: {fileID: 1619983675073015822}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  obj: {fileID: 0}
+  shakeDuration: 0.3
+  shakeAmount: 2
+  decreaseFactor: 1
+--- !u!114 &2731691429481222445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e195c9ffa07cc44ead649b4f194aa4c, type: 3}
+  m_Name: Towards Cursor
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -578.10986, y: 62.98741}
+  ports:
+    keys:
+    - direction
+    values:
+    - _fieldName: direction
+      _node: {fileID: 2731691429481222445}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 4353119494301328028}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  direction: {x: -0.42853165, y: -0.0063620727, z: -0.9035044}
+--- !u!114 &2883027591732656293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b408bb153d4eb624aad05e1e9c3538db, type: 3}
+  m_Name: Shake
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -280, y: -456}
+  ports:
+    keys:
+    - obj
+    - In
+    - Out
+    - shakeDuration
+    - shakeAmount
+    - decreaseFactor
+    values:
+    - _fieldName: obj
+      _node: {fileID: 2883027591732656293}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: camera
+        node: {fileID: -8065834418538302981}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: 2883027591732656293}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: 4580997102685203291}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 2883027591732656293}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: shakeDuration
+      _node: {fileID: 2883027591732656293}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: shakeAmount
+      _node: {fileID: 2883027591732656293}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decreaseFactor
+      _node: {fileID: 2883027591732656293}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  obj: {fileID: 0}
+  shakeDuration: 0.3
+  shakeAmount: 0.3
+  decreaseFactor: 1
+--- !u!114 &3232611127955654656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Abicraft.Nodes:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: -128.6882, y: 271.64703}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: 3232611127955654656}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: 3232611127955654656}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: 3232611127955654656}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: 0, z: 0}
+--- !u!114 &3912157009617125307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a523a392dfb564d99c6d03a8a5c0cb, type: 3}
+  m_Name: Skillshot
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: 280}
+  ports:
+    keys:
+    - direction
+    - missile
+    - speed
+    - maxRange
+    - In
+    - Out
+    values:
+    - _fieldName: direction
+      _node: {fileID: 3912157009617125307}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: directionOut
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: missile
+      _node: {fileID: 3912157009617125307}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: speed
+      _node: {fileID: 3912157009617125307}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: maxRange
+      _node: {fileID: 3912157009617125307}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: 3912157009617125307}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: -2130508272675593367}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 3912157009617125307}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  direction: {x: 0, y: 0, z: 0}
+  missile: {fileID: 7352726752509946184, guid: ee6400cc1113ef74ea7c23e148650343, type: 3}
+  speed: 2
+  maxRange: 100
+--- !u!114 &4353119494301328028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fab79961056184f9725b20ea9157e2, type: 3}
+  m_Name: Rotate To Direction
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -561.64465, y: -163.306}
+  ports:
+    keys:
+    - direction
+    - In
+    - Out
+    values:
+    - _fieldName: direction
+      _node: {fileID: 4353119494301328028}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: 4353119494301328028}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: 8373534528004685150}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 4353119494301328028}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: In
+        node: {fileID: 4580997102685203291}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  direction: {x: 0, y: 0, z: 0}
+--- !u!114 &4580997102685203291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f61b0ba41d0e84681357bfee0904e1, type: 3}
+  m_Name: Animation
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -595.29626, y: -365.56592}
+  ports:
+    keys:
+    - In
+    - Out
+    - AnimationTrigger
+    - BlockForSeconds
+    values:
+    - _fieldName: In
+      _node: {fileID: 4580997102685203291}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: 4353119494301328028}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 4580997102685203291}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: In
+        node: {fileID: -2130508272675593367}
+        reroutePoints: []
+      - fieldName: In
+        node: {fileID: 2883027591732656293}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: AnimationTrigger
+      _node: {fileID: 4580997102685203291}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: BlockForSeconds
+      _node: {fileID: 4580997102685203291}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  AnimationTrigger: Airbourne
+  BlockForSeconds: 0.3
+--- !u!114 &4683898244225289715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Abicraft.Nodes:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: -226.1517, y: 122.53331}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: 4683898244225289715}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: 4683898244225289715}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: 4683898244225289715}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: -15, z: 0}
+--- !u!114 &6615163956007559683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9d4abd0f6982b43812454c000a8e83, type: 3}
+  m_Name: Block Execution
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -723.79517, y: 169.48448}
+  ports:
+    keys:
+    - In
+    - Out
+    - BlockForSeconds
+    values:
+    - _fieldName: In
+      _node: {fileID: 6615163956007559683}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 6615163956007559683}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: In
+        node: {fileID: 1619983675073015822}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: BlockForSeconds
+      _node: {fileID: 6615163956007559683}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  BlockForSeconds: 0.1
+--- !u!114 &8075935560590106372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Abicraft.Nodes:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: -261.46378, y: -26.593405}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: 8075935560590106372}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: 8075935560590106372}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: 8075935560590106372}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: -30, z: 0}
+--- !u!114 &8373534528004685150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40cb7f3928c5b704f9c88c8847faaa59, type: 3}
+  m_Name: On Execute
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -856, y: -344}
+  ports:
+    keys:
+    - In
+    - Out
+    values:
+    - _fieldName: In
+      _node: {fileID: 8373534528004685150}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 8373534528004685150}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: In
+        node: {fileID: 4353119494301328028}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  icon: {fileID: 2800000, guid: 3a823b94be09e204fba3434bfb4683a5, type: 3}
+--- !u!114 &8411459531194283404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Rotate Direction Vector 3
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:AbicraftNodes.Math:RotateDirectionVector3Node
+  graph: {fileID: 11400000}
+  position: {x: -294.21176, y: 227.97845}
+  ports:
+    keys:
+    - directionIn
+    - directionOut
+    - RotateAmountDegrees
+    values:
+    - _fieldName: directionIn
+      _node: {fileID: 8411459531194283404}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 2731691429481222445}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: directionOut
+      _node: {fileID: 8411459531194283404}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 3912157009617125307}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: RotateAmountDegrees
+      _node: {fileID: 8411459531194283404}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  directionIn: {x: 0, y: 0, z: 0}
+  directionOut: {x: 0, y: 0, z: 0}
+  RotateAmountDegrees: {x: 0, y: 15, z: 0}
+--- !u!114 &8885769136421295141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a523a392dfb564d99c6d03a8a5c0cb, type: 3}
+  m_Name: Skillshot
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: 104}
+  ports:
+    keys:
+    - direction
+    - missile
+    - speed
+    - maxRange
+    - In
+    - Out
+    values:
+    - _fieldName: direction
+      _node: {fileID: 8885769136421295141}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: directionOut
+        node: {fileID: 0}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: missile
+      _node: {fileID: 8885769136421295141}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: speed
+      _node: {fileID: 8885769136421295141}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: maxRange
+      _node: {fileID: 8885769136421295141}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: 8885769136421295141}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Out
+        node: {fileID: -2130508272675593367}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 8885769136421295141}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In: 0
+  Out: 0
+  direction: {x: 0, y: 0, z: 0}
+  missile: {fileID: 7352726752509946184, guid: ee6400cc1113ef74ea7c23e148650343, type: 3}
+  speed: 2
+  maxRange: 100

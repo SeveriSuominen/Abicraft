@@ -1,0 +1,29 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using XNode;
+
+namespace AbicraftNodes.Object
+{
+    public class PlayerNode : AbicraftValueNode
+    {
+        [Output] public AbicraftObject player;
+
+        public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        {
+            AbiCraftStateSnapshot snapshot = execution.AbilityExecution.initial_snapshot;
+
+            AbicraftObject obj;
+
+            if ((obj = snapshot.player.GetComponent<AbicraftObject>()) == null)
+                obj = snapshot.player.gameObject.AddComponent<AbicraftObject>();
+
+            player = obj;   
+        }
+
+        public override object GetValue(NodePort port)
+        {
+            return player;
+        }
+    }
+}

@@ -1,0 +1,1340 @@
+<members>
+  <AnimationEditor>
+    <signature>AnimationEditor</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>AnimationEditor</name>
+    <token>[CustomNodeEditor(typeof(AnimationNode))]
+public class AnimationEditor : NodeEditor </token>
+    <scope></scope>
+  </AnimationEditor>
+  <AnimationEditor.icon>
+    <signature>AnimationEditor.icon</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>icon</name>
+    <token>public Texture2D icon </token>
+    <scope>AnimationEditor</scope>
+  </AnimationEditor.icon>
+  <AnimationEditor.OnHeaderGUI_x0028__x0029_>
+    <signature>AnimationEditor.OnHeaderGUI()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>OnHeaderGUI</name>
+    <token>public override void OnHeaderGUI()</token>
+    <scope>AnimationEditor</scope>
+  </AnimationEditor.OnHeaderGUI_x0028__x0029_>
+  <EditorData>
+    <signature>EditorData</signature>
+    <childcount>1</childcount>
+    <type>Class</type>
+    <name>EditorData</name>
+    <token>public class EditorData : ScriptableObject </token>
+    <scope></scope>
+  </EditorData>
+  <EditorData.OnExecuteIcon>
+    <signature>EditorData.OnExecuteIcon</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>OnExecuteIcon</name>
+    <token>public Texture2D OnExecuteIcon </token>
+    <scope>EditorData</scope>
+  </EditorData.OnExecuteIcon>
+  <EditorDataHolder>
+    <signature>EditorDataHolder</signature>
+    <childcount>0</childcount>
+    <type>Class</type>
+    <name>EditorDataHolder</name>
+    <token>public static class EditorDataHolder </token>
+    <scope></scope>
+  </EditorDataHolder>
+  <OnExecuteEditor>
+    <signature>OnExecuteEditor</signature>
+    <childcount>4</childcount>
+    <type>Class</type>
+    <name>OnExecuteEditor</name>
+    <token>[CustomNodeEditor(typeof(OnExecuteNode))]
+public class OnExecuteEditor : NodeEditor </token>
+    <scope></scope>
+  </OnExecuteEditor>
+  <OnExecuteEditor.icon>
+    <signature>OnExecuteEditor.icon</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>icon</name>
+    <token>public Texture2D icon </token>
+    <scope>OnExecuteEditor</scope>
+  </OnExecuteEditor.icon>
+  <OnExecuteEditor.OnHeaderGUI_x0028__x0029_>
+    <signature>OnExecuteEditor.OnHeaderGUI()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>OnHeaderGUI</name>
+    <token>public override void OnHeaderGUI()</token>
+    <scope>OnExecuteEditor</scope>
+  </OnExecuteEditor.OnHeaderGUI_x0028__x0029_>
+  <OnExecuteEditor.OnBodyGUI_x0028__x0029_>
+    <signature>OnExecuteEditor.OnBodyGUI()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>OnBodyGUI</name>
+    <token>public override void OnBodyGUI()</token>
+    <scope>OnExecuteEditor</scope>
+  </OnExecuteEditor.OnBodyGUI_x0028__x0029_>
+  <RotateToCursorEditor>
+    <signature>RotateToCursorEditor</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>RotateToCursorEditor</name>
+    <token>[CustomNodeEditor(typeof(RotateToDirectionNode))]
+public class RotateToCursorEditor : NodeEditor </token>
+    <scope></scope>
+  </RotateToCursorEditor>
+  <RotateToCursorEditor.icon>
+    <signature>RotateToCursorEditor.icon</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>icon</name>
+    <token>public Texture2D icon </token>
+    <scope>RotateToCursorEditor</scope>
+  </RotateToCursorEditor.icon>
+  <RotateToCursorEditor.OnHeaderGUI_x0028__x0029_>
+    <signature>RotateToCursorEditor.OnHeaderGUI()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>OnHeaderGUI</name>
+    <token>public override void OnHeaderGUI()</token>
+    <scope>RotateToCursorEditor</scope>
+  </RotateToCursorEditor.OnHeaderGUI_x0028__x0029_>
+  <Ability>
+    <signature>Ability</signature>
+    <childcount>1</childcount>
+    <type>Class</type>
+    <name>Ability</name>
+    <token>[CreateAssetMenu(fileName = "Ability", menuName = "Abicraft/Graphs/Ability", order = 2)]
+public class Ability : NodeGraph </token>
+    <scope></scope>
+  </Ability>
+  <Ability.Cooldown>
+    <signature>Ability.Cooldown</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>Cooldown</name>
+    <token>public float Cooldown </token>
+    <scope>Ability</scope>
+  </Ability.Cooldown>
+  <AbilityDispatcher>
+    <signature>AbilityDispatcher</signature>
+    <childcount>8</childcount>
+    <type>Class</type>
+    <name>AbilityDispatcher</name>
+    <token>public class AbilityDispatcher : MonoBehaviour </token>
+    <scope></scope>
+  </AbilityDispatcher>
+  <AbilityDispatcher.test_Ability>
+    <signature>AbilityDispatcher.test_Ability</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>test_Ability</name>
+    <token>public Ability test_Ability </token>
+    <scope>AbilityDispatcher</scope>
+  </AbilityDispatcher.test_Ability>
+  <AbilityDispatcher.Dispatch_x0028_Ability_x0029_>
+    <signature>AbilityDispatcher.Dispatch(Ability)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Dispatch</name>
+    <token>public void Dispatch(Ability Ability)</token>
+    <scope>AbilityDispatcher</scope>
+    <params>
+      <Ability>Ability</Ability>
+    </params>
+  </AbilityDispatcher.Dispatch_x0028_Ability_x0029_>
+  <AbicraftDataFile>
+    <signature>AbicraftDataFile</signature>
+    <childcount>1</childcount>
+    <type>Class</type>
+    <name>AbicraftDataFile</name>
+    <token>[CreateAssetMenu(fileName = "AbicraftDataFile", menuName = "Abicraft/AbicraftDataFile", order = 1)]
+public class AbicraftDataFile : ScriptableObject </token>
+    <scope></scope>
+  </AbicraftDataFile>
+  <AbicraftDataFile.inputReferences>
+    <signature>AbicraftDataFile.inputReferences</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>inputReferences</name>
+    <token>public AbicraftInputReferences inputReferences </token>
+    <scope>AbicraftDataFile</scope>
+  </AbicraftDataFile.inputReferences>
+  <AbicraftAbilityExecution>
+    <signature>AbicraftAbilityExecution</signature>
+    <childcount>8</childcount>
+    <type>Class</type>
+    <name>AbicraftAbilityExecution</name>
+    <token>public class AbicraftAbilityExecution </token>
+    <scope></scope>
+  </AbicraftAbilityExecution>
+  <AbicraftAbilityExecution.Ability>
+    <signature>AbicraftAbilityExecution.Ability</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>Ability</name>
+    <token>public Ability Ability </token>
+    <scope>AbicraftAbilityExecution</scope>
+  </AbicraftAbilityExecution.Ability>
+  <AbicraftAbilityExecution.elapsed>
+    <signature>AbicraftAbilityExecution.elapsed</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>elapsed</name>
+    <token>public float elapsed </token>
+    <scope>AbicraftAbilityExecution</scope>
+  </AbicraftAbilityExecution.elapsed>
+  <AbicraftAbilityExecution.initial_snapshot>
+    <signature>AbicraftAbilityExecution.initial_snapshot</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>initial_snapshot</name>
+    <token>public AbiCraftStateSnapshot initial_snapshot </token>
+    <scope>AbicraftAbilityExecution</scope>
+  </AbicraftAbilityExecution.initial_snapshot>
+  <AbicraftAbilityExecution.dispatcher>
+    <signature>AbicraftAbilityExecution.dispatcher</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>dispatcher</name>
+    <token>public AbilityDispatcher dispatcher </token>
+    <scope>AbicraftAbilityExecution</scope>
+  </AbicraftAbilityExecution.dispatcher>
+  <AbicraftAbilityExecution.current_node_executions>
+    <signature>AbicraftAbilityExecution.current_node_executions</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>current_node_executions</name>
+    <token>public List&lt;AbicraftNodeExecution&gt; current_node_executions </token>
+    <scope>AbicraftAbilityExecution</scope>
+  </AbicraftAbilityExecution.current_node_executions>
+  <AbicraftAbilityExecution.AbicraftNodeExecution>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution</signature>
+    <childcount>10</childcount>
+    <type>Class</type>
+    <name>AbicraftNodeExecution</name>
+    <token>public class AbicraftNodeExecution </token>
+    <scope>AbicraftAbilityExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.current_node>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.current_node</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>current_node</name>
+    <token>public AbicraftNode current_node </token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.current_node>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.AbilityExecution>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.AbilityExecution</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>AbilityExecution</name>
+    <token>public AbicraftAbilityExecution AbilityExecution </token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.AbilityExecution>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.branchIndex>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.branchIndex</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>branchIndex</name>
+    <token>public int branchIndex </token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.branchIndex>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.finished>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.finished</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>finished</name>
+    <token>public bool finished </token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.finished>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.executed>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.executed</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>executed</name>
+    <token>public bool executed </token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.executed>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.globalBlock>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.globalBlock</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>globalBlock</name>
+    <token>public bool globalBlock </token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.globalBlock>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.Block_x0028__x0029_>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.Block()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Block</name>
+    <token>public void Block()</token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.Block_x0028__x0029_>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.ReleaseBlock_x0028__x0029_>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.ReleaseBlock()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ReleaseBlock</name>
+    <token>public void ReleaseBlock()</token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.ReleaseBlock_x0028__x0029_>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.IsBlocked_x0028__x0029_>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.IsBlocked()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>IsBlocked</name>
+    <token>public bool IsBlocked()</token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.IsBlocked_x0028__x0029_>
+  <AbicraftAbilityExecution.AbicraftNodeExecution.AbicraftNodeExecution_x0028_AbicraftAbilityExecution_x002C__x0020_AbicraftNode_x0029_>
+    <signature>AbicraftAbilityExecution.AbicraftNodeExecution.AbicraftNodeExecution(AbicraftAbilityExecution, AbicraftNode)</signature>
+    <childcount>0</childcount>
+    <type>Constructor</type>
+    <name>AbicraftNodeExecution</name>
+    <token>public  AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node)</token>
+    <scope>AbicraftAbilityExecution.AbicraftNodeExecution</scope>
+    <params>
+      <execution>AbicraftAbilityExecution</execution>
+      <current_node>AbicraftNode</current_node>
+    </params>
+  </AbicraftAbilityExecution.AbicraftNodeExecution.AbicraftNodeExecution_x0028_AbicraftAbilityExecution_x002C__x0020_AbicraftNode_x0029_>
+  <AbicraftAbilityExecution.AbicraftAbilityExecution_x0028_AbilityDispatcher_x002C__x0020_Ability_x002C__x0020_AbicraftNode_x0029_>
+    <signature>AbicraftAbilityExecution.AbicraftAbilityExecution(AbilityDispatcher, Ability, AbicraftNode)</signature>
+    <childcount>0</childcount>
+    <type>Constructor</type>
+    <name>AbicraftAbilityExecution</name>
+    <token>public  AbicraftAbilityExecution(AbilityDispatcher dispatcher, Ability Ability, AbicraftNode startExecNode)</token>
+    <scope>AbicraftAbilityExecution</scope>
+    <params>
+      <dispatcher>AbilityDispatcher</dispatcher>
+      <Ability>Ability</Ability>
+      <startExecNode>AbicraftNode</startExecNode>
+    </params>
+  </AbicraftAbilityExecution.AbicraftAbilityExecution_x0028_AbilityDispatcher_x002C__x0020_Ability_x002C__x0020_AbicraftNode_x0029_>
+  <AbicraftAbilityExecution.OnCooldown_x0028_List_x003C_AbicraftAbilityExecution_x003E__x002C__x0020_Ability_x0029_>
+    <signature>AbicraftAbilityExecution.OnCooldown(List&lt;AbicraftAbilityExecution&gt;, Ability)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>OnCooldown</name>
+    <token>public static bool OnCooldown(List&lt;AbicraftAbilityExecution&gt; cds, Ability Ability)</token>
+    <scope>AbicraftAbilityExecution</scope>
+    <params>
+      <cds>List&lt;AbicraftAbilityExecution&gt;</cds>
+      <Ability>Ability</Ability>
+    </params>
+  </AbicraftAbilityExecution.OnCooldown_x0028_List_x003C_AbicraftAbilityExecution_x003E__x002C__x0020_Ability_x0029_>
+  <AbiCraftStateSnapshot>
+    <signature>AbiCraftStateSnapshot</signature>
+    <childcount>8</childcount>
+    <type>Class</type>
+    <name>AbiCraftStateSnapshot</name>
+    <token>[System.Serializable]
+public class AbiCraftStateSnapshot </token>
+    <scope></scope>
+  </AbiCraftStateSnapshot>
+  <AbiCraftStateSnapshot.TakeSnapshot>
+    <signature>AbiCraftStateSnapshot.TakeSnapshot</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>TakeSnapshot</name>
+    <token>public static AbiCraftStateSnapshot TakeSnapshot { get; }</token>
+    <scope>AbiCraftStateSnapshot</scope>
+  </AbiCraftStateSnapshot.TakeSnapshot>
+  <AbiCraftStateSnapshot.camera>
+    <signature>AbiCraftStateSnapshot.camera</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>camera</name>
+    <token>public Camera camera { get; set; }</token>
+    <scope>AbiCraftStateSnapshot</scope>
+  </AbiCraftStateSnapshot.camera>
+  <AbiCraftStateSnapshot.player>
+    <signature>AbiCraftStateSnapshot.player</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>player</name>
+    <token>public AbicraftObject player { get; set; }</token>
+    <scope>AbiCraftStateSnapshot</scope>
+  </AbiCraftStateSnapshot.player>
+  <AbiCraftStateSnapshot.mousePosition2D>
+    <signature>AbiCraftStateSnapshot.mousePosition2D</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>mousePosition2D</name>
+    <token>public Vector3 mousePosition2D { get; set; }</token>
+    <scope>AbiCraftStateSnapshot</scope>
+  </AbiCraftStateSnapshot.mousePosition2D>
+  <AbiCraftStateSnapshot.mousePosition3D>
+    <signature>AbiCraftStateSnapshot.mousePosition3D</signature>
+    <childcount>0</childcount>
+    <type>Property</type>
+    <name>mousePosition3D</name>
+    <token>public Vector3 mousePosition3D { get; set; }</token>
+    <scope>AbiCraftStateSnapshot</scope>
+  </AbiCraftStateSnapshot.mousePosition3D>
+  <AbiCraftStateSnapshot.InjectInputDataReferences_x0028_AbicraftInputReferences_x0029_>
+    <signature>AbiCraftStateSnapshot.InjectInputDataReferences(AbicraftInputReferences)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>InjectInputDataReferences</name>
+    <token>public static void InjectInputDataReferences(AbicraftInputReferences inputReferences)</token>
+    <scope>AbiCraftStateSnapshot</scope>
+    <params>
+      <inputReferences>AbicraftInputReferences</inputReferences>
+    </params>
+  </AbiCraftStateSnapshot.InjectInputDataReferences_x0028_AbicraftInputReferences_x0029_>
+  <AbicraftInputReferences>
+    <signature>AbicraftInputReferences</signature>
+    <childcount>1</childcount>
+    <type>Struct</type>
+    <name>AbicraftInputReferences</name>
+    <token>[System.Serializable]
+public struct AbicraftInputReferences </token>
+    <scope></scope>
+  </AbicraftInputReferences>
+  <AbicraftInputReferences.Player>
+    <signature>AbicraftInputReferences.Player</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>Player</name>
+    <token>public AbicraftObject Player </token>
+    <scope>AbicraftInputReferences</scope>
+  </AbicraftInputReferences.Player>
+  <GlobalHelpers>
+    <signature>GlobalHelpers</signature>
+    <childcount>4</childcount>
+    <type>Class</type>
+    <name>GlobalHelpers</name>
+    <token>public static class GlobalHelpers </token>
+    <scope></scope>
+  </GlobalHelpers>
+  <GlobalHelpers.NULL_FORMAT>
+    <signature>GlobalHelpers.NULL_FORMAT</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>NULL_FORMAT</name>
+    <token>public static readonly Vector3 NULL_FORMAT = new Vector3(int.MinValue, int.MinValue, int.MinValue);</token>
+    <scope>GlobalHelpers</scope>
+  </GlobalHelpers.NULL_FORMAT>
+  <GlobalHelpers.IsNull_x0028_float_x0029_>
+    <signature>GlobalHelpers.IsNull(float)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>IsNull</name>
+    <token>public static bool IsNull(this float val)</token>
+    <scope>GlobalHelpers</scope>
+    <params>
+      <val>float</val>
+    </params>
+  </GlobalHelpers.IsNull_x0028_float_x0029_>
+  <GlobalHelpers.IsNull_x0028_Vector2_x0029_>
+    <signature>GlobalHelpers.IsNull(Vector2)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>IsNull</name>
+    <token>public static bool IsNull(this Vector2 val)</token>
+    <scope>GlobalHelpers</scope>
+    <params>
+      <val>Vector2</val>
+    </params>
+  </GlobalHelpers.IsNull_x0028_Vector2_x0029_>
+  <GlobalHelpers.IsNull_x0028_Vector3_x0029_>
+    <signature>GlobalHelpers.IsNull(Vector3)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>IsNull</name>
+    <token>public static bool IsNull(this Vector3 val)</token>
+    <scope>GlobalHelpers</scope>
+    <params>
+      <val>Vector3</val>
+    </params>
+  </GlobalHelpers.IsNull_x0028_Vector3_x0029_>
+  <Abicraft>
+    <signature>Abicraft</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>Abicraft</name>
+    <token>public class Abicraft : MonoBehaviour </token>
+    <scope></scope>
+  </Abicraft>
+  <Abicraft.Player>
+    <signature>Abicraft.Player</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>Player</name>
+    <token>public AbicraftObject Player </token>
+    <scope>Abicraft</scope>
+  </Abicraft.Player>
+  <Abicraft.input>
+    <signature>Abicraft.input</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>input</name>
+    <token>public AbicraftDataFile input </token>
+    <scope>Abicraft</scope>
+  </Abicraft.input>
+  <AbicraftObject>
+    <signature>AbicraftObject</signature>
+    <childcount>2</childcount>
+    <type>Class</type>
+    <name>AbicraftObject</name>
+    <token>public class AbicraftObject : MonoBehaviour </token>
+    <scope></scope>
+  </AbicraftObject>
+  <AbicraftMono>
+    <signature>AbicraftMono</signature>
+    <childcount>4</childcount>
+    <type>Class</type>
+    <name>AbicraftMono</name>
+    <token>public abstract class AbicraftMono : MonoBehaviour </token>
+    <scope></scope>
+  </AbicraftMono>
+  <AbicraftMono.Destructor_x0028__x0029_>
+    <signature>AbicraftMono.Destructor()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Destructor</name>
+    <token>public delegate bool Destructor()</token>
+    <scope>AbicraftMono</scope>
+  </AbicraftMono.Destructor_x0028__x0029_>
+  <AbicraftMono.DestroyWhen_x0028__x0029_>
+    <signature>AbicraftMono.DestroyWhen()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>DestroyWhen</name>
+    <token>public abstract bool DestroyWhen()</token>
+    <scope>AbicraftMono</scope>
+  </AbicraftMono.DestroyWhen_x0028__x0029_>
+  <Shake>
+    <signature>Shake</signature>
+    <childcount>8</childcount>
+    <type>Class</type>
+    <name>Shake</name>
+    <token>public class Shake : AbicraftMono </token>
+    <scope></scope>
+  </Shake>
+  <Shake.target>
+    <signature>Shake.target</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>target</name>
+    <token>public GameObject target </token>
+    <scope>Shake</scope>
+  </Shake.target>
+  <Shake.shakeDuration>
+    <signature>Shake.shakeDuration</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>shakeDuration</name>
+    <token>public float shakeDuration </token>
+    <scope>Shake</scope>
+  </Shake.shakeDuration>
+  <Shake.shakeAmount>
+    <signature>Shake.shakeAmount</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>shakeAmount</name>
+    <token>public float shakeAmount </token>
+    <scope>Shake</scope>
+  </Shake.shakeAmount>
+  <Shake.decreaseFactor>
+    <signature>Shake.decreaseFactor</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>decreaseFactor</name>
+    <token>public float decreaseFactor </token>
+    <scope>Shake</scope>
+  </Shake.decreaseFactor>
+  <Shake.originalPos>
+    <signature>Shake.originalPos</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>originalPos</name>
+    <token>public Vector3 originalPos </token>
+    <scope>Shake</scope>
+  </Shake.originalPos>
+  <Shake.DestroyWhen_x0028__x0029_>
+    <signature>Shake.DestroyWhen()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>DestroyWhen</name>
+    <token>public override bool DestroyWhen()</token>
+    <scope>Shake</scope>
+  </Shake.DestroyWhen_x0028__x0029_>
+  <Skillshot>
+    <signature>Skillshot</signature>
+    <childcount>7</childcount>
+    <type>Class</type>
+    <name>Skillshot</name>
+    <token>public class Skillshot : AbicraftMono </token>
+    <scope></scope>
+  </Skillshot>
+  <Skillshot.towards>
+    <signature>Skillshot.towards</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>towards</name>
+    <token>public Vector3 towards </token>
+    <scope>Skillshot</scope>
+  </Skillshot.towards>
+  <Skillshot.Speed>
+    <signature>Skillshot.Speed</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>Speed</name>
+    <token>public float Speed </token>
+    <scope>Skillshot</scope>
+  </Skillshot.Speed>
+  <Skillshot.MaxRange>
+    <signature>Skillshot.MaxRange</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>MaxRange</name>
+    <token>public float MaxRange </token>
+    <scope>Skillshot</scope>
+  </Skillshot.MaxRange>
+  <Skillshot.startpoint>
+    <signature>Skillshot.startpoint</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>startpoint</name>
+    <token>public Vector3 startpoint </token>
+    <scope>Skillshot</scope>
+  </Skillshot.startpoint>
+  <Skillshot.DestroyWhen_x0028__x0029_>
+    <signature>Skillshot.DestroyWhen()</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>DestroyWhen</name>
+    <token>public override bool DestroyWhen()</token>
+    <scope>Skillshot</scope>
+  </Skillshot.DestroyWhen_x0028__x0029_>
+  <AbicraftNodes.Action>
+    <signature>AbicraftNodes.Action</signature>
+    <childcount>5</childcount>
+    <type>Namespace</type>
+    <name>AbicraftNodes.Action</name>
+    <token>namespace AbicraftNodes.Action</token>
+    <scope></scope>
+  </AbicraftNodes.Action>
+  <AbicraftNodes.Action.AnimationNode>
+    <signature>AbicraftNodes.Action.AnimationNode</signature>
+    <childcount>7</childcount>
+    <type>Class</type>
+    <name>AnimationNode</name>
+    <token>public class AnimationNode : AbicraftExecutionNode </token>
+    <scope>AbicraftNodes.Action</scope>
+  </AbicraftNodes.Action.AnimationNode>
+  <AbicraftNodes.Action.AnimationNode.id>
+    <signature>AbicraftNodes.Action.AnimationNode.id</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>id</name>
+    <token>public static uint id </token>
+    <scope>AbicraftNodes.Action.AnimationNode</scope>
+  </AbicraftNodes.Action.AnimationNode.id>
+  <AbicraftNodes.Action.AnimationNode.AnimationTrigger>
+    <signature>AbicraftNodes.Action.AnimationNode.AnimationTrigger</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>AnimationTrigger</name>
+    <token>[Input]
+public string AnimationTrigger </token>
+    <scope>AbicraftNodes.Action.AnimationNode</scope>
+  </AbicraftNodes.Action.AnimationNode.AnimationTrigger>
+  <AbicraftNodes.Action.AnimationNode.BlockForSeconds>
+    <signature>AbicraftNodes.Action.AnimationNode.BlockForSeconds</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>BlockForSeconds</name>
+    <token>[Input]
+public float BlockForSeconds </token>
+    <scope>AbicraftNodes.Action.AnimationNode</scope>
+  </AbicraftNodes.Action.AnimationNode.BlockForSeconds>
+  <AbicraftNodes.Action.AnimationNode.data>
+    <signature>AbicraftNodes.Action.AnimationNode.data</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>data</name>
+    <token>public NodeData data </token>
+    <scope>AbicraftNodes.Action.AnimationNode</scope>
+  </AbicraftNodes.Action.AnimationNode.data>
+  <AbicraftNodes.Action.AnimationNode.NodeData>
+    <signature>AbicraftNodes.Action.AnimationNode.NodeData</signature>
+    <childcount>1</childcount>
+    <type>Struct</type>
+    <name>NodeData</name>
+    <token>public struct NodeData </token>
+    <scope>AbicraftNodes.Action.AnimationNode</scope>
+  </AbicraftNodes.Action.AnimationNode.NodeData>
+  <AbicraftNodes.Action.AnimationNode.NodeData.statusColor>
+    <signature>AbicraftNodes.Action.AnimationNode.NodeData.statusColor</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>statusColor</name>
+    <token>public Color statusColor </token>
+    <scope>AbicraftNodes.Action.AnimationNode.NodeData</scope>
+  </AbicraftNodes.Action.AnimationNode.NodeData.statusColor>
+  <AbicraftNodes.Action.AnimationNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.AnimationNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.AnimationNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.AnimationNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.AnimationNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.AnimationNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.AnimationNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.AnimationNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.BlockExecutionNode>
+    <signature>AbicraftNodes.Action.BlockExecutionNode</signature>
+    <childcount>4</childcount>
+    <type>Class</type>
+    <name>BlockExecutionNode</name>
+    <token>public class BlockExecutionNode : AbicraftExecutionNode </token>
+    <scope>AbicraftNodes.Action</scope>
+  </AbicraftNodes.Action.BlockExecutionNode>
+  <AbicraftNodes.Action.BlockExecutionNode.id>
+    <signature>AbicraftNodes.Action.BlockExecutionNode.id</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>id</name>
+    <token>public static uint id </token>
+    <scope>AbicraftNodes.Action.BlockExecutionNode</scope>
+  </AbicraftNodes.Action.BlockExecutionNode.id>
+  <AbicraftNodes.Action.BlockExecutionNode.BlockForSeconds>
+    <signature>AbicraftNodes.Action.BlockExecutionNode.BlockForSeconds</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>BlockForSeconds</name>
+    <token>[Input]
+public float BlockForSeconds </token>
+    <scope>AbicraftNodes.Action.BlockExecutionNode</scope>
+  </AbicraftNodes.Action.BlockExecutionNode.BlockForSeconds>
+  <AbicraftNodes.Action.BlockExecutionNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.BlockExecutionNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.BlockExecutionNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.BlockExecutionNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.BlockExecutionNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.BlockExecutionNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.BlockExecutionNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.BlockExecutionNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.OnHitNode>
+    <signature>AbicraftNodes.Action.OnHitNode</signature>
+    <childcount>4</childcount>
+    <type>Class</type>
+    <name>OnHitNode</name>
+    <token>public class OnHitNode : AbicraftExecutionNode </token>
+    <scope>AbicraftNodes.Action</scope>
+  </AbicraftNodes.Action.OnHitNode>
+  <AbicraftNodes.Action.OnHitNode.id>
+    <signature>AbicraftNodes.Action.OnHitNode.id</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>id</name>
+    <token>public static uint id </token>
+    <scope>AbicraftNodes.Action.OnHitNode</scope>
+  </AbicraftNodes.Action.OnHitNode.id>
+  <AbicraftNodes.Action.OnHitNode.icon>
+    <signature>AbicraftNodes.Action.OnHitNode.icon</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>icon</name>
+    <token>public Texture2D icon </token>
+    <scope>AbicraftNodes.Action.OnHitNode</scope>
+  </AbicraftNodes.Action.OnHitNode.icon>
+  <AbicraftNodes.Action.OnHitNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.OnHitNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.OnHitNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.OnHitNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.OnHitNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.OnHitNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.OnHitNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.OnHitNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.RotateToDirectionNode>
+    <signature>AbicraftNodes.Action.RotateToDirectionNode</signature>
+    <childcount>4</childcount>
+    <type>Class</type>
+    <name>RotateToDirectionNode</name>
+    <token>public class RotateToDirectionNode : AbicraftExecutionNode </token>
+    <scope>AbicraftNodes.Action</scope>
+  </AbicraftNodes.Action.RotateToDirectionNode>
+  <AbicraftNodes.Action.RotateToDirectionNode.id>
+    <signature>AbicraftNodes.Action.RotateToDirectionNode.id</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>id</name>
+    <token>public static uint id </token>
+    <scope>AbicraftNodes.Action.RotateToDirectionNode</scope>
+  </AbicraftNodes.Action.RotateToDirectionNode.id>
+  <AbicraftNodes.Action.RotateToDirectionNode.direction>
+    <signature>AbicraftNodes.Action.RotateToDirectionNode.direction</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>direction</name>
+    <token>[Input]
+public Vector3 direction </token>
+    <scope>AbicraftNodes.Action.RotateToDirectionNode</scope>
+  </AbicraftNodes.Action.RotateToDirectionNode.direction>
+  <AbicraftNodes.Action.RotateToDirectionNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.RotateToDirectionNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.RotateToDirectionNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.RotateToDirectionNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.RotateToDirectionNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.RotateToDirectionNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.RotateToDirectionNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.RotateToDirectionNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.SkillshotNode>
+    <signature>AbicraftNodes.Action.SkillshotNode</signature>
+    <childcount>5</childcount>
+    <type>Class</type>
+    <name>SkillshotNode</name>
+    <token>public class SkillshotNode : AbicraftExecutionNode </token>
+    <scope>AbicraftNodes.Action</scope>
+  </AbicraftNodes.Action.SkillshotNode>
+  <AbicraftNodes.Action.SkillshotNode.id>
+    <signature>AbicraftNodes.Action.SkillshotNode.id</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>id</name>
+    <token>public static uint id </token>
+    <scope>AbicraftNodes.Action.SkillshotNode</scope>
+  </AbicraftNodes.Action.SkillshotNode.id>
+  <AbicraftNodes.Action.SkillshotNode.direction>
+    <signature>AbicraftNodes.Action.SkillshotNode.direction</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>direction</name>
+    <token>[Input]
+public Vector3 direction </token>
+    <scope>AbicraftNodes.Action.SkillshotNode</scope>
+  </AbicraftNodes.Action.SkillshotNode.direction>
+  <AbicraftNodes.Action.SkillshotNode.missile>
+    <signature>AbicraftNodes.Action.SkillshotNode.missile</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>missile</name>
+    <token>[Input]
+public AbicraftObject missile </token>
+    <scope>AbicraftNodes.Action.SkillshotNode</scope>
+  </AbicraftNodes.Action.SkillshotNode.missile>
+  <AbicraftNodes.Action.SkillshotNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.SkillshotNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.SkillshotNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.SkillshotNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Action.SkillshotNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Action.SkillshotNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Action.SkillshotNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Action.SkillshotNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Object>
+    <signature>AbicraftNodes.Object</signature>
+    <childcount>2</childcount>
+    <type>Namespace</type>
+    <name>AbicraftNodes.Object</name>
+    <token>namespace AbicraftNodes.Object</token>
+    <scope></scope>
+  </AbicraftNodes.Object>
+  <AbicraftNodes.Object.CameraNode>
+    <signature>AbicraftNodes.Object.CameraNode</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>CameraNode</name>
+    <token>public class CameraNode : AbicraftValueNode </token>
+    <scope>AbicraftNodes.Object</scope>
+  </AbicraftNodes.Object.CameraNode>
+  <AbicraftNodes.Object.CameraNode.camera>
+    <signature>AbicraftNodes.Object.CameraNode.camera</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>camera</name>
+    <token>[Output]
+public AbicraftObject camera </token>
+    <scope>AbicraftNodes.Object.CameraNode</scope>
+  </AbicraftNodes.Object.CameraNode.camera>
+  <AbicraftNodes.Object.CameraNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Object.CameraNode.Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Evaluate</name>
+    <token>public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Object.CameraNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Object.CameraNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Object.CameraNode.GetValue_x0028_NodePort_x0029_>
+    <signature>AbicraftNodes.Object.CameraNode.GetValue(NodePort)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetValue</name>
+    <token>public override object GetValue(NodePort port)</token>
+    <scope>AbicraftNodes.Object.CameraNode</scope>
+    <params>
+      <port>NodePort</port>
+    </params>
+  </AbicraftNodes.Object.CameraNode.GetValue_x0028_NodePort_x0029_>
+  <AbicraftNodes.Object.PlayerNode>
+    <signature>AbicraftNodes.Object.PlayerNode</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>PlayerNode</name>
+    <token>public class PlayerNode : AbicraftValueNode </token>
+    <scope>AbicraftNodes.Object</scope>
+  </AbicraftNodes.Object.PlayerNode>
+  <AbicraftNodes.Object.PlayerNode.player>
+    <signature>AbicraftNodes.Object.PlayerNode.player</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>player</name>
+    <token>[Output]
+public AbicraftObject player </token>
+    <scope>AbicraftNodes.Object.PlayerNode</scope>
+  </AbicraftNodes.Object.PlayerNode.player>
+  <AbicraftNodes.Object.PlayerNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Object.PlayerNode.Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Evaluate</name>
+    <token>public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Object.PlayerNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Object.PlayerNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Object.PlayerNode.GetValue_x0028_NodePort_x0029_>
+    <signature>AbicraftNodes.Object.PlayerNode.GetValue(NodePort)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetValue</name>
+    <token>public override object GetValue(NodePort port)</token>
+    <scope>AbicraftNodes.Object.PlayerNode</scope>
+    <params>
+      <port>NodePort</port>
+    </params>
+  </AbicraftNodes.Object.PlayerNode.GetValue_x0028_NodePort_x0029_>
+  <AbicraftNodes>
+    <signature>AbicraftNodes</signature>
+    <childcount>1</childcount>
+    <type>Namespace</type>
+    <name>AbicraftNodes</name>
+    <token>namespace AbicraftNodes</token>
+    <scope></scope>
+  </AbicraftNodes>
+  <AbicraftNodes.OnExecuteNode>
+    <signature>AbicraftNodes.OnExecuteNode</signature>
+    <childcount>5</childcount>
+    <type>Class</type>
+    <name>OnExecuteNode</name>
+    <token>public class OnExecuteNode : AbicraftExecutionNode </token>
+    <scope>AbicraftNodes</scope>
+  </AbicraftNodes.OnExecuteNode>
+  <AbicraftNodes.OnExecuteNode.id>
+    <signature>AbicraftNodes.OnExecuteNode.id</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>id</name>
+    <token>public static uint id </token>
+    <scope>AbicraftNodes.OnExecuteNode</scope>
+  </AbicraftNodes.OnExecuteNode.id>
+  <AbicraftNodes.OnExecuteNode.icon>
+    <signature>AbicraftNodes.OnExecuteNode.icon</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>icon</name>
+    <token>public Texture2D icon </token>
+    <scope>AbicraftNodes.OnExecuteNode</scope>
+  </AbicraftNodes.OnExecuteNode.icon>
+  <AbicraftNodes.OnExecuteNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.OnExecuteNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.OnExecuteNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.OnExecuteNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.OnExecuteNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.OnExecuteNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.OnExecuteNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.OnExecuteNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.OnExecuteNode.GetValue_x0028_NodePort_x0029_>
+    <signature>AbicraftNodes.OnExecuteNode.GetValue(NodePort)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetValue</name>
+    <token>public override object GetValue(NodePort port)</token>
+    <scope>AbicraftNodes.OnExecuteNode</scope>
+    <params>
+      <port>NodePort</port>
+    </params>
+  </AbicraftNodes.OnExecuteNode.GetValue_x0028_NodePort_x0029_>
+  <AbicraftNodes.Math>
+    <signature>AbicraftNodes.Math</signature>
+    <childcount>2</childcount>
+    <type>Namespace</type>
+    <name>AbicraftNodes.Math</name>
+    <token>namespace AbicraftNodes.Math</token>
+    <scope></scope>
+  </AbicraftNodes.Math>
+  <AbicraftNodes.Math.RotateDirectionVector3Node>
+    <signature>AbicraftNodes.Math.RotateDirectionVector3Node</signature>
+    <childcount>6</childcount>
+    <type>Class</type>
+    <name>RotateDirectionVector3Node</name>
+    <token>public class RotateDirectionVector3Node : AbicraftValueNode </token>
+    <scope>AbicraftNodes.Math</scope>
+  </AbicraftNodes.Math.RotateDirectionVector3Node>
+  <AbicraftNodes.Math.RotateDirectionVector3Node.directionIn>
+    <signature>AbicraftNodes.Math.RotateDirectionVector3Node.directionIn</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>directionIn</name>
+    <token>[Input ]
+public Vector3 directionIn </token>
+    <scope>AbicraftNodes.Math.RotateDirectionVector3Node</scope>
+  </AbicraftNodes.Math.RotateDirectionVector3Node.directionIn>
+  <AbicraftNodes.Math.RotateDirectionVector3Node.directionOut>
+    <signature>AbicraftNodes.Math.RotateDirectionVector3Node.directionOut</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>directionOut</name>
+    <token>[Output]
+public Vector3 directionOut </token>
+    <scope>AbicraftNodes.Math.RotateDirectionVector3Node</scope>
+  </AbicraftNodes.Math.RotateDirectionVector3Node.directionOut>
+  <AbicraftNodes.Math.RotateDirectionVector3Node.RotateAmountDegrees>
+    <signature>AbicraftNodes.Math.RotateDirectionVector3Node.RotateAmountDegrees</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>RotateAmountDegrees</name>
+    <token>[Input]
+public Vector3 RotateAmountDegrees </token>
+    <scope>AbicraftNodes.Math.RotateDirectionVector3Node</scope>
+  </AbicraftNodes.Math.RotateDirectionVector3Node.RotateAmountDegrees>
+  <AbicraftNodes.Math.RotateDirectionVector3Node.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Math.RotateDirectionVector3Node.Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Evaluate</name>
+    <token>public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Math.RotateDirectionVector3Node</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Math.RotateDirectionVector3Node.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Math.RotateDirectionVector3Node.GetValue_x0028_NodePort_x0029_>
+    <signature>AbicraftNodes.Math.RotateDirectionVector3Node.GetValue(NodePort)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetValue</name>
+    <token>public override object GetValue(NodePort port)</token>
+    <scope>AbicraftNodes.Math.RotateDirectionVector3Node</scope>
+    <params>
+      <port>NodePort</port>
+    </params>
+  </AbicraftNodes.Math.RotateDirectionVector3Node.GetValue_x0028_NodePort_x0029_>
+  <AbicraftNodes.Math.RotateDirectionVector3Node.RotateRadians_x0028_Vector3_x002C__x0020_float_x0029_>
+    <signature>AbicraftNodes.Math.RotateDirectionVector3Node.RotateRadians(Vector3, float)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>RotateRadians</name>
+    <token>public Vector3 RotateRadians(Vector3 v, float radians)</token>
+    <scope>AbicraftNodes.Math.RotateDirectionVector3Node</scope>
+    <params>
+      <v>Vector3</v>
+      <radians>float</radians>
+    </params>
+  </AbicraftNodes.Math.RotateDirectionVector3Node.RotateRadians_x0028_Vector3_x002C__x0020_float_x0029_>
+  <AbicraftNodes.Math.TowardsCursorNode>
+    <signature>AbicraftNodes.Math.TowardsCursorNode</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>TowardsCursorNode</name>
+    <token>public class TowardsCursorNode : AbicraftValueNode </token>
+    <scope>AbicraftNodes.Math</scope>
+  </AbicraftNodes.Math.TowardsCursorNode>
+  <AbicraftNodes.Math.TowardsCursorNode.direction>
+    <signature>AbicraftNodes.Math.TowardsCursorNode.direction</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>direction</name>
+    <token>[Output]
+public Vector3 direction </token>
+    <scope>AbicraftNodes.Math.TowardsCursorNode</scope>
+  </AbicraftNodes.Math.TowardsCursorNode.direction>
+  <AbicraftNodes.Math.TowardsCursorNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.Math.TowardsCursorNode.Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Evaluate</name>
+    <token>public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.Math.TowardsCursorNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.Math.TowardsCursorNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.Math.TowardsCursorNode.GetValue_x0028_NodePort_x0029_>
+    <signature>AbicraftNodes.Math.TowardsCursorNode.GetValue(NodePort)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetValue</name>
+    <token>public override object GetValue(NodePort port)</token>
+    <scope>AbicraftNodes.Math.TowardsCursorNode</scope>
+    <params>
+      <port>NodePort</port>
+    </params>
+  </AbicraftNodes.Math.TowardsCursorNode.GetValue_x0028_NodePort_x0029_>
+  <AbicraftNodes.VFX>
+    <signature>AbicraftNodes.VFX</signature>
+    <childcount>1</childcount>
+    <type>Namespace</type>
+    <name>AbicraftNodes.VFX</name>
+    <token>namespace AbicraftNodes.VFX</token>
+    <scope></scope>
+  </AbicraftNodes.VFX>
+  <AbicraftNodes.VFX.ShakeNode>
+    <signature>AbicraftNodes.VFX.ShakeNode</signature>
+    <childcount>7</childcount>
+    <type>Class</type>
+    <name>ShakeNode</name>
+    <token>public class ShakeNode : AbicraftExecutionNode </token>
+    <scope>AbicraftNodes.VFX</scope>
+  </AbicraftNodes.VFX.ShakeNode>
+  <AbicraftNodes.VFX.ShakeNode.id>
+    <signature>AbicraftNodes.VFX.ShakeNode.id</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>id</name>
+    <token>public static uint id </token>
+    <scope>AbicraftNodes.VFX.ShakeNode</scope>
+  </AbicraftNodes.VFX.ShakeNode.id>
+  <AbicraftNodes.VFX.ShakeNode.obj>
+    <signature>AbicraftNodes.VFX.ShakeNode.obj</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>obj</name>
+    <token>[Input]
+public AbicraftObject obj </token>
+    <scope>AbicraftNodes.VFX.ShakeNode</scope>
+  </AbicraftNodes.VFX.ShakeNode.obj>
+  <AbicraftNodes.VFX.ShakeNode.shakeDuration>
+    <signature>AbicraftNodes.VFX.ShakeNode.shakeDuration</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>shakeDuration</name>
+    <token>[Input]
+public float shakeDuration </token>
+    <scope>AbicraftNodes.VFX.ShakeNode</scope>
+  </AbicraftNodes.VFX.ShakeNode.shakeDuration>
+  <AbicraftNodes.VFX.ShakeNode.shakeAmount>
+    <signature>AbicraftNodes.VFX.ShakeNode.shakeAmount</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>shakeAmount</name>
+    <token>[Input]
+public float shakeAmount </token>
+    <scope>AbicraftNodes.VFX.ShakeNode</scope>
+  </AbicraftNodes.VFX.ShakeNode.shakeAmount>
+  <AbicraftNodes.VFX.ShakeNode.decreaseFactor>
+    <signature>AbicraftNodes.VFX.ShakeNode.decreaseFactor</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>decreaseFactor</name>
+    <token>[Input]
+public float decreaseFactor </token>
+    <scope>AbicraftNodes.VFX.ShakeNode</scope>
+  </AbicraftNodes.VFX.ShakeNode.decreaseFactor>
+  <AbicraftNodes.VFX.ShakeNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.VFX.ShakeNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.VFX.ShakeNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.VFX.ShakeNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNodes.VFX.ShakeNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNodes.VFX.ShakeNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNodes.VFX.ShakeNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNodes.VFX.ShakeNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftExecutionNode>
+    <signature>AbicraftExecutionNode</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>AbicraftExecutionNode</name>
+    <token>public abstract class AbicraftExecutionNode : AbicraftNode </token>
+    <scope></scope>
+  </AbicraftExecutionNode>
+  <AbicraftExecutionNode.In>
+    <signature>AbicraftExecutionNode.In</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>In</name>
+    <token>[Input ]
+public int In </token>
+    <scope>AbicraftExecutionNode</scope>
+  </AbicraftExecutionNode.In>
+  <AbicraftExecutionNode.Out>
+    <signature>AbicraftExecutionNode.Out</signature>
+    <childcount>0</childcount>
+    <type>Field</type>
+    <name>Out</name>
+    <token>[Output]
+public int Out </token>
+    <scope>AbicraftExecutionNode</scope>
+  </AbicraftExecutionNode.Out>
+  <AbicraftExecutionNode.GetValue_x0028_NodePort_x0029_>
+    <signature>AbicraftExecutionNode.GetValue(NodePort)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>GetValue</name>
+    <token>public override object GetValue(NodePort port)</token>
+    <scope>AbicraftExecutionNode</scope>
+    <params>
+      <port>NodePort</port>
+    </params>
+  </AbicraftExecutionNode.GetValue_x0028_NodePort_x0029_>
+  <AbicraftNode>
+    <signature>AbicraftNode</signature>
+    <childcount>3</childcount>
+    <type>Class</type>
+    <name>AbicraftNode</name>
+    <token>public abstract class AbicraftNode : Node </token>
+    <scope></scope>
+  </AbicraftNode>
+  <AbicraftNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNode.Initialize(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Initialize</name>
+    <token>public virtual void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNode.Initialize_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNode.Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>Evaluate</name>
+    <token>public virtual void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNode.Evaluate_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+    <signature>AbicraftNode.ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution)</signature>
+    <childcount>0</childcount>
+    <type>Method</type>
+    <name>ExecuteNode</name>
+    <token>public virtual IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)</token>
+    <scope>AbicraftNode</scope>
+    <params>
+      <execution>AbicraftAbilityExecution.AbicraftNodeExecution</execution>
+    </params>
+  </AbicraftNode.ExecuteNode_x0028_AbicraftAbilityExecution.AbicraftNodeExecution_x0029_>
+  <AbicraftValueNode>
+    <signature>AbicraftValueNode</signature>
+    <childcount>0</childcount>
+    <type>Class</type>
+    <name>AbicraftValueNode</name>
+    <token>public abstract class AbicraftValueNode : AbicraftNode </token>
+    <scope></scope>
+  </AbicraftValueNode>
+</members>
