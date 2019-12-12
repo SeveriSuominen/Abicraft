@@ -12,7 +12,8 @@ namespace AbicraftNodes.Action
     {
         public static uint id = 111;
 
-        [Input] public float BlockForSeconds;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public float BlockForSeconds;
 
         public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
@@ -21,8 +22,6 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
-            Debug.Log("Block Node");
-
             if(BlockForSeconds >= 0.05f)
                 yield return new WaitForSeconds(BlockForSeconds);
             execution.ReleaseBlock();

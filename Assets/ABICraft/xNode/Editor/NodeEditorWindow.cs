@@ -75,8 +75,11 @@ namespace XNodeEditor {
         private float _zoom = 1;
 
         void OnFocus() {
+            this.titleContent = new GUIContent("Abicraft Node");
+
             current = this;
             ValidateGraphEditor();
+
             if (graphEditor != null && NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
         }
 
@@ -92,6 +95,8 @@ namespace XNodeEditor {
             if (nodeGraph && !AssetDatabase.Contains(nodeGraph)) {
                 Open(nodeGraph);
             }
+
+           
         }
 
         /// <summary> Make sure the graph editor is assigned and to the right object </summary>
@@ -106,7 +111,7 @@ namespace XNodeEditor {
         /// <summary> Create editor window </summary>
         public static NodeEditorWindow Init() {
             NodeEditorWindow w = CreateInstance<NodeEditorWindow>();
-            w.titleContent = new GUIContent("xNode");
+            w.titleContent = new GUIContent("Abicraft Node");
             w.wantsMouseMove = true;
             w.Show();
             return w;

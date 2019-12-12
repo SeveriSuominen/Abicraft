@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
+using AbicraftCore;
+
 namespace AbicraftNodes
 {
     public class OnExecuteNode : AbicraftExecutionNode
@@ -17,14 +19,13 @@ namespace AbicraftNodes
 
         public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
-            Debug.Log("On Execution Node");
             //TAKING INPUT SNAPSHOT WHEN STARTING EXECUTE 
             yield return null;
         }
 
         public override object GetValue(NodePort port)
         {
-            return GetInputValue<int>("Out", 0);
+            return new AbicraftLifeline();
         }
     }
 }

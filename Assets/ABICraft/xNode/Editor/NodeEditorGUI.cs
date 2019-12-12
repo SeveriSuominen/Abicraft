@@ -337,7 +337,7 @@ namespace XNodeEditor {
                             // Draw selected reroute points with an outline
                             if (selectedReroutes.Contains(rerouteRef)) {
                                 GUI.color = NodeEditorPreferences.GetSettings().highlightColor;
-                                GUI.DrawTexture(rect, NodeEditorResources.dotOuter);
+                                //GUI.DrawTexture(rect, NodeEditorResources.dotOuter);
                             }
 
                             GUI.color = portColor;
@@ -426,7 +426,7 @@ namespace XNodeEditor {
                 bool selected = selectionCache.Contains(graph.nodes[n]);
 
                 if (selected) {
-                    GUIStyle style = new GUIStyle(nodeEditor.GetBodyStyle());
+                    GUIStyle style = new GUIStyle(nodeEditor.GetBodyStyle(node));
                     GUIStyle highlightStyle = new GUIStyle(nodeEditor.GetBodyHighlightStyle());
                     highlightStyle.padding = style.padding;
                     style.padding = new RectOffset();
@@ -435,7 +435,7 @@ namespace XNodeEditor {
                     GUI.color = NodeEditorPreferences.GetSettings().highlightColor;
                     GUILayout.BeginVertical(new GUIStyle(highlightStyle));
                 } else {
-                    GUIStyle style = new GUIStyle(nodeEditor.GetBodyStyle());
+                    GUIStyle style = new GUIStyle(nodeEditor.GetBodyStyle(node));
                     GUI.color = nodeEditor.GetTint();
                     GUILayout.BeginVertical(style);
                 }

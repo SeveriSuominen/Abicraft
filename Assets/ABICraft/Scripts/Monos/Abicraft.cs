@@ -7,7 +7,6 @@ using XNode;
 public class Abicraft : MonoBehaviour
 {
     public AbicraftObject   Player;
-    public AbicraftDataFile input;
 
     private void Start()
     {

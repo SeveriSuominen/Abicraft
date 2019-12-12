@@ -43,7 +43,7 @@ public class AbilityDispatcher : MonoBehaviour
             {
                 AbicraftAbilityExecution.AbicraftNodeExecution nodeExecution = execution.current_node_executions[j];
 
-                if (nodeExecution.current_node != null)
+                if (!nodeExecution.finished && nodeExecution.current_node != null)
                 {
                     if (!nodeExecution.executed)
                     {
@@ -67,7 +67,6 @@ public class AbilityDispatcher : MonoBehaviour
 
                         for (int k = 0; k < ports.Count; k++)
                         {
-                            Debug.Log(nodeExecution.current_node);
                             NodePort port;
 
                             if ((port = ports[k]) != null)
@@ -99,7 +98,7 @@ public class AbilityDispatcher : MonoBehaviour
                 }
                 else
                 {
-                    execution.current_node_executions.RemoveAt(j);
+                    nodeExecution.current_node = null;
                 }
             }
         }
@@ -114,7 +113,15 @@ public class AbilityDispatcher : MonoBehaviour
 
             if (cooldown.elapsed >= cooldown.Ability.Cooldown)
             {
-                if(cooldown.current_node_executions.Count == 0)
+                bool allLifelineBranchesEnded = true;
+
+                for (int j = 0; j < cooldown.current_node_executions.Count; j++)
+                {
+                    if (cooldown.current_node_executions[j].current_node != null)
+                        allLifelineBranchesEnded = false;
+                }
+
+                if(allLifelineBranchesEnded)
                     AbilityExecutionBuffer.RemoveAt(i);
             }      
         }
@@ -122,6 +129,7 @@ public class AbilityDispatcher : MonoBehaviour
 
     List<AbicraftNode> getSortForExecuteNodes(Ability Ability)
     {
+        
         List<AbicraftNode> exec_nodes = new List<AbicraftNode>();
 
         for (int i = 0; i < Ability.nodes.Count; i++)
@@ -129,12 +137,12 @@ public class AbilityDispatcher : MonoBehaviour
             if (Ability.nodes[i].name == "On Execute")
                 exec_nodes.Add(Ability.nodes[i]);
         }
-        return new List<AbicraftNode>(exec_nodes); 
+        return new List<AbicraftNode>(exec_nodes);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Dispatch(test_Ability);
         }

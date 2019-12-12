@@ -8,8 +8,13 @@ namespace XNodeEditor {
         private static Texture2D _dot;
         public static Texture2D dotOuter { get { return _dotOuter != null ? _dotOuter : _dotOuter = Resources.Load<Texture2D>("xnode_dot_outer"); } }
         private static Texture2D _dotOuter;
-        public static Texture2D nodeBody { get { return _nodeBody != null ? _nodeBody : _nodeBody = Resources.Load<Texture2D>("xnode_node"); } }
+
+        public static Texture2D nodeBody { get { return _nodeBody != null ? _nodeBody : _nodeBody = Resources.Load<Texture2D>("node_value"); } }
         private static Texture2D _nodeBody;
+
+        public static Texture2D nodeBodyExec { get { return _nodeBodyExec != null ? _nodeBodyExec : _nodeBodyExec = Resources.Load<Texture2D>("node_execution"); } }
+        private static Texture2D _nodeBodyExec;
+
         public static Texture2D nodeHighlight { get { return _nodeHighlight != null ? _nodeHighlight : _nodeHighlight = Resources.Load<Texture2D>("xnode_node_highlight"); } }
         private static Texture2D _nodeHighlight;
 
@@ -19,6 +24,21 @@ namespace XNodeEditor {
         public static GUIStyle OutputPort { get { return new GUIStyle(EditorStyles.label) { alignment = TextAnchor.UpperRight }; } }
         public class Styles {
             public GUIStyle inputPort, nodeHeader, nodeBody, tooltip, nodeHighlight, abicraft_infobar, abicraft_infobar_center, abicraft_button;
+
+            public GUIStyle GetAbicraftNodeStyle(AbicraftNode node)
+            {
+                GUIStyle nodeBodyStyle = new GUIStyle();
+
+                if (node.GetType().IsSubclassOf(typeof(AbicraftExecutionNode)))
+                    nodeBodyStyle.normal.background = NodeEditorResources.nodeBodyExec;
+                else
+                    nodeBodyStyle.normal.background = NodeEditorResources.nodeBody;
+
+                nodeBodyStyle.border = new RectOffset(32, 32, 32, 32);
+                nodeBodyStyle.padding = new RectOffset(16, 16, 4, 16);
+
+                return nodeBodyStyle;
+            }
 
             public Styles() {
                 GUIStyle baseStyle = new GUIStyle("Label");

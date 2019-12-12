@@ -9,14 +9,19 @@ namespace AbicraftNodes.VFX
     {
         public static uint id = 113;
 
-        [Input] public AbicraftObject obj;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public AbicraftObject obj;
 
         // How long the object should shake for.
-        [Input] public float shakeDuration = 10f;
+
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public float shakeDuration = 10f;
 
         // Amplitude of the shake. A larger value shakes the camera harder.
-        [Input] public float shakeAmount = 0.7f;
-        [Input] public float decreaseFactor = 1.0f;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public float shakeAmount = 0.7f;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public float decreaseFactor = 1.0f;
 
         public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {

@@ -41,7 +41,7 @@ namespace XNode {
         public virtual void RemoveNode(AbicraftNode node) {
             node.ClearConnections();
             nodes.Remove(node);
-            if (Application.isPlaying) Destroy(node);
+            if (Application.isPlaying) DestroyImmediate(node, true);
         }
 
         /// <summary> Remove all nodes and connections from the graph </summary>

@@ -12,42 +12,127 @@ namespace AbicraftNodes.Action
     {
         public static uint id = 111;
 
-        [Input] public string AnimationTrigger;
-        [Input] public float  BlockForSeconds;
+        public static bool IsAnimating;
+
+        /*[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public string AnimationTrigger;*/
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public AbicraftObject Obj;
+
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public float  Speed;
 
         //Wanna pass arguments for editor? Use non-seriziable sturct to hold that data
         //and access it in custom editor via Target.
         public NodeData data;
 
-        public struct NodeData
+        public class NodeData
         {
-            public Color statusColor;
+            public int selectedIndex = 0;
+            public AnimationClip[] clips;
         }
         //-----------------------------------------------------------------------------
 
+        AnimatorOverrideController overrideController;
+        string prevLoadAnim;
+        Animator animator;
+        ResourceRequest request;
+        AnimatorStateInfo[] layerInfo;
+
         public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
-            data = new NodeData();
-            execution.Block();
+            //execution.Block();
         }
 
         public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
-            Debug.Log("Animation Node");
+            Obj = GetInputValue<AbicraftObject>("Obj");
+            Obj.GetComponent<NavMeshAgent>().ResetPath();
 
-            GameObject player = AbiCraftStateSnapshot.TakeSnapshot.player.gameObject;
+            if (Obj)
+            {
+                animator = Obj.GetComponent<Animator>();
 
-            player.GetComponent<Animator>().SetTrigger(AnimationTrigger);
-            player.GetComponent<NavMeshAgent>().ResetPath();
-            data.statusColor = Color.yellow;
+                if (animator != null)
+                {
+                    if (IsAnimating)
+                        animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
 
-            yield return new WaitForSeconds(BlockForSeconds);
+                    if (animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController))
+                    {
+                        IsAnimating = true;
+                        animator.speed = Speed;
 
-            data.statusColor = Color.green;
-            execution.ReleaseBlock();
+                        overrideController = new AnimatorOverrideController();
+
+                        if (!overrideController.runtimeAnimatorController)
+                            overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
+
+                        animator.runtimeAnimatorController = overrideController;
+                        
+                        LoadAnimation(data.clips[data.selectedIndex]);
+
+                        yield return new WaitForSeconds(data.clips[data.selectedIndex].length / (Speed));
+
+                        animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+                        IsAnimating = false;
+                    }
+                }
+            }
+            yield return null;
+        }
+
+        void LoadAnimClip(AnimationClip clip)
+        {
+            overrideController["ElfMage_Attack3"] = clip;
+
+            // Push back state
+            for (int i = 0; i < animator.layerCount; i++)
+            {
+                animator.Play(layerInfo[i].fullPathHash, i, layerInfo[i].normalizedTime);
+            }
+            //animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+            //overrideController.a;
+            // Force an update
+            animator.Update(0.0f);
+
+            animator.ResetTrigger("StartOverride");
+            animator.SetTrigger("StartOverride");
+        }
+
+        public void LoadAnimation(AnimationClip clip)
+        {
+            //Save current state
+            layerInfo = new AnimatorStateInfo[animator.layerCount];
+
+            for (int i = 0; i < animator.layerCount; i++)
+            {
+                layerInfo[i] = animator.GetCurrentAnimatorStateInfo(i);
+            }
+ 
+            LoadAnimClip(clip);
+
+            prevLoadAnim = "ElfMage_Attack3";
+        }
+
+        public void UnloadPreviousLoadAnimation()
+        {
+            for (int i = 0; i < animator.layerCount; i++)
+            {
+                layerInfo[i] = animator.GetCurrentAnimatorStateInfo(i);
+            }
+
+            overrideController[prevLoadAnim] = null;
+
+            for (int i = 0; i < animator.layerCount; i++)
+            {
+                animator.Play(layerInfo[i].fullPathHash, i, layerInfo[i].normalizedTime);
+            }
+
+            // Force an update
+            animator.Update(0.0f);
         }
     }
-
 }
 
 

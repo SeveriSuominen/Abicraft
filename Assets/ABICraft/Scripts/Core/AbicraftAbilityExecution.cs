@@ -27,6 +27,12 @@ public class AbicraftAbilityExecution
         public bool executed;
         public bool globalBlock;
 
+        public void EndExecutionBranch()
+        {
+            AbilityExecution.current_node_executions[branchIndex].current_node = null;
+            this.finished = true;
+        }
+
         public void Block()
         {
             this.globalBlock = true;

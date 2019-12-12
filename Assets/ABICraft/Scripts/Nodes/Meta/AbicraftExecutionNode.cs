@@ -1,16 +1,22 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
+using AbicraftCore;
+
+
 public abstract class AbicraftExecutionNode : AbicraftNode
 {
-    [Input ] public int In;
-    [Output] public int Out;
+    [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+    public AbicraftLifeline In;
+    [Output]
+    public AbicraftLifeline Out;
 
     public override object GetValue(NodePort port)
     {
-        return GetInputValue<int>("Out", In + 1);
+        return GetInputValue<AbicraftLifeline>("In");
     }
 }
 

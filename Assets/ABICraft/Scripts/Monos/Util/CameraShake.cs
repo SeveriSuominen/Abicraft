@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shake : AbicraftMono
+public class Shake : AbicraftActionMono
 {
     // Transform of the camera to shake. Grabs the gameObject's transform
     // if null.
@@ -35,13 +35,9 @@ public class Shake : AbicraftMono
         {
             shakeDuration = 0f;
             target.transform.localPosition = originalPos;
+
+            CompleteActionAs(true);
         }
 
-        CycleFrameStep();
-    }
-
-    public override bool DestroyWhen()
-    {
-        return shakeDuration == 0;
     }
 }

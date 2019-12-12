@@ -14,7 +14,7 @@ namespace XNodeEditor {
     [CustomNodeEditor(typeof(AbicraftNode))]
     public class NodeEditor : XNodeEditor.Internal.NodeEditorBase<NodeEditor, NodeEditor.CustomNodeEditorAttribute, AbicraftNode> {
 
-        private readonly Color DEFAULTCOLOR = new Color32(90, 97, 105, 255);
+        private readonly Color DEFAULTCOLOR = new Color32(255, 255,255, 255);//new Color32(90, 97, 105, 255);
 
         /// <summary> Fires every whenever a node was modified through the editor </summary>
         public static Action<AbicraftNode> onUpdateNode;
@@ -96,8 +96,8 @@ namespace XNodeEditor {
             else return DEFAULTCOLOR;
         }
 
-        public virtual GUIStyle GetBodyStyle() {
-            return NodeEditorResources.styles.nodeBody;
+        public virtual GUIStyle GetBodyStyle(AbicraftNode node) {
+            return NodeEditorResources.styles.GetAbicraftNodeStyle(node);
         }
 
         public virtual GUIStyle GetBodyHighlightStyle() {

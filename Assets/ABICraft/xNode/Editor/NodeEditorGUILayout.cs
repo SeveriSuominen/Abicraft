@@ -10,7 +10,7 @@ using UnityEngine;
 namespace XNodeEditor {
     /// <summary> xNode-specific version of <see cref="EditorGUILayout"/> </summary>
     public static class NodeEditorGUILayout {
-
+        
         private static readonly Dictionary<UnityEngine.Object, Dictionary<string, ReorderableList>> reorderableListCache = new Dictionary<UnityEngine.Object, Dictionary<string, ReorderableList>>();
         private static int reorderableListIndex = -1;
 
@@ -32,24 +32,44 @@ namespace XNodeEditor {
             PropertyField(property, null, port, includeChildren, options);
         }
 
+        public static GUIStyle GetFieldStyle(string type)
+        {
+            //GUILayout.Label(label.text ?? "", GUILayout.Width(50));
+            GUIStyle StateFieldLabelIn = new GUIStyle();
+            StateFieldLabelIn.normal.textColor = new Color32(215, 215, 215, 255);
+            StateFieldLabelIn.fontStyle = FontStyle.Bold;
+            StateFieldLabelIn.fontSize = 11;
+            StateFieldLabelIn.alignment = TextAnchor.UpperLeft;
+
+            //GUILayout.Label(label.text ?? "", GUILayout.Width(50));
+            GUIStyle StateFieldLabelOut = new GUIStyle();
+            StateFieldLabelOut.normal.textColor = new Color32(215, 215, 215, 255);
+            StateFieldLabelOut.fontStyle = FontStyle.Bold;
+            StateFieldLabelOut.fontSize = 11;
+            StateFieldLabelOut.alignment = TextAnchor.UpperRight;
+
+            switch (type)
+            {
+                case "In":
+                    return StateFieldLabelIn;
+                case "Out":
+                    return StateFieldLabelOut;
+                default:
+                    return GUIStyle.none;
+            }
+        }
+
         /// <summary> Make a field for a serialized property. Manual node port override. </summary>
         public static void PropertyField(SerializedProperty property, GUIContent label, XNode.NodePort port, bool includeChildren = true, params GUILayoutOption[] options) {
             if (property == null) throw new NullReferenceException();
 
+            GUIStyle StateFieldLabelIn  = GetFieldStyle("In");
+            GUIStyle StateFieldLabelOut = GetFieldStyle("Out");
+
             // If property is not a port, display a regular property field
             if (port == null)
             {
-                //GUILayout.Label(label.text ?? "", GUILayout.Width(50));
-                /*GUIStyle StateFieldLabel = new GUIStyle(EditorStyles.textField)
-                {
-                    normal = new GUIStyleState()
-                    {
-                        
-                        textColor = Color.green
-                    }
-                };*/
-                EditorGUILayout.LabelField(property.displayName);
-                EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MaxWidth(150));
+                EditorGUILayout.PropertyField(property, label, includeChildren, GUILayout.MinWidth(30));
             }
             else
             {
@@ -107,17 +127,24 @@ namespace XNodeEditor {
                     {
                         case AbicraftNode.ShowBackingValue.Unconnected:
                             // Display a label if port is connected
-                            if (port.IsConnected) EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName));
+                            if (port.IsConnected) {
+                                EditorGUILayout.LabelField(property.displayName, StateFieldLabelIn);
+                                //EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MaxWidth(150));
+                            } //EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName));
                             // Display an editable property field if port is not connected
-                            else EditorGUILayout.PropertyField(property, label, includeChildren, GUILayout.MinWidth(30));
+                            else {
+                                EditorGUILayout.LabelField(property.displayName, StateFieldLabelIn);
+                                EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
+                            }
                             break;
                         case AbicraftNode.ShowBackingValue.Never:
                             // Display a label
-                            EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName));
+                            EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelIn);
                             break;
                         case AbicraftNode.ShowBackingValue.Always:
                             // Display an editable property field
-                            EditorGUILayout.PropertyField(property, label, includeChildren, GUILayout.MinWidth(30));
+                            EditorGUILayout.LabelField(property.displayName, StateFieldLabelIn);
+                            EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
                             break;
                     }
 
@@ -174,13 +201,21 @@ namespace XNodeEditor {
                     {
                         case AbicraftNode.ShowBackingValue.Unconnected:
                             // Display a label if port is connected
-                            if (port.IsConnected) EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), NodeEditorResources.OutputPort, GUILayout.MinWidth(30));
+                            if (port.IsConnected) EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
                             // Display an editable property field if port is not connected
-                            else EditorGUILayout.PropertyField(property, label, includeChildren, GUILayout.MinWidth(30));
+                            else
+                            {
+                                EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
+                                EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
+                            }
+                            
                             break;
                         case AbicraftNode.ShowBackingValue.Never:
                             // Display a label
-                            EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), NodeEditorResources.OutputPort, GUILayout.MinWidth(30));
+                            if(port.IsConnected)
+                                EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
+                            else
+                                EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
                             break;
                         case AbicraftNode.ShowBackingValue.Always:
                             // Display an editable property field
@@ -296,7 +331,7 @@ namespace XNodeEditor {
         public static void DrawPortHandle(Rect rect, Color backgroundColor, Color typeColor) {
             Color col = GUI.color;
             GUI.color = backgroundColor;
-            GUI.DrawTexture(rect, NodeEditorResources.dotOuter);
+            //GUI.DrawTexture(rect, NodeEditorResources.dotOuter);
             GUI.color = typeColor;
             GUI.DrawTexture(rect, NodeEditorResources.dot);
             GUI.color = col;
