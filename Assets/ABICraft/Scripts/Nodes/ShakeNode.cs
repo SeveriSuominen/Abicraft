@@ -10,7 +10,7 @@ namespace AbicraftNodes.VFX
         public static uint id = 113;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public AbicraftObject obj;
+        public AbicraftObject Obj;
 
         // How long the object should shake for.
 
@@ -30,15 +30,17 @@ namespace AbicraftNodes.VFX
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbiCraftStateSnapshot   snapshot = e.AbilityExecution.initial_snapshot;
-            Shake shakeMono = snapshot.player.gameObject.AddComponent<Shake>();
+            AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj", Obj);
+            if (obj)
+            {
+                Shake shakeMono = obj.gameObject.AddComponent<Shake>();
 
-            shakeMono.target = GetInputValue<AbicraftObject>(e, "obj").gameObject;
+                shakeMono.target = GetInputValue<AbicraftObject>(e, "obj").gameObject;
 
-            shakeMono.decreaseFactor = decreaseFactor;
-            shakeMono.shakeAmount    = shakeAmount;
-            shakeMono.shakeDuration  = shakeDuration;
-
+                shakeMono.decreaseFactor = decreaseFactor;
+                shakeMono.shakeAmount = shakeAmount;
+                shakeMono.shakeDuration = shakeDuration;
+            }
             yield return null;
         }
     }

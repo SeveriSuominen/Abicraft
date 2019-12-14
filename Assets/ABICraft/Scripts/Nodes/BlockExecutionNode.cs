@@ -22,7 +22,7 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            float blockForSeconds = GetInputValue<float>(e, "BlockForSeconds", BlockForSeconds) * 0.025f;
+            float blockForSeconds = GetInputValue<float>(e, "BlockForSeconds", BlockForSeconds);
             if (blockForSeconds >= 0.01f)
                 yield return new WaitForSeconds(blockForSeconds);
             e.ReleaseBlock();
