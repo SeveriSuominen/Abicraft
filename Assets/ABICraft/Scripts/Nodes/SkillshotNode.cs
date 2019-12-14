@@ -24,22 +24,22 @@ namespace AbicraftNodes.Action
 
         private AbicraftLifeline lifeline;
 
-        public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Initialize(AbicraftNodeExecution execution)
         {
             
         }
 
-        public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             GameObject temp = GameObject.Instantiate(missile.gameObject);
 
-            lifeline = GetInputValue<AbicraftLifeline>("In");
+            lifeline = GetInputValue<AbicraftLifeline>(e, "In");
             Skillshot shot = temp.AddComponent<Skillshot>();
 
-            shot.startpoint = GetInputValue<Vector3>("startPosition");
-            shot.towards    = GetInputValue<Vector3>("direction");
-            shot.Speed      = GetInputValue<float>("speed", speed);
-            shot.MaxRange   = GetInputValue<float>("maxRange", maxRange);
+            shot.startpoint = GetInputValue<Vector3>(e, "startPosition");
+            shot.towards    = GetInputValue<Vector3>(e, "direction");
+            shot.Speed      = GetInputValue<float>(e, "speed", speed);
+            shot.MaxRange   = GetInputValue<float>(e, "maxRange", maxRange);
 
             shot.MoveToStartPoint();
 
@@ -50,9 +50,9 @@ namespace AbicraftNodes.Action
             yield return null;
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            return lifeline ?? GetInputValue<AbicraftLifeline>("In");
+            return lifeline ?? GetInputValue<AbicraftLifeline>(e, "In");
         }
     }
 }

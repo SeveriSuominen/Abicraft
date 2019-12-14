@@ -227,28 +227,29 @@ namespace XNode {
         /// <summary> Return input value for a specified port. Returns fallback value if no ports are connected </summary>
         /// <param name="fieldName">Field name of requested input port</param>
         /// <param name="fallback">If no ports are connected, this value will be returned</param>
-        public T GetInputValue<T>(string fieldName, T fallback = default(T)) {
+        public T GetInputValue<T>(AbicraftNodeExecution e, string fieldName, T fallback = default(T)) {
             NodePort port = GetPort(fieldName);
-            if (port != null && port.IsConnected) return port.GetInputValue<T>();
+            if (port != null && port.IsConnected) return port.GetInputValue<T>(e);
             else return fallback;
         }
 
         /// <summary> Return all input values for a specified port. Returns fallback value if no ports are connected </summary>
         /// <param name="fieldName">Field name of requested input port</param>
         /// <param name="fallback">If no ports are connected, this value will be returned</param>
-        public T[] GetInputValues<T>(string fieldName, params T[] fallback) {
+        public T[] GetInputValues<T>(AbicraftNodeExecution e, string fieldName, params T[] fallback) {
             NodePort port = GetPort(fieldName);
-            if (port != null && port.IsConnected) return port.GetInputValues<T>();
+            if (port != null && port.IsConnected) return port.GetInputValues<T>(e);
             else return fallback;
         }
 
         /// <summary> Returns a value based on requested port output. Should be overridden in all derived nodes with outputs. </summary>
         /// <param name="port">The requested port.</param>
-        public virtual object GetValue(NodePort port) {
+        public virtual object GetValue(AbicraftNodeExecution e, NodePort port) {
             Debug.LogWarning("No GetValue(NodePort port) override defined for " + GetType());
             return null;
         }
-#endregion
+
+        #endregion
 
         /// <summary> Called after a connection between two <see cref="NodePort"/>s is created </summary>
         /// <param name="from">Output</param> <param name="to">Input</param>

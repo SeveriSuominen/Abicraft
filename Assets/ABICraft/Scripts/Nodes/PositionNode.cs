@@ -12,9 +12,9 @@ namespace AbicraftNodes.Object.Getters
 
         [Output] public Vector3 ObjPosition;
  
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            AbicraftObject obj = GetInputValue<AbicraftObject>("Obj");
+            AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj");
 
             if (obj && port.fieldName.Equals("ObjPosition"))
                 return obj.transform.position;

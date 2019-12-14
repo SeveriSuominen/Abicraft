@@ -14,12 +14,12 @@ namespace AbicraftNodes.Object
         public AbicraftObject Obj;
         GameObject obj;
 
-        public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Evaluate(AbicraftNodeExecution execution)
         {
             base.Evaluate(execution);
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             AbicraftObject obj = AbicraftGlobalContext.FindObject(Name);
 

@@ -40,7 +40,7 @@ public class AnimationEditor : NodeEditor
     {
         node = target as AnimationNode;
 
-        obj = node.GetInputValue<AbicraftObject>("Obj");
+        obj = node.GetInputValue<AbicraftObject>(null, "Obj");
 
         base.OnBodyGUI();
 

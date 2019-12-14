@@ -9,7 +9,7 @@ namespace AbicraftNodes.Object
     {
         [Output] public AbicraftObject camera;
 
-        public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Evaluate(AbicraftNodeExecution execution)
         {
             AbiCraftStateSnapshot snapshot = execution.AbilityExecution.initial_snapshot;
 
@@ -21,7 +21,7 @@ namespace AbicraftNodes.Object
             camera = obj;   
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             return camera;
         }

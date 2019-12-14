@@ -17,14 +17,14 @@ namespace AbicraftNodes.Action
         //public bool ignoreSelfType;
         //public string[] ignoreTags;
 
-        public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Initialize(AbicraftNodeExecution execution)
         {
             execution.Block();
         }
 
-        public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbicraftCore.AbicraftLifeline lifeline = GetInputValue<AbicraftCore.AbicraftLifeline>("In");
+            AbicraftCore.AbicraftLifeline lifeline = GetInputValue<AbicraftLifeline>(e, "In");
 
             while (lifeline.mono != null)
             {
@@ -32,7 +32,7 @@ namespace AbicraftNodes.Action
                 {
                     if (lifeline.mono.ActionWasSuccess == false)
                     {
-                        execution.EndExecutionBranch();
+                        e.EndExecutionBranch();
                     }
                     else
                     {
@@ -42,7 +42,7 @@ namespace AbicraftNodes.Action
 
                     yield return new WaitForFixedUpdate();
 
-                    execution.ReleaseBlock();
+                    e.ReleaseBlock();
                     break;
                 }
                 yield return new WaitForFixedUpdate();
@@ -50,10 +50,10 @@ namespace AbicraftNodes.Action
             yield return null;
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             if (port.fieldName == "Out")
-                return GetInputValue<AbicraftLifeline>("In");
+                return GetInputValue<AbicraftLifeline>(e, "In");
             if (port.fieldName == "HitObject")
                 return HitObject;
             else

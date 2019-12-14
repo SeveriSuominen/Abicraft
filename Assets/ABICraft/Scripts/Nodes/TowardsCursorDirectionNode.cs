@@ -16,13 +16,13 @@ namespace AbicraftNodes.Math
 
         private Vector3 mouseposition;
 
-        public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Evaluate(AbicraftNodeExecution e)
         {
-            AbicraftObject obj = GetInputValue<AbicraftObject>("Obj");
+            AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj");
 
             if(obj != null)
             {
-                AbiCraftStateSnapshot snapshot = execution.AbilityExecution.initial_snapshot;
+                AbiCraftStateSnapshot snapshot = e.AbilityExecution.initial_snapshot;
                 direction = (snapshot.mousePosition3D - obj.transform.position).normalized;
 
                 if (onlyYAxis)
@@ -30,7 +30,7 @@ namespace AbicraftNodes.Math
             }
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             return direction;
         }

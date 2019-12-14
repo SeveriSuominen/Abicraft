@@ -5,17 +5,17 @@ using XNode;
 
 public abstract class AbicraftNode : Node
 {
-    public virtual void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+    public virtual void Initialize(AbicraftNodeExecution execution)
     {
         return;
     }
 
-    public virtual void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+    public virtual void Evaluate(AbicraftNodeExecution execution)
     {
         return;
     }
 
-    public virtual IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+    public virtual IEnumerator ExecuteNode(AbicraftNodeExecution e)
     {
         yield return null;
     }

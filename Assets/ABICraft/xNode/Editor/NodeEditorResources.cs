@@ -15,6 +15,9 @@ namespace XNodeEditor {
         public static Texture2D nodeBodyExec { get { return _nodeBodyExec != null ? _nodeBodyExec : _nodeBodyExec = Resources.Load<Texture2D>("node_execution"); } }
         private static Texture2D _nodeBodyExec;
 
+        public static Texture2D nodeBodyLoop { get { return _nodeBodyLoop != null ? _nodeBodyLoop : _nodeBodyLoop = Resources.Load<Texture2D>("node_loop"); } }
+        private static Texture2D _nodeBodyLoop;
+
         public static Texture2D nodeHighlight { get { return _nodeHighlight != null ? _nodeHighlight : _nodeHighlight = Resources.Load<Texture2D>("xnode_node_highlight"); } }
         private static Texture2D _nodeHighlight;
 
@@ -31,6 +34,8 @@ namespace XNodeEditor {
 
                 if (node.GetType().IsSubclassOf(typeof(AbicraftExecutionNode)))
                     nodeBodyStyle.normal.background = NodeEditorResources.nodeBodyExec;
+                else if(node.GetType().IsSubclassOf(typeof(AbicraftExecutionLoopNode)))
+                    nodeBodyStyle.normal.background = NodeEditorResources.nodeBodyLoop;
                 else
                     nodeBodyStyle.normal.background = NodeEditorResources.nodeBody;
 

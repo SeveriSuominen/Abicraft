@@ -107,22 +107,22 @@ namespace XNode {
 
         /// <summary> Return the output value of this node through its parent nodes GetValue override method. </summary>
         /// <returns> <see cref="AbicraftNode.GetValue(NodePort)"/> </returns>
-        public object GetOutputValue() {
+        public object GetOutputValue(AbicraftNodeExecution e) {
             if (direction == IO.Input) return null;
-            return node.GetValue(this);
+            return node.GetValue(e, this);
         }
 
         /// <summary> Return the output value of the first connected port. Returns null if none found or invalid.</summary>
         /// <returns> <see cref="NodePort.GetOutputValue"/> </returns>
-        public object GetInputValue() {
+        public object GetInputValue(AbicraftNodeExecution e) {
             NodePort connectedPort = Connection;
             if (connectedPort == null) return null;
-            return connectedPort.GetOutputValue();
+            return connectedPort.GetOutputValue(e);
         }
 
         /// <summary> Return the output values of all connected ports. </summary>
         /// <returns> <see cref="NodePort.GetOutputValue"/> </returns>
-        public object[] GetInputValues() {
+        public object[] GetInputValues(AbicraftNodeExecution e) {
             object[] objs = new object[ConnectionCount];
             for (int i = 0; i < ConnectionCount; i++) {
                 NodePort connectedPort = connections[i].Port;
@@ -131,22 +131,22 @@ namespace XNode {
                     i--;
                     continue;
                 }
-                objs[i] = connectedPort.GetOutputValue();
+                objs[i] = connectedPort.GetOutputValue(e);
             }
             return objs;
         }
 
         /// <summary> Return the output value of the first connected port. Returns null if none found or invalid. </summary>
         /// <returns> <see cref="NodePort.GetOutputValue"/> </returns>
-        public T GetInputValue<T>() {
-            object obj = GetInputValue();
+        public T GetInputValue<T>(AbicraftNodeExecution e) {
+            object obj = GetInputValue(e);
             return obj is T ? (T) obj : default(T);
         }
 
         /// <summary> Return the output values of all connected ports. </summary>
         /// <returns> <see cref="NodePort.GetOutputValue"/> </returns>
-        public T[] GetInputValues<T>() {
-            object[] objs = GetInputValues();
+        public T[] GetInputValues<T>(AbicraftNodeExecution e) {
+            object[] objs = GetInputValues(e);
             T[] ts = new T[objs.Length];
             for (int i = 0; i < objs.Length; i++) {
                 if (objs[i] is T) ts[i] = (T) objs[i];
@@ -156,8 +156,8 @@ namespace XNode {
 
         /// <summary> Return true if port is connected and has a valid input. </summary>
         /// <returns> <see cref="NodePort.GetOutputValue"/> </returns>
-        public bool TryGetInputValue<T>(out T value) {
-            object obj = GetInputValue();
+        public bool TryGetInputValue<T>(AbicraftNodeExecution e, out T value) {
+            object obj = GetInputValue(e);
             if (obj is T) {
                 value = (T) obj;
                 return true;
@@ -169,8 +169,8 @@ namespace XNode {
 
         /// <summary> Return the sum of all inputs. </summary>
         /// <returns> <see cref="NodePort.GetOutputValue"/> </returns>
-        public float GetInputSum(float fallback) {
-            object[] objs = GetInputValues();
+        public float GetInputSum(AbicraftNodeExecution e, float fallback) {
+            object[] objs = GetInputValues(e);
             if (objs.Length == 0) return fallback;
             float result = 0;
             for (int i = 0; i < objs.Length; i++) {
@@ -181,8 +181,8 @@ namespace XNode {
 
         /// <summary> Return the sum of all inputs. </summary>
         /// <returns> <see cref="NodePort.GetOutputValue"/> </returns>
-        public int GetInputSum(int fallback) {
-            object[] objs = GetInputValues();
+        public int GetInputSum(AbicraftNodeExecution e, int fallback) {
+            object[] objs = GetInputValues(e);
             if (objs.Length == 0) return fallback;
             int result = 0;
             for (int i = 0; i < objs.Length; i++) {

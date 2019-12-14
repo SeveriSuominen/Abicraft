@@ -7,6 +7,7 @@ namespace AbicraftCore
     [System.Serializable]
     public class AbicraftLifeline
     {
+        public int index;
         public AbicraftActionMono mono;
     }
 }

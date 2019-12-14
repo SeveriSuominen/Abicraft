@@ -6,7 +6,6 @@ using XNode;
 
 using AbicraftCore;
 
-
 public abstract class AbicraftExecutionLoopNode : AbicraftNode
 {
     [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
@@ -14,14 +13,47 @@ public abstract class AbicraftExecutionLoopNode : AbicraftNode
     [Output]
     public AbicraftLifeline Loop;
     [Output]
+    public float Iteration;
+    [Output]
     public AbicraftLifeline Continue;
 
-    //[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+    [HideInInspector]
+    public float max_iterations;
+
+    public Dictionary<string, float> iterations = new Dictionary<string, float>();
+
+    [HideInInspector]
+    public List<int> iteratedIndices = new List<int>();
+    [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Unconnected)]
+    public int Iterations;
     public bool Parallel;
 
-    public override object GetValue(NodePort port)
+    protected bool NodeBelongsToLoop(NodePort port)
     {
-        return GetInputValue<AbicraftLifeline>("In");
+        return true;
+    }
+
+    public override object GetValue(AbicraftNodeExecution e, NodePort port)
+    {
+        if(port.fieldName == "Iteration")
+        {
+            if(e != null)
+            {
+                string key = port.fieldName + e.iterationIndex;
+
+                if (iterations.ContainsKey(key))
+                {
+                    return iterations[key];
+                }
+                else
+                {
+                    iterations.Add(key, e.iterationIndex);
+                    return iterations[key];
+                }
+            }
+            return 0;
+        }
+        return GetInputValue<AbicraftLifeline>(e, "In");
     }
 }
 

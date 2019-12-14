@@ -5,6 +5,6 @@ using XNode;
 
 public abstract class AbicraftValueNode : AbicraftNode
 {
-    //public abstract void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution);
+    //public abstract void Evaluate(AbicraftNodeExecution execution);
 }
 

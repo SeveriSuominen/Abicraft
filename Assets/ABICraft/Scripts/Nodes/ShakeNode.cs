@@ -23,17 +23,17 @@ namespace AbicraftNodes.VFX
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float decreaseFactor = 1.0f;
 
-        public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Initialize(AbicraftNodeExecution execution)
         {
             
         }
 
-        public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbiCraftStateSnapshot   snapshot = execution.AbilityExecution.initial_snapshot;
+            AbiCraftStateSnapshot   snapshot = e.AbilityExecution.initial_snapshot;
             Shake shakeMono = snapshot.player.gameObject.AddComponent<Shake>();
 
-            shakeMono.target = GetInputValue<AbicraftObject>("obj").gameObject;
+            shakeMono.target = GetInputValue<AbicraftObject>(e, "obj").gameObject;
 
             shakeMono.decreaseFactor = decreaseFactor;
             shakeMono.shakeAmount    = shakeAmount;

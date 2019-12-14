@@ -12,18 +12,18 @@ namespace AbicraftNodes
         public static uint id = 100;
         public Texture2D icon;
 
-        public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Initialize(AbicraftNodeExecution execution)
         {
 
         }
 
-        public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             //TAKING INPUT SNAPSHOT WHEN STARTING EXECUTE 
             yield return null;
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             return new AbicraftLifeline();
         }

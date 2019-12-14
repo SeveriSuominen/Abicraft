@@ -14,9 +14,9 @@ namespace AbicraftNodes.Math
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float   Multiplier;
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            return GetInputValue<Vector3>("Vector", Vector) * GetInputValue<float>("Multiplier", Multiplier);
+            return GetInputValue<Vector3>(e, "Vector", Vector) * GetInputValue<float>(e, "Multiplier", Multiplier);
         }
     }
 }

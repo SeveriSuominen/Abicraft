@@ -41,7 +41,7 @@ public class AbilityDispatcher : MonoBehaviour
 
             for (int j = 0; j < execution.current_node_executions.Count; j++)
             {
-                AbicraftAbilityExecution.AbicraftNodeExecution nodeExecution = execution.current_node_executions[j];
+                AbicraftNodeExecution nodeExecution = execution.current_node_executions[j];
 
                 if (!nodeExecution.finished && nodeExecution.current_node != null)
                 {
@@ -62,7 +62,7 @@ public class AbilityDispatcher : MonoBehaviour
         }
     }
 
-    void ExecuteNextNode(AbicraftAbilityExecution.AbicraftNodeExecution nodeExecution)
+    void ExecuteNextNode(AbicraftNodeExecution nodeExecution)
     {
         
         if (!nodeExecution.executed)
@@ -87,7 +87,44 @@ public class AbilityDispatcher : MonoBehaviour
         }        
     }
 
-    void BranchExecute(AbicraftAbilityExecution.AbicraftNodeExecution nodeExecution, List<NodePort> ports)
+    void ExecuteLoop(AbicraftNodeExecution nodeExecution)
+    {
+        AbicraftExecutionLoopNode loopnode = nodeExecution.current_node as AbicraftExecutionLoopNode;
+
+        List<NodePort> loopPorts = nodeExecution.current_node.GetOutputPort("Loop").GetConnections();
+        List<NodePort> portsContinue = nodeExecution.current_node.GetOutputPort("Continue").GetConnections();
+
+        loopnode.iterations.Clear();
+
+        if (loopnode.Parallel)
+        {
+            for (int i = 0; i < loopnode.Iterations; i++)
+            {
+                for (int k = 0; k < loopPorts.Count; k++)
+                {
+                    NodePort port;
+
+                    if ((port = loopPorts[k]) != null)
+                    {
+                        nodeExecution.AbilityExecution.current_node_executions.Add
+                        (
+                            new AbicraftNodeExecution(
+                                nodeExecution.AbilityExecution,
+                                port.node
+                            )
+                        );
+
+                        nodeExecution.AbilityExecution.LastNodeExecution().iterationIndex = i + 1;
+                    }
+                    else
+                        nodeExecution.current_node = null;
+                }
+            }
+        }
+        BranchExecute(nodeExecution, portsContinue);
+    }
+
+    void BranchExecute(AbicraftNodeExecution nodeExecution, List<NodePort> ports)
     {
         for (int k = 0; k < ports.Count; k++)
         {
@@ -104,11 +141,13 @@ public class AbilityDispatcher : MonoBehaviour
                     {
                         nodeExecution.AbilityExecution.current_node_executions.Add
                         (
-                            new AbicraftAbilityExecution.AbicraftNodeExecution(
+                            new AbicraftNodeExecution(
                                 nodeExecution.AbilityExecution,
                                 port.node
                             )
                         );
+                        AbicraftNodeExecution newExecution = nodeExecution.AbilityExecution.LastNodeExecution();
+                        newExecution.SetBranchIndex();
                     }
                 }
             else
@@ -118,38 +157,6 @@ public class AbilityDispatcher : MonoBehaviour
 
         if (ports.Count == 0)
             nodeExecution.current_node = null;
-    }
-
-    void ExecuteLoop(AbicraftAbilityExecution.AbicraftNodeExecution nodeExecution)
-    {
-        AbicraftExecutionLoopNode loopnode = nodeExecution.current_node as AbicraftExecutionLoopNode;
-
-        List<NodePort> loopPorts = nodeExecution.current_node.GetOutputPort("Loop").GetConnections();
-        List<NodePort> portsContinue = nodeExecution.current_node.GetOutputPort("Continue").GetConnections();
-
-        if (loopnode.Parallel)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                for (int k = 0; k < loopPorts.Count; k++)
-                {
-                    NodePort port;
-
-                    if ((port = loopPorts[k]) != null)
-                        nodeExecution.AbilityExecution.current_node_executions.Add
-                        (
-                            new AbicraftAbilityExecution.AbicraftNodeExecution(
-                                nodeExecution.AbilityExecution,
-                                port.node
-                            )
-                        );
-                    else
-                        nodeExecution.current_node = null;
-                }
-            }
-        }
-
-        BranchExecute(nodeExecution, portsContinue);
     }
 
     void TickCooldowns(float delta)

@@ -12,7 +12,7 @@ namespace AbicraftNodes.Math
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float value;
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             return value;
         }

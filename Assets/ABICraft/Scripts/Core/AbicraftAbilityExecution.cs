@@ -15,49 +15,6 @@ public class AbicraftAbilityExecution
 
     public List<AbicraftNodeExecution> current_node_executions;
 
-    public class AbicraftNodeExecution
-    {
-        public AbicraftNode current_node;
-        public AbicraftAbilityExecution AbilityExecution;
-
-        public int  branchIndex = 0;
-
-        public bool finished;
-
-        public bool executed;
-        public bool globalBlock;
-
-        public void EndExecutionBranch()
-        {
-            AbilityExecution.current_node_executions[branchIndex].current_node = null;
-            this.finished = true;
-        }
-
-        public void Block()
-        {
-            this.globalBlock = true;
-        }
-
-        public void ReleaseBlock()
-        {
-            this.globalBlock = false;
-        }
-
-        public bool IsBlocked()
-        {
-            return this.globalBlock;
-        }
-
-        public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node)
-        {
-            this.current_node = current_node;
-            this.AbilityExecution = execution;
-
-            executed    = false;
-            globalBlock = false;
-        }
-    }
-
     public AbicraftAbilityExecution(AbilityDispatcher dispatcher, Ability Ability, AbicraftNode startExecNode)
     {
         this.Ability = Ability;
@@ -71,10 +28,15 @@ public class AbicraftAbilityExecution
             )
         );
 
-        current_node_executions[current_node_executions.Count -1].branchIndex = current_node_executions.Count - 1;
+        current_node_executions[current_node_executions.Count - 1].SetBranchIndex();
         this.dispatcher = dispatcher;
 
         initial_snapshot = AbiCraftStateSnapshot.TakeSnapshot;
+    }
+
+    public AbicraftNodeExecution LastNodeExecution()
+    {
+        return current_node_executions[current_node_executions.Count - 1];
     }
 
     public static bool OnCooldown(List<AbicraftAbilityExecution> cds, Ability Ability)

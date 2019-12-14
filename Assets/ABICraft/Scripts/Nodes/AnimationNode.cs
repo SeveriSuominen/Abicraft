@@ -10,15 +10,12 @@ namespace AbicraftNodes.Action
 {
     public class AnimationNode : AbicraftExecutionNode
     {
-        public static uint id = 111;
-
-        public static bool IsAnimating;
+        public static readonly List<AbicraftObject> IsAnimating = new List<AbicraftObject>();
 
         /*[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public string AnimationTrigger;*/
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
-
         private AbicraftObject obj;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
@@ -39,15 +36,15 @@ namespace AbicraftNodes.Action
         ResourceRequest request;
         AnimatorStateInfo[] layerInfo;
 
-        public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Initialize(AbicraftNodeExecution execution)
         {
            
         }
 
-        public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
 
-            obj = GetInputValue<AbicraftObject>("Obj");
+            obj = GetInputValue<AbicraftObject>(e, "Obj");
             animator = obj.GetComponent<Animator>();
 
             obj.GetComponent<NavMeshAgent>().ResetPath();
@@ -58,12 +55,14 @@ namespace AbicraftNodes.Action
             {
                 if (animator != null)
                 {
-                    if (IsAnimating)
+                    if (IsAnimating.Contains(obj) && overrideController != null)
                         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
                    
                     if (animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController))
                     {
-                        IsAnimating = true;
+                        if (!IsAnimating.Contains(obj))
+                            IsAnimating.Add(obj);
+
                         animator.speed = Speed;
 
                         overrideController = new AnimatorOverrideController();
@@ -78,7 +77,9 @@ namespace AbicraftNodes.Action
                         yield return new WaitForSeconds(clips[selectedIndex].length / (Speed));
 
                         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
-                        IsAnimating = false;
+
+                        if (IsAnimating.Contains(obj))
+                            IsAnimating.Remove(obj);
                     }
                 }
             }

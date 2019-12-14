@@ -16,20 +16,20 @@ namespace AbicraftNodes.Action
         public Vector3 direction;
 
       
-        public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Initialize(AbicraftNodeExecution execution)
         {
 
         }
 
-        public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             AbiCraftStateSnapshot context = AbiCraftStateSnapshot.TakeSnapshot;
 
-            var lookPos = GetInputValue<Vector3>("direction", Vector3.zero);
+            var lookPos = GetInputValue<Vector3>(e, "direction", Vector3.zero);
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
 
-            AbicraftObject obj = GetInputValue<AbicraftObject>("Obj");
+            AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj");
 
             if (obj)
                 obj.transform.rotation = rotation;

@@ -9,7 +9,7 @@ namespace AbicraftNodes.Object
     {
         [Output] public AbicraftObject player;
 
-        public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Evaluate(AbicraftNodeExecution execution)
         {
             AbiCraftStateSnapshot snapshot = execution.AbilityExecution.initial_snapshot;
             string name = "VelluaMagician_A_SKEL";
@@ -27,7 +27,7 @@ namespace AbicraftNodes.Object
             Debug.Log("______");
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             return player;
         }

@@ -15,16 +15,17 @@ namespace AbicraftNodes.Action
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float BlockForSeconds;
 
-        public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Initialize(AbicraftNodeExecution execution)
         {
             execution.Block();
         }
 
-        public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            if(BlockForSeconds >= 0.05f)
-                yield return new WaitForSeconds(BlockForSeconds);
-            execution.ReleaseBlock();
+            float blockForSeconds = GetInputValue<float>(e, "BlockForSeconds", BlockForSeconds) * 0.025f;
+            if (blockForSeconds >= 0.01f)
+                yield return new WaitForSeconds(blockForSeconds);
+            e.ReleaseBlock();
         }
     }
 }

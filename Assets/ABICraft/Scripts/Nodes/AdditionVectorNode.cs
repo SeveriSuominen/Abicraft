@@ -14,9 +14,9 @@ namespace AbicraftNodes.Math
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public Vector3 Vector02;
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            return GetInputValue<Vector3>("Vector01", Vector01) + GetInputValue<Vector3>("Vector02", Vector02);
+            return GetInputValue<Vector3>(e, "Vector01", Vector01) + GetInputValue<Vector3>(e, "Vector02", Vector02);
         }
     }
 }

@@ -14,9 +14,9 @@ public abstract class AbicraftExecutionNode : AbicraftNode
     [Output]
     public AbicraftLifeline Out;
 
-    public override object GetValue(NodePort port)
+    public override object GetValue(AbicraftNodeExecution e, NodePort port)
     {
-        return GetInputValue<AbicraftLifeline>("In");
+        return GetInputValue<AbicraftLifeline>(e, "In");
     }
 }
 

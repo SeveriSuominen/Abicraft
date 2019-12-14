@@ -20,10 +20,10 @@ namespace AbicraftNodes.Math
 
         private Vector3 mouseposition;
 
-        public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Evaluate(AbicraftNodeExecution e)
         {
-            AbicraftObject objTo   = GetInputValue<AbicraftObject>("ObjTo");
-            AbicraftObject objFrom = GetInputValue<AbicraftObject>("ObjFrom");
+            AbicraftObject objTo   = GetInputValue<AbicraftObject>(e, "ObjTo");
+            AbicraftObject objFrom = GetInputValue<AbicraftObject>(e, "ObjFrom");
 
             if (objTo != null && objFrom != null)
             {
@@ -34,7 +34,7 @@ namespace AbicraftNodes.Math
             }
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             return direction;
         }

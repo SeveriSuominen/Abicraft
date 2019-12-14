@@ -17,21 +17,21 @@ namespace AbicraftNodes.Math
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float X, Y, Z;
 
-        public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
+        public override void Evaluate(AbicraftNodeExecution execution)
         {
             
         }
 
-        public override object GetValue(NodePort port)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            Vector3 original = GetInputValue<Vector3>("directionIn");
-            Vector3 vector   = GetInputValue<Vector3>("RotateAmountDegrees");
+            Vector3 original = GetInputValue<Vector3>(e, "directionIn");
+            Vector3 vector   = GetInputValue<Vector3>(e, "RotateAmountDegrees");
             
             if (GetPort("RotateAmountDegrees").ConnectionCount == 0)
                 vector = new Vector3(
-                    GetInputValue<float>("X", X),
-                    GetInputValue<float>("Y", Y),
-                    GetInputValue<float>("Z", Z)
+                    GetInputValue<float>(e, "X", X),
+                    GetInputValue<float>(e, "Y", Y),
+                    GetInputValue<float>(e, "Z", Z)
                 );
 
             return RotateRadians(original, Mathf.PI * vector.y / 180.0f );
