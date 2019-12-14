@@ -12,13 +12,13 @@ public class Skillshot : AbicraftActionMono
     public Vector3 startpoint;
 
     [HideInInspector]
-    public AbicraftObject hittedObject;
+    public AbicraftObject rayAbicraftObject;
 
     Rigidbody rigid;
 
     public override object ReturnData()
     {
-        return hittedObject;
+        return rayAbicraftObject;
     }
 
     private void Start()
@@ -31,23 +31,36 @@ public class Skillshot : AbicraftActionMono
     public void MoveToStartPoint()
     {
         transform.position = startpoint;
+        transform.rotation = Quaternion.LookRotation(towards, Vector3.up);
     }
 
-    private void OnCollisionStay(Collision other)
-    {
-        if (hittedObject = other.gameObject.GetComponent<AbicraftObject>())
-        {
-            CompleteActionAs(true);
-        }
-    }
     void FixedUpdate()
     {
-        transform.position += towards * Speed;
-        //rigid.AddForce(towards * Speed);
-
-        if (Vector3.Distance(startpoint, transform.position) > MaxRange)
+        if (Active)
         {
-            CompleteActionAs(false);
+            transform.position += towards * Speed;
+            transform.rotation = Quaternion.LookRotation(towards, Vector3.up);
+
+            RaycastHit hit = GetRaycastHit(RaycastDirection.Forward);
+
+            if (hit.transform)
+            {
+                if(rayAbicraftObject == null || rayAbicraftObject.transform != hit.transform)
+                {
+                    rayAbicraftObject = hit.transform.GetComponent<AbicraftObject>();
+                }
+
+                if (rayAbicraftObject)
+                {
+                    if (Vector3.Distance(transform.position, hit.point) < 1f)
+                        CompleteActionAs(true);
+                }
+            }
+
+            if (Vector3.Distance(startpoint, transform.position) > MaxRange)
+            {
+                CompleteActionAs(false);
+            }
         }
     }
 }

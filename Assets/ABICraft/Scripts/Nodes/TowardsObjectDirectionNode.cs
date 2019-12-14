@@ -29,8 +29,6 @@ namespace AbicraftNodes.Math
             {
                 direction = (objTo.transform.position - objFrom.transform.position).normalized;
 
-                Debug.Log(objTo + " : " + objFrom);
-
                 if (onlyYAxis)
                     direction.y = 0;
             }

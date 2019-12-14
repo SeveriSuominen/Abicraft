@@ -69,7 +69,8 @@ namespace XNodeEditor {
             // If property is not a port, display a regular property field
             if (port == null)
             {
-                EditorGUILayout.PropertyField(property, label, includeChildren, GUILayout.MinWidth(30));
+                EditorGUILayout.LabelField(property.displayName, StateFieldLabelIn);
+                EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
             }
             else
             {
@@ -219,7 +220,8 @@ namespace XNodeEditor {
                             break;
                         case AbicraftNode.ShowBackingValue.Always:
                             // Display an editable property field
-                            EditorGUILayout.PropertyField(property, label, includeChildren, GUILayout.MinWidth(30));
+                            EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
+                            EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
                             break;
                     }
 
@@ -258,10 +260,14 @@ namespace XNodeEditor {
             Vector2 position = Vector3.zero;
             GUIContent content = label != null ? label : new GUIContent(ObjectNames.NicifyVariableName(port.fieldName));
 
+            GUIStyle StateFieldLabelIn = GetFieldStyle("In");
+            GUIStyle StateFieldLabelOut = GetFieldStyle("Out");
+
+
             // If property is an input, display a regular property field and put a port handle on the left side
             if (port.direction == XNode.NodePort.IO.Input) {
                 // Display a label
-                EditorGUILayout.LabelField(content, options);
+                EditorGUILayout.LabelField(content, StateFieldLabelOut);
 
                 Rect rect = GUILayoutUtility.GetLastRect();
                 position = rect.position - new Vector2(16, 0);
@@ -269,7 +275,7 @@ namespace XNodeEditor {
             // If property is an output, display a text label and put a port handle on the right side
             else if (port.direction == XNode.NodePort.IO.Output) {
                 // Display a label
-                EditorGUILayout.LabelField(content, NodeEditorResources.OutputPort, options);
+                EditorGUILayout.LabelField(content, StateFieldLabelOut);
 
                 Rect rect = GUILayoutUtility.GetLastRect();
                 position = rect.position + new Vector2(rect.width, 0);

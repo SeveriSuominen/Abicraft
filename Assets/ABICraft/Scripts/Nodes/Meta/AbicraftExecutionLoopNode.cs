@@ -7,12 +7,17 @@ using XNode;
 using AbicraftCore;
 
 
-public abstract class AbicraftExecutionNode : AbicraftNode
+public abstract class AbicraftExecutionLoopNode : AbicraftNode
 {
     [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
     public AbicraftLifeline In;
     [Output]
-    public AbicraftLifeline Out;
+    public AbicraftLifeline Loop;
+    [Output]
+    public AbicraftLifeline Continue;
+
+    //[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+    public bool Parallel;
 
     public override object GetValue(NodePort port)
     {

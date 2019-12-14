@@ -30,8 +30,6 @@ namespace AbicraftNodes.Action
             {
                 if (lifeline.mono.ActionIsComplete)
                 {
-                    Debug.Log(lifeline.mono.ActionWasSuccess);
-
                     if (lifeline.mono.ActionWasSuccess == false)
                     {
                         execution.EndExecutionBranch();

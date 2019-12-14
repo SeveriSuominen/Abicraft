@@ -12,13 +12,19 @@ namespace AbicraftNodes.Object
         public override void Evaluate(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
             AbiCraftStateSnapshot snapshot = execution.AbilityExecution.initial_snapshot;
-
+            string name = "VelluaMagician_A_SKEL";
             AbicraftObject obj;
 
             if ((obj = snapshot.player.GetComponent<AbicraftObject>()) == null)
                 obj = snapshot.player.gameObject.AddComponent<AbicraftObject>();
 
-            player = obj;   
+            Debug.Log("get Player");
+            player = AbicraftGlobalContext.FindObject(name);
+
+
+            Debug.Log("OBJ IS...");
+            Debug.Log(player == null);
+            Debug.Log("______");
         }
 
         public override object GetValue(NodePort port)

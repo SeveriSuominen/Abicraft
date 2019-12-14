@@ -17,7 +17,7 @@ namespace AbicraftNodes.Action
         public Vector3 startPosition;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public AbicraftObject ignoreSenderObject, missile;
+        public AbicraftObject missile;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float speed, maxRange;
@@ -31,12 +31,10 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
-            Debug.Log("SKILL SHOT" + GetInputValue<Vector3>("startPosition"));
-
             GameObject temp = GameObject.Instantiate(missile.gameObject);
 
             lifeline = GetInputValue<AbicraftLifeline>("In");
-            Skillshot shot = temp.GetComponent<Skillshot>();
+            Skillshot shot = temp.AddComponent<Skillshot>();
 
             shot.startpoint = GetInputValue<Vector3>("startPosition");
             shot.towards    = GetInputValue<Vector3>("direction");
@@ -46,6 +44,8 @@ namespace AbicraftNodes.Action
             shot.MoveToStartPoint();
 
             lifeline.mono = shot;
+
+            shot.StartActionMono();
 
             yield return null;
         }

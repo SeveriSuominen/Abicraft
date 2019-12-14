@@ -38,45 +38,30 @@ public class AnimationEditor : NodeEditor
 
     public override void OnBodyGUI()
     {
-        // Initialization
-        if (node == null)
-        {
-            node = target as AnimationNode;
-        }
+        node = target as AnimationNode;
 
-        if (node.data == null)
-        {
-            node.data = new AnimationNode.NodeData();
-        }
-
-        if (obj == null)
-        {
-            obj = node.GetInputValue<AbicraftObject>("Obj");
-        }
+        obj = node.GetInputValue<AbicraftObject>("Obj");
 
         base.OnBodyGUI();
 
-        if (obj != null)
+        if(obj != null)
         {
-            if (animator == null)
+            node.clips = obj.GetComponent<Animator>().runtimeAnimatorController.animationClips;
+
+            string[] strings;
+
+            if (node.clips == null)
+                strings = new string[0];
+            else
+                strings = new string[node.clips.Length];
+
+            for (int i = 0; i < node.clips.Length; i++)
             {
-                animator = obj.GetComponent<Animator>();
+                strings[i] = node.clips[i].name;
             }
 
-            if (animator != null)
-            {
-                node.data.clips = animator.runtimeAnimatorController.animationClips;
-
-                string[] strings = new string[node.data.clips.Length];
-
-                for (int i = 0; i < node.data.clips.Length; i++)
-                {
-                    strings[i] = node.data.clips[i].name;
-                }
-               
-                GUILayout.Label("Available Animations", NodeEditorGUILayout.GetFieldStyle("In"));
-                node.data.selectedIndex = selectedIndex = EditorGUILayout.Popup(selectedIndex, strings);
-            }
+            GUILayout.Label("Available Animations", NodeEditorGUILayout.GetFieldStyle("In"));
+            node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, strings); //selectedIndex = EditorGUILayout.Popup(selectedIndex, strings);
         }
     }
 }

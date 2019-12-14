@@ -19,18 +19,18 @@ namespace AbicraftNodes.Action
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
 
+        private AbicraftObject obj;
+
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float  Speed;
 
+        [HideInInspector]
+        public int    selectedIndex;
         //Wanna pass arguments for editor? Use non-seriziable sturct to hold that data
         //and access it in custom editor via Target.
-        public NodeData data;
+        [HideInInspector]
+        public AnimationClip[] clips;
 
-        public class NodeData
-        {
-            public int selectedIndex = 0;
-            public AnimationClip[] clips;
-        }
         //-----------------------------------------------------------------------------
 
         AnimatorOverrideController overrideController;
@@ -41,23 +41,26 @@ namespace AbicraftNodes.Action
 
         public override void Initialize(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
-            //execution.Block();
+           
         }
 
         public override IEnumerator ExecuteNode(AbicraftAbilityExecution.AbicraftNodeExecution execution)
         {
-            Obj = GetInputValue<AbicraftObject>("Obj");
-            Obj.GetComponent<NavMeshAgent>().ResetPath();
 
-            if (Obj)
+            obj = GetInputValue<AbicraftObject>("Obj");
+            animator = obj.GetComponent<Animator>();
+
+            obj.GetComponent<NavMeshAgent>().ResetPath();
+
+            clips = animator.runtimeAnimatorController.animationClips;
+
+            if (obj)
             {
-                animator = Obj.GetComponent<Animator>();
-
                 if (animator != null)
                 {
                     if (IsAnimating)
                         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
-
+                   
                     if (animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController))
                     {
                         IsAnimating = true;
@@ -70,9 +73,9 @@ namespace AbicraftNodes.Action
 
                         animator.runtimeAnimatorController = overrideController;
                         
-                        LoadAnimation(data.clips[data.selectedIndex]);
+                        LoadAnimation(clips[selectedIndex]);
 
-                        yield return new WaitForSeconds(data.clips[data.selectedIndex].length / (Speed));
+                        yield return new WaitForSeconds(clips[selectedIndex].length / (Speed));
 
                         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
                         IsAnimating = false;

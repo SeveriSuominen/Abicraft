@@ -22,8 +22,6 @@ namespace AbicraftNodes.Math
 
             if(obj != null)
             {
-                Debug.Log(obj);
-
                 AbiCraftStateSnapshot snapshot = execution.AbilityExecution.initial_snapshot;
                 direction = (snapshot.mousePosition3D - obj.transform.position).normalized;
 

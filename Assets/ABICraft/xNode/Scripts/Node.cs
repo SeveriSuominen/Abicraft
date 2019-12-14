@@ -163,7 +163,7 @@ namespace XNode {
                 int i = 0;
                 while (HasPort(fieldName)) fieldName = "dynamicInput_" + (++i);
             } else if (HasPort(fieldName)) {
-                Debug.LogWarning("Port '" + fieldName + "' already exists in " + name, this);
+                //Debug.LogWarning("Port '" + fieldName + "' already exists in " + name, this);
                 return ports[fieldName];
             }
             NodePort port = new NodePort(fieldName, type, direction, connectionType, typeConstraint, this as AbicraftNode);
@@ -174,7 +174,7 @@ namespace XNode {
         /// <summary> Remove an dynamic port from the node </summary>
         public void RemoveDynamicPort(string fieldName) {
             NodePort dynamicPort = GetPort(fieldName);
-            if (dynamicPort == null) throw new ArgumentException("port " + fieldName + " doesn't exist");
+            if (dynamicPort == null) return;//throw new ArgumentException("port " + fieldName + " doesn't exist");
             RemoveDynamicPort(GetPort(fieldName));
         }
 
