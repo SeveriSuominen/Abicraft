@@ -36,10 +36,7 @@ MonoBehaviour:
       _node: {fileID: -8345170528249367469}
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: directionOut
-        node: {fileID: 2346111934114464528}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -130,7 +127,7 @@ MonoBehaviour:
   m_Name: Towards Object Direction
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1272, y: -248}
+  position: {x: 1368, y: -600}
   ports:
     keys:
     - ObjFrom
@@ -166,9 +163,6 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: direction
-        node: {fileID: 154764534090757196}
-        reroutePoints: []
       - fieldName: Vector01
         node: {fileID: 2311116583429445111}
         reroutePoints: []
@@ -178,7 +172,7 @@ MonoBehaviour:
       _dynamic: 0
   ObjFrom: {fileID: 0}
   ObjTo: {fileID: 0}
-  direction: {x: 0.90962726, y: 0, z: -0.40305203}
+  direction: {x: 0.52405655, y: 0, z: 0.8504173}
   onlyYAxis: 1
 --- !u!114 &-5412533828512205333
 MonoBehaviour:
@@ -285,10 +279,7 @@ MonoBehaviour:
       _node: {fileID: -2618142313871451339}
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Position
-        node: {fileID: 7765166652518447452}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -309,7 +300,7 @@ MonoBehaviour:
   m_Name: Loop
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 456, y: 680}
+  position: {x: 504, y: 600}
   ports:
     keys:
     - Continue
@@ -387,7 +378,7 @@ MonoBehaviour:
     mono: {fileID: 0}
   max_iterations: 3
   iteratedIndices: 
-  Iterations: 5
+  Iterations: 12
   Parallel: 1
 --- !u!114 &-1530243739688700410
 MonoBehaviour:
@@ -402,7 +393,7 @@ MonoBehaviour:
   m_Name: Rotate To Direction
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 104, y: -344}
+  position: {x: 120, y: -280}
   ports:
     keys:
     - direction
@@ -479,7 +470,7 @@ MonoBehaviour:
   m_Name: Addition
   m_EditorClassIdentifier: Assembly-CSharp:AbicraftNodes.Math:AdditionNode
   graph: {fileID: 11400000}
-  position: {x: 520, y: 328}
+  position: {x: 552, y: 344}
   ports:
     keys:
     - Value
@@ -490,10 +481,7 @@ MonoBehaviour:
       _node: {fileID: -1174778482408298460}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Y
-        node: {fileID: 2346111934114464528}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -521,7 +509,7 @@ MonoBehaviour:
       _dynamic: 0
   Value: 0
   value: 0
-  add: -90
+  add: -45
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +529,6 @@ MonoBehaviour:
   - {fileID: 95992593266209890}
   - {fileID: 7765166652518447452}
   - {fileID: 3112349069928362101}
-  - {fileID: 6073009679525271978}
   - {fileID: 154764534090757196}
   - {fileID: -7024740858146712290}
   - {fileID: 2311116583429445111}
@@ -553,12 +540,13 @@ MonoBehaviour:
   - {fileID: 2241604848284460198}
   - {fileID: 3090427591065108156}
   - {fileID: 8377977999939714805}
-  - {fileID: 2346111934114464528}
-  - {fileID: -1174778482408298460}
   - {fileID: 3722272003129468474}
   - {fileID: 3380344744573665470}
   - {fileID: 3617140734777323192}
   - {fileID: -7326197873921753079}
+  - {fileID: 6073009679525271978}
+  - {fileID: -1174778482408298460}
+  - {fileID: 637862472232676592}
   Cooldown: 1
 --- !u!114 &95992593266209890
 MonoBehaviour:
@@ -671,24 +659,26 @@ MonoBehaviour:
   m_Name: Skillshot
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1512, y: 72}
+  position: {x: 1688, y: 40}
   ports:
     keys:
     - direction
     - startPosition
     - missile
     - maxRange
-    - speed
+    - StartSpeed
     - In
     - Out
+    - EndSpeed
+    - animationCurve
     values:
     - _fieldName: direction
       _node: {fileID: 154764534090757196}
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: direction
-        node: {fileID: -7024740858146712290}
+      - fieldName: ReflectedVector
+        node: {fileID: 637862472232676592}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -724,7 +714,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-    - _fieldName: speed
+    - _fieldName: StartSpeed
       _node: {fileID: 154764534090757196}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -754,16 +744,59 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: EndSpeed
+      _node: {fileID: 154764534090757196}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: animationCurve
+      _node: {fileID: 154764534090757196}
+      _typeQualifiedName: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
   In:
     index: 0
     mono: {fileID: 0}
   Out:
     index: 0
     mono: {fileID: 0}
+  missile: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   direction: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  missile: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
-  speed: 1
+  StartSpeed: 1
+  EndSpeed: 0.25
   maxRange: 25
 --- !u!114 &209708053503506865
 MonoBehaviour:
@@ -812,6 +845,62 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   icon: {fileID: 2800000, guid: 3a823b94be09e204fba3434bfb4683a5, type: 3}
+--- !u!114 &637862472232676592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Reflect Vector
+  m_EditorClassIdentifier: Assembly-CSharp:AbicraftNodes.Math:ReflectVectorNode
+  graph: {fileID: 11400000}
+  position: {x: 1592, y: -120}
+  ports:
+    keys:
+    - ReflectedVector
+    - Normal
+    - Vector
+    values:
+    - _fieldName: ReflectedVector
+      _node: {fileID: 637862472232676592}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: direction
+        node: {fileID: 154764534090757196}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Normal
+      _node: {fileID: 637862472232676592}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Normal
+        node: {fileID: 6073009679525271978}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Vector
+      _node: {fileID: 637862472232676592}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  Vector: {x: 0, y: 0, z: 0}
+  Normal: {x: 0, y: 0, z: 0}
+  ReflectedVector: {x: 0, y: 0, z: 0}
 --- !u!114 &2241604848284460198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,7 +914,7 @@ MonoBehaviour:
   m_Name: Block Execution
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 840, y: 456}
+  position: {x: 824, y: 408}
   ports:
     keys:
     - BlockForSeconds
@@ -888,7 +977,7 @@ MonoBehaviour:
   m_Name: Addition Vector
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1096, y: 376}
+  position: {x: 1240, y: 152}
   ports:
     keys:
     - vector
@@ -934,101 +1023,6 @@ MonoBehaviour:
   vector: {x: 0, y: 0, z: 0}
   Vector01: {x: 0, y: 0, z: 0}
   Vector02: {x: 0, y: 0, z: 0}
---- !u!114 &2346111934114464528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f44370daf7a4ca44597e2f834c8e70ad, type: 3}
-  m_Name: Rotate Vector
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 488, y: -88}
-  ports:
-    keys:
-    - directionIn
-    - directionOut
-    - RotateAmountDegrees
-    - X
-    - Y
-    - Z
-    values:
-    - _fieldName: directionIn
-      _node: {fileID: 2346111934114464528}
-      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: direction
-        node: {fileID: 4131129142721385498}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: directionOut
-      _node: {fileID: 2346111934114464528}
-      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: direction
-        node: {fileID: 3112349069928362101}
-        reroutePoints: []
-      - fieldName: Vector
-        node: {fileID: -8345170528249367469}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: RotateAmountDegrees
-      _node: {fileID: 2346111934114464528}
-      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: X
-      _node: {fileID: 2346111934114464528}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Y
-      _node: {fileID: 2346111934114464528}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Value
-        node: {fileID: -1174778482408298460}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Z
-      _node: {fileID: 2346111934114464528}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-  directionIn: {x: 0, y: 0, z: 0}
-  directionOut: {x: 0, y: 0, z: 0}
-  RotateAmountDegrees: {x: 0, y: 0, z: 0}
-  X: 0
-  Y: 0
-  Z: 0
 --- !u!114 &2598319421174181406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,7 +1131,7 @@ MonoBehaviour:
   m_Name: Multiply
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: 632}
+  position: {x: 808, y: 632}
   ports:
     keys:
     - value
@@ -1193,25 +1187,24 @@ MonoBehaviour:
   m_Name: Skillshot
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 824, y: 152}
+  position: {x: 936, y: -8}
   ports:
     keys:
     - direction
     - startPosition
     - missile
     - maxRange
-    - speed
+    - StartSpeed
     - In
     - Out
+    - EndSpeed
+    - animationCurve
     values:
     - _fieldName: direction
       _node: {fileID: 3112349069928362101}
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: directionOut
-        node: {fileID: 2346111934114464528}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -1246,7 +1239,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-    - _fieldName: speed
+    - _fieldName: StartSpeed
       _node: {fileID: 3112349069928362101}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -1279,17 +1272,60 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: EndSpeed
+      _node: {fileID: 3112349069928362101}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: animationCurve
+      _node: {fileID: 3112349069928362101}
+      _typeQualifiedName: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
   In:
     index: 0
     mono: {fileID: 0}
   Out:
     index: 0
     mono: {fileID: 0}
+  missile: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   direction: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  missile: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
-  speed: 0.75
-  maxRange: 10
+  StartSpeed: 1
+  EndSpeed: 0.25
+  maxRange: 25
 --- !u!114 &3380344744573665470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,7 +1353,10 @@ MonoBehaviour:
       _node: {fileID: 3380344744573665470}
       _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Obj
+        node: {fileID: 7765166652518447452}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -1547,15 +1586,12 @@ MonoBehaviour:
       - fieldName: direction
         node: {fileID: -1530243739688700410}
         reroutePoints: []
-      - fieldName: directionIn
-        node: {fileID: 2346111934114464528}
-        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   Obj: {fileID: 0}
-  direction: {x: -0.64097714, y: 0, z: -0.017892642}
+  direction: {x: -0.72262704, y: 0, z: -0.69098973}
   onlyYAxis: 1
 --- !u!114 &6073009679525271978
 MonoBehaviour:
@@ -1570,13 +1606,14 @@ MonoBehaviour:
   m_Name: On Hit
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1064, y: -24}
+  position: {x: 1176, y: -376}
   ports:
     keys:
     - HitObject
     - HitPoint
     - In
     - Out
+    - Normal
     values:
     - _fieldName: HitObject
       _node: {fileID: 6073009679525271978}
@@ -1626,6 +1663,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: Normal
+      _node: {fileID: 6073009679525271978}
+      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Normal
+        node: {fileID: 637862472232676592}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   In:
     index: 0
     mono: {fileID: 0}
@@ -1633,7 +1682,8 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   HitObject: {fileID: 0}
-  HitPoint: {x: -11.253567, y: -1.2638843, z: -13.899706}
+  HitPoint: {x: -15.079165, y: -1.2638843, z: 12.336366}
+  Normal: {x: 0, y: 0, z: 0}
 --- !u!114 &7765166652518447452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,13 +1697,13 @@ MonoBehaviour:
   m_Name: Abicraft Object Find
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 824, y: -408}
+  position: {x: 824, y: -360}
   ports:
     keys:
     - Name
     - Obj
-    - Rotation
     - Position
+    - Rotation
     values:
     - _fieldName: Name
       _node: {fileID: 7765166652518447452}
@@ -1684,11 +1734,14 @@ MonoBehaviour:
       - fieldName: Obj
         node: {fileID: 2598319421174181406}
         reroutePoints: []
+      - fieldName: Obj
+        node: {fileID: 3380344744573665470}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: Rotation
+    - _fieldName: Position
       _node: {fileID: 7765166652518447452}
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -1697,14 +1750,11 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 1
-    - _fieldName: Position
+    - _fieldName: Rotation
       _node: {fileID: 7765166652518447452}
       _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Vector02
-        node: {fileID: -2618142313871451339}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 2
@@ -1724,7 +1774,7 @@ MonoBehaviour:
   m_Name: Multiply
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: 248}
+  position: {x: 312, y: 264}
   ports:
     keys:
     - value
@@ -1766,4 +1816,4 @@ MonoBehaviour:
       _dynamic: 0
   value: 0
   Value: 0
-  Multiplier: 30
+  Multiplier: 15

@@ -6,9 +6,15 @@ using XNode;
 
 namespace AbicraftNodes.Action
 {
-    public class SkillshotNode : AbicraftExecutionNode
+    [DisallowMultipleComponent]
+    public class SkillshotNode : AbicraftActionSenderNode
     {
-        public static uint id = 113;
+
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public AbicraftObject missile;
+
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public AnimationCurve animationCurve;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public Vector3 direction;
@@ -17,12 +23,7 @@ namespace AbicraftNodes.Action
         public Vector3 startPosition;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public AbicraftObject missile;
-
-        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public float speed, maxRange;
-
-        private AbicraftLifeline lifeline;
+        public float StartSpeed, EndSpeed, maxRange;
 
         public override void Initialize(AbicraftNodeExecution execution)
         {
@@ -31,19 +32,19 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            GameObject temp = GameObject.Instantiate(missile.gameObject);
-
-            lifeline = GetInputValue<AbicraftLifeline>(e, "In");
-            Skillshot shot = temp.AddComponent<Skillshot>();
+            AbicraftObject temp = AbicraftObjectPool.Spawn(missile, null);
+            Skillshot shot = temp.gameObject.AddComponent<Skillshot>();
 
             shot.startpoint = GetInputValue<Vector3>(e, "startPosition");
             shot.towards    = GetInputValue<Vector3>(e, "direction");
-            shot.Speed      = GetInputValue<float>(e, "speed", speed);
-            shot.MaxRange   = GetInputValue<float>(e, "maxRange", maxRange);
+            shot.StartSpeed = GetInputValue<float>  (e, "StartSpeed", StartSpeed);
+            shot.EndSpeed   = GetInputValue<float>  (e, "EndSpeed",   EndSpeed);
+            shot.MaxRange   = GetInputValue<float>  (e, "maxRange", maxRange);
+            shot.curve      = GetInputValue<AnimationCurve> (e, "maxRange", animationCurve);
 
             shot.MoveToStartPoint();
 
-            lifeline.mono = shot;
+            e.activeMono = shot;
 
             shot.StartActionMono();
 
@@ -52,7 +53,7 @@ namespace AbicraftNodes.Action
 
         public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            return lifeline ?? GetInputValue<AbicraftLifeline>(e, "In");
+            return GetInputValue<AbicraftLifeline>(e, "In");
         }
     }
 }

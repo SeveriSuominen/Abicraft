@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6603306947763299084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15059566, y: 3.876195, z: -3.1119823}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2747031493082763444}
@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InstantiateObjectToPool: 1
+  InstantiateToPoolAmount: 1000
+  original: {fileID: 0}
+  activePool: 0
+  poolIndex: 0
 --- !u!135 &7821348228314874543
 SphereCollider:
   m_ObjectHideFlags: 0

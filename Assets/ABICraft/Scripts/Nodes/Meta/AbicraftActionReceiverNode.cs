@@ -7,10 +7,10 @@ using XNode;
 using AbicraftCore;
 
 
-public abstract class AbicraftExecutionNode : AbicraftNode
+public abstract class AbicraftActionReceiverNode : AbicraftNode
 {
     [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
-    public AbicraftLifeline In;
+    public AbicraftActionLine In;
     [Output]
     public AbicraftLifeline Out;
 

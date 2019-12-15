@@ -8,7 +8,7 @@ using XNode;
 
 namespace AbicraftNodes.Action
 {
-    public class AnimationNode : AbicraftExecutionNode
+    public class AnimationOverrideNode : AbicraftExecutionNode
     {
         public static readonly List<AbicraftObject> IsAnimating = new List<AbicraftObject>();
 
@@ -58,7 +58,7 @@ namespace AbicraftNodes.Action
                     if (IsAnimating.Contains(obj) && overrideController != null)
                         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
                    
-                    if (animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController))
+                    if (true/*animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController)*/)
                     {
                         if (!IsAnimating.Contains(obj))
                             IsAnimating.Add(obj);
@@ -93,15 +93,15 @@ namespace AbicraftNodes.Action
             // Push back state
             for (int i = 0; i < animator.layerCount; i++)
             {
-                animator.Play(layerInfo[i].fullPathHash, i, layerInfo[i].normalizedTime);
+                animator.Play("OVERRIDE", i, 0);
             }
             //animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
             //overrideController.a;
             // Force an update
             animator.Update(0.0f);
 
-            animator.ResetTrigger("StartOverride");
-            animator.SetTrigger("StartOverride");
+            //animator.ResetTrigger("StartOverride");
+            //animator.SetTrigger("StartOverride");
         }
 
         public void LoadAnimation(AnimationClip clip)

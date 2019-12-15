@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum RaycastDirection
+{
+    Forward,
+    Backward,
+    Left,
+    Right,
+    Up,
+    Down
+}
+
 public abstract class AbicraftActionMono : MonoBehaviour
 {
     public bool destroyWholeGameobject = false;
@@ -11,18 +21,8 @@ public abstract class AbicraftActionMono : MonoBehaviour
     public bool ActionIsComplete { get; private set; }
     public bool ActionWasSuccess { get; private set; }
 
-    public enum RaycastDirection
-    {
-        Forward,
-        Backward,
-        Left,
-        Right,
-        Up,
-        Down
-    }
-
     public readonly Dictionary<RaycastDirection, Vector3> rayDirections = new Dictionary<RaycastDirection, Vector3>();
-
+    public readonly Dictionary<RaycastDirection, RaycastHit> rayHits = new Dictionary<RaycastDirection, RaycastHit>();
 
     public void StartActionMono()
     {
@@ -32,6 +32,15 @@ public abstract class AbicraftActionMono : MonoBehaviour
         rayDirections.Add(RaycastDirection.Right,       transform.right);
         rayDirections.Add(RaycastDirection.Up,          transform.up);
         rayDirections.Add(RaycastDirection.Down,        transform.up * -1);
+
+        RaycastHit dumbHit = new RaycastHit();
+
+        rayHits.Add(RaycastDirection.Forward,   dumbHit);
+        rayHits.Add(RaycastDirection.Backward,  dumbHit);
+        rayHits.Add(RaycastDirection.Left,      dumbHit);
+        rayHits.Add(RaycastDirection.Right,     dumbHit);
+        rayHits.Add(RaycastDirection.Up,        dumbHit);
+        rayHits.Add(RaycastDirection.Down,      dumbHit);
 
         Active = true;
     }
@@ -48,10 +57,10 @@ public abstract class AbicraftActionMono : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-          
+            rayHits[dir] = hit;
         }
 
-        return hit;
+        return rayHits[dir];
     }
 
     protected void CompleteActionAs(bool success)
@@ -68,10 +77,12 @@ public abstract class AbicraftActionMono : MonoBehaviour
     private IEnumerator End()
     {
         yield return new WaitForFixedUpdate();
-
+        
         if (destroyWholeGameobject)
-            Destroy(this.gameObject);
-        else
-            Destroy(this);
+        {
+            AbicraftObjectPool.Despawn(this.gameObject);
+        }
+       
+        Destroy(this);
     }
 }

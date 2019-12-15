@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbicraftAbilityExecution
 {
-    public Ability Ability;
+    public AbicraftAbility Ability;
     public float elapsed;
 
     //Taking initial snapshot when execution starts, to get original start point data,
@@ -15,7 +15,7 @@ public class AbicraftAbilityExecution
 
     public List<AbicraftNodeExecution> current_node_executions;
 
-    public AbicraftAbilityExecution(AbilityDispatcher dispatcher, Ability Ability, AbicraftNode startExecNode)
+    public AbicraftAbilityExecution(AbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftNode startExecNode)
     {
         this.Ability = Ability;
         this.elapsed = 0;
@@ -39,13 +39,8 @@ public class AbicraftAbilityExecution
         return current_node_executions[current_node_executions.Count - 1];
     }
 
-    public static bool OnCooldown(List<AbicraftAbilityExecution> cds, Ability Ability)
+    public bool OnCooldown()
     {
-        for (int i = 0; i < cds.Count; i++)
-        {
-            if (cds[i].Ability.Equals(Ability))
-                return true;
-        }
-        return false;
+        return elapsed >= Ability.Cooldown;
     }
 }

@@ -7,24 +7,54 @@ using XNode;
 
 public class AbilityDispatcher : MonoBehaviour
 {
-    public Ability test_Ability;
+    public AbicraftAbility test_Ability;
 
     List<AbicraftAbilityExecution> AbilityExecutionBuffer = new List<AbicraftAbilityExecution>();
 
-    public void Dispatch(Ability Ability)
+    public void Dispatch(AbicraftAbility ability)
     {
-        if (AbicraftAbilityExecution.OnCooldown(AbilityExecutionBuffer, Ability))
+        if (AbilityOnCooldown(ability))
             return;
 
-        AbicraftNode exe = getSortForExecuteNodes(Ability)[0];
+        AbicraftNode exe = getSortForExecuteNodes(ability)[0];
         AbilityExecutionBuffer.Add
         (
             new AbicraftAbilityExecution(
                     this,    
-                    Ability, 
+                    ability, 
                     exe
                 )
         );
+    }
+
+    public bool AbilityOnCooldown(AbicraftAbility ability)
+    {
+        for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
+        {
+            if (AbilityExecutionBuffer[i].Ability == ability)
+            {
+                if(AbilityExecutionBuffer[i].elapsed < AbilityExecutionBuffer[i].Ability.Cooldown)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool AnyAbilityIsExecuting()
+    {
+        return AbilityExecutionBuffer.Count > 0;
+    }
+
+    public bool AbilityIsExecuting(AbicraftAbility ability)
+    {
+        for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
+        {
+            if (AbilityExecutionBuffer[i].Ability == ability)
+                return true;
+        }
+        return false;
     }
 
     private void FixedUpdate()
@@ -182,7 +212,7 @@ public class AbilityDispatcher : MonoBehaviour
         }
     }
 
-    List<AbicraftNode> getSortForExecuteNodes(Ability Ability)
+    List<AbicraftNode> getSortForExecuteNodes(AbicraftAbility Ability)
     {       
         List<AbicraftNode> exec_nodes = new List<AbicraftNode>();
 

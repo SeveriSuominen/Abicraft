@@ -153,6 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InstantiateObjectToPool: 0
+  InstantiateToPoolAmount: 0
+  original: {fileID: 0}
+  activePool: 0
+  poolIndex: 0
 --- !u!64 &312965438
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -222,11 +227,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312965436}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -15.48, y: 9.44, z: 10.15}
+  m_LocalPosition: {x: -15.48, y: 2.43, z: 10.15}
   m_LocalScale: {x: 2.23, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1051875450}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!1001 &1051875449
 PrefabInstance:
@@ -299,22 +304,55 @@ PrefabInstance:
         type: 3}
       propertyPath: test_Ability
       value: 
-      objectReference: {fileID: 11400000, guid: a0791415c7009f745b4c94c71e44dced,
+      objectReference: {fileID: 11400000, guid: e82cf71a722bef44192ec72f6f9a3f80,
         type: 2}
     - target: {fileID: 7955029507883254211, guid: 13236ba8c424e57499412aa02ecfd149,
         type: 3}
       propertyPath: m_Speed
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: Instantiate.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: instantiateToPool.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: instantiateToPool.Array.data[0]
+      value: 
+      objectReference: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404,
+        type: 3}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: instantiateToPool.Array.data[0].amount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: instantiateToPool.Array.data[0].abicraftObject
+      value: 
+      objectReference: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13236ba8c424e57499412aa02ecfd149, type: 3}
+--- !u!4 &1051875450 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7955029507860579349, guid: 13236ba8c424e57499412aa02ecfd149,
+    type: 3}
+  m_PrefabInstance: {fileID: 1051875449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476171453 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7955182893008585613, guid: 13236ba8c424e57499412aa02ecfd149,
     type: 3}
   m_PrefabInstance: {fileID: 1051875449}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1476171454
+--- !u!82 &1476171460
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

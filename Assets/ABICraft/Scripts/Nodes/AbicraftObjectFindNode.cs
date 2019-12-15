@@ -12,6 +12,10 @@ namespace AbicraftNodes.Object
 
         [Output]
         public AbicraftObject Obj;
+
+        [Output]
+        public Vector3 Position, Rotation;
+
         GameObject obj;
 
         public override void Evaluate(AbicraftNodeExecution execution)
@@ -25,17 +29,17 @@ namespace AbicraftNodes.Object
 
             if (obj)
             {
-                AddDynamicOutput(typeof(Vector3), ConnectionType.Override, TypeConstraint.Strict, "Position");
-                AddDynamicOutput(typeof(Vector3), ConnectionType.Override, TypeConstraint.Strict, "Rotation");
+                //AddDynamicOutput(typeof(Vector3), ConnectionType.Override, TypeConstraint.Strict, "Position");
+                //AddDynamicOutput(typeof(Quaternion), ConnectionType.Override, TypeConstraint.Strict, "Rotation");
             }
             else
             {
-                RemoveDynamicPort("Position");
-                RemoveDynamicPort("Rotation");
-                RemoveDynamicPort("Testing");
+               //RemoveDynamicPort("Position");
+               //RemoveDynamicPort("Rotation");
+               //RemoveDynamicPort("Testing");
             }
 
-            if(obj != null)
+            if (obj != null)
             {
                 switch (port.fieldName)
                 {
@@ -44,10 +48,9 @@ namespace AbicraftNodes.Object
                     case "Position":
                         return obj.transform.position;
                     default:
-                        return obj; 
+                        return obj;
                 }
             }
-
             return obj;
         }
     }

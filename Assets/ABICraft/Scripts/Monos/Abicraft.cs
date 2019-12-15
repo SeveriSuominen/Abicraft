@@ -4,9 +4,12 @@ using UnityEngine;
 using XNode;
 
 
+[System.Serializable]
 public class Abicraft : MonoBehaviour
 {
     public AbicraftObject   Player;
+
+    public List<AbicraftObject> instantiateToPool = new List<AbicraftObject>();
 
     private void Start()
     {
@@ -16,6 +19,9 @@ public class Abicraft : MonoBehaviour
                 Player = this.Player
             }
         );
+
+        AbicraftObjectPool.LoadPooledObjects(instantiateToPool);
+        AbicraftObjectPool.LoadAllContextPooledObjects();
     }
 }
 

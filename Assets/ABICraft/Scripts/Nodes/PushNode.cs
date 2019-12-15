@@ -5,7 +5,7 @@ using XNode;
 
 namespace AbicraftNodes.VFX
 {
-    public class ShakeNode : AbicraftExecutionNode
+    public class PushNode : AbicraftExecutionNode
     {
         public static uint id = 113;
 
@@ -15,31 +15,34 @@ namespace AbicraftNodes.VFX
         // How long the object should shake for.
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public float shakeDuration = 10f;
+        public AnimationCurve Curve;
 
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public Vector3 Direction;
+ 
         // Amplitude of the shake. A larger value shakes the camera harder.
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public float shakeAmount = 0.7f;
-        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public float decreaseFactor = 1.0f;
+        public float Range = 0.7f;
 
-        public override void Initialize(AbicraftNodeExecution execution)
-        {
-            
-        }
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public float Force = 1.0f;
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj", Obj);
+
+            Debug.Log("tetesa");
+
             if (obj)
             {
-                Shake shakeMono = obj.gameObject.AddComponent<Shake>();
+                Push push = obj.gameObject.AddComponent<Push>();
 
-                shakeMono.target = obj.gameObject;
+                push.Direction = GetInputValue<Vector3>(e, "Direction", Direction);
+                push.Force = GetInputValue<float>(e, "Force", Force);
+                push.Range = GetInputValue<float>(e, "Range", Range);
+                push.curve = GetInputValue<AnimationCurve>(e, "Curve", Curve);
 
-                shakeMono.decreaseFactor = decreaseFactor;
-                shakeMono.shakeAmount = shakeAmount;
-                shakeMono.shakeDuration = shakeDuration;
+                push.StartActionMono();
             }
             yield return null;
         }

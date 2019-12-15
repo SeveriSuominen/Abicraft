@@ -7,6 +7,8 @@ public class AbicraftNodeExecution
     public AbicraftNode current_node;
     public AbicraftAbilityExecution AbilityExecution;
 
+    public AbicraftActionMono activeMono;
+
     public int branchIndex;
     public int iterationIndex;
 

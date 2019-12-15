@@ -6,13 +6,19 @@ using XNode;
 
 namespace AbicraftNodes.Action
 {
-    public class OnHitNode : AbicraftExecutionNode
+    public class OnHitNode : AbicraftActionReceiverNode
     {
         [Output]
         public AbicraftObject HitObject;
+        private Dictionary<int, AbicraftObject> hitObjectsByIteration = new Dictionary<int, AbicraftObject>();
 
         [Output]
         public Vector3 HitPoint;
+        private Dictionary<int, Vector3> hitPointsByIteration = new Dictionary<int, Vector3>();
+
+        [Output]
+        public Vector3 Normal;
+        private Dictionary<int, RaycastHit> raycastHitIteration = new Dictionary<int, RaycastHit>();
 
         //public bool ignoreSelfType;
         //public string[] ignoreTags;
@@ -24,20 +30,19 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbicraftCore.AbicraftLifeline lifeline = GetInputValue<AbicraftLifeline>(e, "In");
-
-            while (lifeline.mono != null)
+            while (e.activeMono != null)
             {
-                if (lifeline.mono.ActionIsComplete)
+                if (e.activeMono.ActionIsComplete)
                 {
-                    if (lifeline.mono.ActionWasSuccess == false)
+                    if (e.activeMono.ActionWasSuccess == false)
                     {
                         e.EndExecutionBranch();
                     }
                     else
                     {
-                        HitObject =  lifeline.mono.ReturnData() as AbicraftObject;
-                        HitPoint  =  lifeline.mono.transform.position;
+                        AddObjectToIterationIndex<AbicraftObject>(ref hitObjectsByIteration, e.iterationIndex, e.activeMono.ReturnData() as AbicraftObject);
+                        AddObjectToIterationIndex<Vector3>(ref hitPointsByIteration, e.iterationIndex, e.activeMono.transform.position);
+                        AddObjectToIterationIndex<RaycastHit>(ref raycastHitIteration, e.iterationIndex, e.activeMono.rayHits[RaycastDirection.Forward]);
                     }
 
                     yield return new WaitForFixedUpdate();
@@ -54,12 +59,16 @@ namespace AbicraftNodes.Action
         {
             if (port.fieldName == "Out")
                 return GetInputValue<AbicraftLifeline>(e, "In");
-            if (port.fieldName == "HitObject")
-                return HitObject;
-            else
-                return HitPoint;
-        }
+            if (port.fieldName == "HitObject" && e != null)
+                return GetObjectByIterationIndex<AbicraftObject>(ref hitObjectsByIteration, e.iterationIndex);
+            if (port.fieldName == "Normal" && e != null) {
+                return GetObjectByIterationIndex<RaycastHit>(ref raycastHitIteration, e.iterationIndex).normal;
+            }
+            else if(e != null)
+                return GetObjectByIterationIndex<Vector3>(ref hitPointsByIteration, e.iterationIndex);
 
+            return default;
+        }
     }
 }
 

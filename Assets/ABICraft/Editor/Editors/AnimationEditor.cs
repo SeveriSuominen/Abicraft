@@ -7,12 +7,12 @@ using XNodeEditor;
 using AbicraftNodes.Action;
 using UnityEditor;
 
-[CustomNodeEditor(typeof(AnimationNode))]
-public class AnimationEditor : NodeEditor
+[CustomNodeEditor(typeof(AnimationOverrideNode))]
+public class AnimationOverrideEditor : NodeEditor
 {
     public Texture2D icon;
 
-    AnimationNode node;
+    AnimationOverrideNode node;
     AbicraftObject obj;
     Animator animator;
 
@@ -23,7 +23,7 @@ public class AnimationEditor : NodeEditor
         // Initialization
         if (node == null)
         {
-            node = target as AnimationNode;
+            node = target as AnimationOverrideNode;
         }
 
         base.OnHeaderGUI();
@@ -38,7 +38,7 @@ public class AnimationEditor : NodeEditor
 
     public override void OnBodyGUI()
     {
-        node = target as AnimationNode;
+        node = target as AnimationOverrideNode;
 
         obj = node.GetInputValue<AbicraftObject>(null, "Obj");
 

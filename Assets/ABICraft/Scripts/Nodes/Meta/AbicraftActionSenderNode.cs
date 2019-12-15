@@ -7,12 +7,12 @@ using XNode;
 using AbicraftCore;
 
 
-public abstract class AbicraftExecutionNode : AbicraftNode
+public abstract class AbicraftActionSenderNode : AbicraftNode
 {
     [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
     public AbicraftLifeline In;
     [Output]
-    public AbicraftLifeline Out;
+    public AbicraftActionLine Out;
 
     protected void AddObjectToIterationIndex<T>(ref Dictionary<int, T> map, int iterationIndex, T obj)
     {
