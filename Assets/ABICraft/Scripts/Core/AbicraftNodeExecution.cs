@@ -15,7 +15,7 @@ public class AbicraftNodeExecution
     public bool finished;
 
     public bool executed;
-    public bool globalBlock;
+    public bool localBlock;
 
     public void EndExecutionBranch()
     {
@@ -25,17 +25,22 @@ public class AbicraftNodeExecution
 
     public void Block()
     {
-        this.globalBlock = true;
+        this.localBlock = true;
     }
 
     public void ReleaseBlock()
     {
-        this.globalBlock = false;
+        this.localBlock = false;
     }
 
     public bool IsBlocked()
     {
-        return this.globalBlock;
+        return this.localBlock;
+    }
+
+    public void SetBranchIndex()
+    {
+        AbilityExecution.current_node_executions[AbilityExecution.current_node_executions.Count - 1].branchIndex = AbilityExecution.current_node_executions.Count - 1;
     }
 
     public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node, int iterationIndex = 0)
@@ -45,11 +50,6 @@ public class AbicraftNodeExecution
         this.iterationIndex = iterationIndex;
 
         executed = false;
-        globalBlock = false;
-    }
-
-    public void SetBranchIndex()
-    {
-        AbilityExecution.current_node_executions[AbilityExecution.current_node_executions.Count - 1].branchIndex = AbilityExecution.current_node_executions.Count - 1;
+        localBlock = false;
     }
 }

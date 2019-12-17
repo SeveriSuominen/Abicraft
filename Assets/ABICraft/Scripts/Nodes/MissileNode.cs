@@ -7,7 +7,7 @@ using XNode;
 namespace AbicraftNodes.Action
 {
     [DisallowMultipleComponent]
-    public class SkillshotNode : AbicraftActionSenderNode
+    public class MissileNode : AbicraftActionSenderNode
     {
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
@@ -33,7 +33,7 @@ namespace AbicraftNodes.Action
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             AbicraftObject temp = AbicraftObjectPool.Spawn(missile, null);
-            Skillshot shot = temp.gameObject.AddComponent<Skillshot>();
+            Missile shot = temp.gameObject.AddComponent<Missile>();
 
             shot.startpoint = GetInputValue<Vector3>(e, "startPosition");
             shot.towards    = GetInputValue<Vector3>(e, "direction");

@@ -5,6 +5,7 @@ using XNode;
 
 
 [System.Serializable]
+[RequireComponent(typeof(AbilityDispatcher))]
 public class Abicraft : MonoBehaviour
 {
     public AbicraftObject   Player;
@@ -22,6 +23,11 @@ public class Abicraft : MonoBehaviour
 
         AbicraftObjectPool.LoadPooledObjects(instantiateToPool);
         AbicraftObjectPool.LoadAllContextPooledObjects();
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //[RequireComponent(typeof(Rigidbody))]
-public class Skillshot : AbicraftActionMono
+public class Missile : AbicraftActionMono
 {
     public Vector3 towards;
     public float StartSpeed, EndSpeed;

@@ -109,7 +109,7 @@ public class AbilityDispatcher : MonoBehaviour
 
         nodeExecution.executed = true;
 
-        if (!nodeExecution.globalBlock)
+        if (!nodeExecution.localBlock)
         {
             nodeExecution.executed = false;
             BranchExecute(nodeExecution, nodeExecution.current_node.GetOutputPort("Out").GetConnections());
@@ -160,23 +160,14 @@ public class AbilityDispatcher : MonoBehaviour
         {
             NodePort port = ports[k];
 
-            if (nodeExecution.current_node.name == "On Hit")
-                Debug.Log(port == null);
-
             if (port != null)
             {
-                if (nodeExecution.current_node.name == "On Hit")
-                    Debug.Log("name: " + port.node.name);
-
                 if (nodeExecution.branchIndex == k)
                 {
                     zeroBranchNextNode = port.node;
                 }
                 else
                 {
-                    if (nodeExecution.current_node.name == "On Hit")
-                        Debug.Log("BRANCHING: ");
-
                     nodeExecution.AbilityExecution.current_node_executions.Add
                     (
                         new AbicraftNodeExecution (
