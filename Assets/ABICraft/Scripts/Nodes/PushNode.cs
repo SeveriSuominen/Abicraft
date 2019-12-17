@@ -31,7 +31,7 @@ namespace AbicraftNodes.VFX
         {
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj", Obj);
 
-            Debug.Log("tetesa");
+            Debug.Log("tetesa _ " + obj + " ::: " + e.iterationIndex);
 
             if (obj)
             {

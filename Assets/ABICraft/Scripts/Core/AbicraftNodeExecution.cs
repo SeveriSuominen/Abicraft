@@ -38,10 +38,11 @@ public class AbicraftNodeExecution
         return this.globalBlock;
     }
 
-    public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node)
+    public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node, int iterationIndex = 0)
     {
         this.current_node = current_node;
         this.AbilityExecution = execution;
+        this.iterationIndex = iterationIndex;
 
         executed = false;
         globalBlock = false;

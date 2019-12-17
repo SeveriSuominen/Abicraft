@@ -94,7 +94,6 @@ public class AbilityDispatcher : MonoBehaviour
 
     void ExecuteNextNode(AbicraftNodeExecution nodeExecution)
     {
-        
         if (!nodeExecution.executed)
         {
             foreach (var item in nodeExecution.current_node.Inputs)
@@ -138,13 +137,12 @@ public class AbilityDispatcher : MonoBehaviour
                     {
                         nodeExecution.AbilityExecution.current_node_executions.Add
                         (
-                            new AbicraftNodeExecution(
+                            new AbicraftNodeExecution (
                                 nodeExecution.AbilityExecution,
-                                port.node
+                                port.node,
+                                i + 1 // IterarionIndex
                             )
                         );
-
-                        nodeExecution.AbilityExecution.LastNodeExecution().iterationIndex = i + 1;
                     }
                     else
                         nodeExecution.current_node = null;
@@ -156,34 +154,41 @@ public class AbilityDispatcher : MonoBehaviour
 
     void BranchExecute(AbicraftNodeExecution nodeExecution, List<NodePort> ports)
     {
+        AbicraftNode zeroBranchNextNode = null;
+
         for (int k = 0; k < ports.Count; k++)
         {
-            NodePort port;
+            NodePort port = ports[k];
 
-            if ((port = ports[k]) != null)
+            if (nodeExecution.current_node.name == "On Hit")
+                Debug.Log(port == null);
+
+            if (port != null)
+            {
+                if (nodeExecution.current_node.name == "On Hit")
+                    Debug.Log("name: " + port.node.name);
+
                 if (nodeExecution.branchIndex == k)
                 {
-                    nodeExecution.current_node = port.node;
+                    zeroBranchNextNode = port.node;
                 }
                 else
                 {
-                    if (k > nodeExecution.AbilityExecution.current_node_executions.Count - 1)
-                    {
-                        nodeExecution.AbilityExecution.current_node_executions.Add
-                        (
-                            new AbicraftNodeExecution(
-                                nodeExecution.AbilityExecution,
-                                port.node
-                            )
-                        );
-                        AbicraftNodeExecution newExecution = nodeExecution.AbilityExecution.LastNodeExecution();
-                        newExecution.SetBranchIndex();
-                    }
-                }
-            else
-                nodeExecution.current_node = null;
+                    if (nodeExecution.current_node.name == "On Hit")
+                        Debug.Log("BRANCHING: ");
 
+                    nodeExecution.AbilityExecution.current_node_executions.Add
+                    (
+                        new AbicraftNodeExecution (
+                            nodeExecution.AbilityExecution,
+                            port.node,
+                            nodeExecution.iterationIndex //Inherite iterationIndex
+                        )
+                    );
+                }
+            }
         }
+        nodeExecution.current_node = zeroBranchNextNode;
 
         if (ports.Count == 0)
             nodeExecution.current_node = null;
