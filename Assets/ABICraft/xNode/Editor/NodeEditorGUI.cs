@@ -356,42 +356,60 @@ namespace XNodeEditor {
 
         private static Rect test = new Rect(30, 50, 250, 250);
         static bool dragginArea = false;
-
+        static List<AbicraftNode> moveNodes = new List<AbicraftNode>();
         private void DrawAreas()
         {
             Vector2 vecpos = GridToWindowPositionNoClipped(new Vector2(test.x, test.y));//new Vector2(test.x, test.y);// GridToWindowPositionNoClipped(new Vector2(test.x, test.y));
             Rect yrect = new Rect(vecpos.x, vecpos.y, test.width, test.height);
+            Rect headerRect = new Rect(vecpos.x, vecpos.y, test.width, 50);
             //GUI.DrawTexture(yrect, Resources.Load("Abicraft/big-logo") as Texture2D);
-            
-            GUI.Box(yrect, "TEST");
-            HorizResizer(ref yrect);
-            //CAUSE WRONG OFFSET!!!!!!!!!!
-            /*if (Event.current.type == EventType.MouseDown)
-            {
-                dragginArea = true;
-            }
-            
-            if (Event.current.type == EventType.MouseUp)
-            {
-                dragginArea = false;
-            }
 
-            if (yrect.Contains(Event.current.mousePosition))
+            GUIStyle style = new GUIStyle(NodeEditorResources.styles.nodeBody);
+            style.normal.background = NodeEditorResources.nodeArea;
+            style.padding = new RectOffset();
+
+            //GUILayout.BeginVertical(style);
+            //GUI.color = NodeEditorPreferences.GetSettings().highlightColor;
+
+
+            GUI.Box(yrect, "", style);
+            HorizResizer(headerRect, ref yrect);
+            //CAUSE WRONG OFFSET!!!!!!!!!!
+
+            
+
+            if (headerRect.Contains(Event.current.mousePosition))
             {
                 if (Event.current.type == EventType.MouseDown)
                 {
+                    for (int n = 0; n < graph.nodes.Count; n++)
+                    {
+                        // Skip null nodes. The user could be in the process of renaming scripts, so removing them at this point is not advisable.
+                        if (graph.nodes[n] == null) continue;
+                        if (n >= graph.nodes.Count) return;
+
+                        AbicraftNode node = graph.nodes[n];
+
+                        if (yrect.Contains(GridToWindowPositionNoClipped(node.position)) && !moveNodes.Contains(node))
+                            moveNodes.Add(node);
+                    }
+
                     dragginArea = true;
                 }
                 if (Event.current.type == EventType.MouseUp)
                 {
+                    moveNodes.Clear();
                     dragginArea = false;
                 }
-            }*/
-
-            Debug.Log("contains : " + dragginArea);
+            }
 
             if (dragginArea && Event.current.type == EventType.MouseDrag)
             {
+                for (int n = 0; n < moveNodes.Count; n++)
+                {
+                    moveNodes[n].position += new Vector2(Event.current.delta.x, Event.current.delta.y);
+                }
+
                 test.x += Event.current.delta.x;
                 test.y += Event.current.delta.y;
             }
@@ -565,13 +583,16 @@ namespace XNodeEditor {
             if (onValidate != null && EditorGUI.EndChangeCheck()) onValidate.Invoke(Selection.activeObject, null);
         }
 
-        void HorizResizer(ref Rect r, bool right = true, float detectionRange = 8f)
+        static bool resising = false;
+
+        void HorizResizer(Rect headerRect, ref Rect r, bool right = true, float detectionRange = 8f)
         {
             detectionRange *= 0.5f;
             Rect resizer = r;
 
+            Rect area = new Rect(new Vector2(r.position.x + headerRect.width -1, r.position.y + headerRect.height), new Vector2(2, r.height - headerRect.height));
             //Debug.Log("HEI");
-            r.width = r.width > 600 ? 600 : r.width;
+            //r.width = r.width > 600 ? 600 : r.width;
 
             if (right)
             {
@@ -586,21 +607,25 @@ namespace XNodeEditor {
             Event current = Event.current;
             EditorGUIUtility.AddCursorRect(resizer, MouseCursor.ResizeHorizontal);
             //Need a way to remove this Contain check since we already know where the mouse is
-            if (resizer.Contains(Event.current.mousePosition))
+            if (area.Contains(Event.current.mousePosition) || resising)
             {
-                if (current.type == EventType.MouseDrag)
+                if (current.button == 0) //lmouse
                 {
-                    if (current.button == 0) //lmouse
-                    {
-                        //rect.xMin = ;
-                        //rect.xMax = current.mousePosition.x + current.delta.x;
-                        if (right)
-                        { r.xMax = Event.current.mousePosition.x + current.delta.x; }
-                        else
-                        { r.xMin += Event.current.mousePosition.x + current.delta.x; }
-                    }
+                    resising = true;
+
+                    //rect.xMin = ;
+                    //rect.xMax = current.mousePosition.x + current.delta.x;
+                    if (right)
+                    { r.xMax = Event.current.mousePosition.x + current.delta.x; }
+                    else
+                    { r.xMin += Event.current.mousePosition.x + current.delta.x; }
                 }
             }
+
+            if(Event.current.type == EventType.MouseUp)
+                resising = false;
+
+            Debug.Log(" resising : " + current.button);
         }
 
         private bool ShouldBeCulled(AbicraftNode node) {
