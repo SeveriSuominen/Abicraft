@@ -35,21 +35,24 @@ public abstract class AbicraftExecutionLoopNode : AbicraftNode
 
     public override object GetValue(AbicraftNodeExecution e, NodePort port)
     {
-        if(port.fieldName == "Iteration")
+        if (port.fieldName == "Iteration")
         {
             if(e != null)
             {
-                string key = port.fieldName + e.iterationIndex;
+                foreach (var item in loopKeys)
+                {
+                    string key = port.fieldName + item + e.GetIterationIndex(loopKeys[e.ae.guid]);
 
-                if (iterations.ContainsKey(key))
-                {
-                    return iterations[key];
-                }
-                else
-                {
-                    iterations.Add(key, e.iterationIndex);
-                    return iterations[key];
-                }
+                    if (iterations.ContainsKey(key))
+                    {
+                        return iterations[key];
+                    }
+                    else
+                    {
+                        iterations.Add(key, e.GetIterationIndex(loopKeys[e.ae.guid]));
+                        return iterations[key];
+                    }
+                } 
             }
             return 0;
         }

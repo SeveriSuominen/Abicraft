@@ -35,7 +35,7 @@ namespace AbicraftNodeEditor {
             {
                 GUIStyle nodeBodyStyle = new GUIStyle();
 
-                if (node.GetType().IsSubclassOf(typeof(AbicraftExecutionNode)))
+                if (node.GetType().IsSubclassOf(typeof(AbicraftExecutionNode)) || node.GetType().IsSubclassOf(typeof(AbicraftActionReceiverNode)) || node.GetType().IsSubclassOf(typeof(AbicraftActionSenderNode)))
                     nodeBodyStyle.normal.background = NodeEditorResources.nodeBodyExec;
                 else if(node.GetType().IsSubclassOf(typeof(AbicraftExecutionLoopNode)))
                     nodeBodyStyle.normal.background = NodeEditorResources.nodeBodyLoop;

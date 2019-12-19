@@ -24,10 +24,20 @@ namespace AbicraftNodeEditor {
         internal static bool inNodeEditor = false;
 #endif
 
-        public virtual void OnHeaderGUI() {
+        /*public virtual void OnHeaderGUI() {
             GUILayout.Label(target.name, NodeEditorResources.styles.nodeHeader, GUILayout.Height(30));
-        }
+        }*/
 
+        public virtual void OnHeaderGUI(GUIStyle style)
+        {
+            GUIStyle useStyle = style;
+
+            if (style == null)
+                useStyle = NodeEditorResources.styles.nodeHeader;
+
+            GUILayout.Label(target.name, useStyle, GUILayout.Height(30));
+        }
+        
         /// <summary> Draws standard field editors for all public fields </summary>
         public virtual void OnBodyGUI() {
 #if ODIN_INSPECTOR

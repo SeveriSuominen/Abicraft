@@ -12,7 +12,7 @@ public class OnExecuteEditor : NodeEditor
     public Texture2D icon;
 
     OnExecuteNode node;
-    public override void OnHeaderGUI()
+    public override void OnHeaderGUI(GUIStyle style)
     {
         // Initialization
         if (node == null)
@@ -20,7 +20,7 @@ public class OnExecuteEditor : NodeEditor
             node = target as OnExecuteNode;
         }
 
-        base.OnHeaderGUI();
+        base.OnHeaderGUI(style);
         Rect dotRect = GUILayoutUtility.GetLastRect();
         dotRect.size = new Vector2(16, 16);
         dotRect.y += 6;

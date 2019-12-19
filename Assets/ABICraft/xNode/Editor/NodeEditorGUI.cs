@@ -102,6 +102,12 @@ namespace AbicraftNodeEditor {
         }
 
         public void DrawSelectionBox() {
+            for (int n = 0; n < graph.areas.Count; n++)
+            {
+                if (graph.areas[n].dragginArea)
+                    return;
+            }
+
             if (currentActivity == NodeActivity.DragGrid) {
                 Vector2 curPos = WindowToGridPosition(Event.current.mousePosition);
                 Vector2 size = curPos - dragBoxStart;
@@ -354,68 +360,81 @@ namespace AbicraftNodeEditor {
             if (Event.current.type != EventType.Layout && currentActivity == NodeActivity.DragGrid) selectedReroutes = selection;
         }
 
-        private static Rect test = new Rect(30, 50, 250, 250);
-        static bool dragginArea = false;
-        static List<AbicraftNode> moveNodes = new List<AbicraftNode>();
         private void DrawAreas()
         {
-            Vector2 vecpos = GridToWindowPositionNoClipped(new Vector2(test.x, test.y));//new Vector2(test.x, test.y);// GridToWindowPositionNoClipped(new Vector2(test.x, test.y));
-            Rect yrect = new Rect(vecpos.x, vecpos.y, test.width, test.height);
-            Rect headerRect = new Rect(vecpos.x, vecpos.y, test.width, 50);
-            //GUI.DrawTexture(yrect, Resources.Load("Abicraft/big-logo") as Texture2D);
+            Color defaultColor = GUI.color;
 
-            GUIStyle style = new GUIStyle(NodeEditorResources.styles.nodeBody);
-            style.normal.background = NodeEditorResources.nodeArea;
-            style.padding = new RectOffset();
-
-            //GUILayout.BeginVertical(style);
-            //GUI.color = NodeEditorPreferences.GetSettings().highlightColor;
-
-
-            GUI.Box(yrect, "", style);
-            HorizResizer(headerRect, ref yrect);
-            //CAUSE WRONG OFFSET!!!!!!!!!!
-
-            
-
-            if (headerRect.Contains(Event.current.mousePosition))
+            for (int n = 0; n < graph.areas.Count; n++)
             {
-                if (Event.current.type == EventType.MouseDown)
+                Area area = graph.areas[n];
+
+                Vector2 vecpos = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x, area.areaRect.y));
+                Rect yrect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, area.areaRect.height);
+                Rect headerRect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, 50);
+
+                GUIStyle style = new GUIStyle(NodeEditorResources.styles.nodeBody);
+                style.normal.background = NodeEditorResources.nodeArea;
+                style.padding = new RectOffset();
+
+                Rect labelRect = new Rect(yrect.x, yrect.y + (int)(10 * (zoom + 0.4f)), yrect.width, 20);
+                Rect colorRect = new Rect(yrect.x + 10, yrect.y + 10, 25, 20);
+
+                area.color = EditorGUI.ColorField(colorRect, GUIContent.none, area.color, false, true, false);
+
+                GUIStyle labelstyle = new GUIStyle(NodeEditorResources.styles.nodeHeader);
+
+                float labelZoom = (zoom + 0.4f);
+
+                labelstyle.fontSize = (int)(15 * Mathf.Clamp(labelZoom, 1, 3));
+                //GUI.Label(labelRect, area.areaName, labelstyle);
+                GUI.Label(labelRect, area.areaName, labelstyle);
+
+                GUI.color = area.color;
+                GUI.Box(yrect, "", style);
+
+                GUI.color = defaultColor;
+
+                HorizResizer(area, headerRect, ref yrect);
+
+                if (headerRect.Contains(Event.current.mousePosition))
                 {
-                    for (int n = 0; n < graph.nodes.Count; n++)
+                    if (Event.current.type == EventType.MouseDown)
                     {
-                        // Skip null nodes. The user could be in the process of renaming scripts, so removing them at this point is not advisable.
-                        if (graph.nodes[n] == null) continue;
-                        if (n >= graph.nodes.Count) return;
+                        for (int i = 0; i < graph.nodes.Count; i++)
+                        {
+                            // Skip null nodes. The user could be in the process of renaming scripts, so removing them at this point is not advisable.
+                            if (graph.nodes[i] == null) continue;
+                            if (i >= graph.nodes.Count) return;
 
-                        AbicraftNode node = graph.nodes[n];
+                            AbicraftNode node = graph.nodes[i];
 
-                        if (yrect.Contains(GridToWindowPositionNoClipped(node.position)) && !moveNodes.Contains(node))
-                            moveNodes.Add(node);
+                            if (yrect.Contains(GridToWindowPositionNoClipped(node.position)) && !area.movingNodes.Contains(node))
+                                area.movingNodes.Add(node);
+                        }
+
+                        area.dragginArea = true;
                     }
-
-                    dragginArea = true;
+                    if (Event.current.type == EventType.MouseUp)
+                    {
+                        area.movingNodes.Clear();
+                        area.dragginArea = false;
+                    }
                 }
-                if (Event.current.type == EventType.MouseUp)
+
+                if (area.dragginArea && Event.current.type == EventType.MouseDrag)
                 {
-                    moveNodes.Clear();
-                    dragginArea = false;
-                }
-            }
-
-            if (dragginArea && Event.current.type == EventType.MouseDrag)
-            {
-                for (int n = 0; n < moveNodes.Count; n++)
-                {
-                    moveNodes[n].position += new Vector2(Event.current.delta.x, Event.current.delta.y);
+                    for (int i = 0; i < area.movingNodes.Count; i++)
+                    {
+                        area.movingNodes[i].position += new Vector2(Event.current.delta.x, Event.current.delta.y);
+                    }
+                    
+                    area.areaRect.x += Event.current.delta.x;
+                    area.areaRect.y += Event.current.delta.y;
                 }
 
-                test.x += Event.current.delta.x;
-                test.y += Event.current.delta.y;
-            }
-
-            test.width = yrect.width;
-            test.height = yrect.height;
+                area.areaRect.width  = yrect.width;
+                area.areaRect.height = yrect.height;
+            }      
         }
 
         private void DrawNodes() {
@@ -484,6 +503,8 @@ namespace AbicraftNodeEditor {
 
                 NodeEditor.portPositions.Clear();
 
+                float labelZoom = (zoom);
+
                 // Set default label width. This is potentially overridden in OnBodyGUI
                 EditorGUIUtility.labelWidth = 84;
 
@@ -509,13 +530,14 @@ namespace AbicraftNodeEditor {
                     GUILayout.BeginVertical(style);
                 }
 
-                
-
                 GUI.color = guiColor;
                 EditorGUI.BeginChangeCheck();
 
+                GUIStyle labelstyle = new GUIStyle(NodeEditorResources.styles.nodeHeader);
+                labelstyle.fontSize = (int)(10 * Mathf.Clamp(labelZoom + 0.3f, 1f, 1.8f));
+
                 //Draw node contents
-                nodeEditor.OnHeaderGUI();
+                nodeEditor.OnHeaderGUI(labelstyle);
                 nodeEditor.OnBodyGUI();
 
                 //If user changed a value, notify other scripts through onUpdateNode
@@ -583,49 +605,70 @@ namespace AbicraftNodeEditor {
             if (onValidate != null && EditorGUI.EndChangeCheck()) onValidate.Invoke(Selection.activeObject, null);
         }
 
-        static bool resising = false;
-
-        void HorizResizer(Rect headerRect, ref Rect r, bool right = true, float detectionRange = 8f)
+        void HorizResizer(Area areaObj, Rect headerRect, ref Rect r, float detectionRange = 8f)
         {
             detectionRange *= 0.5f;
-            Rect resizer = r;
+            //Rect resizer = r;
 
-            Rect area = new Rect(new Vector2(r.position.x + headerRect.width -1, r.position.y + headerRect.height), new Vector2(2, r.height - headerRect.height));
+            Rect area = new Rect(new Vector2(r.position.x, r.position.y + headerRect.height), new Vector2(r.width, r.height - headerRect.height));
+            Rect right = area, left = area, down = area;
+
             //Debug.Log("HEI");
-            //r.width = r.width > 600 ? 600 : r.width;
+            r.width = r.width > 5000 ? 5000 : r.width;
+            r.width = r.width < 100 ? 100 : r.width;
 
-            if (right)
+            r.height = r.height > 5000 ? 5000 : r.height;
+            r.height = r.height < 100 ? 100 : r.height;
+
+            right.xMin = right.xMax - 30; //4 pixels wide
+            right.xMax += 30;
+
+            left.xMax = left.xMin + 30;
+            left.xMin -= 30;
+
+            down.yMax += 15;
+            down.yMin += r.height - 70;
+            down.xMax -= 30;
+            down.xMin += 30;
+
+            //GUI.Box(down, "tester");
+            //down.yMin = down.height + 30;
+
+            Rect[] rects = new Rect[] { right, left, down };
+            string[] dir = new string[] { "right", "left", "down" };
+
+            if (!areaObj.resisingArea)
             {
-                resizer.xMin = resizer.xMax - 30; //4 pixels wide
-                resizer.xMax += 30;
-            }
-            else
-            {
-                resizer.xMax = resizer.xMin + detectionRange;
-                resizer.xMin -= detectionRange;
-            }
-            Event current = Event.current;
-            EditorGUIUtility.AddCursorRect(resizer, MouseCursor.ResizeHorizontal);
-            //Need a way to remove this Contain check since we already know where the mouse is
-            if (area.Contains(Event.current.mousePosition) || resising)
-            {
-                if (current.button == 0) //lmouse
+                for (int i = 0; i < rects.Length; i++)
                 {
-                    resising = true;
-
-                    //rect.xMin = ;
-                    //rect.xMax = current.mousePosition.x + current.delta.x;
-                    if (right)
-                    { r.xMax = Event.current.mousePosition.x + current.delta.x; }
-                    else
-                    { r.xMin += Event.current.mousePosition.x + current.delta.x; }
+                    if (rects[i].Contains(Event.current.mousePosition))
+                    {
+                        areaObj.activeResizer = rects[i];
+                        areaObj.dir = dir[i];
+                        break;
+                    }
                 }
             }
 
-            if(Event.current.type == EventType.MouseUp)
-                resising = false;
+            if(Event.current.type == EventType.MouseDown && areaObj.activeResizer.Contains(Event.current.mousePosition))
+            {
+                areaObj.resisingArea = true;
+            }
 
-            Debug.Log(" resising : " + current.button);
+            Event current = Event.current;
+            EditorGUIUtility.AddCursorRect(areaObj.activeResizer, MouseCursor.ResizeHorizontal);
+            //Need a way to remove this Contain check since we already know where the mouse is
+            if (areaObj.resisingArea)
+            {
+                if (areaObj.dir.Equals("right"))
+                { r.xMax = Event.current.mousePosition.x + current.delta.x; }
+                  
+                if(areaObj.dir.Equals("down"))
+                { r.yMax = Event.current.mousePosition.y + current.delta.y; }     
+            }
+
+            if(Event.current.type == EventType.MouseUp)
+                areaObj.resisingArea = false;
         }
 
         private bool ShouldBeCulled(AbicraftNode node) {

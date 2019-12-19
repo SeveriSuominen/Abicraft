@@ -5,7 +5,7 @@ using AbicraftNodeEditor;
 
 namespace AbicraftNodes.Math
 {
-    public class TowardsObjectDirectionNode : AbicraftValueNode
+    public class TowardsObjectNode : AbicraftValueNode
     {
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]

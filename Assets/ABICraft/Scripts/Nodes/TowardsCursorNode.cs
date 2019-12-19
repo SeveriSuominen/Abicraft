@@ -5,7 +5,7 @@ using AbicraftNodeEditor;
 
 namespace AbicraftNodes.Math
 {
-    public class TowardsCursorDirectionNode : AbicraftValueNode
+    public class TowardsCursorNode : AbicraftValueNode
     {
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
@@ -22,7 +22,7 @@ namespace AbicraftNodes.Math
 
             if(obj != null)
             {
-                AbiCraftStateSnapshot snapshot = e.AbilityExecution.initial_snapshot;
+                AbiCraftStateSnapshot snapshot = e.ae.initial_snapshot;
                 direction = (snapshot.mousePosition3D - obj.transform.position).normalized;
 
                 if (onlyYAxis)

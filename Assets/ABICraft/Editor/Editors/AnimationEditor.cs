@@ -18,7 +18,7 @@ public class AnimationOverrideEditor : NodeEditor
 
     int selectedIndex;
 
-    public override void OnHeaderGUI()
+    public override void OnHeaderGUI(GUIStyle style)
     {   
         // Initialization
         if (node == null)
@@ -26,7 +26,7 @@ public class AnimationOverrideEditor : NodeEditor
             node = target as AnimationOverrideNode;
         }
 
-        base.OnHeaderGUI();
+        base.OnHeaderGUI(style);
         Rect dotRect = GUILayoutUtility.GetLastRect();
         dotRect.size = new Vector2(16, 16);
         dotRect.y += 6;

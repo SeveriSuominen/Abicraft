@@ -58,6 +58,9 @@ namespace AbicraftNodeEditor {
                 });
             }
             menu.AddSeparator("");
+            menu.AddItem(new GUIContent("Add area"), false, () => CreateArea(pos));
+            menu.AddItem(new GUIContent("Remove all areas"), false, () => RemoveAllAreas());
+            menu.AddSeparator("");
             if (NodeEditorWindow.copyBuffer != null && NodeEditorWindow.copyBuffer.Length > 0) menu.AddItem(new GUIContent("Paste"), false, () => NodeEditorWindow.current.PasteNodes(pos));
             else menu.AddDisabledItem(new GUIContent("Paste"));
             menu.AddItem(new GUIContent("Preferences"), false, () => NodeEditorReflection.OpenPreferences());
@@ -138,6 +141,20 @@ namespace AbicraftNodeEditor {
         }
 
         /// <summary> Create a node and save it in the graph asset </summary>
+        public virtual Area CreateArea(Vector2 position)
+        {
+            Undo.RecordObject(target, "Create Area");
+            Area area = target.AddArea(typeof(Area));
+            Undo.RegisterCreatedObjectUndo(area, "Create Area");
+            area.areaRect = new Rect(position, new Vector2(200, 200));
+            //if (area.name == null || node.name.Trim() == "") node.name = NodeEditorUtilities.NodeDefaultName(type);
+            AssetDatabase.AddObjectToAsset(area, target);
+            if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
+            NodeEditorWindow.RepaintAll();
+            return area;
+        }
+
+        /// <summary> Create a node and save it in the graph asset </summary>
         public virtual AbicraftNode CreateNode(Type type, Vector2 position) {
             Undo.RecordObject(target, "Create Node");
             AbicraftNode node = target.AddNode(type);
@@ -170,6 +187,12 @@ namespace AbicraftNodeEditor {
                     Undo.RecordObject(conn.node, "Delete Node");
             target.RemoveNode(node);
             Undo.DestroyObjectImmediate(node);
+            if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
+        }
+
+        public virtual void RemoveAllAreas()
+        {
+            target.RemoveAllAreas();
             if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
         }
 

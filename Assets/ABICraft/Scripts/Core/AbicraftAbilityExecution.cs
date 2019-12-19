@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,14 +16,18 @@ public class AbicraftAbilityExecution
 
     public List<AbicraftNodeExecution> current_node_executions;
 
+    public readonly string guid;
+
     public AbicraftAbilityExecution(AbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftNode startExecNode)
     {
         this.Ability = Ability;
         this.elapsed = 0;
 
+        guid = Guid.NewGuid().ToString();
+
         current_node_executions = new List<AbicraftNodeExecution>();
         current_node_executions.Add(
-            new AbicraftNodeExecution(
+            new AbicraftNodeExecution (
                 this,
                 startExecNode
             )

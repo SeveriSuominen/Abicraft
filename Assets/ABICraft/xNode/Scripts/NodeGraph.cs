@@ -28,14 +28,27 @@ namespace AbicraftNodeEditor {
             return node;
         }
 
+        /// <summary> Safely remove a node and all its connections </summary>
+        /// <param name="node"> The node to remove </param>
+        public virtual void RemoveAllAreas()
+        {
+            for (int i = 0; i < areas.Count; i++)
+            {
+                Area area = areas[i];
+
+                areas.RemoveAt(i);
+                if (Application.isPlaying) DestroyImmediate(area, true);
+            }
+        }
+
         /// <summary> Add a node to the graph by type </summary>
-        /*public virtual AbicraftNode AddArea(Type type)
+        public virtual Area AddArea(Type type)
         {
             Area area = ScriptableObject.CreateInstance(typeof(Area)) as Area;
-            node.graph = this;
-            nodes.Add(node);
-            return node;
-        }*/
+            area.graph = this;
+            areas.Add(area);
+            return area;
+        }
 
         /// <summary> Creates a copy of the original node in the graph </summary>
         public virtual AbicraftNode CopyNode(AbicraftNode original) {

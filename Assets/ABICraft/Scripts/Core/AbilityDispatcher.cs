@@ -4,6 +4,7 @@ using UnityEngine;
 
 using System.Linq;
 using AbicraftNodeEditor;
+using System;
 
 public class AbilityDispatcher : MonoBehaviour
 {
@@ -125,6 +126,9 @@ public class AbilityDispatcher : MonoBehaviour
 
         loopnode.iterations.Clear();
 
+        string loopKey = Guid.NewGuid().ToString();
+        loopnode.AddLoopKey(nodeExecution.ae.guid, loopKey);
+        
         if (loopnode.Parallel)
         {
             for (int i = 0; i < loopnode.Iterations; i++)
@@ -135,12 +139,14 @@ public class AbilityDispatcher : MonoBehaviour
 
                     if ((port = loopPorts[k]) != null)
                     {
-                        nodeExecution.AbilityExecution.current_node_executions.Add
+                        nodeExecution.ae.current_node_executions.Add
                         (
-                            new AbicraftNodeExecution (
-                                nodeExecution.AbilityExecution,
+                            new AbicraftNodeExecution(
+                                nodeExecution.ae,
                                 port.node,
-                                i + 1 // IterarionIndex
+                                nodeExecution.iterationIndices, //Inherite all iterationIndices
+                                i + 1,  // IterarionIndex,
+                                loopKey // Loop key
                             )
                         );
                     }
@@ -168,12 +174,12 @@ public class AbilityDispatcher : MonoBehaviour
                 }
                 else
                 {
-                    nodeExecution.AbilityExecution.current_node_executions.Add
+                    nodeExecution.ae.current_node_executions.Add
                     (
                         new AbicraftNodeExecution (
-                            nodeExecution.AbilityExecution,
+                            nodeExecution.ae,
                             port.node,
-                            nodeExecution.iterationIndex //Inherite iterationIndex
+                            nodeExecution.iterationIndices //Inherite all iterationIndices
                         )
                     );
                 }
@@ -202,9 +208,18 @@ public class AbilityDispatcher : MonoBehaviour
                         allLifelineBranchesEnded = false;
                 }
 
-                if(allLifelineBranchesEnded)
+                if (allLifelineBranchesEnded)
+                {
+                    //CLEAR LOOPING CACHES
+                    for (int j = 0; j < AbilityExecutionBuffer[i].Ability.nodes.Count; j++)
+                    {
+                        AbicraftNode node = AbilityExecutionBuffer[i].Ability.nodes[j];
+                        if(node != null)
+                            node.CleanAbilityExecutionCache(AbilityExecutionBuffer[i]);
+                    }
                     AbilityExecutionBuffer.RemoveAt(i);
-            }      
+                }
+            }
         }
     }
 

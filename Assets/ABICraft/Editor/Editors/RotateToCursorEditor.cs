@@ -13,7 +13,7 @@ public class RotateToCursorEditor : NodeEditor
     public Texture2D icon;
 
     RotateToDirectionNode node;
-    public override void OnHeaderGUI()
+    public override void OnHeaderGUI(GUIStyle style)
     {   
         // Initialization
         if (node == null)
@@ -21,7 +21,7 @@ public class RotateToCursorEditor : NodeEditor
             node = target as RotateToDirectionNode;
         }
 
-        base.OnHeaderGUI();
+        base.OnHeaderGUI(style);
 
         Rect dotRect = GUILayoutUtility.GetLastRect();
         dotRect.size = new Vector2(16, 16);

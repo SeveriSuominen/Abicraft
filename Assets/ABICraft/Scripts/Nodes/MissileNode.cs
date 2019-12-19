@@ -25,6 +25,8 @@ namespace AbicraftNodes.Action
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float StartSpeed, EndSpeed, maxRange;
 
+        public int lul;
+
         public override void Initialize(AbicraftNodeExecution execution)
         {
             
@@ -32,6 +34,14 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
+            if (lul == 33)
+            {
+                Debug.Log(e.iterationIndices.Count);
+
+                foreach (KeyValuePair<string, int> item in e.iterationIndices)
+                    Debug.Log(item.Key + " : " + item.Value);
+            }
+
             AbicraftObject temp = AbicraftObjectPool.Spawn(missile, null);
             Missile shot = temp.gameObject.AddComponent<Missile>();
 
