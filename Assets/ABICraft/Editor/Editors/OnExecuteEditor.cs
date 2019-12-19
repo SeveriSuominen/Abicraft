@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using static XNodeEditor.NodeEditor;
-using XNodeEditor;
+using static AbicraftNodeEditor.NodeEditor;
+using AbicraftNodeEditor;
 using AbicraftNodes;
 
 [CustomNodeEditor(typeof(OnExecuteNode))]

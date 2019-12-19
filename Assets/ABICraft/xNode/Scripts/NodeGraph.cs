@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace XNode {
+namespace AbicraftNodeEditor {
     /// <summary> Base class for all node graphs </summary>
     [Serializable]
     public abstract class NodeGraph : ScriptableObject {
@@ -11,6 +11,8 @@ namespace XNode {
         /// <summary> All nodes in the graph. <para/>
         /// See: <see cref="AddNode{T}"/> </summary>
         [SerializeField] public List<AbicraftNode> nodes = new List<AbicraftNode>();
+        [SerializeField] public List<Area> areas = new List<Area>();
+
 
         /// <summary> Add a node to the graph by type (convenience method - will call the System.Type version) </summary>
         public T AddNode<T>() where T : AbicraftNode {
@@ -25,6 +27,15 @@ namespace XNode {
             nodes.Add(node);
             return node;
         }
+
+        /// <summary> Add a node to the graph by type </summary>
+        /*public virtual AbicraftNode AddArea(Type type)
+        {
+            Area area = ScriptableObject.CreateInstance(typeof(Area)) as Area;
+            node.graph = this;
+            nodes.Add(node);
+            return node;
+        }*/
 
         /// <summary> Creates a copy of the original node in the graph </summary>
         public virtual AbicraftNode CopyNode(AbicraftNode original) {
@@ -55,7 +66,7 @@ namespace XNode {
         }
 
         /// <summary> Create a new deep copy of this graph </summary>
-        public virtual XNode.NodeGraph Copy() {
+        public virtual NodeGraph Copy() {
             // Instantiate a new nodegraph instance
             NodeGraph graph = Instantiate(this);
             // Instantiate all nodes inside the graph

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace XNode {
+namespace AbicraftNodeEditor {
     /// <summary>
     /// Base class for all nodes
     /// </summary>

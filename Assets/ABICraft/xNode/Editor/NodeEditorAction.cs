@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using XNodeEditor.Internal;
+using AbicraftNodeEditor.Internal;
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     public partial class NodeEditorWindow {
         public enum NodeActivity { Idle, HoldNode, DragNode, HoldGrid, DragGrid }
         public static NodeActivity currentActivity = NodeActivity.Idle;
@@ -19,10 +19,10 @@ namespace XNodeEditor {
         private bool IsHoveringNode { get { return hoveredNode != null; } }
         private bool IsHoveringReroute { get { return hoveredReroute.port != null; } }
         private AbicraftNode hoveredNode = null;
-        [NonSerialized] public XNode.NodePort hoveredPort = null;
-        [NonSerialized] private XNode.NodePort draggedOutput = null;
-        [NonSerialized] private XNode.NodePort draggedOutputTarget = null;
-        [NonSerialized] private XNode.NodePort autoConnectOutput = null;
+        [NonSerialized] public NodePort hoveredPort = null;
+        [NonSerialized] private NodePort draggedOutput = null;
+        [NonSerialized] private NodePort draggedOutputTarget = null;
+        [NonSerialized] private NodePort autoConnectOutput = null;
         [NonSerialized] private List<Vector2> draggedOutputReroutes = new List<Vector2>();
         private RerouteReference hoveredReroute = new RerouteReference();
         private List<RerouteReference> selectedReroutes = new List<RerouteReference>();
@@ -92,7 +92,7 @@ namespace XNodeEditor {
                                     // Offset portConnectionPoints instantly if a node is dragged so they aren't delayed by a frame.
                                     Vector2 offset = node.position - initial;
                                     if (offset.sqrMagnitude > 0) {
-                                        foreach (XNode.NodePort output in node.Outputs) {
+                                        foreach (NodePort output in node.Outputs) {
                                             Rect rect;
                                             if (portConnectionPoints.TryGetValue(output, out rect)) {
                                                 rect.position += offset;
@@ -100,7 +100,7 @@ namespace XNodeEditor {
                                             }
                                         }
 
-                                        foreach (XNode.NodePort input in node.Inputs) {
+                                        foreach (NodePort input in node.Inputs) {
                                             Rect rect;
                                             if (portConnectionPoints.TryGetValue(input, out rect)) {
                                                 rect.position += offset;
@@ -153,7 +153,7 @@ namespace XNodeEditor {
                                 autoConnectOutput = null;
                                 if (hoveredPort.IsConnected) {
                                     AbicraftNode node = hoveredPort.node;
-                                    XNode.NodePort output = hoveredPort.Connection;
+                                    NodePort output = hoveredPort.Connection;
                                     int outputConnectionIndex = output.GetConnectionIndex(hoveredPort);
                                     draggedOutputReroutes = output.GetReroutePoints(outputConnectionIndex);
                                     hoveredPort.Disconnect(output);
@@ -450,10 +450,10 @@ namespace XNodeEditor {
             for (int i = 0; i < nodes.Length; i++) {
                 AbicraftNode srcNode = nodes[i];
                 if (srcNode == null) continue;
-                foreach (XNode.NodePort port in srcNode.Ports) {
+                foreach (NodePort port in srcNode.Ports) {
                     for (int c = 0; c < port.ConnectionCount; c++) {
-                        XNode.NodePort inputPort = port.direction == XNode.NodePort.IO.Input ? port : port.GetConnection(c);
-                        XNode.NodePort outputPort = port.direction == XNode.NodePort.IO.Output ? port : port.GetConnection(c);
+                        NodePort inputPort = port.direction == NodePort.IO.Input ? port : port.GetConnection(c);
+                        NodePort outputPort = port.direction == NodePort.IO.Output ? port : port.GetConnection(c);
 
                         AbicraftNode newNodeIn, newNodeOut;
                         if (substitutes.TryGetValue(inputPort.node, out newNodeIn) && substitutes.TryGetValue(outputPort.node, out newNodeOut)) {
@@ -524,7 +524,7 @@ namespace XNodeEditor {
             if (autoConnectOutput == null) return;
 
             // Find input port of same type
-            XNode.NodePort inputPort = node.Ports.FirstOrDefault(x => x.IsInput && x.ValueType == autoConnectOutput.ValueType);
+            NodePort inputPort = node.Ports.FirstOrDefault(x => x.IsInput && x.ValueType == autoConnectOutput.ValueType);
             // Fallback to input port
             if (inputPort == null) inputPort = node.Ports.FirstOrDefault(x => x.IsInput);
             // Autoconnect

@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.IO;
-using XNode;
 
-namespace XNodeEditor {
+
+namespace AbicraftNodeEditor {
     /// <summary> Deals with modified assets </summary>
     class NodeEditorAssetModProcessor : UnityEditor.AssetModificationProcessor {
 

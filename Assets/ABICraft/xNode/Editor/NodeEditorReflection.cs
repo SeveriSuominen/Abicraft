@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     /// <summary> Contains reflection-related extensions built for xNode </summary>
     public static class NodeEditorReflection {
         [NonSerialized] private static Dictionary<Type, Color> nodeTint;

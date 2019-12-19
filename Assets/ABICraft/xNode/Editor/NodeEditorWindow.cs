@@ -5,14 +5,16 @@ using UnityEngine;
 using System;
 using Object = UnityEngine.Object;
 
-namespace XNodeEditor {
+using AbicraftNodeEditor;
+
+namespace AbicraftNodeEditor {
     [InitializeOnLoad]
     public partial class NodeEditorWindow : EditorWindow {
         public static NodeEditorWindow current;
 
         /// <summary> Stores node positions for all nodePorts. </summary>
-        public Dictionary<XNode.NodePort, Rect> portConnectionPoints { get { return _portConnectionPoints; } }
-        private Dictionary<XNode.NodePort, Rect> _portConnectionPoints = new Dictionary<XNode.NodePort, Rect>();
+        public Dictionary<NodePort, Rect> portConnectionPoints { get { return _portConnectionPoints; } }
+        private Dictionary<NodePort, Rect> _portConnectionPoints = new Dictionary<NodePort, Rect>();
         [SerializeField] private NodePortReference[] _references = new NodePortReference[0];
         [SerializeField] private Rect[] _rects = new Rect[0];
 
@@ -28,12 +30,12 @@ namespace XNodeEditor {
             [SerializeField] private AbicraftNode _node;
             [SerializeField] private string _name;
 
-            public NodePortReference(XNode.NodePort nodePort) {
+            public NodePortReference(NodePort nodePort) {
                 _node = nodePort.node;
                 _name = nodePort.fieldName;
             }
 
-            public XNode.NodePort GetNodePort() {
+            public NodePort GetNodePort() {
                 if (_node == null) {
                     return null;
                 }
@@ -59,7 +61,7 @@ namespace XNodeEditor {
             int length = _references.Length;
             if (length == _rects.Length) {
                 for (int i = 0; i < length; i++) {
-                    XNode.NodePort nodePort = _references[i].GetNodePort();
+                    NodePort nodePort = _references[i].GetNodePort();
                     if (nodePort != null)
                         _portConnectionPoints.Add(nodePort, _rects[i]);
                 }
@@ -68,7 +70,7 @@ namespace XNodeEditor {
 
         public Dictionary<AbicraftNode, Vector2> nodeSizes { get { return _nodeSizes; } }
         private Dictionary<AbicraftNode, Vector2> _nodeSizes = new Dictionary<AbicraftNode, Vector2>();
-        public XNode.NodeGraph graph;
+        public NodeGraph graph;
         public Vector2 panOffset { get { return _panOffset; } set { _panOffset = value; Repaint(); } }
         private Vector2 _panOffset;
         public float zoom { get { return _zoom; } set { _zoom = Mathf.Clamp(value, NodeEditorPreferences.GetSettings().minZoom, NodeEditorPreferences.GetSettings().maxZoom); Repaint(); } }
@@ -91,7 +93,7 @@ namespace XNodeEditor {
 
         /// <summary> Handle Selection Change events</summary>
         private static void OnSelectionChanged() {
-            XNode.NodeGraph nodeGraph = Selection.activeObject as XNode.NodeGraph;
+            NodeGraph nodeGraph = Selection.activeObject as NodeGraph;
             if (nodeGraph && !AssetDatabase.Contains(nodeGraph)) {
                 Open(nodeGraph);
             }
@@ -128,7 +130,7 @@ namespace XNodeEditor {
             string path = EditorUtility.SaveFilePanelInProject("Save NodeGraph", "NewNodeGraph", "asset", "");
             if (string.IsNullOrEmpty(path)) return;
             else {
-                XNode.NodeGraph existingGraph = AssetDatabase.LoadAssetAtPath<XNode.NodeGraph>(path);
+                NodeGraph existingGraph = AssetDatabase.LoadAssetAtPath<NodeGraph>(path);
                 if (existingGraph != null) AssetDatabase.DeleteAsset(path);
                 AssetDatabase.CreateAsset(graph, path);
                 EditorUtility.SetDirty(graph);
@@ -183,7 +185,7 @@ namespace XNodeEditor {
 
         [OnOpenAsset(0)]
         public static bool OnOpen(int instanceID, int line) {
-            XNode.NodeGraph nodeGraph = EditorUtility.InstanceIDToObject(instanceID) as XNode.NodeGraph;
+            NodeGraph nodeGraph = EditorUtility.InstanceIDToObject(instanceID) as NodeGraph;
             if (nodeGraph != null) {
                 Open(nodeGraph);
                 return true;
@@ -192,7 +194,7 @@ namespace XNodeEditor {
         }
 
         /// <summary>Open the provided graph in the NodeEditor</summary>
-        public static void Open(XNode.NodeGraph graph) {
+        public static void Open(NodeGraph graph) {
             if (!graph) return;
 
             NodeEditorWindow w = GetWindow(typeof(NodeEditorWindow), false, "xNode", true) as NodeEditorWindow;

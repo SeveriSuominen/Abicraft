@@ -4,16 +4,16 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     public enum NoodlePath { Curvy, Straight, Angled }
     public enum NoodleStroke { Full, Dashed }
 
     public static class NodeEditorPreferences {
 
         /// <summary> The last editor we checked. This should be the one we modify </summary>
-        private static XNodeEditor.NodeGraphEditor lastEditor;
+        private static AbicraftNodeEditor.NodeGraphEditor lastEditor;
         /// <summary> The last key we checked. This should be the one we modify </summary>
-        private static string lastKey = "xNode.Settings";
+        private static string lastKey = "Settings";
 
         private static Dictionary<Type, Color> typeColors = new Dictionary<Type, Color>();
         private static Dictionary<string, Settings> settings = new Dictionary<string, Settings>();
@@ -81,13 +81,13 @@ namespace XNodeEditor {
 
         /// <summary> Get settings of current active editor </summary>
         public static Settings GetSettings() {
-            if (XNodeEditor.NodeEditorWindow.current == null) return new Settings();
+            if (AbicraftNodeEditor.NodeEditorWindow.current == null) return new Settings();
 
-            if (lastEditor != XNodeEditor.NodeEditorWindow.current.graphEditor) {
-                object[] attribs = XNodeEditor.NodeEditorWindow.current.graphEditor.GetType().GetCustomAttributes(typeof(XNodeEditor.NodeGraphEditor.CustomNodeGraphEditorAttribute), true);
+            if (lastEditor != AbicraftNodeEditor.NodeEditorWindow.current.graphEditor) {
+                object[] attribs = AbicraftNodeEditor.NodeEditorWindow.current.graphEditor.GetType().GetCustomAttributes(typeof(AbicraftNodeEditor.NodeGraphEditor.CustomNodeGraphEditorAttribute), true);
                 if (attribs.Length == 1) {
-                    XNodeEditor.NodeGraphEditor.CustomNodeGraphEditorAttribute attrib = attribs[0] as XNodeEditor.NodeGraphEditor.CustomNodeGraphEditorAttribute;
-                    lastEditor = XNodeEditor.NodeEditorWindow.current.graphEditor;
+                    AbicraftNodeEditor.NodeGraphEditor.CustomNodeGraphEditorAttribute attrib = attribs[0] as AbicraftNodeEditor.NodeGraphEditor.CustomNodeGraphEditorAttribute;
+                    lastEditor = AbicraftNodeEditor.NodeEditorWindow.current.graphEditor;
                     lastKey = attrib.editorPrefsKey;
                 } else return null;
             }
@@ -99,7 +99,7 @@ namespace XNodeEditor {
         [SettingsProvider]
         public static SettingsProvider CreateXNodeSettingsProvider() {
             SettingsProvider provider = new SettingsProvider("Preferences/Abicraft Node Editor", SettingsScope.User) {
-                guiHandler = (searchContext) => { XNodeEditor.NodeEditorPreferences.PreferencesGUI(); },
+                guiHandler = (searchContext) => { AbicraftNodeEditor.NodeEditorPreferences.PreferencesGUI(); },
                 keywords = new HashSet<string>(new [] { "abicraft", "Abicraft", "xNode", "node", "editor", "graph", "connections", "noodles", "ports" })
             };
             return provider;

@@ -4,10 +4,10 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     /// <summary> Base class to derive custom Node Graph editors from. Use this to override how graphs are drawn in the editor. </summary>
-    [CustomNodeGraphEditor(typeof(XNode.NodeGraph))]
-    public class NodeGraphEditor : XNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, XNode.NodeGraph> {
+    [CustomNodeGraphEditor(typeof(NodeGraph))]
+    public class NodeGraphEditor : AbicraftNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, NodeGraph> {
         [Obsolete("Use window.position instead")]
         public Rect position { get { return window.position; } set { window.position = value; } }
         /// <summary> Are we currently renaming a node? </summary>
@@ -67,7 +67,7 @@ namespace XNodeEditor {
         /// <summary> Returned gradient is used to color noodles </summary>
         /// <param name="output"> The output this noodle comes from. Never null. </param>
         /// <param name="input"> The output this noodle comes from. Can be null if we are dragging the noodle. </param>
-        public virtual Gradient GetNoodleGradient(XNode.NodePort output, XNode.NodePort input) {
+        public virtual Gradient GetNoodleGradient(NodePort output, NodePort input) {
             Gradient grad = new Gradient();
 
             // If dragging the noodle, draw solid, slightly transparent
@@ -98,20 +98,20 @@ namespace XNodeEditor {
         /// <summary> Returned float is used for noodle thickness </summary>
         /// <param name="output"> The output this noodle comes from. Never null. </param>
         /// <param name="input"> The output this noodle comes from. Can be null if we are dragging the noodle. </param>
-        public virtual float GetNoodleThickness(XNode.NodePort output, XNode.NodePort input) {
+        public virtual float GetNoodleThickness(NodePort output, NodePort input) {
             return 5f;
         }
 
-        public virtual NoodlePath GetNoodlePath(XNode.NodePort output, XNode.NodePort input) {
+        public virtual NoodlePath GetNoodlePath(NodePort output, NodePort input) {
             return NodeEditorPreferences.GetSettings().noodlePath;
         }
 
-        public virtual NoodleStroke GetNoodleStroke(XNode.NodePort output, XNode.NodePort input) {
+        public virtual NoodleStroke GetNoodleStroke(NodePort output, NodePort input) {
             return NodeEditorPreferences.GetSettings().noodleStroke;
         }
 
         /// <summary> Returned color is used to color ports </summary>
-        public virtual Color GetPortColor(XNode.NodePort port) {
+        public virtual Color GetPortColor(NodePort port) {
             return GetTypeColor(port.ValueType);
         }
 
@@ -121,7 +121,7 @@ namespace XNodeEditor {
         }
 
         /// <summary> Override to display custom tooltips </summary>
-        public virtual string GetPortTooltip(XNode.NodePort port) {
+        public virtual string GetPortTooltip(NodePort port) {
             Type portType = port.ValueType;
             string tooltip = "";
             tooltip = portType.PrettyName();
@@ -175,13 +175,13 @@ namespace XNodeEditor {
 
         [AttributeUsage(AttributeTargets.Class)]
         public class CustomNodeGraphEditorAttribute : Attribute,
-        XNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, XNode.NodeGraph>.INodeEditorAttrib {
+        AbicraftNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, NodeGraph>.INodeEditorAttrib {
             private Type inspectedType;
             public string editorPrefsKey;
             /// <summary> Tells a NodeGraphEditor which Graph type it is an editor for </summary>
             /// <param name="inspectedType">Type that this editor can edit</param>
             /// <param name="editorPrefsKey">Define unique key for unique layout settings instance</param>
-            public CustomNodeGraphEditorAttribute(Type inspectedType, string editorPrefsKey = "xNode.Settings") {
+            public CustomNodeGraphEditorAttribute(Type inspectedType, string editorPrefsKey = "Settings") {
                 this.inspectedType = inspectedType;
                 this.editorPrefsKey = editorPrefsKey;
             }

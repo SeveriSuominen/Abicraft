@@ -9,16 +9,16 @@ using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 #endif
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     /// <summary> Base class to derive custom Node editors from. Use this to create your own custom inspectors and editors for your nodes. </summary>
     [CustomNodeEditor(typeof(AbicraftNode))]
-    public class NodeEditor : XNodeEditor.Internal.NodeEditorBase<NodeEditor, NodeEditor.CustomNodeEditorAttribute, AbicraftNode> {
+    public class NodeEditor : AbicraftNodeEditor.Internal.NodeEditorBase<NodeEditor, NodeEditor.CustomNodeEditorAttribute, AbicraftNode> {
 
         private readonly Color DEFAULTCOLOR = new Color32(255, 255,255, 255);//new Color32(90, 97, 105, 255);
         public float width = 150;
         /// <summary> Fires every whenever a node was modified through the editor </summary>
         public static Action<AbicraftNode> onUpdateNode;
-        public readonly static Dictionary<XNode.NodePort, Vector2> portPositions = new Dictionary<XNode.NodePort, Vector2>();
+        public readonly static Dictionary<NodePort, Vector2> portPositions = new Dictionary<NodePort, Vector2>();
 
 #if ODIN_INSPECTOR
         internal static bool inNodeEditor = false;
@@ -59,7 +59,7 @@ namespace XNodeEditor {
 #endif
 
             // Iterate through dynamic ports and draw them in the order in which they are serialized
-            foreach (XNode.NodePort dynamicPort in target.DynamicPorts) {
+            foreach (NodePort dynamicPort in target.DynamicPorts) {
                 if (NodeEditorGUILayout.IsDynamicPortListPort(dynamicPort)) continue;
                 NodeEditorGUILayout.PortField(dynamicPort);
             }
@@ -134,7 +134,7 @@ namespace XNodeEditor {
 
         [AttributeUsage(AttributeTargets.Class)]
         public class CustomNodeEditorAttribute : Attribute,
-        XNodeEditor.Internal.NodeEditorBase<NodeEditor, NodeEditor.CustomNodeEditorAttribute, AbicraftNode>.INodeEditorAttrib {
+        AbicraftNodeEditor.Internal.NodeEditorBase<NodeEditor, NodeEditor.CustomNodeEditorAttribute, AbicraftNode>.INodeEditorAttrib {
             private Type inspectedType;
             /// <summary> Tells a NodeEditor which Node type it is an editor for </summary>
             /// <param name="inspectedType">Type that this editor can edit</param>

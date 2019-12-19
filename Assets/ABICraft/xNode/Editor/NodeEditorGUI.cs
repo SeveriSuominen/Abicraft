@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using XNodeEditor.Internal;
+using AbicraftNodeEditor.Internal;
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     /// <summary> Contains GUI methods </summary>
     public partial class NodeEditorWindow {
         public NodeGraphEditor graphEditor;
@@ -125,7 +125,7 @@ namespace XNodeEditor {
         }
 
         /// <summary> Show right-click context menu for hovered port </summary>
-        void ShowPortContextMenu(XNode.NodePort hoveredPort) {
+        void ShowPortContextMenu(NodePort hoveredPort) {
             GenericMenu contextMenu = new GenericMenu();
             contextMenu.AddItem(new GUIContent("Clear Connections"), false, () => hoveredPort.ClearConnections());
             contextMenu.DropDown(new Rect(Event.current.mousePosition, Vector2.zero));
@@ -299,14 +299,14 @@ namespace XNodeEditor {
                 if (node == null) continue;
 
                 // Draw full connections and output > reroute
-                foreach (XNode.NodePort output in node.Outputs) {
+                foreach (NodePort output in node.Outputs) {
                     //Needs cleanup. Null checks are ugly
                     Rect fromRect;
                     if (!_portConnectionPoints.TryGetValue(output, out fromRect)) continue;
 
                     Color portColor = graphEditor.GetPortColor(output);
                     for (int k = 0; k < output.ConnectionCount; k++) {
-                        XNode.NodePort input = output.GetConnection(k);
+                        NodePort input = output.GetConnection(k);
 
                         Gradient noodleGradient = graphEditor.GetNoodleGradient(output, input);
                         float noodleThickness = graphEditor.GetNoodleThickness(output, input);
@@ -451,7 +451,7 @@ namespace XNodeEditor {
             //Save guiColor so we can revert it
             Color guiColor = GUI.color;
 
-            List<XNode.NodePort> removeEntries = new List<XNode.NodePort>();
+            List<NodePort> removeEntries = new List<NodePort>();
 
 
             //DrawAreas
@@ -556,14 +556,14 @@ namespace XNodeEditor {
 
                     //Check if we are hovering any of this nodes ports
                     //Check input ports
-                    foreach (XNode.NodePort input in node.Inputs) {
+                    foreach (NodePort input in node.Inputs) {
                         //Check if port rect is available
                         if (!portConnectionPoints.ContainsKey(input)) continue;
                         Rect r = GridToWindowRectNoClipped(portConnectionPoints[input]);
                         if (r.Contains(mousePos)) hoveredPort = input;
                     }
                     //Check all output ports
-                    foreach (XNode.NodePort output in node.Outputs) {
+                    foreach (NodePort output in node.Outputs) {
                         //Check if port rect is available
                         if (!portConnectionPoints.ContainsKey(output)) continue;
                         Rect r = GridToWindowRectNoClipped(portConnectionPoints[output]);

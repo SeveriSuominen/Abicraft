@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     /// <summary> A set of editor-only utilities and extensions for xNode </summary>
     public static class NodeEditorUtilities {
 

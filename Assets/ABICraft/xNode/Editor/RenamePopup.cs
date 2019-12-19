@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace XNodeEditor {
+namespace AbicraftNodeEditor {
     /// <summary> Utility for renaming assets </summary>
     public class RenamePopup : EditorWindow {
         public static RenamePopup current { get; private set; }
