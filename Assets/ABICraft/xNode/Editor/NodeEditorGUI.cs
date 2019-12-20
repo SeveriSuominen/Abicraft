@@ -104,7 +104,7 @@ namespace AbicraftNodeEditor {
         public void DrawSelectionBox() {
             for (int n = 0; n < graph.areas.Count; n++)
             {
-                if (graph.areas[n].dragginArea)
+                if (graph.areas[n].dragginArea || graph.areas[n].resisingArea)
                     return;
             }
 
