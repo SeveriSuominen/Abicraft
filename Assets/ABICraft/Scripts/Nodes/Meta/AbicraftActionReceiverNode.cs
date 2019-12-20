@@ -16,30 +16,50 @@ public abstract class AbicraftActionReceiverNode : AbicraftNode
 
     protected void AddObjectToIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e, T obj)
     {
-        string loopKey = e.loopKeys[e.loopKeys.Count - 1];
+       
 
-        if (loopKey == null)
+        if (e.loopKeys.Count > 0)
         {
-            Debug.LogError("Abicraft: Loop key is null!");
-            return;
+            string loopKey = e.loopKeys[e.loopKeys.Count - 1];
+
+            if (loopKey == null)
+            {
+                Debug.LogError("Abicraft: Loop key is null!");
+                return;
+            }
+            map[loopKey + e.GetIterationIndex(loopKeys[e.ae.guid])] = obj;
         }
-        map[loopKey +  e.GetIterationIndex(loopKeys[e.ae.guid])] = obj;
+        else
+        {
+            map["default_no_loop"] = obj;
+        }
     }
 
     protected T GetObjectByIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e)
     {
-        int iterationIndex = e.GetIterationIndex(loopKeys[e.ae.guid]);
 
-        foreach (var item in loopKeys[e.ae.guid])
+        if (e.loopKeys.Count > 0)
         {
-            if (map.ContainsKey(item + iterationIndex))
+            int iterationIndex = e.GetIterationIndex(loopKeys[e.ae.guid]);
+
+            foreach (var item in loopKeys[e.ae.guid])
             {
-                Debug.Log(item + "_" + iterationIndex);
-                return map[item + iterationIndex];
+                if (map.ContainsKey(item + iterationIndex))
+                {
+                    //Debug.Log(item + "_" + iterationIndex);
+                    return map[item + iterationIndex];
+                }
+
             }
-                
+            return default(T);
         }
-        return default(T);
+        else
+        {
+            if (map.ContainsKey("default_no_loop"))
+                return map["default_no_loop"];
+            else
+                return default(T);
+        }
     }
 
     public override object GetValue(AbicraftNodeExecution e, NodePort port)

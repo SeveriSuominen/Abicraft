@@ -45,7 +45,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
             >= 0.33f
         )
         {
-            pivot.transform.position = Vector3.Lerp(pivot.transform.position, transform.position, 0.1f);
+            pivot.transform.position = Vector3.Lerp(pivot.transform.position, transform.position, 0.05f);
         }
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);

@@ -8,7 +8,7 @@ using System;
 
 public class AbilityDispatcher : MonoBehaviour
 {
-    public AbicraftAbility test_Ability;
+    public AbicraftAbility test_Ability, test_Ability2, test_Ability3;
 
     List<AbicraftAbilityExecution> AbilityExecutionBuffer = new List<AbicraftAbilityExecution>();
 
@@ -237,9 +237,17 @@ public class AbilityDispatcher : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Dispatch(test_Ability);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Dispatch(test_Ability2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Dispatch(test_Ability3);
         }
     }
 }

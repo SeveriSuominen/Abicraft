@@ -11,6 +11,7 @@ namespace AbicraftNodes.Math
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
         [Output] public Vector3 direction;
+        [Output] public float distance;
 
         public bool onlyYAxis;
 
@@ -23,6 +24,7 @@ namespace AbicraftNodes.Math
             if(obj != null)
             {
                 AbiCraftStateSnapshot snapshot = e.ae.initial_snapshot;
+                distance = Vector3.Distance(obj.transform.position, snapshot.mousePosition3D);
                 direction = (snapshot.mousePosition3D - obj.transform.position).normalized;
 
                 if (onlyYAxis)
@@ -32,7 +34,10 @@ namespace AbicraftNodes.Math
 
         public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            return direction;
+            if (port.fieldName.Equals("distance"))
+                return distance;
+            else
+                return direction;
         }
     }
 }

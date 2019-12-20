@@ -304,7 +304,19 @@ PrefabInstance:
         type: 3}
       propertyPath: test_Ability
       value: 
+      objectReference: {fileID: 11400000, guid: 4383e7fee5d47bc4ba7bfe0b215362f7,
+        type: 2}
+    - target: {fileID: 7955029508606655731, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: test_Ability2
+      value: 
       objectReference: {fileID: 11400000, guid: e82cf71a722bef44192ec72f6f9a3f80,
+        type: 2}
+    - target: {fileID: 7955029508606655731, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: test_Ability3
+      value: 
+      objectReference: {fileID: 11400000, guid: 48b7803f78ec6644587f5cbee5530bc5,
         type: 2}
     - target: {fileID: 7955029507883254211, guid: 13236ba8c424e57499412aa02ecfd149,
         type: 3}

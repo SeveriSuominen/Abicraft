@@ -15,6 +15,7 @@ namespace AbicraftNodes.Math
         public AbicraftObject ObjTo;
 
         [Output] public Vector3 direction;
+        [Output] public float distance;
 
         public bool onlyYAxis;
 
@@ -27,6 +28,7 @@ namespace AbicraftNodes.Math
 
             if (objTo != null && objFrom != null)
             {
+                distance  = Vector3.Distance(objTo.transform.position, objFrom.transform.position);
                 direction = (objTo.transform.position - objFrom.transform.position).normalized;
 
                 if (onlyYAxis)
@@ -36,7 +38,10 @@ namespace AbicraftNodes.Math
 
         public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            return direction;
+            if (port.fieldName.Equals("distance"))
+                return distance;
+            else
+                return direction;
         }
     }
 }

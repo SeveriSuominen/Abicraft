@@ -58,7 +58,7 @@ namespace AbicraftNodes.Action
                     if (IsAnimating.Contains(obj) && overrideController != null)
                         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
                    
-                    if (true/*animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController)*/)
+                    if (animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController))
                     {
                         if (!IsAnimating.Contains(obj))
                             IsAnimating.Add(obj);
