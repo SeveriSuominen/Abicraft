@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbicraftNodeEditor;
 
-namespace AbicraftNodes.VFX
+namespace AbicraftNodes.Action
 {
     public class PushNode : AbicraftExecutionNode
     {
@@ -15,7 +15,7 @@ namespace AbicraftNodes.VFX
         // How long the object should shake for.
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public AnimationCurve Curve;
+        public AnimationCurve ForceOverDistanceCurve;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public Vector3 Direction;
@@ -38,7 +38,7 @@ namespace AbicraftNodes.VFX
                 push.Direction = GetInputValue<Vector3>(e, "Direction", Direction);
                 push.Force = GetInputValue<float>(e, "Force", Force);
                 push.Range = GetInputValue<float>(e, "Range", Range);
-                push.curve = GetInputValue<AnimationCurve>(e, "Curve", Curve);
+                push.curve = GetInputValue<AnimationCurve>(e, "Curve", ForceOverDistanceCurve);
 
                 push.StartActionMono();
             }

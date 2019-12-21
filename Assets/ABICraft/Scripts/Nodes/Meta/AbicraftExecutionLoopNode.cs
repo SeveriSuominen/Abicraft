@@ -24,9 +24,18 @@ public abstract class AbicraftExecutionLoopNode : AbicraftNode
 
     [HideInInspector]
     public List<int> iteratedIndices = new List<int>();
-    [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Unconnected)]
+    //[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Unconnected)]
+
+    [HideInInspector]
     public int Iterations;
+
+    [HideInInspector]
     public bool Parallel;
+
+    public virtual int IterationCount(AbicraftNodeExecution e)
+    {
+        return GetInputValue<int>(e, "Iterations", Iterations);
+    }
 
     protected bool NodeBelongsToLoop(NodePort port)
     {
@@ -37,7 +46,7 @@ public abstract class AbicraftExecutionLoopNode : AbicraftNode
     {
         if (port.fieldName == "Iteration")
         {
-            if(e != null)
+            if (e != null)
             {
                 foreach (var item in loopKeys)
                 {
@@ -52,11 +61,16 @@ public abstract class AbicraftExecutionLoopNode : AbicraftNode
                         iterations.Add(key, e.GetIterationIndex(loopKeys[e.ae.guid]));
                         return iterations[key];
                     }
-                } 
+                }
             }
             return 0;
         }
-        return GetInputValue<AbicraftLifeline>(e, "In");
+        else if (port.fieldName == "In")
+        {
+            return GetInputValue<AbicraftLifeline>(e, "In");
+        }
+
+        return default;
     }
 }
 

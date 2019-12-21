@@ -11,14 +11,15 @@ namespace AbicraftNodes.Action
 {
     public class LoopNode : AbicraftExecutionLoopNode
     {
-        public override void Initialize(AbicraftNodeExecution execution)
-        {
-            
-        }
 
-        public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Unconnected)]
+        public int maxIterations;
+        public bool parallel;
+
+        public override void Initialize(AbicraftNodeExecution e)
         {
-            yield return null;
+            Iterations = GetInputValue<int>(e, "maxIterations", maxIterations);
+            Parallel = parallel;
         }
     }
 }

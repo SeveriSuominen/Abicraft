@@ -9,6 +9,9 @@ namespace AbicraftNodes.Action
     public class OnHitNode : AbicraftActionReceiverNode
     {
 
+        [Input]
+        public List<AbicraftObject> Test;
+
         [Output]
         public AbicraftObject HitObject;
         private Dictionary<string, AbicraftObject> hitObjectsByIteration = new Dictionary<string, AbicraftObject>();
@@ -31,6 +34,8 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
+            GetInputValue<List<AbicraftObject>>(e, "Test", Test);
+
             AddLoopKey(e);
  
             while (e.activeMono != null)

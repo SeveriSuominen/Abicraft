@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbicraftNodeEditor;
 
-namespace AbicraftNodes.VFX
+namespace AbicraftNodes.Action
 {
     public class ShakeNode : AbicraftExecutionNode
     {

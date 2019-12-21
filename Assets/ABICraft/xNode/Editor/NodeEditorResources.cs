@@ -4,18 +4,18 @@ using UnityEngine;
 namespace AbicraftNodeEditor {
     public static class NodeEditorResources {
         // Textures
-        public static Texture2D dot { get { return _dot != null ? _dot : _dot = Resources.Load<Texture2D>("xnode_dot"); } }
+        public static Texture2D dot { get { return _dot != null ? _dot : _dot = Resources.Load<Texture2D>("xnode_dot_alt"); } }
         private static Texture2D _dot;
         public static Texture2D dotOuter { get { return _dotOuter != null ? _dotOuter : _dotOuter = Resources.Load<Texture2D>("xnode_dot_outer"); } }
         private static Texture2D _dotOuter;
 
-        public static Texture2D nodeBody { get { return _nodeBody != null ? _nodeBody : _nodeBody = Resources.Load<Texture2D>("node_value"); } }
+        public static Texture2D nodeBody { get { return _nodeBody != null ? _nodeBody : _nodeBody = Resources.Load<Texture2D>("node_value_alt_png"); } }
         private static Texture2D _nodeBody;
 
-        public static Texture2D nodeBodyExec { get { return _nodeBodyExec != null ? _nodeBodyExec : _nodeBodyExec = Resources.Load<Texture2D>("node_execution"); } }
+        public static Texture2D nodeBodyExec { get { return _nodeBodyExec != null ? _nodeBodyExec : _nodeBodyExec = Resources.Load<Texture2D>("node_execution_alt_png"); } }
         private static Texture2D _nodeBodyExec;
 
-        public static Texture2D nodeBodyLoop { get { return _nodeBodyLoop != null ? _nodeBodyLoop : _nodeBodyLoop = Resources.Load<Texture2D>("node_loop"); } }
+        public static Texture2D nodeBodyLoop { get { return _nodeBodyLoop != null ? _nodeBodyLoop : _nodeBodyLoop = Resources.Load<Texture2D>("node_loop_alt_png"); } }
         private static Texture2D _nodeBodyLoop;
 
         public static Texture2D nodeHighlight { get { return _nodeHighlight != null ? _nodeHighlight : _nodeHighlight = Resources.Load<Texture2D>("xnode_node_highlight"); } }

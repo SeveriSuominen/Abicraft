@@ -349,6 +349,7 @@ namespace AbicraftNodeEditor {
 
                             GUI.color = portColor;
                             GUI.DrawTexture(rect, NodeEditorResources.dot);
+                            
                             if (rect.Overlaps(selectionBox)) selection.Add(rerouteRef);
                             if (rect.Contains(mousePos)) hoveredReroute = rerouteRef;
 
@@ -534,7 +535,7 @@ namespace AbicraftNodeEditor {
                 EditorGUI.BeginChangeCheck();
 
                 GUIStyle labelstyle = new GUIStyle(NodeEditorResources.styles.nodeHeader);
-                labelstyle.fontSize = (int)(10 * Mathf.Clamp(labelZoom + 0.3f, 1f, 1.8f));
+                labelstyle.fontSize = (int)(10 * Mathf.Clamp(labelZoom + 0.3f, 1f, 1.5f));
 
                 //Draw node contents
                 nodeEditor.OnHeaderGUI(labelstyle);

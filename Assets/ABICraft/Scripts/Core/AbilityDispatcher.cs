@@ -124,14 +124,18 @@ public class AbilityDispatcher : MonoBehaviour
         List<NodePort> loopPorts = nodeExecution.current_node.GetOutputPort("Loop").GetConnections();
         List<NodePort> portsContinue = nodeExecution.current_node.GetOutputPort("Continue").GetConnections();
 
+        loopnode.Initialize(nodeExecution);
+        
         loopnode.iterations.Clear();
+
+        int iterationCount = loopnode.IterationCount(nodeExecution);
 
         string loopKey = Guid.NewGuid().ToString();
         loopnode.AddLoopKey(nodeExecution.ae.guid, loopKey);
         
         if (loopnode.Parallel)
         {
-            for (int i = 0; i < loopnode.Iterations; i++)
+            for (int i = 0; i < iterationCount; i++)
             {
                 for (int k = 0; k < loopPorts.Count; k++)
                 {
