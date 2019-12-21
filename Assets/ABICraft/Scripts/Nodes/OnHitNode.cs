@@ -8,10 +8,6 @@ namespace AbicraftNodes.Action
 {
     public class OnHitNode : AbicraftActionReceiverNode
     {
-
-        [Input]
-        public List<AbicraftObject> Test;
-
         [Output]
         public AbicraftObject HitObject;
         private Dictionary<string, AbicraftObject> hitObjectsByIteration = new Dictionary<string, AbicraftObject>();
@@ -24,9 +20,6 @@ namespace AbicraftNodes.Action
         public Vector3 Normal;
         private Dictionary<string, RaycastHit> raycastHitIteration = new Dictionary<string, RaycastHit>();
 
-        //public bool ignoreSelfType;
-        //public string[] ignoreTags;
-
         public override void Initialize(AbicraftNodeExecution execution)
         {
             execution.Block();
@@ -34,8 +27,6 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            GetInputValue<List<AbicraftObject>>(e, "Test", Test);
-
             AddLoopKey(e);
  
             while (e.activeMono != null)
