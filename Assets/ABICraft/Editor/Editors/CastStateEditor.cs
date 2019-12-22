@@ -38,8 +38,13 @@ public class CastStateEditor : NodeEditor
 
     public override void OnBodyGUI()
     {
-        Abicraft abicraft = AbicraftGlobalContext.abicraft;
+        
         node = target as CastStatesNode;
+
+        if (!node.abicraft)
+            node.abicraft = AbicraftGlobalContext.abicraft;
+
+        var abicraft = node.abicraft;
 
         List<GUIContent> avaibleStateContents = new List<GUIContent>();
         List<AbicraftState.StateType> types = new List<AbicraftState.StateType>();
@@ -72,7 +77,9 @@ public class CastStateEditor : NodeEditor
         }
 
         base.OnBodyGUI();
-
+        GuiSpace(5);
+        GuiLine(1);
+        GuiSpace(5);
         EditorGUIUtility.SetIconSize(new Vector2(16, 16));
 
         if (abicraft)
@@ -81,7 +88,7 @@ public class CastStateEditor : NodeEditor
             {
                 GUIStyle style = new GUIStyle();
                 if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Negative))
-                    style.normal.textColor = Color.red;
+                    style.normal.textColor = new Color32(255, 38, 0, 255); 
                 if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Positive))
                     style.normal.textColor = Color.green;
                 if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Neutral))
@@ -90,7 +97,9 @@ public class CastStateEditor : NodeEditor
                 GUILayout.Label(avaibleStateContents[node.allSelectedIndices[i]], style);
             }
         }
-
+        GuiSpace(5);
+        GuiLine(1);
+        GuiSpace(5);
         EditorGUIUtility.SetIconSize(Vector2.zero);
 
         GUILayout.Label("Available States", NodeEditorGUILayout.GetFieldStyle("In"));
@@ -106,5 +115,23 @@ public class CastStateEditor : NodeEditor
                 node.lastIndex = node.selectedIndex;
             }
         }
+    }
+
+    void GuiLine(int i_height = 1)
+    {
+        Rect rect = EditorGUILayout.GetControlRect(false, i_height);
+
+        rect.height = i_height;
+
+        EditorGUI.DrawRect(rect, new Color(0.3f, 0.3f, 0.3f, 1));
+    }
+
+    void GuiSpace(int i_height = 1)
+    {
+        Rect rect = EditorGUILayout.GetControlRect(false, i_height);
+
+        rect.height = i_height;
+
+        EditorGUI.DrawRect(rect, new Color(0, 0, 0, 0));
     }
 }

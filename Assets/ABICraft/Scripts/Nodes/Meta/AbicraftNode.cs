@@ -7,6 +7,9 @@ public abstract class AbicraftNode : Node
 {
     protected Dictionary<string, List<string>> loopKeys = new Dictionary<string, List<string>>();
 
+    [HideInInspector]
+    public Abicraft abicraft;
+
     public void AddLoopKey(AbicraftNodeExecution e)
     {
         if(e.loopKeys.Count != 0)

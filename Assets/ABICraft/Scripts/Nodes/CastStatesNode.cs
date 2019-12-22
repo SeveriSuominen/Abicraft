@@ -27,19 +27,20 @@ namespace AbicraftNodes.Action
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj");
-            var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[selectedIndex];
-            // CHANGE PATH!!!!!!!!!!!!!!!!
 
-            if (!obj.activeStates.Contains(state))
+            if (obj)
             {
-                obj.activeStates.Add(state);
-                Debug.Log("obj APPLIED state: " + state.name);
+                foreach (int index in allSelectedIndices)
+                {
+                    var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[index];
+
+                    if (!obj.activeStates.Contains(state))
+                    {
+                        obj.activeStates.Add(state);
+                    }
+                }
             }
-            else
-            {
-                Debug.Log("obj already has state: " + state.name);
-            }
-          
+
             yield return null;
         }
     }

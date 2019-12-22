@@ -29,12 +29,18 @@ namespace AbicraftNodes.Action
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj");
-            var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[selectedIndex];
-            // CHANGE PATH!!!!!!!!!!!!!!!!
 
-            if (obj.activeStates.Contains(state))
+            if (obj)
             {
-                obj.activeStates.Remove(state);            
+                foreach (int index in allSelectedIndices)
+                {
+                    var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[index];
+
+                    if (obj.activeStates.Contains(state))
+                    {
+                        obj.activeStates.Remove(state);
+                    }
+                }
             }
 
             yield return null;

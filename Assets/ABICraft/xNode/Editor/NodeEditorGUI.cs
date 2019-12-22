@@ -37,10 +37,27 @@ namespace AbicraftNodeEditor {
             GUILayout.Label("Abicraft Node", NodeEditorResources.styles.abicraft_infobar, GUILayout.Height(30));
             //GUI.Label(new Rect(position.width *0.5f, 20, 33, 33), "Editing: \"" + graph.name + "\"",  NodeEditorResources.styles.abicraft_infobar_center);
 
-            if (!NodeEditorPreferences.GetSettings().autoSave)
+            if (!NodeEditorPreferences.GetSettings().autoSave && EditorUtility.IsDirty(this))
             {
-                if(GUI.Button(new Rect(position.width - 125, position.height - 50, 100, 33), "Save"))
+                /*GUI.skin.button.normal.textColor = Color.white;
+                GUI.skin.button.onNormal.background = NodeEditorResources.nodeBodyLoop;
+                GUI.skin.button.onHover.background = NodeEditorResources.nodeBodyExec;*/
+
+                GUIStyle style = new GUIStyle(GUI.skin.button);
+
+                //style.normal.textColor = Color.white;
+                //style.normal.background = NodeEditorResources.nodeBodyExec;
+
+                GUI.skin.button.onNormal.textColor = Color.white;
+
+                Color org = GUI.color;
+                //GUI.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+
+                if(GUI.Button(new Rect(position.width - 125, position.height - 50, 100, 33), "Save", style))
                     AssetDatabase.SaveAssets();
+
+                //GUI.color = org;
+                
             }
             else
             {        

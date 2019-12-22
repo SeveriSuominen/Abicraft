@@ -6,19 +6,19 @@ using UnityEngine;
 [CustomEditor(typeof(Abicraft))]
 public class AbicraftEditor : Editor
 {
-    [InitializeOnLoadMethod]
-    public static void InitUpdate() { EditorApplication.update += UpdateAbicraftReferences; }
+    //[InitializeOnLoadMethod]
+    //public static void InitUpdate() { EditorApplication.update += UpdateAbicraftReferences; }
 
-    static Abicraft abicraft;
+    Abicraft abicraft;
 
-    static void UpdateAbicraftReferences()
+    /*static void UpdateAbicraftReferences()
     {
         if (abicraft)
         {
             if (!AbicraftGlobalContext.abicraft)
                 AbicraftGlobalContext.AddAbicraftInstance(abicraft);
         }
-    }
+    }*/
 
     public override void OnInspectorGUI()
     {

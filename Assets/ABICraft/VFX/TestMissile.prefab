@@ -48,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InstantiateObjectToPool: 1
   InstantiateToPoolAmount: 1000
-  original: {fileID: 0}
-  activePool: 0
-  poolIndex: 0
+  Original: {fileID: 0}
+  ActivePool: 0
+  PoolIndex: 0
 --- !u!135 &7821348228314874543
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7001748683015483572}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -167,11 +167,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2747031493082763444}
     m_Modifications:
-    - target: {fileID: 36784255531932794, guid: 614d3b92b7344c941bcd9258095f0454,
-        type: 3}
-      propertyPath: m_Name
-      value: LightTail
-      objectReference: {fileID: 0}
     - target: {fileID: 2985147371621784110, guid: 614d3b92b7344c941bcd9258095f0454,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -226,6 +221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36784255531932794, guid: 614d3b92b7344c941bcd9258095f0454,
+        type: 3}
+      propertyPath: m_Name
+      value: LightTail
       objectReference: {fileID: 0}
     - target: {fileID: 8816634967772972279, guid: 614d3b92b7344c941bcd9258095f0454,
         type: 3}

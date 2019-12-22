@@ -5,30 +5,40 @@ using AbicraftNodeEditor;
 
 
 [System.Serializable]
+[ExecuteInEditMode]
 [RequireComponent(typeof(AbilityDispatcher))]
 public class Abicraft : MonoBehaviour
 {
     public AbicraftGlobalDataFile dataFile;
 
-    private void Start()
+    private void Update()
     {
-        if (!dataFile)
+        if (!AbicraftGlobalContext.abicraft)
+            AbicraftGlobalContext.AddAbicraftInstance(this);
+    }
+
+    private void Start()
+    {    
+        if (Application.isPlaying)
         {
-            Debug.LogError("Abicraft: Missing data file reference");
-            return;
-        }
-
-        AbicraftGlobalContext.AddAbicraftInstance(this);
-
-        AbicraftGameStateSnapshot.InjectInputDataReferences(
-            new AbicraftInputReferences
+            if (!dataFile)
             {
-                Player = null
+                Debug.LogError("Abicraft: Missing data file reference");
+                return;
             }
-        );
 
-        AbicraftObjectPool.LoadPooledObjects(dataFile.InstantiateToPool);
-        AbicraftObjectPool.LoadAllContextPooledObjects();
+            AbicraftGlobalContext.AddAbicraftInstance(this);
+
+            AbicraftGameStateSnapshot.InjectInputDataReferences(
+                new AbicraftInputReferences
+                {
+                    Player = null
+                }
+            );
+
+            AbicraftObjectPool.LoadPooledObjects(dataFile.InstantiateToPool);
+            AbicraftObjectPool.LoadAllContextPooledObjects();
+        }
     }
 }
 
