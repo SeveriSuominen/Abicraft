@@ -7,14 +7,13 @@ using AbicraftNodeEditor;
 using AbicraftNodes.Action;
 using UnityEditor;
 
-[CustomNodeEditor(typeof( RemoveStatesNode))]
-public class RemoveStateEditor : NodeEditor
+[CustomNodeEditor(typeof(HasStatesNode))]
+public class HasStateEditor : NodeEditor
 {
     public Texture2D icon;
 
-    RemoveStatesNode node;
+    HasStatesNode node;
     AbicraftObject obj;
-    Animator animator;
 
     int selectedIndex;
 
@@ -23,7 +22,7 @@ public class RemoveStateEditor : NodeEditor
         // Initialization
         if (node == null)
         {
-            node = target as  RemoveStatesNode;
+            node = target as HasStatesNode;
         }
 
         base.OnHeaderGUI(style);
@@ -38,7 +37,8 @@ public class RemoveStateEditor : NodeEditor
 
     public override void OnBodyGUI()
     {
-        node = target as  RemoveStatesNode;
+        
+        node = target as HasStatesNode;
 
         if (!node.abicraft)
             node.abicraft = AbicraftGlobalContext.abicraft;
@@ -76,50 +76,45 @@ public class RemoveStateEditor : NodeEditor
         }
 
         base.OnBodyGUI();
+        GuiSpace(5);
+        GuiLine(1);
+        GuiSpace(5);
+        EditorGUIUtility.SetIconSize(new Vector2(16, 16));
 
-        if(node.RemoveMode == RemoveStatesNode.RemoveStatesMode.Selected)
+        if (abicraft)
         {
-            GuiSpace(5);
-            GuiLine(1);
-            GuiSpace(5);
-            EditorGUIUtility.SetIconSize(new Vector2(16, 16));
-
-            if (abicraft)
+            for (int i = 0; i < node.allSelectedIndices.Count; i++)
             {
-                for (int i = 0; i < node.allSelectedIndices.Count; i++)
-                {
-                    GUIStyle style = new GUIStyle();
-                    if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Negative))
-                        style.normal.textColor = new Color32(255, 38, 0, 255);
-                    if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Positive))
-                        style.normal.textColor = Color.green;
-                    if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Neutral))
-                        style.normal.textColor = Color.yellow;
+                GUIStyle style = new GUIStyle();
+                if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Negative))
+                    style.normal.textColor = new Color32(255, 38, 0, 255); 
+                if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Positive))
+                    style.normal.textColor = Color.green;
+                if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Neutral))
+                    style.normal.textColor = Color.yellow;
 
-                    GUILayout.Label(avaibleStateContents[node.allSelectedIndices[i]], style);
-                }
+                GUILayout.Label(avaibleStateContents[node.allSelectedIndices[i]], style);
             }
+        }
+        GuiSpace(5);
+        GuiLine(1);
+        GuiSpace(5);
+        EditorGUIUtility.SetIconSize(Vector2.zero);
 
-            EditorGUIUtility.SetIconSize(Vector2.zero);
-            GuiSpace(5);
-            GuiLine(1);
-            GuiSpace(5);
-            GUILayout.Label("Available States", NodeEditorGUILayout.GetFieldStyle("In"));
-            node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, avaibleStateContents.ToArray()); //selectedIndex = EditorGUILayout.Popup(selectedIndex, strings);
+        GUILayout.Label("Available States", NodeEditorGUILayout.GetFieldStyle("In"));
+        node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, avaibleStateContents.ToArray()); //selectedIndex = EditorGUILayout.Popup(selectedIndex, strings);
 
-            if (node.selectedIndex != node.lastIndex)
+        if (node.selectedIndex != node.lastIndex)
+        {
+            if (node.selectedIndex != 0)
             {
-                if (node.selectedIndex != 0)
-                {
-                    if (!node.allSelectedIndices.Contains(node.selectedIndex))
-                        node.allSelectedIndices.Add(node.selectedIndex);
+                if (!node.allSelectedIndices.Contains(node.selectedIndex))
+                    node.allSelectedIndices.Add(node.selectedIndex);
 
-                    node.lastIndex = node.selectedIndex;
-                }
+                node.lastIndex = node.selectedIndex;
             }
         }
     }
-
 
     void GuiLine(int i_height = 1)
     {
@@ -136,6 +131,6 @@ public class RemoveStateEditor : NodeEditor
 
         rect.height = i_height;
 
-        EditorGUI.DrawRect(rect, new Color(0,0,0,0) );
+        EditorGUI.DrawRect(rect, new Color(0, 0, 0, 0));
     }
 }

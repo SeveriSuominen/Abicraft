@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Remove States
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2376, y: 1352}
+  position: {x: 2360, y: 1528}
   ports:
     keys:
     - Obj
@@ -58,6 +58,7 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   Obj: {fileID: 0}
+  RemoveMode: 1
   selectedIndex: 1
   lastIndex: 1
   allSelectedIndices: 01000000020000000300000004000000
@@ -118,6 +119,68 @@ MonoBehaviour:
   value: 0
   Value: 0
   Multiplier: 0.1
+--- !u!114 &-7399569457912589800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16205c5f2d114ff40ab73b2e6080c1b2, type: 3}
+  m_Name: Has States
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2600, y: 1432}
+  ports:
+    keys:
+    - Obj
+    - In
+    - Out
+    values:
+    - _fieldName: Obj
+      _node: {fileID: -7399569457912589800}
+      _typeQualifiedName: AbicraftObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: Obj
+        node: {fileID: -5507137461988573853}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: -7399569457912589800}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -7399569457912589800}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  abicraft: {fileID: 0}
+  In:
+    index: 0
+    mono: {fileID: 0}
+  Out:
+    index: 0
+    mono: {fileID: 0}
+  Obj: {fileID: 0}
+  ConditionMode: 0
+  selectedIndex: 3
+  lastIndex: 3
+  allSelectedIndices: 01000000020000000400000003000000
 --- !u!114 &-6959729324035864749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,11 +204,11 @@ MonoBehaviour:
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: -1479
-    y: 456.13342
-    width: 584.3379
-    height: 35
-  dir: down
+    x: 478
+    y: 291
+    width: 60
+    height: 675.1334
+  dir: left
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-6901431842353217328
@@ -171,8 +234,8 @@ MonoBehaviour:
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: -267
-    y: 489.42383
+    x: -761
+    y: -40.57617
     width: 1018.6196
     height: 35
   dir: down
@@ -195,14 +258,14 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1173.3251
     y: 1118.1858
-    width: 1065.1001
+    width: 1056.5781
     height: 762.30835
   color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 736.1001
-    y: 369
+    x: 580.5781
+    y: 48
     width: 60
     height: 712.30835
   dir: right
@@ -629,6 +692,9 @@ MonoBehaviour:
       - fieldName: ObjFrom
         node: {fileID: 5138632276744524628}
         reroutePoints: []
+      - fieldName: Obj
+        node: {fileID: -7399569457912589800}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -1048,6 +1114,7 @@ MonoBehaviour:
   - {fileID: 5138632276744524628}
   - {fileID: 7787972237820223253}
   - {fileID: -8772800493018232017}
+  - {fileID: -7399569457912589800}
   - {fileID: 0}
   areas:
   - {fileID: 3483526844789187258}
@@ -1649,17 +1716,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 471.32294
     y: 142.98065
-    width: 2121.788
-    height: 721.0764
+    width: 632.6059
+    height: 1745.4153
   color: {r: 0.16353682, g: 0.990566, b: 0.41153294, a: 0.5}
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 904.2501
-    y: -49
-    width: 60
-    height: 671.0764
-  dir: right
+    x: 903
+    y: 746.0764
+    width: 572.60596
+    height: 35
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &5138632276744524628
@@ -1873,7 +1940,7 @@ MonoBehaviour:
   m_Name: Cast States
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2376, y: 1096}
+  position: {x: 2360, y: 1272}
   ports:
     keys:
     - Obj
@@ -2013,18 +2080,18 @@ MonoBehaviour:
   areaName: DEFAULT
   areaRect:
     serializedVersion: 2
-    x: 2365.6152
-    y: 1021.02454
-    width: 227.78796
-    height: 591.272
+    x: 2340.2363
+    y: 1206.6039
+    width: 521
+    height: 621
   color: {r: 0.41037738, g: 0.640385, b: 1, a: 0.5}
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 1233.788
-    y: 402
-    width: 60
-    height: 541.272
-  dir: right
+    x: 694
+    y: 653
+    width: 461
+    height: 35
+  dir: down
   dragginArea: 0
   resisingArea: 0

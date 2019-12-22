@@ -8,28 +8,26 @@ using AbicraftNodeEditor;
 
 namespace AbicraftNodes.Action
 {
-    public class RemoveStatesNode : AbicraftExecutionNode
+    public class HasStatesNode : AbicraftExecutionNode
     {
+        [System.Serializable]
+        public enum HasStatesMode
+        {
+            HasAll,
+            HasAny,
+            HasNone
+        }
+
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
 
-        public RemoveStatesMode RemoveMode;
-
-        [System.Serializable]
-        public enum RemoveStatesMode
-        {
-            Selected,
-            AllNegative,
-            AllPositive,
-            Everything,
-        }
-
+        public HasStatesMode ConditionMode;
 
         [HideInInspector]
         public int    selectedIndex, lastIndex;
 
         [HideInInspector]
-        public List<int> allSelectedIndices = new List<int>(); 
+        public List<int> allSelectedIndices = new List<int>();
 
         public override void Initialize(AbicraftNodeExecution execution)
         {
@@ -46,9 +44,9 @@ namespace AbicraftNodes.Action
                 {
                     var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[index];
 
-                    if (obj.activeStates.Contains(state))
+                    if (!obj.activeStates.Contains(state))
                     {
-                        obj.activeStates.Remove(state);
+                        obj.activeStates.Add(state);
                     }
                 }
             }
