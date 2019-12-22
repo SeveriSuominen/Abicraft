@@ -23,7 +23,7 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbiCraftStateSnapshot context = AbiCraftStateSnapshot.TakeSnapshot;
+            AbicraftGameStateSnapshot context = AbicraftGameStateSnapshot.TakeSnapshot;
 
             var lookPos = GetInputValue<Vector3>(e, "direction", Vector3.zero);
             lookPos.y = 0;

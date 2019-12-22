@@ -25,11 +25,11 @@ public static class AbicraftObjectPool
     {
         for (int i = 0; i < pool.Count; i++)
         {
-            if (pool[i].name == obj.name && !pool[i].activePool)
+            if (pool[i].name == obj.name && !pool[i].ActivePool)
             {         
                 pool[i].transform.SetParent(parent);
                 pool[i].gameObject.SetActive(true);
-                pool[i].activePool = true;
+                pool[i].ActivePool = true;
 
                 return pool[i];
             }    
@@ -54,10 +54,10 @@ public static class AbicraftObjectPool
     {
         for (int i = 0; i < pool.Count; i++)
         {
-            if (pool[i] == obj && pool[i].activePool)
+            if (pool[i] == obj && pool[i].ActivePool)
             {
                 pool[i].transform.SetParent(abicraftObjectPoolParent.transform);
-                pool[i].activePool = false;
+                pool[i].ActivePool = false;
 
                 pool[i].ResetObject();
 
@@ -112,8 +112,8 @@ public static class AbicraftObjectPool
                     GameObject objInstantiated = GameObject.Instantiate(objRef.gameObject, abicraftObjectPoolParent.transform);
 
                     AbicraftObject instantiated_abj = objInstantiated.GetComponent<AbicraftObject>();
-                    instantiated_abj.activePool = false;
-                    instantiated_abj.original = objRef;
+                    instantiated_abj.ActivePool = false;
+                    instantiated_abj.Original = objRef;
 
                     pool.Add(instantiated_abj);
 

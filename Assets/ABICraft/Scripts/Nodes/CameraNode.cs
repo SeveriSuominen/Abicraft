@@ -11,7 +11,7 @@ namespace AbicraftNodes.Object
 
         public override void Evaluate(AbicraftNodeExecution execution)
         {
-            AbiCraftStateSnapshot snapshot = execution.ae.initial_snapshot;
+            AbicraftGameStateSnapshot snapshot = execution.ae.initial_snapshot;
 
             AbicraftObject obj;
 

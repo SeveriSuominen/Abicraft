@@ -399,7 +399,7 @@ namespace AbicraftNodeEditor {
 
                 if (headerRect.Contains(Event.current.mousePosition))
                 {
-                    if (Event.current.type == EventType.MouseDown)
+                    if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
                     {
                         for (int i = 0; i < graph.nodes.Count; i++)
                         {
@@ -422,7 +422,7 @@ namespace AbicraftNodeEditor {
                     }
                 }
 
-                if (area.dragginArea && Event.current.type == EventType.MouseDrag)
+                if (area.dragginArea && Event.current.type == EventType.MouseDrag && Event.current.button == 0)
                 {
                     for (int i = 0; i < area.movingNodes.Count; i++)
                     {
@@ -651,13 +651,13 @@ namespace AbicraftNodeEditor {
                 }
             }
 
-            if(Event.current.type == EventType.MouseDown && areaObj.activeResizer.Contains(Event.current.mousePosition))
+            if(Event.current.type == EventType.MouseDown && Event.current.button == 0 && areaObj.activeResizer.Contains(Event.current.mousePosition))
             {
                 areaObj.resisingArea = true;
             }
 
             Event current = Event.current;
-            EditorGUIUtility.AddCursorRect(areaObj.activeResizer, MouseCursor.ResizeHorizontal);
+            //EditorGUIUtility.AddCursorRect(areaObj.activeResizer, MouseCursor.ResizeHorizontal);
             //Need a way to remove this Contain check since we already know where the mouse is
             if (areaObj.resisingArea)
             {

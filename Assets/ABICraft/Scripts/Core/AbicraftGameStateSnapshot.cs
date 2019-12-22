@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class AbiCraftStateSnapshot
+public class AbicraftGameStateSnapshot
 {
-    public static AbiCraftStateSnapshot TakeSnapshot { get { return CreateSnapshot(); } }
+    public static AbicraftGameStateSnapshot TakeSnapshot { get { return CreateSnapshot(); } }
 
     static AbicraftInputReferences inputReferences;
 
@@ -16,12 +16,12 @@ public class AbiCraftStateSnapshot
 
     public static void InjectInputDataReferences(AbicraftInputReferences inputReferences)
     {
-        AbiCraftStateSnapshot.inputReferences = inputReferences;
+        AbicraftGameStateSnapshot.inputReferences = inputReferences;
     }
 
-    static AbiCraftStateSnapshot CreateSnapshot()
+    static AbicraftGameStateSnapshot CreateSnapshot()
     {
-        AbiCraftStateSnapshot snapshot = new AbiCraftStateSnapshot();
+        AbicraftGameStateSnapshot snapshot = new AbicraftGameStateSnapshot();
 
         snapshot.camera          = Camera.main;
         snapshot.player          = inputReferences.Player;

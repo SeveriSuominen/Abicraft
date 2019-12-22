@@ -10,7 +10,7 @@ public class AbicraftAbilityExecution
 
     //Taking initial snapshot when execution starts, to get original start point data,
     //like player original position.
-    public AbiCraftStateSnapshot initial_snapshot;
+    public AbicraftGameStateSnapshot initial_snapshot;
 
     public AbilityDispatcher dispatcher;
 
@@ -36,7 +36,7 @@ public class AbicraftAbilityExecution
         current_node_executions[current_node_executions.Count - 1].SetBranchIndex();
         this.dispatcher = dispatcher;
 
-        initial_snapshot = AbiCraftStateSnapshot.TakeSnapshot;
+        initial_snapshot = AbicraftGameStateSnapshot.TakeSnapshot;
     }
 
     public AbicraftNodeExecution LastNodeExecution()

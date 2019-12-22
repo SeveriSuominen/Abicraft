@@ -155,9 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InstantiateObjectToPool: 0
   InstantiateToPoolAmount: 0
-  original: {fileID: 0}
-  activePool: 0
-  poolIndex: 0
+  Original: {fileID: 0}
+  ActivePool: 0
+  PoolIndex: 0
 --- !u!64 &312965438
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -478,6 +478,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404,
         type: 3}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: dataFile
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d4bdb4a6cedcae4dbac08e51ecce890,
+        type: 2}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955029507883254213, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: InstantiateObjectToPool
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13236ba8c424e57499412aa02ecfd149, type: 3}
 --- !u!4 &1051875450 stripped

@@ -15,7 +15,7 @@ namespace AbicraftNodeEditor {
     public class NodeEditor : AbicraftNodeEditor.Internal.NodeEditorBase<NodeEditor, NodeEditor.CustomNodeEditorAttribute, AbicraftNode> {
 
         private readonly Color DEFAULTCOLOR = new Color32(255, 255,255, 255);//new Color32(90, 97, 105, 255);
-        public float width = 150;
+        public readonly static float width = 208;
         /// <summary> Fires every whenever a node was modified through the editor </summary>
         public static Action<AbicraftNode> onUpdateNode;
         public readonly static Dictionary<NodePort, Vector2> portPositions = new Dictionary<NodePort, Vector2>();

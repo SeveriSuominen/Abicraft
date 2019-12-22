@@ -10,11 +10,13 @@ public class AbicraftObject : MonoBehaviour
     [SerializeField]
     public int InstantiateToPoolAmount;
     [HideInInspector]
-    public AbicraftObject original;
+    public AbicraftObject Original;
     [HideInInspector]
-    public bool activePool;
+    public bool ActivePool;
     [HideInInspector]
-    public int poolIndex;
+    public int PoolIndex;
+
+    public readonly List<AbicraftState> activeStates = new List<AbicraftState>();
 
     void Awake()
     {
@@ -28,8 +30,8 @@ public class AbicraftObject : MonoBehaviour
 
     public void ResetObject()
     {
-        transform.position = original.transform.position;
-        transform.rotation = original.transform.rotation;
-        transform.localScale = original.transform.localScale;
+        transform.position   = Original.transform.position;
+        transform.rotation   = Original.transform.rotation;
+        transform.localScale = Original.transform.localScale;
     }
 }
