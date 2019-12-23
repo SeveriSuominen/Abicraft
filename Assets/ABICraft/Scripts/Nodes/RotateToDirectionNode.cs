@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AbicraftNodeEditor;
+using AbicraftCore;
 
 namespace AbicraftNodes.Action
 {
     public class RotateToDirectionNode : AbicraftExecutionNode
     {
-        public static uint id = 115;
 
         [Input(typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
         public AbicraftObject Obj;

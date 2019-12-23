@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AbicraftNodeEditor;
+using AbicraftCore;
 
 public abstract class AbicraftNode : Node
 {

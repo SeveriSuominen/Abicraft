@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct AbicraftInputReferences
+namespace AbicraftCore
 {
-    public AbicraftObject Player;
+    [System.Serializable]
+    public struct AbicraftInputReferences
+    {
+        public AbicraftObject Player;
+    }
 }
+

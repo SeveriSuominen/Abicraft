@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-[CreateAssetMenu(fileName = "AbicraftGlobalDataFile", menuName = "Abicraft/Global data file", order = 2)]
-public class AbicraftGlobalDataFile : ScriptableObject
+namespace AbicraftCore
 {
-    public List<AbicraftState>  GlobalStates      = new List<AbicraftState>();
-    public List<AbicraftObject> InstantiateToPool = new List<AbicraftObject>();
+    [System.Serializable]
+    [CreateAssetMenu(fileName = "AbicraftGlobalDataFile", menuName = "Abicraft/Global data file", order = 2)]
+    public class AbicraftGlobalDataFile : ScriptableObject
+    {
+        public List<AbicraftState> GlobalStates = new List<AbicraftState>();
+        public List<AbicraftObject> InstantiateToPool = new List<AbicraftObject>();
+    }
 }

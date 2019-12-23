@@ -6,6 +6,7 @@ using static AbicraftNodeEditor.NodeEditor;
 using AbicraftNodeEditor;
 using AbicraftNodes.Action;
 using UnityEditor;
+using AbicraftCore;
 
 [CustomNodeEditor(typeof(HasStatesNode))]
 public class HasStateEditor : NodeEditor

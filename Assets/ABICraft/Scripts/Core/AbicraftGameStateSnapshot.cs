@@ -2,42 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class AbicraftGameStateSnapshot
+namespace AbicraftCore
 {
-    public static AbicraftGameStateSnapshot TakeSnapshot { get { return CreateSnapshot(); } }
-
-    static AbicraftInputReferences inputReferences;
-
-    public Camera          camera                { get; private set; }
-    public AbicraftObject  player                { get; private set; } 
-    public Vector3         mousePosition2D       { get; private set; }
-    public Vector3         mousePosition3D       { get; private set; }
-
-    public static void InjectInputDataReferences(AbicraftInputReferences inputReferences)
+    [System.Serializable]
+    public class AbicraftGameStateSnapshot
     {
-        AbicraftGameStateSnapshot.inputReferences = inputReferences;
-    }
+        public static AbicraftGameStateSnapshot TakeSnapshot { get { return CreateSnapshot(); } }
 
-    static AbicraftGameStateSnapshot CreateSnapshot()
-    {
-        AbicraftGameStateSnapshot snapshot = new AbicraftGameStateSnapshot();
+        static AbicraftInputReferences inputReferences;
 
-        snapshot.camera          = Camera.main;
-        snapshot.player          = inputReferences.Player;
-        snapshot.mousePosition2D = Input.mousePosition;
+        public Camera camera { get; private set; }
+        public AbicraftObject player { get; private set; }
+        public Vector3 mousePosition2D { get; private set; }
+        public Vector3 mousePosition3D { get; private set; }
 
-        //Using NULL_FORMAT to detect not initializes non nullable values, with Abicraft.
-        snapshot.mousePosition3D = GlobalHelpers.NULL_FORMAT;
-
-        RaycastHit raycastHit;
-
-        if(Physics.Raycast(snapshot.camera.ScreenPointToRay(Input.mousePosition), out raycastHit))
+        public static void InjectInputDataReferences(AbicraftInputReferences inputReferences)
         {
-            //After correct value initilization, no longer NULL_FORMAT value :)
-            snapshot.mousePosition3D = raycastHit.point;
+            AbicraftGameStateSnapshot.inputReferences = inputReferences;
         }
 
-        return snapshot;
+        static AbicraftGameStateSnapshot CreateSnapshot()
+        {
+            AbicraftGameStateSnapshot snapshot = new AbicraftGameStateSnapshot();
+
+            snapshot.camera = Camera.main;
+            snapshot.player = inputReferences.Player;
+            snapshot.mousePosition2D = Input.mousePosition;
+
+            //Using NULL_FORMAT to detect not initializes non nullable values, with Abicraft.
+            snapshot.mousePosition3D = GlobalHelpers.NULL_FORMAT;
+
+            RaycastHit raycastHit;
+
+            if (Physics.Raycast(snapshot.camera.ScreenPointToRay(Input.mousePosition), out raycastHit))
+            {
+                //After correct value initilization, no longer NULL_FORMAT value :)
+                snapshot.mousePosition3D = raycastHit.point;
+            }
+
+            return snapshot;
+        }
     }
+
 }
+

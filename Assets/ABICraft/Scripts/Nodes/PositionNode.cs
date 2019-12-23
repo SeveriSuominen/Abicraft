@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AbicraftNodeEditor;
+using AbicraftCore;
 
 namespace AbicraftNodes.Object.Getters
 {

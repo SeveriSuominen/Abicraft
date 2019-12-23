@@ -3,49 +3,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbicraftAbilityExecution
+
+namespace AbicraftCore
 {
-    public AbicraftAbility Ability;
-    public float elapsed;
-
-    //Taking initial snapshot when execution starts, to get original start point data,
-    //like player original position.
-    public AbicraftGameStateSnapshot initial_snapshot;
-
-    public AbilityDispatcher dispatcher;
-
-    public List<AbicraftNodeExecution> current_node_executions;
-
-    public readonly string guid;
-
-    public AbicraftAbilityExecution(AbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftNode startExecNode)
+    public class AbicraftAbilityExecution
     {
-        this.Ability = Ability;
-        this.elapsed = 0;
+        public AbicraftAbility Ability;
+        public float elapsed;
 
-        guid = Guid.NewGuid().ToString();
+        //Taking initial snapshot when execution starts, to get original start point data,
+        //like player original position.
+        public AbicraftGameStateSnapshot initial_snapshot;
 
-        current_node_executions = new List<AbicraftNodeExecution>();
-        current_node_executions.Add(
-            new AbicraftNodeExecution (
-                this,
-                startExecNode
-            )
-        );
+        public AbilityDispatcher dispatcher;
 
-        current_node_executions[current_node_executions.Count - 1].SetBranchIndex();
-        this.dispatcher = dispatcher;
+        public List<AbicraftNodeExecution> current_node_executions;
 
-        initial_snapshot = AbicraftGameStateSnapshot.TakeSnapshot;
+        public readonly string guid;
+
+        public AbicraftAbilityExecution(AbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftNode startExecNode)
+        {
+            this.Ability = Ability;
+            this.elapsed = 0;
+
+            guid = Guid.NewGuid().ToString();
+
+            current_node_executions = new List<AbicraftNodeExecution>();
+            current_node_executions.Add(
+                new AbicraftNodeExecution(
+                    this,
+                    startExecNode
+                )
+            );
+
+            current_node_executions[current_node_executions.Count - 1].SetBranchIndex();
+            this.dispatcher = dispatcher;
+
+            initial_snapshot = AbicraftGameStateSnapshot.TakeSnapshot;
+        }
+
+        public AbicraftNodeExecution LastNodeExecution()
+        {
+            return current_node_executions[current_node_executions.Count - 1];
+        }
+
+        public bool OnCooldown()
+        {
+            return elapsed >= Ability.Cooldown;
+        }
     }
 
-    public AbicraftNodeExecution LastNodeExecution()
-    {
-        return current_node_executions[current_node_executions.Count - 1];
-    }
-
-    public bool OnCooldown()
-    {
-        return elapsed >= Ability.Cooldown;
-    }
 }

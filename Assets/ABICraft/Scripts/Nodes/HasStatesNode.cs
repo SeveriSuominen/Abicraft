@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 using AbicraftNodeEditor;
+using AbicraftCore;
 
 namespace AbicraftNodes.Action
 {

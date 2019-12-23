@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AbicraftNodeEditor;
-
+using AbicraftCore;
 
 [System.Serializable]
 [ExecuteInEditMode]

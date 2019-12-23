@@ -2,115 +2,120 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbicraftNodeExecution
+namespace AbicraftCore
 {
-
-    public AbicraftNode current_node;
-    public AbicraftAbilityExecution ae;
-
-    public AbicraftActionMono activeMono;
-
-    public readonly List<string> loopKeys = new List<string>();
-
-    public int branchIndex;
-
-    //public int iterationIndex;
-    public readonly Dictionary<string, int> iterationIndices = new Dictionary<string, int>();
-
-    public bool finished;
-
-    public bool executed;
-    public bool localBlock;
-
-    public void EndExecutionBranch()
+    public class AbicraftNodeExecution
     {
-        ae.current_node_executions[branchIndex].current_node = null;
-        this.finished = true;
-    }
 
-    public void Block()
-    {
-        this.localBlock = true;
-    }
+        public AbicraftNode current_node;
+        public AbicraftAbilityExecution ae;
 
-    public void ReleaseBlock()
-    {
-        this.localBlock = false;
-    }
+        public AbicraftActionMono activeMono;
 
-    public bool IsBlocked()
-    {
-        return this.localBlock;
-    }
+        public readonly List<string> loopKeys = new List<string>();
 
-    public void SetBranchIndex()
-    {
-        ae.current_node_executions[ae.current_node_executions.Count - 1].branchIndex = ae.current_node_executions.Count - 1;
-    }
+        public int branchIndex;
 
-    public string GetLoopKey(int index)
-    {
-        return loopKeys[index];
-    }
+        //public int iterationIndex;
+        public readonly Dictionary<string, int> iterationIndices = new Dictionary<string, int>();
 
-    public int GetIterationIndex(List<string> loopKeys)
-    {
-        foreach (var item in loopKeys)
+        public bool finished;
+
+        public bool executed;
+        public bool localBlock;
+
+        public void EndExecutionBranch()
         {
-            if (iterationIndices.ContainsKey(item))
-                return iterationIndices[item];
-        }
-        return -1;
-    }
-
-    public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node)
-    {
-        this.current_node = current_node;
-        this.ae = execution;
-
-        executed = false;
-        localBlock = false;
-    }
-
-    public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node, Dictionary<string, int> iteratIndices, int iterationIndex, string addLoopKey)
-    {
-        this.current_node = current_node;
-        this.ae = execution;
-
-        this.loopKeys.Clear();
-
-        foreach (KeyValuePair<string, int> item in iteratIndices)
-        {
-            this.iterationIndices.Add(item.Key, item.Value);
-            this.loopKeys.Add(item.Key);
+            ae.current_node_executions[branchIndex].current_node = null;
+            this.finished = true;
         }
 
-        if (addLoopKey != null)
+        public void Block()
         {
-            if (!this.loopKeys.Contains(addLoopKey))
-                loopKeys.Add(addLoopKey);
-
-            iterationIndices.Add(addLoopKey, iterationIndex);
+            this.localBlock = true;
         }
 
-        executed = false;
-        localBlock = false;
-    }
-
-    public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node, Dictionary<string, int> iteratIndices)
-    {
-        this.current_node = current_node;
-        this.ae = execution;
-
-        this.loopKeys.Clear();
-
-        foreach (KeyValuePair<string, int> item in iteratIndices)
+        public void ReleaseBlock()
         {
-            this.iterationIndices.Add(item.Key, item.Value);
-            this.loopKeys.Add(item.Key);
+            this.localBlock = false;
         }
 
-        executed = false;
-        localBlock = false;
+        public bool IsBlocked()
+        {
+            return this.localBlock;
+        }
+
+        public void SetBranchIndex()
+        {
+            ae.current_node_executions[ae.current_node_executions.Count - 1].branchIndex = ae.current_node_executions.Count - 1;
+        }
+
+        public string GetLoopKey(int index)
+        {
+            return loopKeys[index];
+        }
+
+        public int GetIterationIndex(List<string> loopKeys)
+        {
+            foreach (var item in loopKeys)
+            {
+                if (iterationIndices.ContainsKey(item))
+                    return iterationIndices[item];
+            }
+            return -1;
+        }
+
+        public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node)
+        {
+            this.current_node = current_node;
+            this.ae = execution;
+
+            executed = false;
+            localBlock = false;
+        }
+
+        public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node, Dictionary<string, int> iteratIndices, int iterationIndex, string addLoopKey)
+        {
+            this.current_node = current_node;
+            this.ae = execution;
+
+            this.loopKeys.Clear();
+
+            foreach (KeyValuePair<string, int> item in iteratIndices)
+            {
+                this.iterationIndices.Add(item.Key, item.Value);
+                this.loopKeys.Add(item.Key);
+            }
+
+            if (addLoopKey != null)
+            {
+                if (!this.loopKeys.Contains(addLoopKey))
+                    loopKeys.Add(addLoopKey);
+
+                iterationIndices.Add(addLoopKey, iterationIndex);
+            }
+
+            executed = false;
+            localBlock = false;
+        }
+
+        public AbicraftNodeExecution(AbicraftAbilityExecution execution, AbicraftNode current_node, Dictionary<string, int> iteratIndices)
+        {
+            this.current_node = current_node;
+            this.ae = execution;
+
+            this.loopKeys.Clear();
+
+            foreach (KeyValuePair<string, int> item in iteratIndices)
+            {
+                this.iterationIndices.Add(item.Key, item.Value);
+                this.loopKeys.Add(item.Key);
+            }
+
+            executed = false;
+            localBlock = false;
+        }
     }
 }
+
+

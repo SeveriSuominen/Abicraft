@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbicraftNodeEditor;
 
-
-[CreateAssetMenu(fileName = "Ability", menuName = "Abicraft/Graphs/Ability", order = 2)]
-public class AbicraftAbility : NodeGraph
+namespace AbicraftCore
 {
-    public float Cooldown;
+    [CreateAssetMenu(fileName = "Ability", menuName = "Abicraft/Graphs/Ability", order = 2)]
+    public class AbicraftAbility : NodeGraph
+    {
+        public float Cooldown;
+    }
+
 }
