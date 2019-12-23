@@ -7,6 +7,7 @@ using AbicraftNodeEditor;
 using AbicraftNodes.Action;
 using UnityEditor;
 using AbicraftCore;
+using AbicraftMonos;
 
 [CustomNodeEditor(typeof(CastStatesNode))]
 public class CastStateEditor : NodeEditor

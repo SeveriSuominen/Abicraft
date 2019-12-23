@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 using AbicraftNodeEditor;
 using AbicraftCore;
+using AbicraftMonos;
+using AbicraftNodes.Meta;
 
 namespace AbicraftNodes.Action
 {
@@ -24,7 +26,6 @@ namespace AbicraftNodes.Action
             AllPositive,
             Everything,
         }
-
 
         [HideInInspector]
         public int    selectedIndex, lastIndex;

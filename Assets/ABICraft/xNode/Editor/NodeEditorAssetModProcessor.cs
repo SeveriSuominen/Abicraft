@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.IO;
-
+using AbicraftNodes.Meta;
 
 namespace AbicraftNodeEditor {
     /// <summary> Deals with modified assets </summary>

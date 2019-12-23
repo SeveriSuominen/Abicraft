@@ -1,4 +1,5 @@
 ﻿using AbicraftCore;
+using AbicraftMonos;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -7,19 +8,7 @@ using UnityEngine;
 [CustomEditor(typeof(Abicraft))]
 public class AbicraftEditor : Editor
 {
-    //[InitializeOnLoadMethod]
-    //public static void InitUpdate() { EditorApplication.update += UpdateAbicraftReferences; }
-
     Abicraft abicraft;
-
-    /*static void UpdateAbicraftReferences()
-    {
-        if (abicraft)
-        {
-            if (!AbicraftGlobalContext.abicraft)
-                AbicraftGlobalContext.AddAbicraftInstance(abicraft);
-        }
-    }*/
 
     public override void OnInspectorGUI()
     {

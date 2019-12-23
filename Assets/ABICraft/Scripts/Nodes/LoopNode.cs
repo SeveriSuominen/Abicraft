@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 using AbicraftNodeEditor;
+using AbicraftNodes.Meta;
 
 namespace AbicraftNodes.Action
 {

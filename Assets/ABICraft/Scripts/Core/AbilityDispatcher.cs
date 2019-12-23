@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using AbicraftNodeEditor;
 using System;
+using AbicraftNodes.Meta;
 
 namespace AbicraftCore
 {

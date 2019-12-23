@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using AbicraftNodeEditor.Internal;
+using AbicraftNodes.Meta;
 
 namespace AbicraftNodeEditor {
     /// <summary> Contains GUI methods </summary>

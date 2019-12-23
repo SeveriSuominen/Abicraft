@@ -4,42 +4,43 @@ using UnityEngine;
 using AbicraftNodeEditor;
 using AbicraftCore;
 
-[System.Serializable]
-[ExecuteInEditMode]
-[RequireComponent(typeof(AbilityDispatcher))]
-public class Abicraft : MonoBehaviour
+namespace AbicraftMonos
 {
-    public AbicraftGlobalDataFile dataFile;
-
-    private void Update()
+    [System.Serializable]
+    [ExecuteInEditMode]
+    [RequireComponent(typeof(AbilityDispatcher))]
+    public class Abicraft : MonoBehaviour
     {
-        if (!AbicraftGlobalContext.abicraft)
-            AbicraftGlobalContext.AddAbicraftInstance(this);
-    }
+        public AbicraftGlobalDataFile dataFile;
 
-    private void Start()
-    {    
-        if (Application.isPlaying)
+        private void Update()
         {
-            if (!dataFile)
+            if (!AbicraftGlobalContext.abicraft)
+                AbicraftGlobalContext.AddAbicraftInstance(this);
+        }
+
+        private void Start()
+        {
+            if (Application.isPlaying)
             {
-                Debug.LogError("Abicraft: Missing data file reference");
-                return;
-            }
-
-            AbicraftGlobalContext.AddAbicraftInstance(this);
-
-            AbicraftGameStateSnapshot.InjectInputDataReferences(
-                new AbicraftInputReferences
+                if (!dataFile)
                 {
-                    Player = null
+                    Debug.LogError("Abicraft: Missing data file reference");
+                    return;
                 }
-            );
 
-            AbicraftObjectPool.LoadPooledObjects(dataFile.InstantiateToPool);
-            AbicraftObjectPool.LoadAllContextPooledObjects();
+                AbicraftGlobalContext.AddAbicraftInstance(this);
+
+                AbicraftGameStateSnapshot.InjectInputDataReferences(
+                    new AbicraftInputReferences
+                    {
+                        Player = null
+                    }
+                );
+
+                AbicraftObjectPool.LoadPooledObjects(dataFile.InstantiateToPool);
+                AbicraftObjectPool.LoadAllContextPooledObjects();
+            }
         }
     }
 }
-
-

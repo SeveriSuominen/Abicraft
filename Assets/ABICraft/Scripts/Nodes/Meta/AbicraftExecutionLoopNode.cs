@@ -6,71 +6,73 @@ using AbicraftNodeEditor;
 
 using AbicraftCore;
 
-public abstract class AbicraftExecutionLoopNode : AbicraftNode
+namespace AbicraftNodes.Meta
 {
-    [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
-    public AbicraftLifeline In;
-    [Output]
-    public AbicraftLifeline Loop;
-    [Output]
-    public float Iteration;
-    [Output]
-    public AbicraftLifeline Continue;
-
-    [HideInInspector]
-    public float max_iterations;
-
-    public Dictionary<string, float> iterations = new Dictionary<string, float>();
-
-    [HideInInspector]
-    public List<int> iteratedIndices = new List<int>();
-    //[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Unconnected)]
-
-    [HideInInspector]
-    public int Iterations;
-
-    [HideInInspector]
-    public bool Parallel;
-
-    public virtual int IterationCount(AbicraftNodeExecution e)
+    public abstract class AbicraftExecutionLoopNode : AbicraftNode
     {
-        return GetInputValue<int>(e, "Iterations", Iterations);
-    }
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
+        public AbicraftLifeline In;
+        [Output]
+        public AbicraftLifeline Loop;
+        [Output]
+        public float Iteration;
+        [Output]
+        public AbicraftLifeline Continue;
 
-    protected bool NodeBelongsToLoop(NodePort port)
-    {
-        return true;
-    }
+        [HideInInspector]
+        public float max_iterations;
 
-    public override object GetValue(AbicraftNodeExecution e, NodePort port)
-    {
-        if (port.fieldName == "Iteration")
+        public Dictionary<string, float> iterations = new Dictionary<string, float>();
+
+        [HideInInspector]
+        public List<int> iteratedIndices = new List<int>();
+        //[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Unconnected)]
+
+        [HideInInspector]
+        public int Iterations;
+
+        [HideInInspector]
+        public bool Parallel;
+
+        public virtual int IterationCount(AbicraftNodeExecution e)
         {
-            if (e != null)
-            {
-                foreach (var item in loopKeys)
-                {
-                    string key = port.fieldName + item + e.GetIterationIndex(loopKeys[e.ae.guid]);
+            return GetInputValue<int>(e, "Iterations", Iterations);
+        }
 
-                    if (iterations.ContainsKey(key))
+        protected bool NodeBelongsToLoop(NodePort port)
+        {
+            return true;
+        }
+
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
+        {
+            if (port.fieldName == "Iteration")
+            {
+                if (e != null)
+                {
+                    foreach (var item in loopKeys)
                     {
-                        return iterations[key];
-                    }
-                    else
-                    {
-                        iterations.Add(key, e.GetIterationIndex(loopKeys[e.ae.guid]));
-                        return iterations[key];
+                        string key = port.fieldName + item + e.GetIterationIndex(loopKeys[e.ae.guid]);
+
+                        if (iterations.ContainsKey(key))
+                        {
+                            return iterations[key];
+                        }
+                        else
+                        {
+                            iterations.Add(key, e.GetIterationIndex(loopKeys[e.ae.guid]));
+                            return iterations[key];
+                        }
                     }
                 }
+                return 0;
             }
-            return 0;
-        }
-        else if (port.fieldName == "In")
-        {
-            return GetInputValue<AbicraftLifeline>(e, "In");
-        }
+            else if (port.fieldName == "In")
+            {
+                return GetInputValue<AbicraftLifeline>(e, "In");
+            }
 
-        return default;
+            return default;
+        }
     }
 }
-

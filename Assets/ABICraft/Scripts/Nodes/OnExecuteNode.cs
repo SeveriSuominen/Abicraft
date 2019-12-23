@@ -4,6 +4,7 @@ using UnityEngine;
 using AbicraftNodeEditor;
 
 using AbicraftCore;
+using AbicraftNodes.Meta;
 
 namespace AbicraftNodes
 {

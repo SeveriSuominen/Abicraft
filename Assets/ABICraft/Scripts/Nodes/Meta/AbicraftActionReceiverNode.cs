@@ -6,65 +6,67 @@ using AbicraftNodeEditor;
 
 using AbicraftCore;
 
-
-public abstract class AbicraftActionReceiverNode : AbicraftNode
+namespace AbicraftNodes.Meta
 {
-    [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
-    public AbicraftActionLine In;
-    [Output]
-    public AbicraftLifeline Out;
-
-    protected void AddObjectToIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e, T obj)
+    public abstract class AbicraftActionReceiverNode : AbicraftNode
     {
-       
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
+        public AbicraftActionLine In;
+        [Output]
+        public AbicraftLifeline Out;
 
-        if (e.loopKeys.Count > 0)
+        protected void AddObjectToIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e, T obj)
         {
-            string loopKey = e.loopKeys[e.loopKeys.Count - 1];
 
-            if (loopKey == null)
+
+            if (e.loopKeys.Count > 0)
             {
-                Debug.LogError("Abicraft: Loop key is null!");
-                return;
-            }
-            map[loopKey + e.GetIterationIndex(loopKeys[e.ae.guid])] = obj;
-        }
-        else
-        {
-            map["default_no_loop"] = obj;
-        }
-    }
+                string loopKey = e.loopKeys[e.loopKeys.Count - 1];
 
-    protected T GetObjectByIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e)
-    {
-
-        if (e.loopKeys.Count > 0)
-        {
-            int iterationIndex = e.GetIterationIndex(loopKeys[e.ae.guid]);
-
-            foreach (var item in loopKeys[e.ae.guid])
-            {
-                if (map.ContainsKey(item + iterationIndex))
+                if (loopKey == null)
                 {
-                    //Debug.Log(item + "_" + iterationIndex);
-                    return map[item + iterationIndex];
+                    Debug.LogError("Abicraft: Loop key is null!");
+                    return;
                 }
-
+                map[loopKey + e.GetIterationIndex(loopKeys[e.ae.guid])] = obj;
             }
-            return default(T);
-        }
-        else
-        {
-            if (map.ContainsKey("default_no_loop"))
-                return map["default_no_loop"];
             else
-                return default(T);
+            {
+                map["default_no_loop"] = obj;
+            }
         }
-    }
 
-    public override object GetValue(AbicraftNodeExecution e, NodePort port)
-    {
-        return GetInputValue<AbicraftLifeline>(e, "In");
+        protected T GetObjectByIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e)
+        {
+
+            if (e.loopKeys.Count > 0)
+            {
+                int iterationIndex = e.GetIterationIndex(loopKeys[e.ae.guid]);
+
+                foreach (var item in loopKeys[e.ae.guid])
+                {
+                    if (map.ContainsKey(item + iterationIndex))
+                    {
+                        //Debug.Log(item + "_" + iterationIndex);
+                        return map[item + iterationIndex];
+                    }
+
+                }
+                return default(T);
+            }
+            else
+            {
+                if (map.ContainsKey("default_no_loop"))
+                    return map["default_no_loop"];
+                else
+                    return default(T);
+            }
+        }
+
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
+        {
+            return GetInputValue<AbicraftLifeline>(e, "In");
+        }
     }
 }
 

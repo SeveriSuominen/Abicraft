@@ -6,6 +6,7 @@ using System;
 using Object = UnityEngine.Object;
 
 using AbicraftNodeEditor;
+using AbicraftNodes.Meta;
 
 namespace AbicraftNodeEditor {
     [InitializeOnLoad]

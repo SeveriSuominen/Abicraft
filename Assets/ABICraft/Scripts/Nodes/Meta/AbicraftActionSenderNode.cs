@@ -6,30 +6,32 @@ using AbicraftNodeEditor;
 
 using AbicraftCore;
 
-
-public abstract class AbicraftActionSenderNode : AbicraftNode
+namespace AbicraftNodes.Meta
 {
-    [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
-    public AbicraftLifeline In;
-    [Output]
-    public AbicraftActionLine Out;
-
-    protected void AddObjectToIterationIndex<T>(ref Dictionary<int, T> map, int iterationIndex, T obj)
+    public abstract class AbicraftActionSenderNode : AbicraftNode
     {
-        map[iterationIndex] = obj;
-    }
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
+        public AbicraftLifeline In;
+        [Output]
+        public AbicraftActionLine Out;
 
-    protected T GetObjectByIterationIndex<T>(ref Dictionary<int, T> map, int iterationIndex)
-    {
-        if (map.ContainsKey(iterationIndex))
-            return map[iterationIndex];
-        else
-            return default(T);
-    }
+        protected void AddObjectToIterationIndex<T>(ref Dictionary<int, T> map, int iterationIndex, T obj)
+        {
+            map[iterationIndex] = obj;
+        }
 
-    public override object GetValue(AbicraftNodeExecution e, NodePort port)
-    {
-        return GetInputValue<AbicraftLifeline>(e, "In");
+        protected T GetObjectByIterationIndex<T>(ref Dictionary<int, T> map, int iterationIndex)
+        {
+            if (map.ContainsKey(iterationIndex))
+                return map[iterationIndex];
+            else
+                return default(T);
+        }
+
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
+        {
+            return GetInputValue<AbicraftLifeline>(e, "In");
+        }
     }
 }
 
