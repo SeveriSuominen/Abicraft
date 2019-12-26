@@ -9,12 +9,18 @@ using AbicraftNodes.Meta;
 
 namespace AbicraftCore
 {
-    public class AbilityDispatcher : MonoBehaviour
+    /// <summary> Abicraft component to translate and execute AbicraftAbility 's</summary>
+    public class AbicraftAbilityDispatcher : MonoBehaviour
     {
         public AbicraftAbility test_Ability, test_Ability2, test_Ability3;
 
+        /// <summary> Is AbicraftAbilityExecution buffer updated in FixedUpdate() instead of Update() </summary>
+        public bool UpdateAbilityExecutionsInFixedUpdate;
+
+        /// <summary> AbicraftAbilityExecution buffer to hold all active executions that are updated per frame </summary>
         List<AbicraftAbilityExecution> AbilityExecutionBuffer = new List<AbicraftAbilityExecution>();
 
+        /// <summary> Executes AbicraftAbility </summary>
         public void Dispatch(AbicraftAbility ability)
         {
             if (AbilityOnCooldown(ability))
@@ -31,6 +37,7 @@ namespace AbicraftCore
             );
         }
 
+        /// <summary>Check if AbicraftAbility is on cooldown </summary>
         public bool AbilityOnCooldown(AbicraftAbility ability)
         {
             for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
@@ -46,11 +53,13 @@ namespace AbicraftCore
             return false;
         }
 
+        /// <summary>Check if any AbicraftAbility is executing </summary>
         public bool AnyAbilityIsExecuting()
         {
             return AbilityExecutionBuffer.Count > 0;
         }
 
+        /// <summary>Check if AbicraftAbility is executing </summary>
         public bool AbilityIsExecuting(AbicraftAbility ability)
         {
             for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
@@ -61,41 +70,54 @@ namespace AbicraftCore
             return false;
         }
 
-        private void FixedUpdate()
+        /// <summary> Does all AbicraftAbilityExecution checks and per frame updates </summary>
+        void UpdateAbilityExecutions()
         {
-            RecurseNodes();
-            TickCooldowns(Time.deltaTime);
-        }
-
-        void RecurseNodes()
-        {
+            // Per execution routine
             for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
             {
-                AbicraftAbilityExecution execution = AbilityExecutionBuffer[i];
+                AbicraftAbilityExecution ae = AbilityExecutionBuffer[i];
 
-                for (int j = 0; j < execution.current_node_executions.Count; j++)
+                RecurseAbilityExecutionNodeTree(ae);
+                TickCooldown(ae, Time.deltaTime /*delta*/ );
+                CleanDoneAbilityExecution(ae);
+            }
+            // ------------
+        }
+
+        /// <summary> Call UpdateAbilityExecutions() every frame in FixedUpdate(), if UpdateAbilityExecutionsInFixedUpdate == true </summary>
+        private void FixedUpdate()
+        {
+            if (UpdateAbilityExecutionsInFixedUpdate)
+                UpdateAbilityExecutions();
+        }
+
+        /// <summary> Iterate over all AbicraftAbilityExecution in current buffer, and sort executions to right handlers or end execution if execution dont continue </summary>
+        void RecurseAbilityExecutionNodeTree(AbicraftAbilityExecution execution)
+        {
+            for (int j = 0; j < execution.current_node_executions.Count; j++)
+            {
+                AbicraftNodeExecution nodeExecution = execution.current_node_executions[j];
+
+                if (!nodeExecution.finished && nodeExecution.current_node != null)
                 {
-                    AbicraftNodeExecution nodeExecution = execution.current_node_executions[j];
-
-                    if (!nodeExecution.finished && nodeExecution.current_node != null)
+                    if (nodeExecution.current_node != null && nodeExecution.current_node.GetType().IsSubclassOf(typeof(AbicraftExecutionLoopNode)))
                     {
-                        if (nodeExecution.current_node != null && nodeExecution.current_node.GetType().IsSubclassOf(typeof(AbicraftExecutionLoopNode)))
-                        {
-                            ExecuteLoop(nodeExecution);
-                        }
-                        else
-                        {
-                            ExecuteNextNode(nodeExecution);
-                        }
+                        ExecuteLoop(nodeExecution);
                     }
                     else
                     {
-                        nodeExecution.current_node = null;
+                        ExecuteNextNode(nodeExecution);
                     }
+                }
+                else
+                {
+                    nodeExecution.current_node = null;
                 }
             }
         }
 
+        /// <summary> Executes next node in AbicraftAbilityExecution. And set it as execution's current node, if node execution in not currently blocked </summary>
         void ExecuteNextNode(AbicraftNodeExecution nodeExecution)
         {
             if (!nodeExecution.executed)
@@ -120,6 +142,7 @@ namespace AbicraftCore
             }
         }
 
+        /// <summary> Executes next node in AbicraftAbilityExecution. IF node is type of loop node, works as ExecuteNextNode() method, but handles branching also throught iterating and generate loopkey GUID for loop execution and add it to node. </summary>
         void ExecuteLoop(AbicraftNodeExecution nodeExecution)
         {
             AbicraftExecutionLoopNode loopnode = nodeExecution.current_node as AbicraftExecutionLoopNode;
@@ -165,6 +188,7 @@ namespace AbicraftCore
             BranchExecute(nodeExecution, portsContinue);
         }
 
+        /// <summary> Finalizing method called after moved to next node, to branch node output type of AbicraftLifeLine to seperate executions to allow branching </summary>
         void BranchExecute(AbicraftNodeExecution nodeExecution, List<NodePort> ports)
         {
             AbicraftNode zeroBranchNextNode = null;
@@ -198,38 +222,40 @@ namespace AbicraftCore
                 nodeExecution.current_node = null;
         }
 
-        void TickCooldowns(float delta)
+        /// <summary> Tick AbicraftAbilityExecution between frames delta </summary>
+        void TickCooldown(AbicraftAbilityExecution execution, float delta)
         {
-            for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
+            execution.elapsed += delta;
+        }
+
+        /// <summary> Clean and clears AbicraftAbilityExecution, when its done, meaning Ability's cooldown is elapsed </summary>
+        void CleanDoneAbilityExecution(AbicraftAbilityExecution execution)
+        {
+            if (execution.elapsed >= execution.Ability.Cooldown)
             {
-                AbicraftAbilityExecution cooldown = AbilityExecutionBuffer[i];
-                cooldown.elapsed += delta;
+                bool allLifelineBranchesEnded = true;
 
-                if (cooldown.elapsed >= cooldown.Ability.Cooldown)
+                for (int j = 0; j < execution.current_node_executions.Count; j++)
                 {
-                    bool allLifelineBranchesEnded = true;
+                    if (execution.current_node_executions[j].current_node != null)
+                        allLifelineBranchesEnded = false;
+                }
 
-                    for (int j = 0; j < cooldown.current_node_executions.Count; j++)
+                if (allLifelineBranchesEnded)
+                {
+                    //CLEAR LOOPING CACHES
+                    for (int j = 0; j < execution.Ability.nodes.Count; j++)
                     {
-                        if (cooldown.current_node_executions[j].current_node != null)
-                            allLifelineBranchesEnded = false;
+                        AbicraftNode node = execution.Ability.nodes[j];
+                        if (node != null)
+                            node.CleanAbilityExecutionLoopCache(execution);
                     }
-
-                    if (allLifelineBranchesEnded)
-                    {
-                        //CLEAR LOOPING CACHES
-                        for (int j = 0; j < AbilityExecutionBuffer[i].Ability.nodes.Count; j++)
-                        {
-                            AbicraftNode node = AbilityExecutionBuffer[i].Ability.nodes[j];
-                            if (node != null)
-                                node.CleanAbilityExecutionCache(AbilityExecutionBuffer[i]);
-                        }
-                        AbilityExecutionBuffer.RemoveAt(i);
-                    }
+                    AbilityExecutionBuffer.Remove(execution);
                 }
             }
         }
 
+        /// <summary>Gets AbicraftAbility's execution node as startpoint for AbicraftNodeExecution </summary>
         List<AbicraftNode> getSortForExecuteNodes(AbicraftAbility Ability)
         {
             List<AbicraftNode> exec_nodes = new List<AbicraftNode>();
@@ -242,8 +268,12 @@ namespace AbicraftCore
             return new List<AbicraftNode>(exec_nodes);
         }
 
+        /// <summary> Call UpdateAbilityExecutions() every frame in Update(), if UpdateAbilityExecutionsInFixedUpdate == false </summary>
         void Update()
         {
+            if (!UpdateAbilityExecutionsInFixedUpdate)
+                UpdateAbilityExecutions();
+
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Dispatch(test_Ability);

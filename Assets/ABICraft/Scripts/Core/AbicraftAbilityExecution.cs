@@ -16,13 +16,13 @@ namespace AbicraftCore
         //like player original position.
         public AbicraftGameStateSnapshot initial_snapshot;
 
-        public AbilityDispatcher dispatcher;
+        public AbicraftAbilityDispatcher dispatcher;
 
         public List<AbicraftNodeExecution> current_node_executions;
 
         public readonly string guid;
 
-        public AbicraftAbilityExecution(AbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftNode startExecNode)
+        public AbicraftAbilityExecution(AbicraftAbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftNode startExecNode)
         {
             this.Ability = Ability;
             this.elapsed = 0;

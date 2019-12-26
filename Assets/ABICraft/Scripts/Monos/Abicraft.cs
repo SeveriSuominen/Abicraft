@@ -8,7 +8,7 @@ namespace AbicraftMonos
 {
     [System.Serializable]
     [ExecuteInEditMode]
-    [RequireComponent(typeof(AbilityDispatcher))]
+    [RequireComponent(typeof(AbicraftAbilityDispatcher))]
     public class Abicraft : MonoBehaviour
     {
         public AbicraftGlobalDataFile dataFile;
