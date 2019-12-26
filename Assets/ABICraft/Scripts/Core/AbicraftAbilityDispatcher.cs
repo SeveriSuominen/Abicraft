@@ -6,12 +6,14 @@ using System.Linq;
 using AbicraftNodeEditor;
 using System;
 using AbicraftNodes.Meta;
+using AbicraftMonos;
 
 namespace AbicraftCore
 {
     /// <summary> Abicraft component to translate and execute AbicraftAbility 's</summary>
     public class AbicraftAbilityDispatcher : MonoBehaviour
     {
+        public AbicraftObject  test_senderObject;
         public AbicraftAbility test_Ability, test_Ability2, test_Ability3;
 
         /// <summary> Is AbicraftAbilityExecution buffer updated in FixedUpdate() instead of Update() </summary>
@@ -21,7 +23,7 @@ namespace AbicraftCore
         List<AbicraftAbilityExecution> AbilityExecutionBuffer = new List<AbicraftAbilityExecution>();
 
         /// <summary> Executes AbicraftAbility </summary>
-        public void Dispatch(AbicraftAbility ability)
+        public void Dispatch(AbicraftObject senderObject, AbicraftAbility ability)
         {
             if (AbilityOnCooldown(ability))
                 return;
@@ -32,6 +34,7 @@ namespace AbicraftCore
                 new AbicraftAbilityExecution(
                         this,
                         ability,
+                        senderObject,
                         exe
                     )
             );
@@ -276,15 +279,15 @@ namespace AbicraftCore
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Dispatch(test_Ability);
+                Dispatch(test_senderObject, test_Ability);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                Dispatch(test_Ability2);
+                Dispatch(test_senderObject, test_Ability2);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                Dispatch(test_Ability3);
+                Dispatch(test_senderObject, test_Ability3);
             }
         }
     }

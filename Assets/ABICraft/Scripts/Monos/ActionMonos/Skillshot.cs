@@ -44,6 +44,8 @@ namespace AbicraftMonos.Action
         {
             if (Active)
             {
+                base.ActionMonoUpdate(Time.deltaTime);
+
                 if (StartSpeed <= 0.025f)
                 {
                     StartSpeed = 0.025f;
@@ -56,7 +58,7 @@ namespace AbicraftMonos.Action
 
                 currentDistance = Vector3.Distance(startpoint, transform.position);
 
-                if (curve == null && curve.keys.Length != 0)
+                if (curve == null)
                 {
                     currentSpeed = Mathf.Lerp(StartSpeed, EndSpeed, currentDistance / MaxRange);
                 }

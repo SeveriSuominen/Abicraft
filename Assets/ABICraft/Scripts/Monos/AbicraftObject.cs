@@ -6,7 +6,7 @@ using UnityEngine;
 namespace AbicraftMonos
 {
     [System.Serializable]
-    public class AbicraftObject : MonoBehaviour
+    public sealed class AbicraftObject : MonoBehaviour
     {
         [SerializeField]
         public bool InstantiateObjectToPool;
@@ -31,10 +31,43 @@ namespace AbicraftMonos
             AbicraftGlobalContext.AllObjects.Remove(this);
         }
 
+        public void ApplyState(AbicraftState state)
+        {
+            if (!activeStates.Contains(state))
+            {
+                activeStates.Add(state);
+            }
+        }
+
+        public void RemoveState(AbicraftState state)
+        {
+            if (activeStates.Contains(state))
+            {
+                activeStates.Remove(state);
+            }
+        }
+
+        public void RemoveAllStates()
+        {
+            for (int i = 0; i < activeStates.Count; i++)
+            {
+                activeStates.RemoveAt(i);
+            }
+        }
+
+        public void RemoveAllStatesTypeOf(AbicraftState.StateType stateType)
+        {
+            for (int i = 0; i < activeStates.Count; i++)
+            {
+                if (activeStates[i].type == stateType)
+                    activeStates.RemoveAt(i);
+            }
+        }
+
         public void ResetObject()
         {
-            transform.position = Original.transform.position;
-            transform.rotation = Original.transform.rotation;
+            transform.position   = Original.transform.position;
+            transform.rotation   = Original.transform.rotation;
             transform.localScale = Original.transform.localScale;
         }
     }

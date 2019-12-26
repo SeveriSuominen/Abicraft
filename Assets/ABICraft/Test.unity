@@ -432,7 +432,7 @@ PrefabInstance:
         type: 3}
       propertyPath: test_Ability
       value: 
-      objectReference: {fileID: 11400000, guid: 4383e7fee5d47bc4ba7bfe0b215362f7,
+      objectReference: {fileID: 11400000, guid: f749fef048ba11249ad86a4a5f18be9a,
         type: 2}
     - target: {fileID: 7955029508606655731, guid: 13236ba8c424e57499412aa02ecfd149,
         type: 3}
@@ -544,6 +544,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 507295beda79c6a49bdf879925962c7a, type: 2}
+    - target: {fileID: 7955029509048500650, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7955029507883254213, guid: 13236ba8c424e57499412aa02ecfd149,
         type: 3}
       propertyPath: InstantiateObjectToPool

@@ -19,13 +19,41 @@ namespace AbicraftMonos.Action
     {
         public bool destroyWholeGameobject = false;
 
-        public bool Active { get; private set; }
+        public bool  Active { get; private set; }
+        public bool  CompleteAfterSeconds { get; private set; }
+        public float CompleteAfterSecondsAmount { get; private set; }
+
+        float actionMonoLifetimeElapsed;
+        bool  completeAsAfterSeconds;
 
         public bool ActionIsComplete { get; private set; }
         public bool ActionWasSuccess { get; private set; }
 
         public readonly Dictionary<RaycastDirection, Vector3> rayDirections = new Dictionary<RaycastDirection, Vector3>();
         public readonly Dictionary<RaycastDirection, RaycastHit> rayHits = new Dictionary<RaycastDirection, RaycastHit>();
+
+        /// <summary> Call this method in AbicraftActionMono derived class to update actionMono</summary>
+        protected void ActionMonoUpdate(float deltaTime)
+        {
+            if(Active)
+            {
+                if (CompleteAfterSeconds && actionMonoLifetimeElapsed >= CompleteAfterSecondsAmount)
+                {
+                    CompleteActionAs(completeAsAfterSeconds);
+                }
+                actionMonoLifetimeElapsed += deltaTime;
+            }
+        }
+
+        public void StartActionMono(float completeAfterSeconds, bool completeAs)
+        {
+            this.CompleteAfterSecondsAmount = completeAfterSeconds;
+            this.completeAsAfterSeconds = completeAs;
+
+            this.CompleteAfterSeconds = true;
+
+            StartActionMono();
+        }
 
         public void StartActionMono()
         {

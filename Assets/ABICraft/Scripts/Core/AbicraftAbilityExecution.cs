@@ -1,4 +1,5 @@
-﻿using AbicraftNodes.Meta;
+﻿using AbicraftMonos;
+using AbicraftNodes.Meta;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace AbicraftCore
         public AbicraftAbility Ability;
         public float elapsed;
 
+        public AbicraftObject senderObject;
+
         //Taking initial snapshot when execution starts, to get original start point data,
         //like player original position.
         public AbicraftGameStateSnapshot initial_snapshot;
@@ -22,9 +25,10 @@ namespace AbicraftCore
 
         public readonly string guid;
 
-        public AbicraftAbilityExecution(AbicraftAbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftNode startExecNode)
+        public AbicraftAbilityExecution(AbicraftAbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftObject senderObject, AbicraftNode startExecNode)
         {
             this.Ability = Ability;
+            this.senderObject = senderObject;
             this.elapsed = 0;
 
             guid = Guid.NewGuid().ToString();
