@@ -45,6 +45,16 @@ namespace AbicraftMonos.Action
             }
         }
 
+        public virtual void OnComplete(bool status)
+        {
+
+        }
+
+        public virtual void OnActive()
+        {
+            
+        }
+
         public void StartActionMono(float completeAfterSeconds, bool completeAs)
         {
             this.CompleteAfterSecondsAmount = completeAfterSeconds;
@@ -53,6 +63,7 @@ namespace AbicraftMonos.Action
             this.CompleteAfterSeconds = true;
 
             StartActionMono();
+       
         }
 
         public void StartActionMono()
@@ -74,6 +85,8 @@ namespace AbicraftMonos.Action
             rayHits.Add(RaycastDirection.Down, dumbHit);
 
             Active = true;
+
+            OnActive();
         }
 
         public virtual object ReturnData()
@@ -102,6 +115,7 @@ namespace AbicraftMonos.Action
             ActionIsComplete = true;
             ActionWasSuccess = success;
 
+            OnComplete(success);
             StartCoroutine(End());
         }
 

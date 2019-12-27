@@ -11,16 +11,18 @@ using AbicraftNodes.Meta;
 
 namespace AbicraftNodes.Action
 {
-    public class CastStatesNode : AbicraftExecutionNode
+    public class AnimationTriggerNode : AbicraftExecutionNode
     {
+        public static readonly List<AbicraftObject> IsAnimating = new List<AbicraftObject>();
+
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
+        private AbicraftObject obj;
 
-        [HideInInspector]
-        public int    selectedIndex, lastIndex;
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public string TriggerName;
 
-        [HideInInspector]
-        public List<int> allSelectedIndices = new List<int>();
+        Animator animator;
 
         public override void Initialize(AbicraftNodeExecution execution)
         {
@@ -29,21 +31,16 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj");
+            obj = GetInputValue<AbicraftObject>(e, "Obj");
+            animator = obj.GetComponent<Animator>();
 
             if (obj)
             {
-                foreach (int index in allSelectedIndices)
+                if (animator != null)
                 {
-                    var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[index-1];
-
-                    if (!obj.activeStates.Contains(state))
-                    {
-                        obj.ApplyTimedState(state);
-                    }
+                    animator.SetTrigger(GetInputValue<string>(e, "TriggerName", TriggerName));
                 }
             }
-
             yield return null;
         }
     }

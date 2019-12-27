@@ -19,6 +19,7 @@ namespace AbicraftCore
         public string    name;
         public Texture2D icon;
         public StateType type;
+
         public AbicraftAbility statePassiveAbility;
     }
 }

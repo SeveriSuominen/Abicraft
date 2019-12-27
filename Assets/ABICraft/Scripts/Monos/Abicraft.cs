@@ -13,6 +13,15 @@ namespace AbicraftMonos
     {
         public AbicraftGlobalDataFile dataFile;
 
+        [HideInInspector]
+        public AbicraftAbilityDispatcher dispatcher;
+
+        private void Awake()
+        {
+            if (!AbicraftGlobalContext.abicraft)
+                AbicraftGlobalContext.AddAbicraftInstance(this);
+        }
+
         private void Update()
         {
             if (!AbicraftGlobalContext.abicraft)

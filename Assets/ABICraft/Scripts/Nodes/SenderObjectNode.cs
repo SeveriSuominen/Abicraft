@@ -28,18 +28,11 @@ namespace AbicraftNodes.Object
 
         public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            AbicraftObject obj = e.ae.senderObject;
+            AbicraftObject obj = null;
 
-            if (obj)
+            if (e != null)
             {
-                //AddDynamicOutput(typeof(Vector3), ConnectionType.Override, TypeConstraint.Strict, "Position");
-                //AddDynamicOutput(typeof(Quaternion), ConnectionType.Override, TypeConstraint.Strict, "Rotation");
-            }
-            else
-            {
-               //RemoveDynamicPort("Position");
-               //RemoveDynamicPort("Rotation");
-               //RemoveDynamicPort("Testing");
+                obj = e.ae.senderObject;
             }
 
             if (obj != null)

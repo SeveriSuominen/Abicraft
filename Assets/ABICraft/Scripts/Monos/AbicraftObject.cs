@@ -31,10 +31,37 @@ namespace AbicraftMonos
             AbicraftGlobalContext.AllObjects.Remove(this);
         }
 
+        public void ApplyTimedState(AbicraftState state, float seconds = -1)
+        {
+            if (!activeStates.Contains(state))
+            {
+                if (state.statePassiveAbility.Passive == false)
+                {
+                    Debug.LogError("Abicraft: Only passive abilities allowed for states");
+                    return;
+                }
+
+                StateApplyTimedWrapper wrapper = gameObject.AddComponent<StateApplyTimedWrapper>();
+
+                wrapper.obj   = this;
+                wrapper.state = state;
+                wrapper.passiveAbilityLifetime = seconds < 0 ? wrapper.state.statePassiveAbility.DefaultLifetime : seconds;
+
+                wrapper.StartActionMono(wrapper.passiveAbilityLifetime, true);
+            }
+        }
+
         public void ApplyState(AbicraftState state)
         {
             if (!activeStates.Contains(state))
             {
+                if(state.statePassiveAbility.Passive == false)
+                {
+                    Debug.LogError("Abicraft: Only passive abilities allowed for states");
+                    return;
+                }
+
+                AbicraftGlobalContext.abicraft.dispatcher.Dispatch(this, state.statePassiveAbility, 5);
                 activeStates.Add(state);
             }
         }

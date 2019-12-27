@@ -18,7 +18,7 @@ namespace AbicraftNodes.Editors
                 abicraft = target as Abicraft;
 
             GUILayout.Label("Abicraft global data file");
-            abicraft.dataFile = EditorGUILayout.ObjectField(abicraft.dataFile, typeof(AbicraftGlobalDataFile)) as AbicraftGlobalDataFile;
+            abicraft.dataFile = EditorGUILayout.ObjectField(abicraft.dataFile, typeof(AbicraftGlobalDataFile), false) as AbicraftGlobalDataFile;
 
             if (GUI.changed)
             {

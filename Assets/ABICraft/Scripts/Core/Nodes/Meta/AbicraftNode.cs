@@ -163,15 +163,15 @@ namespace AbicraftNodes.Meta
         public IEnumerable<NodePort> DynamicOutputs { get { foreach (NodePort port in Ports) { if (port.IsDynamic && port.IsOutput) yield return port; } } }
         /// <summary> Iterate over all dynamic inputs on this node. </summary>
         public IEnumerable<NodePort> DynamicInputs { get { foreach (NodePort port in Ports) { if (port.IsDynamic && port.IsInput) yield return port; } } }
-        /// <summary> Parent <see cref="NodeGraph"/> </summary>
-        [SerializeField] public NodeGraph graph;
-        /// <summary> Position on the <see cref="NodeGraph"/> </summary>
+        /// <summary> Parent <see cref="AbicraftNodeEditor.AbicraftAbilityGraph"/> </summary>
+        [SerializeField] public AbicraftNodeEditor.AbicraftAbilityGraph graph;
+        /// <summary> Position on the <see cref="AbicraftNodeEditor.AbicraftAbilityGraph"/> </summary>
         [SerializeField] public Vector2 position;
         /// <summary> It is recommended not to modify these at hand. Instead, see <see cref="InputAttribute"/> and <see cref="OutputAttribute"/> </summary>
         [SerializeField] private NodePortDictionary ports = new NodePortDictionary();
 
         /// <summary> Used during node instantiation to fix null/misconfigured graph during OnEnable/Init. Set it before instantiating a node. Will automatically be unset during OnEnable </summary>
-        public static NodeGraph graphHotfix;
+        public static AbicraftNodeEditor.AbicraftAbilityGraph graphHotfix;
 
         protected void OnEnable()
         {

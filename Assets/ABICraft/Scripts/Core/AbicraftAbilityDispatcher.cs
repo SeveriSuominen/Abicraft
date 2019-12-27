@@ -22,11 +22,30 @@ namespace AbicraftCore
         /// <summary> AbicraftAbilityExecution buffer to hold all active executions that are updated per frame </summary>
         List<AbicraftAbilityExecution> AbilityExecutionBuffer = new List<AbicraftAbilityExecution>();
 
-        /// <summary> Executes AbicraftAbility </summary>
-        public void Dispatch(AbicraftObject senderObject, AbicraftAbility ability)
+        public void Awake()
         {
-            if (AbilityOnCooldown(ability))
+            AbicraftGlobalContext.abicraft.dispatcher = this;
+        }
+
+        /// <summary> Executes AbicraftAbility </summary>
+        public void Dispatch(AbicraftObject senderObject, AbicraftAbility ability, float passiveLifetime = -1)
+        {
+            if (!ability)
+            {
+                Debug.LogError("Abicraft: Trying to dispatch ability that is null");
                 return;
+            }
+
+            if (!senderObject)
+            {
+                Debug.LogError("Abicraft: Cannot dispatch ability with null senderObject");
+                return;
+            }
+
+            if (AbilityOnCooldown(senderObject, ability))
+                return;
+
+            float usePassiveLifetime = passiveLifetime == -1 ? ability.DefaultLifetime : passiveLifetime;
 
             AbicraftNode exe = getSortForExecuteNodes(ability)[0];
             AbilityExecutionBuffer.Add
@@ -35,19 +54,20 @@ namespace AbicraftCore
                         this,
                         ability,
                         senderObject,
-                        exe
+                        exe,
+                        usePassiveLifetime
                     )
             );
         }
 
         /// <summary>Check if AbicraftAbility is on cooldown </summary>
-        public bool AbilityOnCooldown(AbicraftAbility ability)
+        public bool AbilityOnCooldown(AbicraftObject senderObject, AbicraftAbility ability)
         {
             for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
             {
-                if (AbilityExecutionBuffer[i].Ability == ability)
+                if (AbilityExecutionBuffer[i].Ability == ability && AbilityExecutionBuffer[i].senderObject == senderObject)
                 {
-                    if (AbilityExecutionBuffer[i].elapsed < AbilityExecutionBuffer[i].Ability.Cooldown)
+                    if (AbilityExecutionBuffer[i].elapsedCooldown < AbilityExecutionBuffer[i].Ability.Cooldown)
                     {
                         return true;
                     }
@@ -83,6 +103,7 @@ namespace AbicraftCore
 
                 RecurseAbilityExecutionNodeTree(ae);
                 TickCooldown(ae, Time.deltaTime /*delta*/ );
+                TickPassiveLifetime(ae, Time.deltaTime);
                 CleanDoneAbilityExecution(ae);
             }
             // ------------
@@ -228,13 +249,19 @@ namespace AbicraftCore
         /// <summary> Tick AbicraftAbilityExecution between frames delta </summary>
         void TickCooldown(AbicraftAbilityExecution execution, float delta)
         {
-            execution.elapsed += delta;
+            execution.elapsedCooldown += delta;
+        }
+
+        /// <summary> Tick AbicraftAbilityExecution between frames delta </summary>
+        void TickPassiveLifetime(AbicraftAbilityExecution execution, float delta)
+        {
+            execution.elapsedPassiveLifetime += delta;
         }
 
         /// <summary> Clean and clears AbicraftAbilityExecution, when its done, meaning Ability's cooldown is elapsed </summary>
         void CleanDoneAbilityExecution(AbicraftAbilityExecution execution)
         {
-            if (execution.elapsed >= execution.Ability.Cooldown)
+            if (execution.elapsedCooldown >= execution.Ability.Cooldown)
             {
                 bool allLifelineBranchesEnded = true;
 
@@ -246,6 +273,14 @@ namespace AbicraftCore
 
                 if (allLifelineBranchesEnded)
                 {
+                    if (execution.Ability.Passive && execution.passiveLifetime >= execution.elapsedPassiveLifetime)
+                    {
+                        execution.Reset();
+                        execution.elapsedCooldown = 0;
+
+                        return;
+                    }
+
                     //CLEAR LOOPING CACHES
                     for (int j = 0; j < execution.Ability.nodes.Count; j++)
                     {

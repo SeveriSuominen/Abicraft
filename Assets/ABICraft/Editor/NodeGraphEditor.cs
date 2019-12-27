@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace AbicraftNodeEditor {
     /// <summary> Base class to derive custom Node Graph editors from. Use this to override how graphs are drawn in the editor. </summary>
-    [CustomNodeGraphEditor(typeof(NodeGraph))]
-    public class NodeGraphEditor : AbicraftNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, NodeGraph> {
+    [CustomNodeGraphEditor(typeof(AbicraftAbilityGraph))]
+    public class NodeGraphEditor : AbicraftNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, AbicraftAbilityGraph> {
         [Obsolete("Use window.position instead")]
         public Rect position { get { return window.position; } set { window.position = value; } }
         /// <summary> Are we currently renaming a node? </summary>
@@ -199,7 +199,7 @@ namespace AbicraftNodeEditor {
 
         [AttributeUsage(AttributeTargets.Class)]
         public class CustomNodeGraphEditorAttribute : Attribute,
-        AbicraftNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, NodeGraph>.INodeEditorAttrib {
+        AbicraftNodeEditor.Internal.NodeEditorBase<NodeGraphEditor, NodeGraphEditor.CustomNodeGraphEditorAttribute, AbicraftAbilityGraph>.INodeEditorAttrib {
             private Type inspectedType;
             public string editorPrefsKey;
             /// <summary> Tells a NodeGraphEditor which Graph type it is an editor for </summary>

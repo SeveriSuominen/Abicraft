@@ -7,13 +7,18 @@ using UnityEngine;
 namespace AbicraftNodeEditor {
     /// <summary> Base class for all node graphs </summary>
     [Serializable]
-    public abstract class NodeGraph : ScriptableObject {
+    public abstract class AbicraftAbilityGraph : ScriptableObject {
 
         /// <summary> All nodes in the graph. <para/>
         /// See: <see cref="AddNode{T}"/> </summary>
         [SerializeField] public List<AbicraftNode> nodes = new List<AbicraftNode>();
         [SerializeField] public List<Area> areas = new List<Area>();
 
+        public Texture2D icon;
+        public string AbilityName;
+        public float  Cooldown;
+        public bool   Passive;
+        public float  DefaultLifetime;
 
         /// <summary> Add a node to the graph by type (convenience method - will call the System.Type version) </summary>
         public T AddNode<T>() where T : AbicraftNode {
@@ -80,9 +85,9 @@ namespace AbicraftNodeEditor {
         }
 
         /// <summary> Create a new deep copy of this graph </summary>
-        public virtual NodeGraph Copy() {
+        public virtual AbicraftAbilityGraph Copy() {
             // Instantiate a new nodegraph instance
-            NodeGraph graph = Instantiate(this);
+            AbicraftAbilityGraph graph = Instantiate(this);
             // Instantiate all nodes inside the graph
             for (int i = 0; i < nodes.Count; i++) {
                 if (nodes[i] == null) continue;

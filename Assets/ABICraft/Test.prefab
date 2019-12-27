@@ -118,54 +118,6 @@ Transform:
   m_Father: {fileID: 6992060173450339799}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7955029507883254210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7955182893008585613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56d9a8a1c0d3e74480b8a5b5f334748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivot: {fileID: 7955029508449117755}
-  cursor: {fileID: 7955029508390499173}
---- !u!195 &7955029507883254211
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7955182893008585613}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 4
-  m_Acceleration: 2000
-  avoidancePriority: 50
-  m_AngularSpeed: 99999
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &7955029507883254213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7955182893008585613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7955029508373693306
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +418,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9b8af6725ae8641881002168ad4f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test_senderObject: {fileID: 0}
   test_Ability: {fileID: 11400000, guid: 5194db53710e3e6459943bfda6e77302, type: 2}
+  test_Ability2: {fileID: 0}
+  test_Ability3: {fileID: 0}
+  UpdateAbilityExecutionsInFixedUpdate: 0
 --- !u!114 &7955029508606655733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +435,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e6504315a556247b716be3bfacdc3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 7955029507883254213}
+  dataFile: {fileID: 0}
+  dispatcher: {fileID: 0}
 --- !u!1 &7955029508657511279
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +636,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InstantiateObjectToPool: 0
+  InstantiateToPoolAmount: 0
+  Original: {fileID: 0}
+  ActivePool: 0
+  PoolIndex: 0
 --- !u!1 &7955029508815314485
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +847,59 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &7955029507883254210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955182893008585613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56d9a8a1c0d3e74480b8a5b5f334748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 7955029508449117755}
+  cursor: {fileID: 7955029508390499173}
+--- !u!195 &7955029507883254211
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955182893008585613}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 4
+  m_Acceleration: 2000
+  avoidancePriority: 50
+  m_AngularSpeed: 99999
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7955029507883254213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955182893008585613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InstantiateObjectToPool: 0
+  InstantiateToPoolAmount: 0
+  Original: {fileID: 0}
+  ActivePool: 0
+  PoolIndex: 0
 --- !u!1001 &7955029507449547539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -892,10 +907,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7955029507860579349}
     m_Modifications:
-    - target: {fileID: 1000013816490142, guid: 7d37226ec78d2f140b224f932f4fa30e, type: 3}
-      propertyPath: m_Name
-      value: VelluaMagician_A_SKEL
-      objectReference: {fileID: 0}
     - target: {fileID: 4000011836105956, guid: 7d37226ec78d2f140b224f932f4fa30e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.8358183
@@ -951,6 +962,10 @@ PrefabInstance:
     - target: {fileID: 4000011836105956, guid: 7d37226ec78d2f140b224f932f4fa30e, type: 3}
       propertyPath: m_LocalScale.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013816490142, guid: 7d37226ec78d2f140b224f932f4fa30e, type: 3}
+      propertyPath: m_Name
+      value: VelluaMagician_A_SKEL
       objectReference: {fileID: 0}
     - target: {fileID: 95000011731579796, guid: 7d37226ec78d2f140b224f932f4fa30e,
         type: 3}

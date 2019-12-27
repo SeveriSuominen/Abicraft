@@ -5,6 +5,7 @@ using UnityEngine;
 using static AbicraftNodeEditor.NodeEditor;
 using AbicraftNodeEditor;
 using AbicraftNodes;
+using UnityEditor;
 
 namespace AbicraftNodes.Editors
 {
@@ -49,15 +50,89 @@ namespace AbicraftNodes.Editors
             GUILayout.Space(15);
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Out"), GUIContent.none);
             GUILayout.Space(15);
-            Rect dotRect = new Rect(80, 35, 0, 0);
+            Rect dotRect = new Rect(80, 35, 100, 0);
             dotRect.size = new Vector2(50, 50);
 
-            GUI.color = Color.white;
-            GUI.DrawTexture(dotRect, icon);
-            GUI.color = Color.white;
+            if (node.graph)
+            {
+                GUIStyle styleName = new GUIStyle();
+                styleName.normal.textColor = Color.white;
+                styleName.alignment = TextAnchor.MiddleCenter;
+                styleName.fontSize = 18;
 
-            // Apply property modifications
+                GuiSpace(5);
+                GuiLine(1);
+                GuiSpace(5);
+
+                GUILayout.Label(node.graph.AbilityName, styleName);
+
+                GUIStyle style = new GUIStyle();
+                style.normal.textColor = Color.white;
+                style.alignment = TextAnchor.MiddleLeft;
+
+                GUI.color = Color.white;
+                if (node.graph && node.graph.icon)
+                {
+                    GUI.DrawTexture(dotRect, node.graph.icon);
+                }
+                else
+                {
+                    GUI.DrawTexture(dotRect, icon);
+                }
+                GUI.color = Color.white;
+
+                GuiSpace(5);
+                GuiLine(1);
+                GuiSpace(5);
+
+                GUILayout.Label("Ability name", style);
+                node.graph.AbilityName = EditorGUILayout.TextField(node.graph.AbilityName);
+
+                GUILayout.Label("Ability icon", style);
+                node.graph.icon = EditorGUILayout.ObjectField(node.graph.icon, typeof(Texture2D), false) as Texture2D;
+
+                GUILayout.Label("Ability cooldown seconds", style);
+                node.graph.Cooldown = EditorGUILayout.FloatField(node.graph.Cooldown);
+
+                GuiSpace(5);
+                GuiLine(1);
+                GuiSpace(5);
+
+                GUILayout.Label("Ability is passive", style);
+                node.graph.Passive = EditorGUILayout.Toggle(node.graph.Passive);
+                GUI.color = Color.white;
+
+                if (node.graph.Passive)
+                {
+                    GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
+                    gstyle.normal.textColor = Color.white;
+
+                    GuiSpace(5);
+                    GUILayout.Label("Passive abilites are looped until life time ends or passive ability is interupted", gstyle);
+
+                    GuiSpace(5);
+                    GUILayout.Label("Default lifetime seconds", style);
+                    node.graph.DefaultLifetime = EditorGUILayout.FloatField(node.graph.DefaultLifetime);
+                }
+            }
             serializedObject.ApplyModifiedProperties();
+        }
+
+        void GuiLine(int i_height = 1)
+        {
+            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
+
+            rect.height = i_height;
+
+            EditorGUI.DrawRect(rect, new Color(0.3f, 0.3f, 0.3f, 1));
+        }
+        void GuiSpace(int i_height = 1)
+        {
+            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
+
+            rect.height = i_height;
+
+            EditorGUI.DrawRect(rect, new Color(0, 0, 0, 0));
         }
     }
 }

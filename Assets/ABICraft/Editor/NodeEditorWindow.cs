@@ -71,7 +71,7 @@ namespace AbicraftNodeEditor {
 
         public Dictionary<AbicraftNode, Vector2> nodeSizes { get { return _nodeSizes; } }
         private Dictionary<AbicraftNode, Vector2> _nodeSizes = new Dictionary<AbicraftNode, Vector2>();
-        public NodeGraph graph;
+        public AbicraftAbilityGraph graph;
         public Vector2 panOffset { get { return _panOffset; } set { _panOffset = value; Repaint(); } }
         private Vector2 _panOffset;
         public float zoom { get { return _zoom; } set { _zoom = Mathf.Clamp(value, NodeEditorPreferences.GetSettings().minZoom, NodeEditorPreferences.GetSettings().maxZoom); Repaint(); } }
@@ -94,7 +94,7 @@ namespace AbicraftNodeEditor {
 
         /// <summary> Handle Selection Change events</summary>
         private static void OnSelectionChanged() {
-            NodeGraph nodeGraph = Selection.activeObject as NodeGraph;
+            AbicraftAbilityGraph nodeGraph = Selection.activeObject as AbicraftAbilityGraph;
             if (nodeGraph && !AssetDatabase.Contains(nodeGraph)) {
                 Open(nodeGraph);
             }
@@ -131,7 +131,7 @@ namespace AbicraftNodeEditor {
             string path = EditorUtility.SaveFilePanelInProject("Save NodeGraph", "NewNodeGraph", "asset", "");
             if (string.IsNullOrEmpty(path)) return;
             else {
-                NodeGraph existingGraph = AssetDatabase.LoadAssetAtPath<NodeGraph>(path);
+                AbicraftAbilityGraph existingGraph = AssetDatabase.LoadAssetAtPath<AbicraftAbilityGraph>(path);
                 if (existingGraph != null) AssetDatabase.DeleteAsset(path);
                 AssetDatabase.CreateAsset(graph, path);
                 EditorUtility.SetDirty(graph);
@@ -186,7 +186,7 @@ namespace AbicraftNodeEditor {
 
         [OnOpenAsset(0)]
         public static bool OnOpen(int instanceID, int line) {
-            NodeGraph nodeGraph = EditorUtility.InstanceIDToObject(instanceID) as NodeGraph;
+            AbicraftAbilityGraph nodeGraph = EditorUtility.InstanceIDToObject(instanceID) as AbicraftAbilityGraph;
             if (nodeGraph != null) {
                 Open(nodeGraph);
                 return true;
@@ -195,7 +195,7 @@ namespace AbicraftNodeEditor {
         }
 
         /// <summary>Open the provided graph in the NodeEditor</summary>
-        public static void Open(NodeGraph graph) {
+        public static void Open(AbicraftAbilityGraph graph) {
             if (!graph) return;
 
             NodeEditorWindow w = GetWindow(typeof(NodeEditorWindow), false, "xNode", true) as NodeEditorWindow;

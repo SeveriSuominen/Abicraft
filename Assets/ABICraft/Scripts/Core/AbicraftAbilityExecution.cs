@@ -11,7 +11,7 @@ namespace AbicraftCore
     public class AbicraftAbilityExecution
     {
         public AbicraftAbility Ability;
-        public float elapsed;
+        public float elapsedCooldown, elapsedPassiveLifetime, passiveLifetime;
 
         public AbicraftObject senderObject;
 
@@ -23,15 +23,19 @@ namespace AbicraftCore
 
         public List<AbicraftNodeExecution> current_node_executions;
 
+        public AbicraftNode startNode;
+
         public readonly string guid;
 
         public AbicraftAbilityExecution(AbicraftAbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftObject senderObject, AbicraftNode startExecNode)
         {
             this.Ability = Ability;
             this.senderObject = senderObject;
-            this.elapsed = 0;
+            this.elapsedCooldown = 0;
 
-            guid = Guid.NewGuid().ToString();
+            this.guid = Guid.NewGuid().ToString();
+
+            this.startNode = startExecNode;
 
             current_node_executions = new List<AbicraftNodeExecution>();
             current_node_executions.Add(
@@ -47,6 +51,41 @@ namespace AbicraftCore
             initial_snapshot = AbicraftGameStateSnapshot.TakeSnapshot;
         }
 
+        public AbicraftAbilityExecution(AbicraftAbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftObject senderObject, AbicraftNode startExecNode, float passiveLifetime)
+        {
+            this.Ability = Ability;
+            this.senderObject = senderObject;
+            this.elapsedCooldown = 0;
+            this.passiveLifetime = passiveLifetime;
+
+            this.guid = Guid.NewGuid().ToString();
+
+            this.startNode = startExecNode;
+
+            current_node_executions = new List<AbicraftNodeExecution>();
+            current_node_executions.Add(
+                new AbicraftNodeExecution(
+                    this,
+                    startExecNode
+                )
+            );
+
+            current_node_executions[current_node_executions.Count - 1].SetBranchIndex();
+            this.dispatcher = dispatcher;
+
+            initial_snapshot = AbicraftGameStateSnapshot.TakeSnapshot;
+        }
+
+        public void Reset()
+        {
+            current_node_executions.Add(
+                 new AbicraftNodeExecution(
+                     this,
+                     startNode
+                 )
+             );
+        }
+
         public AbicraftNodeExecution LastNodeExecution()
         {
             return current_node_executions[current_node_executions.Count - 1];
@@ -54,7 +93,7 @@ namespace AbicraftCore
 
         public bool OnCooldown()
         {
-            return elapsed >= Ability.Cooldown;
+            return elapsedCooldown >= Ability.Cooldown;
         }
     }
 

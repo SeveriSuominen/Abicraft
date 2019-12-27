@@ -49,10 +49,10 @@ namespace AbicraftNodeEditor {
         [InitializeOnLoadMethod]
         private static void OnReloadEditor () {
             // Find all NodeGraph assets
-            string[] guids = AssetDatabase.FindAssets ("t:" + typeof (NodeGraph));
+            string[] guids = AssetDatabase.FindAssets ("t:" + typeof (AbicraftAbilityGraph));
             for (int i = 0; i < guids.Length; i++) {
                 string assetpath = AssetDatabase.GUIDToAssetPath (guids[i]);
-                NodeGraph graph = AssetDatabase.LoadAssetAtPath (assetpath, typeof (NodeGraph)) as NodeGraph;
+                AbicraftAbilityGraph graph = AssetDatabase.LoadAssetAtPath (assetpath, typeof (AbicraftAbilityGraph)) as AbicraftAbilityGraph;
                 graph.nodes.RemoveAll(x => x == null); //Remove null items
                 Object[] objs = AssetDatabase.LoadAllAssetRepresentationsAtPath (assetpath);
                 // Ensure that all sub node assets are present in the graph node list

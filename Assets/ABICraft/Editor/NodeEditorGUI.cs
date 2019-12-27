@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using AbicraftNodeEditor.Internal;
 using AbicraftNodes.Meta;
+using AbicraftCore;
 
 namespace AbicraftNodeEditor {
     /// <summary> Contains GUI methods </summary>
@@ -31,6 +32,7 @@ namespace AbicraftNodeEditor {
             DrawDraggedConnection();
             DrawNodes();
             DrawSelectionBox();
+            DrawAbilityInspector();
             DrawTooltip();
             graphEditor.OnGUI();
 
@@ -38,7 +40,7 @@ namespace AbicraftNodeEditor {
             GUILayout.Label("Abicraft Node", NodeEditorResources.styles.abicraft_infobar, GUILayout.Height(30));
             //GUI.Label(new Rect(position.width *0.5f, 20, 33, 33), "Editing: \"" + graph.name + "\"",  NodeEditorResources.styles.abicraft_infobar_center);
 
-            if (!NodeEditorPreferences.GetSettings().autoSave && EditorUtility.IsDirty(this))
+            if (!NodeEditorPreferences.GetSettings().autoSave)
             {
                 /*GUI.skin.button.normal.textColor = Color.white;
                 GUI.skin.button.onNormal.background = NodeEditorResources.nodeBodyLoop;
@@ -58,7 +60,6 @@ namespace AbicraftNodeEditor {
                     AssetDatabase.SaveAssets();
 
                 //GUI.color = org;
-                
             }
             else
             {        
@@ -379,6 +380,24 @@ namespace AbicraftNodeEditor {
             if (Event.current.type != EventType.Layout && currentActivity == NodeActivity.DragGrid) selectedReroutes = selection;
         }
 
+        private void DrawAbilityInspector()
+        {
+            /*Color defColor = GUI.color;
+            Rect rect = new Rect(15, 50, 250, 500); 
+
+            GUI.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            GUI.Box(rect, "");
+            GUI.color = defColor;
+
+            GUILayout.BeginArea(rect);
+            GUILayout.BeginVertical();
+
+            graph.icon = EditorGUILayout.ObjectField(graph.icon, typeof(Texture2D), false) as Texture2D;
+
+            GUILayout.EndVertical();
+            GUILayout.EndArea();*/
+        }
+
         private void DrawAreas()
         {
             Color defaultColor = GUI.color;
@@ -398,7 +417,7 @@ namespace AbicraftNodeEditor {
                 Rect labelRect = new Rect(yrect.x, yrect.y + (int)(10 * (zoom + 0.4f)), yrect.width, 20);
                 Rect colorRect = new Rect(yrect.x + 10, yrect.y + 10, 25, 20);
 
-                area.color = EditorGUI.ColorField(colorRect, GUIContent.none, area.color, false, true, false);
+               //area.color = EditorGUI.ColorField(colorRect, GUIContent.none, area.color, false, true, false);
 
                 GUIStyle labelstyle = new GUIStyle(NodeEditorResources.styles.nodeHeader);
 
@@ -406,7 +425,7 @@ namespace AbicraftNodeEditor {
 
                 labelstyle.fontSize = (int)(15 * Mathf.Clamp(labelZoom, 1, 3));
                 //GUI.Label(labelRect, area.areaName, labelstyle);
-                GUI.Label(labelRect, area.areaName, labelstyle);
+                //GUI.Label(labelRect, area.areaName, labelstyle);
 
                 GUI.color = area.color;
                 GUI.Box(yrect, "", style);

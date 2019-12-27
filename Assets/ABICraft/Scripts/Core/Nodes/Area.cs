@@ -10,7 +10,7 @@ namespace AbicraftNodeEditor
         public string areaName = "DEFAULT";
         public Rect areaRect;
         public Color color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-        public NodeGraph graph;
+        public AbicraftAbilityGraph graph;
 
         public readonly List<AbicraftNode> movingNodes = new List<AbicraftNode>();
 
