@@ -117,22 +117,5 @@ namespace AbicraftNodes.Editors
             }
             serializedObject.ApplyModifiedProperties();
         }
-
-        void GuiLine(int i_height = 1)
-        {
-            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
-
-            rect.height = i_height;
-
-            EditorGUI.DrawRect(rect, new Color(0.3f, 0.3f, 0.3f, 1));
-        }
-        void GuiSpace(int i_height = 1)
-        {
-            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
-
-            rect.height = i_height;
-
-            EditorGUI.DrawRect(rect, new Color(0, 0, 0, 0));
-        }
     }
 }

@@ -9,6 +9,7 @@ using AbicraftNodeEditor;
 using AbicraftNodes.Action;
 using AbicraftCore;
 using AbicraftMonos;
+using System;
 
 namespace AbicraftNodes.Editors
 {
@@ -82,6 +83,7 @@ namespace AbicraftNodes.Editors
 
             base.OnBodyGUI();
 
+           
             if (node.RemoveMode == RemoveStatesNode.RemoveStatesMode.Selected)
             {
                 GuiSpace(5);
@@ -93,32 +95,36 @@ namespace AbicraftNodes.Editors
                 {
                     for (int i = 0; i < node.allSelectedIndices.Count; i++)
                     {
-                        GUILayout.BeginHorizontal();
-
-                        GUIStyle style = new GUIStyle();
-                        style.fontSize = 13;
-
-                        if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Negative))
-                            style.normal.textColor = new Color32(255, 38, 0, 255);
-                        if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Positive))
-                            style.normal.textColor = Color.green;
-                        if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Neutral))
-                            style.normal.textColor = Color.yellow;
-
-                        GUILayout.Label(avaibleStateContents[node.allSelectedIndices[i]], style);
-
-
-                        if (GUILayout.Button("X", GUILayout.MaxWidth(15), GUILayout.MaxHeight(15)))
-                            node.allSelectedIndices.RemoveAt(i);
-
-                        GUILayout.EndHorizontal();
-
-                        if (i != node.allSelectedIndices.Count - 1)
+                        try
                         {
-                            GuiSpace(5);
-                            GuiLine(1);
-                            GuiSpace(5);
+                            GUILayout.BeginHorizontal();
+
+                            GUIStyle style = new GUIStyle();
+                            style.fontSize = 13;
+
+                            if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Negative))
+                                style.normal.textColor = new Color32(255, 38, 0, 255);
+                            if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Positive))
+                                style.normal.textColor = Color.green;
+                            if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Neutral))
+                                style.normal.textColor = Color.yellow;
+
+                            GUILayout.Label(avaibleStateContents[node.allSelectedIndices[i]], style);
+
+
+                            if (GUILayout.Button("X", GUILayout.MaxWidth(15), GUILayout.MaxHeight(15)))
+                                node.allSelectedIndices.RemoveAt(i);
+
+                            GUILayout.EndHorizontal();
+
+                            if (i != node.allSelectedIndices.Count - 1)
+                            {
+                                GuiSpace(5);
+                                GuiLine(1);
+                                GuiSpace(5);
+                            }
                         }
+                        catch{}
                     }
                 }
 
@@ -140,25 +146,6 @@ namespace AbicraftNodes.Editors
                     }
                 }
             }
-        }
-
-
-        void GuiLine(int i_height = 1)
-        {
-            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
-
-            rect.height = i_height;
-
-            EditorGUI.DrawRect(rect, new Color(0.3f, 0.3f, 0.3f, 1));
-        }
-
-        void GuiSpace(int i_height = 1)
-        {
-            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
-
-            rect.height = i_height;
-
-            EditorGUI.DrawRect(rect, new Color(0, 0, 0, 0));
         }
     }
 }

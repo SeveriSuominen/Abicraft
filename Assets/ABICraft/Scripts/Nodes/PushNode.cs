@@ -35,8 +35,6 @@ namespace AbicraftNodes.Action
         {
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj", Obj);
 
-            Debug.Log("OBJSA IS : " + obj);
-
             if (obj)
             {
                 Push push = obj.gameObject.AddComponent<Push>();

@@ -115,6 +115,8 @@ namespace AbicraftNodes.Editors
                     GUIStyle styleLabel = new GUIStyle();
                     styleLabel.normal.textColor = Color.white;
 
+                    GuiSpace(5);
+
                     GUILayout.Label("Cast for seconds", styleLabel);
                     EditorGUILayout.FloatField(2);
 

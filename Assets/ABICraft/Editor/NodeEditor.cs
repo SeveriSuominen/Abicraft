@@ -91,7 +91,12 @@ namespace AbicraftNodeEditor {
         }
         protected void GuiLine(int i_height = 1)
         {
-            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
+            Rect rect = default;
+            try
+            {
+                rect = EditorGUILayout.GetControlRect(false, i_height);
+            }
+            catch { }
 
             rect.height = i_height;
 
@@ -100,8 +105,13 @@ namespace AbicraftNodeEditor {
 
         protected void GuiSpace(int i_height = 1)
         {
-            Rect rect = EditorGUILayout.GetControlRect(false, i_height);
-
+            Rect rect = default;
+            try
+            {
+                rect = EditorGUILayout.GetControlRect(false, i_height);
+            }
+            catch{}
+               
             rect.height = i_height;
 
             EditorGUI.DrawRect(rect, new Color(0, 0, 0, 0));
