@@ -17,8 +17,6 @@ namespace AbicraftNodes.Meta
 
         protected void AddObjectToIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e, T obj)
         {
-
-
             if (e.loopKeys.Count > 0)
             {
                 string loopKey = e.loopKeys[e.loopKeys.Count - 1];

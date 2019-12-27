@@ -26,13 +26,18 @@ namespace AbicraftCore
 
         public static AbicraftObject Spawn(AbicraftObject obj, Transform parent)
         {
+            return Spawn(obj, obj.transform.position, obj.transform.rotation, parent);
+        }
+
+        public static AbicraftObject Spawn(AbicraftObject obj, Vector3 position, Quaternion rotation, Transform parent)
+        {
             for (int i = 0; i < pool.Count; i++)
             {
                 if (pool[i].name == obj.name && !pool[i].ActivePool)
                 {
                     pool[i].transform.SetParent(parent);
-                    pool[i].transform.position = obj.transform.position;
-                    pool[i].transform.rotation = obj.transform.rotation;
+                    pool[i].transform.position = position;
+                    pool[i].transform.rotation = rotation;
                     pool[i].gameObject.SetActive(true);
                     pool[i].ActivePool = true;
 
@@ -41,10 +46,10 @@ namespace AbicraftCore
             }
             Debug.LogWarning("Abicraft: Pool didnt find unactive object to spawn, using Instantiate instead, using Instantiate method will affect performance, consider increase AbicraftObject start instantiate amount or if not pooled, pool object");
 
-            AbicraftObject instantiated =  GameObject.Instantiate(obj.gameObject, obj.transform.position, obj.transform.rotation, parent).GetComponent<AbicraftObject>();
+            AbicraftObject instantiated = GameObject.Instantiate(obj.gameObject, obj.transform.position, obj.transform.rotation, parent).GetComponent<AbicraftObject>();
 
-            instantiated.transform.rotation = obj.transform.rotation;
-            instantiated.transform.position = obj.transform.position;
+            instantiated.transform.rotation = rotation;
+            instantiated.transform.position = position;
 
             return instantiated;
         }
