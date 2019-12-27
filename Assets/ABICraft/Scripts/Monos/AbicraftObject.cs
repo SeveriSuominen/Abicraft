@@ -70,6 +70,21 @@ namespace AbicraftMonos
         {
             if (activeStates.Contains(state))
             {
+                AbicraftAbilityDispatcher dispatcher = AbicraftGlobalContext.abicraft.dispatcher;
+                List<AbicraftAbilityExecution> executions = dispatcher.GetActiveExecutionsBySenderObject(state.statePassiveAbility, this);
+
+                for (int i = 0; i < executions.Count; i++)
+                {
+                    dispatcher.EndAbicraftAbilityExecution(executions[i]);
+                }
+
+                StateApplyTimedWrapper[] wrappers = GetComponents<StateApplyTimedWrapper>();
+
+                for (int i = 0; i < wrappers.Length; i++)
+                {
+                    if(wrappers[i].state == state)
+                        wrappers[i].CompleteActionAs(true);
+                }
                 activeStates.Remove(state);
             }
         }

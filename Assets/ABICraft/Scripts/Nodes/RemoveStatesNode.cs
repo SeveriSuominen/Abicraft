@@ -46,12 +46,9 @@ namespace AbicraftNodes.Action
             {
                 foreach (int index in allSelectedIndices)
                 {
-                    var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[index];
+                    var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[index-1];
 
-                    if (obj.activeStates.Contains(state))
-                    {
-                        obj.activeStates.Remove(state);
-                    }
+                    obj.RemoveState(state);
                 }
             }
 

@@ -60,6 +60,39 @@ namespace AbicraftCore
             );
         }
 
+        public List<AbicraftAbilityExecution> GetActiveExecutionsBySenderObject(AbicraftAbility ability, AbicraftObject senderObject)
+        {
+            List<AbicraftAbilityExecution> executions = new List<AbicraftAbilityExecution>();
+
+            for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
+            {
+                AbicraftAbilityExecution execution = AbilityExecutionBuffer[i];
+
+                if (execution.Ability.Equals(ability) && execution.senderObject.Equals(senderObject))
+                {
+                    executions.Add(execution);
+                }
+            }
+            return executions;
+        }
+
+        public void EndAbicraftAbilityExecution(AbicraftAbilityExecution ae)
+        {
+            if (ae.Ability.Passive)
+            {
+                //Force finish passive ability 
+                ae.passiveLifetime = 0;
+            }
+            else
+            {
+                for (int i = 0; i < ae.current_node_executions.Count; i++)
+                {
+                    //End all AbilityExecution's branches
+                    ae.current_node_executions[i].EndExecutionBranch();
+                }
+            }
+        }
+
         /// <summary>Check if AbicraftAbility is on cooldown </summary>
         public bool AbilityOnCooldown(AbicraftObject senderObject, AbicraftAbility ability)
         {

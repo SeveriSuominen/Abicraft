@@ -149,7 +149,7 @@ MonoBehaviour:
     mono: {fileID: 0}
   max_iterations: 0
   iteratedIndices: 
-  Iterations: 1
+  Iterations: 2
   Parallel: 1
   maxIterations: 1
   parallel: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 1320, y: -168}
+  position: {x: 1368, y: 8}
   ports:
     keys:
     - HitObject
@@ -183,6 +183,9 @@ MonoBehaviour:
       connections:
       - fieldName: Obj
         node: {fileID: 6480041742891773587}
+        reroutePoints: []
+      - fieldName: Obj
+        node: {fileID: -5024254569210554146}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -333,6 +336,71 @@ MonoBehaviour:
   shakeDuration: 0.2
   shakeAmount: 0.7
   decreaseFactor: 1
+--- !u!114 &-5024254569210554146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34fd0f56b6b494e4fa994b9d7b465f62, type: 3}
+  m_Name: Remove States
+  m_EditorClassIdentifier: 
+  abicraft: {fileID: 0}
+  graph: {fileID: 11400000}
+  position: {x: 1656, y: -72}
+  ports:
+    keys:
+    - Obj
+    - In
+    - Out
+    values:
+    - _fieldName: Obj
+      _node: {fileID: -5024254569210554146}
+      _typeQualifiedName: AbicraftMonos.AbicraftObject, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: HitObject
+        node: {fileID: -6307157798821659269}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: -5024254569210554146}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 4945720489646794452}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: -5024254569210554146}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In:
+    index: 0
+    mono: {fileID: 0}
+  Out:
+    index: 0
+    mono: {fileID: 0}
+  Obj: {fileID: 0}
+  RemoveMode: 0
+  selectedIndex: 3
+  lastIndex: 3
+  allSelectedIndices: 03000000
 --- !u!114 &-4426167221660455688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 72, y: 136}
+  position: {x: 40, y: 104}
   ports:
     keys:
     - Obj
@@ -502,8 +570,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Obj: {fileID: 0}
-  direction: {x: -0.87592626, y: 0, z: 0.45234153}
-  distance: 30.969454
+  direction: {x: -0.23349488, y: 0, z: -0.95704204}
+  distance: 31.26684
   onlyYAxis: 1
 --- !u!114 &-185416684777237862
 MonoBehaviour:
@@ -523,11 +591,11 @@ MonoBehaviour:
   ports:
     keys:
     - missile
-    - SpeedOverDistanceCurve
+    - endSpeed
     - direction
     - startPosition
-    - StartSpeed
-    - EndSpeed
+    - startSpeed
+    - speedOverDistanceCurve
     - maxRange
     - In
     - Out
@@ -541,10 +609,10 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-    - _fieldName: SpeedOverDistanceCurve
+    - _fieldName: endSpeed
       _node: {fileID: -185416684777237862}
-      _typeQualifiedName: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
       connections: []
       _direction: 0
       _connectionType: 1
@@ -574,7 +642,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-    - _fieldName: StartSpeed
+    - _fieldName: startSpeed
       _node: {fileID: -185416684777237862}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -583,10 +651,10 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 2
       _dynamic: 0
-    - _fieldName: EndSpeed
+    - _fieldName: speedOverDistanceCurve
       _node: {fileID: -185416684777237862}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
+      _typeQualifiedName: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
       _connectionType: 1
@@ -632,14 +700,14 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   missile: {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
-  SpeedOverDistanceCurve:
+  speedOverDistanceCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.5062561
-      inSlope: 0.4937439
-      outSlope: 0.4937439
+      time: 0.0083351135
+      value: 0.0625
+      inSlope: 0.94537985
+      outSlope: 0.94537985
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -647,8 +715,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.4937439
-      outSlope: 0.4937439
+      inSlope: 0.94537985
+      outSlope: 0.94537985
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -658,8 +726,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   direction: {x: 0, y: 0, z: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  StartSpeed: 2
-  EndSpeed: 3
+  startSpeed: 2
+  endSpeed: 2
   maxRange: 55
 --- !u!114 &-148547192656622604
 MonoBehaviour:
@@ -675,7 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -152, y: -216}
+  position: {x: -184, y: -184}
   ports:
     keys:
     - Obj
@@ -816,8 +884,8 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   Obj: {fileID: 0}
-  Speed: 1
-  selectedIndex: 1
+  Speed: 2
+  selectedIndex: 4
   clips:
   - {fileID: 7400002, guid: e1b32ca4946b8e148918f95aef096df4, type: 3}
   - {fileID: 7400002, guid: 71247772d707f7d438e34fe82e8f7b22, type: 3}
@@ -868,16 +936,16 @@ MonoBehaviour:
   - {fileID: 4584909323039257028}
   - {fileID: 3136337070521408123}
   - {fileID: -5108824813488570927}
-  - {fileID: 8412795584362864186}
-  - {fileID: 6721439695849570190}
   - {fileID: 6480041742891773587}
-  - {fileID: 0}
   - {fileID: -148547192656622604}
   - {fileID: -655045374490532184}
+  - {fileID: -5024254569210554146}
+  - {fileID: 4945720489646794452}
+  - {fileID: 0}
   areas: []
   icon: {fileID: 2800000, guid: 7b3aca310a52cfc43ab467975278df26, type: 3}
   AbilityName: Poison attack
-  Cooldown: 1
+  Cooldown: 0.1
   Passive: 0
   DefaultLifetime: 3
 --- !u!114 &242663175852776396
@@ -954,7 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -184, y: 40}
+  position: {x: -216, y: 40}
   ports:
     keys:
     - Name
@@ -1025,7 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 822, y: -175}
+  position: {x: 776, y: -184}
   ports:
     keys:
     - Obj
@@ -1066,8 +1134,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Obj: {fileID: 0}
-  direction: {x: -0.87592626, y: 0, z: 0.45234153}
-  distance: 30.969454
+  direction: {x: -0.23349488, y: 0, z: -0.95704204}
+  distance: 31.26684
   onlyYAxis: 1
 --- !u!114 &2639097940109685161
 MonoBehaviour:
@@ -1178,7 +1246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 456, y: -120}
+  position: {x: 472, y: -136}
   ports:
     keys:
     - camera
@@ -1252,7 +1320,7 @@ MonoBehaviour:
       _dynamic: 0
   value: 0
   Value: 0
-  Multiplier: 0.025
+  Multiplier: 0.5
 --- !u!114 &4892933169989623073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,7 +1365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 696, y: -8}
+  position: {x: 824, y: -24}
   ports:
     keys:
     - Obj
@@ -1340,6 +1408,67 @@ MonoBehaviour:
   Obj: {fileID: 0}
   Position: {x: 0, y: 0, z: 0}
   Rotation: {x: 0, y: 0, z: 0}
+--- !u!114 &4945720489646794452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9d4abd0f6982b43812454c000a8e83, type: 3}
+  m_Name: Block Execution
+  m_EditorClassIdentifier: 
+  abicraft: {fileID: 0}
+  graph: {fileID: 11400000}
+  position: {x: 1720, y: -248}
+  ports:
+    keys:
+    - BlockForSeconds
+    - In
+    - Out
+    values:
+    - _fieldName: BlockForSeconds
+      _node: {fileID: 4945720489646794452}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: 4945720489646794452}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: Out
+        node: {fileID: 6480041742891773587}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 4945720489646794452}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: In
+        node: {fileID: -5024254569210554146}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In:
+    index: 0
+    mono: {fileID: 0}
+  Out:
+    index: 0
+    mono: {fileID: 0}
+  BlockForSeconds: 0.5
 --- !u!114 &5136495573209668134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,7 +1573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 1448, y: -408}
+  position: {x: 1480, y: -312}
   ports:
     keys:
     - Obj
@@ -1479,7 +1608,10 @@ MonoBehaviour:
       _node: {fileID: 6480041742891773587}
       _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: In
+        node: {fileID: 4945720489646794452}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -1491,8 +1623,8 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   Obj: {fileID: 0}
-  selectedIndex: 3
-  lastIndex: 3
+  selectedIndex: 1
+  lastIndex: 1
   allSelectedIndices: 03000000
 --- !u!114 &6519320523359087650
 MonoBehaviour:
@@ -1508,7 +1640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 136, y: -568}
+  position: {x: 88, y: -472}
   ports:
     keys:
     - In
@@ -1542,83 +1674,6 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   icon: {fileID: 2800000, guid: 3a823b94be09e204fba3434bfb4683a5, type: 3}
---- !u!114 &6721439695849570190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db094318a30d0574aacbd07d53871e89, type: 3}
-  m_Name: Animation Set Boolean
-  m_EditorClassIdentifier: 
-  abicraft: {fileID: 0}
-  graph: {fileID: 11400000}
-  position: {x: 600, y: 264}
-  ports:
-    keys:
-    - Obj
-    - BooleanName
-    - SetTo
-    - In
-    - Out
-    values:
-    - _fieldName: Obj
-      _node: {fileID: 6721439695849570190}
-      _typeQualifiedName: AbicraftMonos.AbicraftObject, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: BooleanName
-      _node: {fileID: 6721439695849570190}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: SetTo
-      _node: {fileID: 6721439695849570190}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: In
-      _node: {fileID: 6721439695849570190}
-      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Out
-      _node: {fileID: 6721439695849570190}
-      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  In:
-    index: 0
-    mono: {fileID: 0}
-  Out:
-    index: 0
-    mono: {fileID: 0}
-  Obj: {fileID: 0}
-  BooleanName: 
-  SetTo: 0
 --- !u!114 &8126277536944314845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1633,7 +1688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 920, y: -328}
+  position: {x: 936, y: -312}
   ports:
     keys:
     - BlockForSeconds
@@ -1683,69 +1738,3 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   BlockForSeconds: 0.25
---- !u!114 &8412795584362864186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb0ad9da0a7d034ea76a800a2a57263, type: 3}
-  m_Name: Animation Trigger
-  m_EditorClassIdentifier: 
-  abicraft: {fileID: 0}
-  graph: {fileID: 11400000}
-  position: {x: 376, y: 312}
-  ports:
-    keys:
-    - Obj
-    - TriggerName
-    - In
-    - Out
-    values:
-    - _fieldName: Obj
-      _node: {fileID: 8412795584362864186}
-      _typeQualifiedName: AbicraftMonos.AbicraftObject, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: TriggerName
-      _node: {fileID: 8412795584362864186}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: In
-      _node: {fileID: 8412795584362864186}
-      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: Out
-      _node: {fileID: 8412795584362864186}
-      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  In:
-    index: 0
-    mono: {fileID: 0}
-  Out:
-    index: 0
-    mono: {fileID: 0}
-  Obj: {fileID: 0}
-  TriggerName: 

@@ -107,7 +107,7 @@ namespace AbicraftMonos.Action
             return rayHits[dir];
         }
 
-        protected void CompleteActionAs(bool success)
+        public void CompleteActionAs(bool success)
         {
             if (ActionIsComplete)
                 return;
@@ -116,6 +116,7 @@ namespace AbicraftMonos.Action
             ActionWasSuccess = success;
 
             OnComplete(success);
+
             StartCoroutine(End());
         }
 

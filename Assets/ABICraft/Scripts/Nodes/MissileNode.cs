@@ -17,7 +17,7 @@ namespace AbicraftNodes.Action
         public AbicraftObject missile;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public AnimationCurve SpeedOverDistanceCurve;
+        public AnimationCurve speedOverDistanceCurve;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public Vector3 direction;
@@ -26,7 +26,7 @@ namespace AbicraftNodes.Action
         public Vector3 startPosition;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public float StartSpeed, EndSpeed, maxRange;
+        public float startSpeed, endSpeed, maxRange;
 
         public override void Initialize(AbicraftNodeExecution execution)
         {
@@ -40,10 +40,10 @@ namespace AbicraftNodes.Action
 
             shot.startpoint = GetInputValue<Vector3>(e, "startPosition");
             shot.towards    = GetInputValue<Vector3>(e, "direction");
-            shot.StartSpeed = GetInputValue<float>  (e, "StartSpeed", StartSpeed);
-            shot.EndSpeed   = GetInputValue<float>  (e, "EndSpeed",   EndSpeed);
+            shot.StartSpeed = GetInputValue<float>  (e, "startSpeed", startSpeed);
+            shot.EndSpeed   = GetInputValue<float>  (e, "endSpeed",   endSpeed);
             shot.MaxRange   = GetInputValue<float>  (e, "maxRange", maxRange);
-            shot.curve      = GetInputValue<AnimationCurve> (e, "maxRange", SpeedOverDistanceCurve);
+            shot.curve      = GetInputValue<AnimationCurve> (e, "speedOverDistanceCurve", speedOverDistanceCurve);
 
             shot.MoveToStartPoint();
 
