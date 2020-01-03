@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Example01.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
-    path: Assets/ABICraft/Test.unity
+    path: Assets/Abicraft/Examples/Test/Test.unity
     guid: 4e743089a52a5634aa9336e98446cd4b
   m_configObjects: {}

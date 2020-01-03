@@ -93,7 +93,12 @@ namespace AbicraftCore
 
         public bool OnCooldown()
         {
-            return elapsedCooldown >= Ability.Cooldown;
+            return elapsedCooldown <= Ability.Cooldown;
+        }
+
+        public float GetCooldownLeft()
+        {
+            return Ability.Cooldown - elapsedCooldown;
         }
     }
 

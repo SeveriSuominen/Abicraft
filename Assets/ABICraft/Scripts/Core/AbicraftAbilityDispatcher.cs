@@ -13,18 +13,16 @@ namespace AbicraftCore
     /// <summary> Abicraft component to translate and execute AbicraftAbility 's</summary>
     public class AbicraftAbilityDispatcher : MonoBehaviour
     {
-        public AbicraftObject  test_senderObject;
-        public AbicraftAbility test_Ability, test_Ability2, test_Ability3;
-
         /// <summary> Is AbicraftAbilityExecution buffer updated in FixedUpdate() instead of Update() </summary>
         public bool UpdateAbilityExecutionsInFixedUpdate;
 
         /// <summary> AbicraftAbilityExecution buffer to hold all active executions that are updated per frame </summary>
         List<AbicraftAbilityExecution> AbilityExecutionBuffer = new List<AbicraftAbilityExecution>();
 
-        public void Awake()
+        public void Start()
         {
-            AbicraftGlobalContext.abicraft.dispatcher = this;
+            if(AbicraftGlobalContext.abicraft)
+                AbicraftGlobalContext.abicraft.dispatcher = this;
         }
 
         /// <summary> Executes AbicraftAbility </summary>
@@ -129,6 +127,9 @@ namespace AbicraftCore
         /// <summary> Does all AbicraftAbilityExecution checks and per frame updates </summary>
         void UpdateAbilityExecutions()
         {
+            if (AbicraftGlobalContext.abicraft && !AbicraftGlobalContext.abicraft.dispatcher)
+                AbicraftGlobalContext.abicraft.dispatcher = this;
+
             // Per execution routine
             for (int i = 0; i < AbilityExecutionBuffer.Count; i++)
             {
@@ -344,19 +345,6 @@ namespace AbicraftCore
         {
             if (!UpdateAbilityExecutionsInFixedUpdate)
                 UpdateAbilityExecutions();
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Dispatch(test_senderObject, test_Ability);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Dispatch(test_senderObject, test_Ability2);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Dispatch(test_senderObject, test_Ability3);
-            }
         }
     }
 }

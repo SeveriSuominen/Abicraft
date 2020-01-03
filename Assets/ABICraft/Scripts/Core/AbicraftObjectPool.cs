@@ -82,7 +82,7 @@ namespace AbicraftCore
                 }
             }
             Debug.LogWarning("Abicraft: Couldn't find object to despawn. Destroing instead.");
-            GameObject.Destroy(obj);
+            GameObject.Destroy(obj.gameObject);
             return false;
         }
 

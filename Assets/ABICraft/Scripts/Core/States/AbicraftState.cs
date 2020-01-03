@@ -6,7 +6,8 @@ using UnityEngine;
 namespace AbicraftCore
 {
     [System.Serializable]
-    public class AbicraftState
+    [CreateAssetMenu(fileName = "Attribute", menuName = "Abicraft/Object/State", order = 2)]
+    public class AbicraftState : ScriptableObject
     {
         [System.Serializable]
         public enum StateType

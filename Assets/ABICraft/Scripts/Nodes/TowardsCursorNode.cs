@@ -20,11 +20,11 @@ namespace AbicraftNodes.Math
 
         private Vector3 mouseposition;
 
-        public override void Evaluate(AbicraftNodeExecution e)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj");
 
-            if(obj != null)
+            if (obj != null)
             {
                 AbicraftGameStateSnapshot snapshot = e.ae.initial_snapshot;
                 distance = Vector3.Distance(obj.transform.position, snapshot.mousePosition3D);
@@ -33,10 +33,7 @@ namespace AbicraftNodes.Math
                 if (onlyYAxis)
                     direction.y = 0;
             }
-        }
 
-        public override object GetValue(AbicraftNodeExecution e, NodePort port)
-        {
             if (port.fieldName.Equals("distance"))
                 return distance;
             else

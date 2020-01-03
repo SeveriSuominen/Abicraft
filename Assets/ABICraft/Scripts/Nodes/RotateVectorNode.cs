@@ -28,7 +28,7 @@ namespace AbicraftNodes.Math
         {
             Vector3 original = GetInputValue<Vector3>(e, "directionIn");
             Vector3 vector   = GetInputValue<Vector3>(e, "RotateAmountDegrees");
-            
+
             if (GetPort("RotateAmountDegrees").ConnectionCount == 0)
                 vector = new Vector3(
                     GetInputValue<float>(e, "X", X),

@@ -25,6 +25,9 @@ namespace AbicraftNodeEditor {
         public static Texture2D nodeArea { get { return _nodeArea != null ? _nodeArea : _nodeArea = Resources.Load<Texture2D>("testarea"); } }
         private static Texture2D _nodeArea;
 
+        public static Texture2D abicraftIcon { get { return _abicraftIcon != null ? _abicraftIcon : _abicraftIcon = Resources.Load<Texture2D>("Abicraft/big-logo"); } }
+        private static Texture2D _abicraftIcon;
+
         // Stylestestarea
         public static Styles styles { get { return _styles != null ? _styles : _styles = new Styles(); } }
         public static Styles _styles = null;

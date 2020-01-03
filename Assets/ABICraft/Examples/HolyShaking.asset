@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8de5ff30b4e5a849b32e65d37c62d8f, type: 3}
+  m_Name: HolyShaking
+  m_EditorClassIdentifier: 
+  name: Holy Shaking
+  icon: {fileID: 2800000, guid: ffeff11180f1a09469f61d5fe789a0c7, type: 3}
+  type: 2
+  statePassiveAbility: {fileID: 11400000, guid: e73c24f26050d984ea0fae6be738cc14,
+    type: 2}

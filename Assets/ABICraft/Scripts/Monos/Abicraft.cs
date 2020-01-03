@@ -18,6 +18,7 @@ namespace AbicraftMonos
 
         private void Awake()
         {
+            Application.targetFrameRate = 300;
             if (!AbicraftGlobalContext.abicraft)
                 AbicraftGlobalContext.AddAbicraftInstance(this);
         }
