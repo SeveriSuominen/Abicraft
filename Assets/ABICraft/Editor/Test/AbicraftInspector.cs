@@ -13,13 +13,16 @@ public class AbicraftInspector : EditorWindow
 {
     static string filter = "", activeTab;
     static readonly List<Object> selectedBuffer = new List<Object>();
-   
+    static readonly List<AbicraftState> selectedStatesBuffer = new List<AbicraftState>();
+
     static readonly List<AbicraftObject> scannedSceneAbjs = new List<AbicraftObject>();
-
     static readonly List<AbicraftObject> scannedAssetAbjs = new List<AbicraftObject>();
-    static readonly List<string> scannedAssetAbjsPaths = new List<string>();
+    static readonly List<AbicraftState>  scannedStates    = new List<AbicraftState>();
 
-    //SCENE OBJECT VIEW
+    static readonly List<string> scannedAssetAbjsPaths  = new List<string>();
+    static readonly List<string> scannedAssetStatePaths = new List<string>();
+
+    //OBJECT VIEW
     float sceneObjectViewSplitWidth, sceneObjectViewSplitHeight;
     Rect sceneObjectViewSplitWidthCursorRect, sceneObjectViewSplitHeightCursorRect;
     static Vector2 sceneObjectScrollView = Vector2.zero, assetObjectScrollView = Vector2.zero;
@@ -27,8 +30,16 @@ public class AbicraftInspector : EditorWindow
     bool resizeHorizontal = false, resizeVertical = false;
     //-----------------
 
+    //STATES VIEW
+    float stateViewSplitWidth;
+    Rect stateViewSplitWidthCursorRect;
+    static Vector2 stateScrollView = Vector2.zero;
+
+    bool stateResizeHorizontal;
+    //-----------------
+
     Vector2 scrollPosition = Vector2.zero;
-    static int selectedTab = 0;
+    static int selectedTab = 0, lastTab = 0;
 
     [MenuItem("Tools/Abicraft/Inspector")]
     static void CreateAndShow()
@@ -43,10 +54,30 @@ public class AbicraftInspector : EditorWindow
         {
             selectedTab = Tabs(ref selectedTab, "Setup", "Objects", "Abilities", "States", "Attributes", "Pooling");
 
+            if(selectedTab != lastTab)
+            {
+                if (selectedTab == 1)
+                {
+                    scannedAssetAbjs.Clear();
+                    LoadPrefabAbjsContaining();
+                }
+
+                if (selectedTab == 3)
+                {
+                    scannedStates.Clear();
+                    LoadPrefabStatesContaining();
+                }
+
+                lastTab = selectedTab;
+            }
+
             switch (selectedTab)
             {
                 case 1:
                     ObjectViews();
+                    break;
+                case 3:
+                    StateViews();
                     break;
             }
         }
@@ -100,8 +131,8 @@ public class AbicraftInspector : EditorWindow
     {
         Repaint();
     }
-
-    public static List<AbicraftObject> LoadPrefabsContaining()
+    
+    public static List<AbicraftObject> LoadPrefabAbjsContaining()
     {
         string[] temp = AssetDatabase.GetAllAssetPaths();
         List<string> resultPaths = new List<string>();
@@ -119,6 +150,26 @@ public class AbicraftInspector : EditorWindow
             }
         }
         return scannedAssetAbjs;
+    }
+
+    public static List<AbicraftState> LoadPrefabStatesContaining()
+    {
+        string[] temp = AssetDatabase.GetAllAssetPaths();
+        List<string> resultPaths = new List<string>();
+        foreach (string s in temp)
+        {
+            if (s.Contains(".asset"))
+            {
+                AbicraftState state = AssetDatabase.LoadAssetAtPath<AbicraftState>(s);
+
+                if (state)
+                {
+                    scannedAssetStatePaths.Add(s);
+                    scannedStates.Add(state);
+                }
+            }
+        }
+        return scannedStates;
     }
 
     public int Tabs(ref int selected, params string[] tabs)
@@ -166,7 +217,11 @@ public class AbicraftInspector : EditorWindow
         sceneObjectViewSplitWidthCursorRect = new Rect(sceneObjectViewSplitWidth, 25, 3f, this.position.width);
 
         sceneObjectViewSplitHeight = this.position.height / 2;
-        sceneObjectViewSplitHeightCursorRect= new Rect(0, sceneObjectViewSplitHeight +10, sceneObjectViewSplitWidth -22, 3f); 
+        sceneObjectViewSplitHeightCursorRect= new Rect(0, sceneObjectViewSplitHeight +10, sceneObjectViewSplitWidth -22, 3f);
+
+        //States SPLIT WIDTH
+        stateViewSplitWidth = this.position.width / 2;
+        stateViewSplitWidthCursorRect = new Rect(stateViewSplitWidth, 25, 3f, this.position.width);
     }
 
     void CreateAssetList()
@@ -185,7 +240,7 @@ public class AbicraftInspector : EditorWindow
 
                 Color guibgdef = GUI.backgroundColor;
 
-                if (selectedBuffer.Contains(obj.transform.gameObject))
+                if (obj && selectedBuffer.Contains(obj.transform.gameObject))
                 {
                     GUI.backgroundColor = new Color32(217, 217, 217, 255);
                 }
@@ -222,6 +277,69 @@ public class AbicraftInspector : EditorWindow
             }
         }
     }
+
+    void CreateStateList()
+    {
+        if (scannedStates.Count > 0)
+        {
+            for (int i = 0; i < scannedStates.Count; i++)
+            {
+                AbicraftState state = scannedStates[i];
+
+                if (!string.IsNullOrEmpty(filter) && state.name.IndexOf(filter, System.StringComparison.CurrentCultureIgnoreCase) == -1)
+                {
+                    // Skip if a filter is applied and we don't match
+                    continue;
+                }
+
+                Color guibgdef = GUI.backgroundColor;
+
+                if (selectedStatesBuffer.Contains(state))
+                {
+                    GUI.backgroundColor = new Color32(217, 217, 217, 255);
+                }
+                
+                GUILayout.BeginHorizontal();
+                GUIStyle style = new GUIStyle(EditorStyles.label);
+                style.hover.textColor = Color.blue;
+
+               /* if (state.type.Equals(AbicraftState.StateType.Negative))
+                    style.normal.textColor = new Color32(255, 38, 0, 255);
+                if (state.type.Equals(AbicraftState.StateType.Positive))
+                    style.normal.textColor = new Color32(0, 230, 27, 255);
+                if (state.type.Equals(AbicraftState.StateType.Neutral))
+                    style.normal.textColor = new Color32(186, 164, 0,255);*/
+
+                style.margin.right = 0;
+                style.alignment = TextAnchor.MiddleLeft;
+
+                GUIStyle stylePath = new GUIStyle(EditorStyles.label);
+                stylePath.normal.textColor = new Color32(100, 100, 100, 255);
+                stylePath.alignment = TextAnchor.MiddleLeft;
+
+                EditorGUIUtility.SetIconSize(new Vector2(16, 16));
+             
+                if (GUILayout.Button(new GUIContent(scannedStates[i].name, scannedStates[i].icon), style, GUILayout.Width(200)))
+                {
+                    if (keyDown)
+                    {
+                        selectedStatesBuffer.Add(state);
+                    }
+                    else
+                    {
+                        selectedStatesBuffer.Clear();
+                        selectedStatesBuffer.Add(state);
+                    }
+                }
+           
+                GUILayout.Label(scannedAssetStatePaths[i], stylePath);
+
+                GUILayout.EndHorizontal();
+                GUI.backgroundColor = guibgdef;
+            }
+        }
+    }
+
 
     //string abj_name
 
@@ -277,11 +395,79 @@ public class AbicraftInspector : EditorWindow
         }
     }
 
+    void StateViews()
+    {
+        Color coldef = GUI.backgroundColor;
+
+        ResizeScrollView(ref stateViewSplitWidth, ref stateViewSplitWidthCursorRect, ref stateResizeHorizontal, ResizeDir.Horizontal, 3);
+
+        GUI.backgroundColor = new Color32(184, 182, 182, 255);
+        GUILayout.BeginArea(new Rect(0, 30, stateViewSplitWidth + 20, position.height));
+        GUILayout.BeginVertical();
+
+        EditorGUILayout.BeginHorizontal();
+        GUIStyle searchStyle = GUI.skin.FindStyle("ToolbarSeachTextField");
+        GUIStyle cancelStyle = GUI.skin.FindStyle("ToolbarSeachCancelButton");
+        GUIStyle noCancelStyle = GUI.skin.FindStyle("ToolbarSeachCancelButtonEmpty");
+
+        GUILayout.Space(10);
+        filter = EditorGUILayout.TextField(filter, searchStyle, GUILayout.Width(stateViewSplitWidth -30));
+        if (!string.IsNullOrEmpty(filter))
+        {
+            if (GUILayout.Button("", cancelStyle))
+            {
+                filter = "";
+                GUIUtility.hotControl = 0;
+                EditorGUIUtility.editingTextField = false;
+            }
+        }
+        else
+        {
+            GUILayout.Button("", noCancelStyle);
+        }
+        GUILayout.Space(10);
+        EditorGUILayout.EndHorizontal();
+        GUILayout.Space(5);
+
+        Color32 defColor = GUI.backgroundColor;
+        GUIStyle stylelabel = new GUIStyle();
+        stylelabel.margin.left = 0;
+        stylelabel.padding.top = 5;
+        stylelabel.padding.bottom = 5;
+        stylelabel.padding.left = 7;
+        stylelabel.fontSize = 15;
+
+        GUIStyle margin = new GUIStyle();
+        margin.margin.bottom = 5;
+
+        GUI.backgroundColor = new Color32(217, 217, 217, 255);
+        GUILayout.Label("Abicraft States", stylelabel, GUILayout.Width(stateViewSplitWidth), GUILayout.Height(30));
+        GUI.backgroundColor = defColor;
+
+        stateScrollView = GUILayout.BeginScrollView(stateScrollView, margin, GUILayout.Width(stateViewSplitWidth), GUILayout.Height(position.height -125));
+
+        CreateStateList();
+
+        GUILayout.EndScrollView();
+
+        //GUILayout.FlexibleSpace();
+        if (GUILayout.Button("Scan", GUILayout.Width(stateViewSplitWidth - 5), GUILayout.Height(32)))
+        {
+            scannedStates.Clear();
+            LoadPrefabStatesContaining();
+        }
+
+        GUILayout.EndVertical();
+        GUILayout.EndArea();
+
+        Repaint();
+    }
+
     void ObjectViews()
     {
         Color coldef = GUI.backgroundColor;
 
-        ResizeScrollView(ref sceneObjectViewSplitWidth, ref sceneObjectViewSplitWidthCursorRect, ref resizeHorizontal, ResizeDir.Horizontal);
+        ResizeScrollView(ref sceneObjectViewSplitWidth, ref sceneObjectViewSplitWidthCursorRect, ref resizeHorizontal, ResizeDir.Horizontal, 1);
 
         GUI.backgroundColor = new Color32(184, 182, 182, 255);
         GUILayout.BeginArea(new Rect(0, 30, sceneObjectViewSplitWidth + 20, position.height));
@@ -336,17 +522,17 @@ public class AbicraftInspector : EditorWindow
         GUILayout.Label("Abicraft Assets", stylelabel, GUILayout.Width(sceneObjectViewSplitWidth), GUILayout.Height(30));
         GUI.backgroundColor = defColor;
 
-        assetObjectScrollView = GUILayout.BeginScrollView(assetObjectScrollView, GUILayout.Width(sceneObjectViewSplitWidth), GUILayout.Height(position.height - sceneObjectViewSplitHeight - 150));
+        assetObjectScrollView = GUILayout.BeginScrollView(assetObjectScrollView, GUILayout.Width(sceneObjectViewSplitWidth), GUILayout.Height(position.height - sceneObjectViewSplitHeight - 155));
 
         CreateAssetList();
 
         GUILayout.EndScrollView();
-        ResizeScrollView(ref sceneObjectViewSplitHeight, ref sceneObjectViewSplitHeightCursorRect, ref resizeVertical, ResizeDir.Vertical);
+        ResizeScrollView(ref sceneObjectViewSplitHeight, ref sceneObjectViewSplitHeightCursorRect, ref resizeVertical, ResizeDir.Vertical, 1);
         //GUILayout.FlexibleSpace();
         if (GUILayout.Button("Scan", GUILayout.Width(sceneObjectViewSplitWidth - 5), GUILayout.Height(32)))
         {
             scannedAssetAbjs.Clear();
-            LoadPrefabsContaining();
+            LoadPrefabAbjsContaining();
         }
         GUILayout.EndVertical();
         GUILayout.EndArea();
@@ -466,7 +652,7 @@ public class AbicraftInspector : EditorWindow
         Vertical
     }
 
-    private void ResizeScrollView(ref float axel, ref Rect cursorRect, ref bool resize, ResizeDir dir)
+    private void ResizeScrollView(ref float axel, ref Rect cursorRect, ref bool resize, ResizeDir dir, int tab)
     {
         Color def = GUI.color;
         GUI.color = new Color32(133, 133, 133, 255);
@@ -501,14 +687,25 @@ public class AbicraftInspector : EditorWindow
             resize = false;
         }
 
-        if (dir == ResizeDir.Horizontal)
+        if(tab == 1)
         {
-            cursorRect.Set(axel, cursorRect.y, cursorRect.width, position.height);
+            if (dir == ResizeDir.Horizontal)
+            {
+                cursorRect.Set(axel, cursorRect.y, cursorRect.width, position.height);
+            }
+
+            if (dir == ResizeDir.Vertical)
+            {
+                cursorRect.Set(cursorRect.x, axel + 55, sceneObjectViewSplitWidth, cursorRect.height);
+            }
         }
 
-        if (dir == ResizeDir.Vertical)
+        if (tab == 3)
         {
-            cursorRect.Set(cursorRect.x, axel + 55, sceneObjectViewSplitWidth, cursorRect.height);
+            if (dir == ResizeDir.Horizontal)
+            {
+                cursorRect.Set(axel, cursorRect.y, cursorRect.width, position.height);
+            }
         }
     }
 
