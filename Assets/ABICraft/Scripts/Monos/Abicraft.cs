@@ -29,6 +29,11 @@ namespace AbicraftMonos
                 AbicraftGlobalContext.AddAbicraftInstance(this);
         }
 
+        public void Inject()
+        {
+            AbicraftGlobalContext.AddAbicraftInstance(this);
+        }
+
         private void Start()
         {
             if (Application.isPlaying)
