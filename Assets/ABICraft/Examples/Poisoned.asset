@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Poisoned
   icon: {fileID: 2800000, guid: 7b3aca310a52cfc43ab467975278df26, type: 3}
-  type: 0
+  type: 2
   statePassiveAbility: {fileID: 0}

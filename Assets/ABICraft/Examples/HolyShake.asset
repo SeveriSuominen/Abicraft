@@ -21,7 +21,7 @@ MonoBehaviour:
   AbilityName: ' Holy Shake'
   Cooldown: 0.5
   Passive: 1
-  DefaultLifetime: 3
+  DefaultLifetime: 0
 --- !u!114 &2265721522826282401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +215,6 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   Obj: {fileID: 0}
-  shakeDuration: 0.2
-  shakeAmount: 2
+  shakeDuration: 0.4
+  shakeAmount: 0.8
   decreaseFactor: 1

@@ -4772,3 +4772,5 @@ MonoBehaviour:
   Original: {fileID: 0}
   ActivePool: 0
   PoolIndex: 0
+  IsSceneObject: 0
+  IsPoolingClone: 0

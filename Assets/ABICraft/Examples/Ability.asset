@@ -666,8 +666,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Obj: {fileID: 0}
-  direction: {x: -0.95629734, y: 0, z: -0.29239157}
-  distance: 51.12447
+  direction: {x: -0.9999223, y: 0, z: -0.012243129}
+  distance: 35.484364
   onlyYAxis: 1
 --- !u!114 &1721398430819921857
 MonoBehaviour:
@@ -883,9 +883,9 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   Obj: {fileID: 0}
-  selectedIndex: 1
-  lastIndex: 1
-  allSelectedIndices: 01000000
+  selectedIndex: 2
+  lastIndex: 2
+  allSelectedIndices: 02000000
 --- !u!114 &5298954673353228628
 MonoBehaviour:
   m_ObjectHideFlags: 0

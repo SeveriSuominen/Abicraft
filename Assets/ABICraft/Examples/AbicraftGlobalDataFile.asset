@@ -13,5 +13,301 @@ MonoBehaviour:
   m_Name: AbicraftGlobalDataFile
   m_EditorClassIdentifier: 
   GlobalStates:
+  - {fileID: 11400000, guid: 2899c6d116708444088529803858c625, type: 2}
   - {fileID: 11400000, guid: 273faa2a9b6a73642bc047c6b3366e80, type: 2}
-  InstantiateToPool: []
+  InstantiateToPool:
+  - {fileID: 1310777319, guid: 2d21526a5035708438599f53bac96756, type: 3}
+  - {fileID: 7304414733767880615, guid: bb8cdcfb73df2fb47a70244cf79b6325, type: 3}
+  - {fileID: 532906627, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+  - {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
+  - {fileID: 3697825443390818046, guid: d1a38c220f3a6b0469f9f5ad0bbf0d95, type: 3}
+  cache:
+    selectedTab: 0
+    lastTab: 0
+    scannedSceneObjs:
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 2
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 2
+    - obj: {fileID: 0}
+      indirectIndex: 2
+    - obj: {fileID: 0}
+      indirectIndex: 2
+    - obj: {fileID: 0}
+      indirectIndex: 2
+    - obj: {fileID: 0}
+      indirectIndex: 3
+    - obj: {fileID: 0}
+      indirectIndex: 3
+    - obj: {fileID: 0}
+      indirectIndex: 3
+    - obj: {fileID: 0}
+      indirectIndex: 4
+    - obj: {fileID: 0}
+      indirectIndex: 5
+    - obj: {fileID: 0}
+      indirectIndex: 6
+    - obj: {fileID: 0}
+      indirectIndex: 7
+    - obj: {fileID: 0}
+      indirectIndex: 8
+    - obj: {fileID: 0}
+      indirectIndex: 9
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 6
+    - obj: {fileID: 0}
+      indirectIndex: 7
+    - obj: {fileID: 0}
+      indirectIndex: 8
+    - obj: {fileID: 0}
+      indirectIndex: 9
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 6
+    - obj: {fileID: 0}
+      indirectIndex: 7
+    - obj: {fileID: 0}
+      indirectIndex: 8
+    - obj: {fileID: 0}
+      indirectIndex: 9
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 9
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 12
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 9
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 12
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 13
+    - obj: {fileID: 0}
+      indirectIndex: 14
+    - obj: {fileID: 0}
+      indirectIndex: 15
+    - obj: {fileID: 0}
+      indirectIndex: 16
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 2
+    - obj: {fileID: 0}
+      indirectIndex: 3
+    - obj: {fileID: 0}
+      indirectIndex: 4
+    - obj: {fileID: 0}
+      indirectIndex: 5
+    - obj: {fileID: 0}
+      indirectIndex: 6
+    scannedAssetAbjs:
+    - {fileID: 3697825443390818046, guid: d1a38c220f3a6b0469f9f5ad0bbf0d95, type: 3}
+    - {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
+    - {fileID: 532906627, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+    - {fileID: 7304414733767880615, guid: bb8cdcfb73df2fb47a70244cf79b6325, type: 3}
+    - {fileID: 1310777319, guid: 2d21526a5035708438599f53bac96756, type: 3}
+    scannedStates:
+    - {fileID: 11400000, guid: 273faa2a9b6a73642bc047c6b3366e80, type: 2}
+    - {fileID: 11400000, guid: 2899c6d116708444088529803858c625, type: 2}
+    scannedAssetAbjsPaths:
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    - Assets/Abicraft/Examples/ExamplePlayer.prefab
+    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
+    scannedAssetStatePaths:
+    - Assets/Abicraft/Examples/HolyShaking.asset
+    - Assets/Abicraft/Examples/Poisoned.asset
+    - Assets/Abicraft/Examples/HolyShaking.asset
+    - Assets/Abicraft/Examples/Poisoned.asset
+    - Assets/Abicraft/Examples/HolyShaking.asset
+    - Assets/Abicraft/Examples/Poisoned.asset
+    - Assets/Abicraft/Examples/HolyShaking.asset
+    - Assets/Abicraft/Examples/Poisoned.asset
+    - Assets/Abicraft/Examples/HolyShaking.asset
+    - Assets/Abicraft/Examples/Poisoned.asset

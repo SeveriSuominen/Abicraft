@@ -51,6 +51,8 @@ MonoBehaviour:
   Original: {fileID: 0}
   ActivePool: 0
   PoolIndex: 0
+  IsSceneObject: 0
+  IsPoolingClone: 0
 --- !u!135 &7821348228314874543
 SphereCollider:
   m_ObjectHideFlags: 0

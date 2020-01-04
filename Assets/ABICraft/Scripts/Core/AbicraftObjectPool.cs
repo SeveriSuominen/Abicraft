@@ -131,6 +131,7 @@ namespace AbicraftCore
                         AbicraftObject instantiated_abj = objInstantiated.GetComponent<AbicraftObject>();
                         instantiated_abj.ActivePool = false;
                         instantiated_abj.Original = objRef;
+                        instantiated_abj.IsPoolingClone = true;
 
                         pool.Add(instantiated_abj);
 

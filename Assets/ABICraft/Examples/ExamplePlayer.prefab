@@ -2543,6 +2543,8 @@ MonoBehaviour:
   Original: {fileID: 0}
   ActivePool: 0
   PoolIndex: 0
+  IsSceneObject: 0
+  IsPoolingClone: 0
 --- !u!1 &3697825443034418841
 GameObject:
   m_ObjectHideFlags: 0

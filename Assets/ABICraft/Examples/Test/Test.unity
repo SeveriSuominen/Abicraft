@@ -394,6 +394,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e695731140daafc4eb819a755f121624,
         type: 2}
+    - target: {fileID: 7955029508606655733, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1409127612, guid: 13236ba8c424e57499412aa02ecfd149, type: 3}
       propertyPath: m_Radius
       value: 0.1
@@ -402,6 +407,33 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890975861517752463, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: m_Name
+      value: ExamplePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890975861891093266, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: IsSceneObject
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890975861891093266, guid: 13236ba8c424e57499412aa02ecfd149,
+        type: 3}
+      propertyPath: InstantiateObjectToPool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 312965437, guid: 13236ba8c424e57499412aa02ecfd149, type: 3}
+      propertyPath: IsSceneObject
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034539880, guid: 13236ba8c424e57499412aa02ecfd149, type: 3}
+      propertyPath: IsSceneObject
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034539880, guid: 13236ba8c424e57499412aa02ecfd149, type: 3}
+      propertyPath: InstantiateObjectToPool
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13236ba8c424e57499412aa02ecfd149, type: 3}

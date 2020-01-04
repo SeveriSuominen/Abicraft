@@ -18,6 +18,10 @@ namespace AbicraftMonos
         public bool ActivePool;
         [HideInInspector]
         public int PoolIndex;
+        [HideInInspector]
+        public bool IsSceneObject;
+        [HideInInspector]
+        public bool IsPoolingClone;
 
         public readonly List<AbicraftState> activeStates = new List<AbicraftState>();
 
