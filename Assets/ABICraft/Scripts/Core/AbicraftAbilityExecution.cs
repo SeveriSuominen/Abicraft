@@ -1,4 +1,5 @@
-﻿using AbicraftMonos;
+﻿using AbicraftCore.Variables;
+using AbicraftMonos;
 using AbicraftNodes.Meta;
 using System;
 using System.Collections;
@@ -26,6 +27,8 @@ namespace AbicraftCore
         public AbicraftNode startNode;
 
         public readonly string guid;
+
+        public readonly AbicraftAbilityVariableMap variables = new AbicraftAbilityVariableMap();
 
         public AbicraftAbilityExecution(AbicraftAbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftObject senderObject, AbicraftNode startExecNode)
         {

@@ -26,6 +26,9 @@ namespace AbicraftNodeEditor {
             ValidateGraphEditor();
             Controls();
 
+            graphEditor.UpdateVariableDefinitions(graph);
+            EditorUtility.SetDirty(graph);
+
             DrawGrid(position, zoom, panOffset);
             
             DrawConnections();

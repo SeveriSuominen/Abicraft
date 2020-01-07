@@ -1,4 +1,5 @@
-﻿using AbicraftNodes.Meta;
+﻿using AbicraftCore.Variables;
+using AbicraftNodes.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,12 @@ namespace AbicraftNodeEditor {
         [SerializeField] public List<AbicraftNode> nodes = new List<AbicraftNode>();
         [SerializeField] public List<Area> areas = new List<Area>();
 
+        [SerializeField]
+        public List<AbicraftAbilityVariableDefinition> variableDefinitions = new List<AbicraftAbilityVariableDefinition>();
+
         public Texture2D icon;
         public string AbilityName;
+        /// <summary> Ability cooldown, min time between ability casts </summary>
         public float  Cooldown;
         public bool   Passive;
         public float  DefaultLifetime;

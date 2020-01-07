@@ -1,0 +1,28 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using AbicraftNodeEditor;
+using AbicraftCore;
+using AbicraftMonos;
+using AbicraftNodes.Meta;
+using AbicraftCore.Variables;
+using System;
+
+namespace AbicraftNodes.Action
+{
+
+    public class GetVariableNode : AbicraftValueNode
+    {
+        [HideInInspector]
+        public int selectedIndex;
+
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
+        {
+            if (e != null)
+            {
+                return e.ae.variables[graph.variableDefinitions[selectedIndex].VARIABLE_NAME];
+            }
+            return default;
+        }
+    }
+}

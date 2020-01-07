@@ -119,6 +119,28 @@ namespace AbicraftNodeEditor {
             return GetTypeColor(port.ValueType);
         }
 
+        /// <summary> Returned color is used to color ports </summary>
+        public void UpdateVariableDefinitions(AbicraftAbilityGraph graph)
+        {
+            if (!graph)
+                return;
+
+            graph.variableDefinitions.Clear();
+
+            for (int i = 0; i < graph.nodes.Count; i++)
+            {
+                AbicraftNode node = graph.nodes[i];
+     
+                if(node && node.GetType() == typeof(AbicraftNodes.Action.SetVariableNode))
+                {
+                    AbicraftNodes.Action.SetVariableNode variable = node as AbicraftNodes.Action.SetVariableNode;
+                    graph.variableDefinitions.Add(
+                        new AbicraftCore.Variables.AbicraftAbilityVariableDefinition(variable.GetVariableName(), variable.GetDefitionType())
+                    );
+                }
+            }
+        }
+
         /// <summary> Returns generated color for a type. This color is editable in preferences </summary>
         public virtual Color GetTypeColor(Type type) {
             return NodeEditorPreferences.GetTypeColor(type);
