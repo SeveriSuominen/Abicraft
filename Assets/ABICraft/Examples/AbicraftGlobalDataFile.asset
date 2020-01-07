@@ -216,6 +216,8 @@ MonoBehaviour:
     - obj: {fileID: 0}
       indirectIndex: 1
     - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
       indirectIndex: 2
     - obj: {fileID: 0}
       indirectIndex: 3
@@ -245,30 +247,6 @@ MonoBehaviour:
     - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
     - Assets/Abicraft/Examples/VFX/OnClone.prefab
     - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
-    - Assets/Abicraft/Examples/ExamplePlayer.prefab
-    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
-    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
-    - Assets/Abicraft/Examples/VFX/OnClone.prefab
-    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
-    - Assets/Abicraft/Examples/ExamplePlayer.prefab
-    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
-    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
-    - Assets/Abicraft/Examples/VFX/OnClone.prefab
-    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
-    - Assets/Abicraft/Examples/ExamplePlayer.prefab
-    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
-    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
-    - Assets/Abicraft/Examples/VFX/OnClone.prefab
-    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
-    - Assets/Abicraft/Examples/ExamplePlayer.prefab
-    - Assets/Abicraft/Examples/VFX/TestMissile.prefab
-    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
-    - Assets/Abicraft/Examples/VFX/OnClone.prefab
-    - Assets/Abicraft/Examples/VFX/OnDespawn.prefab
     scannedAssetStatePaths:
-    - Assets/Abicraft/Examples/HolyShaking.asset
-    - Assets/Abicraft/Examples/Poisoned.asset
-    - Assets/Abicraft/Examples/HolyShaking.asset
-    - Assets/Abicraft/Examples/Poisoned.asset
     - Assets/Abicraft/Examples/HolyShaking.asset
     - Assets/Abicraft/Examples/Poisoned.asset

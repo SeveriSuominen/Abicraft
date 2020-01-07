@@ -24,11 +24,6 @@ namespace AbicraftNodes.Action
         [Input(connectionType = ConnectionType.Override)]
         public Any Value;
 
-        public override void Initialize(AbicraftNodeExecution execution)
-        {
-            
-        }
-
         public string GetVariableName()
         {
             return VariableName;
