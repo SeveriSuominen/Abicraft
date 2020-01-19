@@ -703,13 +703,19 @@ public class AbicraftInspector : EditorWindow
     //KeyDown for multiselect "Left CTRL"
     static bool keyDown = false;
 
-    void DrawSceneObjectTree(Transform transform, int indirectIndex = -1)
+    void DrawSceneObjectTreeEntry(Transform transform, int indirectIndex = -1)
     {
         if (!string.IsNullOrEmpty(filter) && transform.name.IndexOf(filter, System.StringComparison.CurrentCultureIgnoreCase) == -1)
         {
             // Skip if a filter is applied and we don't match
             return;
         }
+
+        if (!transform.GetComponent<AbicraftObject>() && !transform.GetComponent<Abicraft>())
+        {
+            return;
+        }
+
         GUIStyle style = new GUIStyle(EditorStyles.label);
 
         if (Selection.objects.Contains(transform.gameObject))
@@ -727,7 +733,7 @@ public class AbicraftInspector : EditorWindow
 
         style.padding.left = Mathf.FloorToInt(rectX);
 
-        Rect marker = new Rect(10, rect.y + 8, rectX - 20, 1);
+        Rect marker = new Rect(10, rect.y + 8, rectX - 15, 1);
 
         GUIContent content;
 
@@ -775,7 +781,9 @@ public class AbicraftInspector : EditorWindow
             iconRect.x = sceneObjectViewSplitWidth - 35;
             iconRect.y = iconRect.y - 6;
 
-            GUI.DrawTexture(marker, EditorGUIUtility.whiteTexture);
+            if(transform.parent != null)
+                GUI.DrawTexture(marker, EditorGUIUtility.whiteTexture);
+
             GUI.DrawTexture(iconRect, AbicraftNodeEditor.NodeEditorResources.abicraftIcon);
 
             GUI.backgroundColor = bgcolordef;
@@ -789,7 +797,10 @@ public class AbicraftInspector : EditorWindow
 
             Color defcol = GUI.color;
             GUI.color = new Color32(156, 154, 154, 255);
-            GUI.DrawTexture(marker, EditorGUIUtility.whiteTexture);
+
+            if (transform.parent != null)
+                GUI.DrawTexture(marker, EditorGUIUtility.whiteTexture);
+
             GUI.color = defcol;
         }
     }
@@ -863,7 +874,7 @@ public class AbicraftInspector : EditorWindow
         {
             for (int i = 0; i < scannedSceneObjs.Count; i++)
             {
-                DrawSceneObjectTree(scannedSceneObjs[i].obj, scannedSceneObjs[i].indirectIndex);
+                DrawSceneObjectTreeEntry(scannedSceneObjs[i].obj, scannedSceneObjs[i].indirectIndex);
             }
 
             return;
@@ -881,7 +892,10 @@ public class AbicraftInspector : EditorWindow
             GameObject gobj = scene_objs[i] as GameObject;
 
             if(gobj.transform.parent == null)
+            {
                 objs_root_parent.Add(gobj.transform);
+            }
+              
         }
 
         for (int i = 0; i < objs_root_parent.Count; i++)
@@ -891,13 +905,33 @@ public class AbicraftInspector : EditorWindow
                 if (AbicraftObjectPool.abicraftObjectPoolParent && objs_root_parent[i].Equals(AbicraftObjectPool.abicraftObjectPoolParent.transform))
                     continue;
 
-                RecurseChildren(objs_root_parent[i]);
+                RecurseChildren(objs_root_parent[i], true);
             }  
         }
     }
 
-    void RecurseChildren(Transform parent)
+    void RecurseChildren(Transform parent, bool firstPass = false)
     {
+        //INCLUDE ROOT PARENT
+        if (firstPass)
+        {
+            AbicraftObject abj;
+
+            if ((abj = parent.GetComponent<AbicraftObject>()))
+            {
+                abj.IsSceneObject = true;
+            }
+
+            if ((abj = parent.GetComponent<AbicraftObject>()))
+            {
+                abj.IsSceneObject = true;
+            }
+
+            //CACHE OBJS FOR PLAY MODE
+            scannedSceneObjs.Add(new InspectorCache.ScannedSceneObjCacheEntry(parent, EditorGUI.indentLevel));
+            DrawSceneObjectTreeEntry(parent);
+        }
+
         EditorGUI.indentLevel++;
         foreach (Transform childTransform in parent)
         {
@@ -911,7 +945,7 @@ public class AbicraftInspector : EditorWindow
             //CACHE OBJS FOR PLAY MODE
             scannedSceneObjs.Add(new InspectorCache.ScannedSceneObjCacheEntry(childTransform, EditorGUI.indentLevel));
 
-            DrawSceneObjectTree(childTransform);
+            DrawSceneObjectTreeEntry(childTransform);
 
             if (childTransform.childCount > 0)
                 RecurseChildren(childTransform);

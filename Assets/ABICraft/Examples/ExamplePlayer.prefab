@@ -2538,7 +2538,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InstantiateObjectToPool: 1
+  Profile: {fileID: 0}
+  rigidBody: {fileID: 0}
+  InstantiateObjectToPool: 0
   InstantiateToPoolAmount: 400
   Original: {fileID: 0}
   ActivePool: 0

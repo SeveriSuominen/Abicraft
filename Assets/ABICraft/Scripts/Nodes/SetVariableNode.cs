@@ -50,7 +50,7 @@ namespace AbicraftNodes.Action
                 e.ae.variables.Set(VariableName, value, GetDefitionType());
             }
           
-            Debug.Log(Convert.ChangeType(e.ae.variables[VariableName], GetDefitionType()));
+            //Convert.ChangeType(e.ae.variables[VariableName], GetDefitionType()));
 
             yield return null;
         }

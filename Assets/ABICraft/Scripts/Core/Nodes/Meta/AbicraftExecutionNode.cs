@@ -5,6 +5,7 @@ using UnityEngine;
 using AbicraftNodeEditor;
 
 using AbicraftCore;
+using System;
 
 namespace AbicraftNodes.Meta
 {
@@ -15,11 +16,40 @@ namespace AbicraftNodes.Meta
         [Output]
         public AbicraftLifeline Out;
 
-        protected void AddObjectToIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e, T obj)
+        Dictionary<string, object> iterationIndexValues = new Dictionary<string, object>();
+
+        protected void AddObjectToIterationIndex<T>(AbicraftNodeExecution e, string fieldName, T obj)
         {
+            if (e == null)
+                return;
+
             if (e.loopKeys.Count > 0)
             {
                 string loopKey = e.loopKeys[e.loopKeys.Count - 1];
+
+                if (loopKey == null)
+                {
+                    Debug.LogError("Abicraft: Loop key is null!");
+                    return;
+                }
+                iterationIndexValues[loopKey + e.GetIterationIndex(loopKeys[e.ae.guid]) + fieldName] = obj;
+            }
+            else
+            {
+                iterationIndexValues["default_no_loop"] = obj;
+            }
+        }
+
+        protected void AddObjectToIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e, T obj)
+        {
+            if (e == null)
+                return;
+
+            if (e.loopKeys.Count > 0)
+            {
+                string loopKey = e.loopKeys[e.loopKeys.Count - 1];
+
+                Debug.Log(obj.ToString());
 
                 if (loopKey == null)
                 {
@@ -34,8 +64,38 @@ namespace AbicraftNodes.Meta
             }
         }
 
+        protected object GetObjectByIterationIndex<T>(AbicraftNodeExecution e, string fieldName)
+        {
+            if (e == null)
+                return default(T);
+
+            if (e.loopKeys.Count > 0)
+            {
+                int iterationIndex = e.GetIterationIndex(loopKeys[e.ae.guid]);
+
+                foreach (var item in loopKeys[e.ae.guid])
+                {
+                    if (iterationIndexValues.ContainsKey(item + iterationIndex + fieldName))
+                    {
+                        return iterationIndexValues[item + iterationIndex + fieldName];
+                    }
+
+                }
+                return default(T);
+            }
+            else
+            {
+                if (iterationIndexValues.ContainsKey("default_no_loop"))
+                    return iterationIndexValues["default_no_loop"];
+                else
+                    return default(T);
+            }
+        }
+
         protected T GetObjectByIterationIndex<T>(ref Dictionary<string, T> map, AbicraftNodeExecution e)
         {
+            if (e == null)
+                return default(T);
 
             if (e.loopKeys.Count > 0)
             {

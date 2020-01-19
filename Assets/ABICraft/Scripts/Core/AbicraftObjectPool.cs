@@ -121,6 +121,9 @@ namespace AbicraftCore
             {
                 AbicraftObject objRef = objects[i];
 
+                if (!objRef.gameObject.activeSelf)
+                    continue;
+
                 if (!alreadyInstantiated.Contains(objRef.name) && objRef.InstantiateObjectToPool)
                 {
                     for (int j = 0; j < objRef.InstantiateToPoolAmount; j++)

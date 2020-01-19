@@ -205,7 +205,7 @@ namespace AbicraftCore
         {
             AbicraftExecutionLoopNode loopnode = nodeExecution.current_node as AbicraftExecutionLoopNode;
 
-            List<NodePort> loopPorts = nodeExecution.current_node.GetOutputPort("Loop").GetConnections();
+            List<NodePort> loopPorts     = nodeExecution.current_node.GetOutputPort("Loop").GetConnections();
             List<NodePort> portsContinue = nodeExecution.current_node.GetOutputPort("Continue").GetConnections();
 
             loopnode.Initialize(nodeExecution);
@@ -213,6 +213,9 @@ namespace AbicraftCore
             loopnode.iterations.Clear();
 
             int iterationCount = loopnode.IterationCount(nodeExecution);
+
+            //TESTTESTEST
+            loopnode.Parallel = true;
 
             string loopKey = Guid.NewGuid().ToString();
             loopnode.AddLoopKey(nodeExecution.ae.guid, loopKey);

@@ -15,6 +15,8 @@ namespace AbicraftNodes.Editors
         {
             var abicraftObject = target as AbicraftObject;
 
+            abicraftObject.Profile = EditorGUILayout.ObjectField(abicraftObject.Profile, typeof(AbicraftObjectProfile), false) as AbicraftObjectProfile;
+
             abicraftObject.InstantiateObjectToPool = GUILayout.Toggle(abicraftObject.InstantiateObjectToPool, "Instantiate Object To Pool");
 
             if (abicraftObject.InstantiateObjectToPool)

@@ -39,7 +39,7 @@ namespace AbicraftNodes.Action
 
                     if (!obj.activeStates.Contains(state))
                     {
-                        obj.ApplyTimedState(state);
+                        obj.ApplyStateForSeconds(state);
                     }
                 }
             }

@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 6877153703234885113}
   - {fileID: 9133258762519218358}
   areas: []
+  variableDefinitions: []
   icon: {fileID: 2800000, guid: ffeff11180f1a09469f61d5fe789a0c7, type: 3}
   AbilityName: ' Holy Shake'
   Cooldown: 0.5

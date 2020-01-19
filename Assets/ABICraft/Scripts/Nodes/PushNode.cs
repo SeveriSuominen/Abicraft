@@ -16,6 +16,8 @@ namespace AbicraftNodes.Action
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
 
+        public bool forcePush;
+
         // How long the object should shake for.
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
@@ -29,8 +31,8 @@ namespace AbicraftNodes.Action
         public float Range = 0.7f;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public float Force = 1.0f;
-
+        public float Force = 1.0f;//, YForce = 0;
+        
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj", Obj);
@@ -41,9 +43,10 @@ namespace AbicraftNodes.Action
 
                 push.Direction = GetInputValue<Vector3>(e, "Direction", Direction);
                 push.Force = GetInputValue<float>(e, "Force", Force);
+               // push.YForce = GetInputValue<float>(e, "YForce", YForce);
                 push.Range = GetInputValue<float>(e, "Range", Range);
                 push.curve = GetInputValue<AnimationCurve>(e, "Curve", ForceOverDistanceCurve);
-
+                push.forcePush = this.forcePush;
                 push.StartActionMono();
             }
             yield return null;

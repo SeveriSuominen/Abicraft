@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4100521833366649745}
   - component: {fileID: 4100521833366649758}
   - component: {fileID: 1310777319}
+  - component: {fileID: 8470768774059674956}
   m_Layer: 0
   m_Name: OnDespawn
   m_TagString: Untagged
@@ -4767,6 +4768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Profile: {fileID: 11400000, guid: cc78fdf9b10aa7d40bb1af0a0e027164, type: 2}
+  rigidBody: {fileID: 0}
   InstantiateObjectToPool: 1
   InstantiateToPoolAmount: 500
   Original: {fileID: 0}
@@ -4774,3 +4777,19 @@ MonoBehaviour:
   PoolIndex: 0
   IsSceneObject: 0
   IsPoolingClone: 0
+--- !u!54 &8470768774059674956
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4100521833366649759}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

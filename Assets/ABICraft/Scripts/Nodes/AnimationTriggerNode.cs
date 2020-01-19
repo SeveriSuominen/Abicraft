@@ -21,7 +21,7 @@ namespace AbicraftNodes.Action
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public string TriggerName;
-
+        public bool ClearNavMeshAgentDestination;
         Animator animator;
 
         public override void Initialize(AbicraftNodeExecution execution)
@@ -34,10 +34,19 @@ namespace AbicraftNodes.Action
             obj = GetInputValue<AbicraftObject>(e, "Obj");
             animator = obj.GetComponent<Animator>();
 
+            if (obj && ClearNavMeshAgentDestination)
+            {
+                var navAgent = obj.GetComponent<NavMeshAgent>();
+                if(navAgent)
+                    navAgent.ResetPath();
+            }
+
+
             if (obj)
             {
                 if (animator != null)
                 {
+                    animator.speed = 1;
                     animator.SetTrigger(GetInputValue<string>(e, "TriggerName", TriggerName));
                 }
             }

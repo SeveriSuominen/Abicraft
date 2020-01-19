@@ -17,20 +17,20 @@ namespace AbicraftMonos.Action
 {
     public abstract class AbicraftActionMono : MonoBehaviour
     {
-        public bool destroyWholeGameobject = false;
+        public bool despawnWholeGameobject = false;
 
         public bool  Active { get; private set; }
         public bool  CompleteAfterSeconds { get; private set; }
         public float CompleteAfterSecondsAmount { get; private set; }
 
         float actionMonoLifetimeElapsed;
-        bool  completeAsAfterSeconds;
+        protected bool  completeAsAfterSeconds;
 
         public bool ActionIsComplete { get; private set; }
         public bool ActionWasSuccess { get; private set; }
 
         public readonly Dictionary<RaycastDirection, Vector3> rayDirections = new Dictionary<RaycastDirection, Vector3>();
-        public readonly Dictionary<RaycastDirection, RaycastHit> rayHits = new Dictionary<RaycastDirection, RaycastHit>();
+        public readonly Dictionary<RaycastDirection, RaycastHit> rayHits    = new Dictionary<RaycastDirection, RaycastHit>();
 
         /// <summary> Call this method in AbicraftActionMono derived class to update actionMono</summary>
         protected void ActionMonoUpdate(float deltaTime)
@@ -124,7 +124,7 @@ namespace AbicraftMonos.Action
         {
             yield return new WaitForFixedUpdate();
 
-            if (destroyWholeGameobject)
+            if (despawnWholeGameobject)
             {
                 AbicraftObjectPool.Despawn(this.gameObject);
             }

@@ -24,23 +24,20 @@ namespace AbicraftNodes.Math
 
         private Vector3 mouseposition;
 
-        public override void Evaluate(AbicraftNodeExecution e)
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
-            AbicraftObject objTo   = GetInputValue<AbicraftObject>(e, "ObjTo");
+            AbicraftObject objTo = GetInputValue<AbicraftObject>(e, "ObjTo");
             AbicraftObject objFrom = GetInputValue<AbicraftObject>(e, "ObjFrom");
 
             if (objTo != null && objFrom != null)
             {
-                distance  = Vector3.Distance(objTo.transform.position, objFrom.transform.position);
+                distance = Vector3.Distance(objTo.transform.position, objFrom.transform.position);
                 direction = (objTo.transform.position - objFrom.transform.position).normalized;
 
                 if (onlyYAxis)
                     direction.y = 0;
             }
-        }
 
-        public override object GetValue(AbicraftNodeExecution e, NodePort port)
-        {
             if (port.fieldName.Equals("distance"))
                 return distance;
             else

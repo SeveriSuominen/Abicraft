@@ -577,9 +577,12 @@ namespace AbicraftNodeEditor {
                 GUIStyle labelstyle = new GUIStyle(NodeEditorResources.styles.nodeHeader);
                 labelstyle.fontSize = (int)(10 * Mathf.Clamp(labelZoom + 0.3f, 1f, 1.5f));
 
+                var hold = GUI.backgroundColor;
                 //Draw node contents
+
                 nodeEditor.OnHeaderGUI(labelstyle);
                 nodeEditor.OnBodyGUI();
+                
 
                 //If user changed a value, notify other scripts through onUpdateNode
                 if (EditorGUI.EndChangeCheck()) {

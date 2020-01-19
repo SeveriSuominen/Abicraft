@@ -3,125 +3,98 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshFilter), typeof(MeshCollider))]
 public class Cone : MonoBehaviour
 {
 
-    public TextMesh fmprefab;
+   // public TextMesh fmprefab;
     public AbicraftObject obj;
-    public int subdivisions = 2;
-    public float radius = 1f;
-    public float height = 2f;
+    public GameObject cursor;
+
+    public MeshFilter   coneFilter;
+    public MeshCollider coneCollider;
+
+    public readonly List<AbicraftObject> collisions = new List<AbicraftObject>();
 
     private const int CircleSegmentCount = 8;
     private const int CircleVertexCount = CircleSegmentCount + 2;
     private const int CircleIndexCount = CircleSegmentCount * 6;
-    void Start()
-    {
-      
-    }
 
-    void Update()
-    {
-        if (radiusInnerLast != radiusInner || radiusOuterLast != radiusOuter || angle != lastAngle)
-        {
-            GetComponent<MeshFilter>().sharedMesh = tube();
-            GetComponent<MeshCollider>().sharedMesh = GetComponent<MeshFilter>().sharedMesh;
-            radiusInnerLast = radiusInner;
-            lastAngle = angle;
-            radiusOuterLast = radiusOuter;
-        }
-
-        transform.rotation = Quaternion.Euler(obj.transform.rotation.eulerAngles + new Vector3(0, angle * 0.5f -90f, 0));
-        transform.position = obj.transform.position;
-    }
-
-    Mesh Create(int subdivisions, float radius, float height)
-    {
-        Mesh mesh = new Mesh();
-
-        Vector3[] vertices = new Vector3[subdivisions + 2];
-        Vector2[] uv = new Vector2[vertices.Length];
-        int[] triangles = new int[(subdivisions * 2) * 3];
-
-        vertices[0] = Vector3.zero;
-        uv[0] = new Vector2(0.5f, 0f);
-        for (int i = 0, n = subdivisions - 1; i < subdivisions; i++)
-        {
-            float ratio = (float)i / n;
-            float r = ratio * (Mathf.PI * 2f);
-            float x = Mathf.Cos(r) * radius;
-            float z = Mathf.Sin(r) * radius;
-            vertices[i + 1] = new Vector3(x, 0f, z);
-
-            Debug.Log(ratio);
-            uv[i + 1] = new Vector2(ratio, 0f);
-        }
-        vertices[subdivisions + 1] = new Vector3(0f, height, 0f);
-        uv[subdivisions + 1] = new Vector2(0.5f, 1f);
-
-        // construct bottom
-
-        for (int i = 0, n = subdivisions - 1; i < n; i++)
-        {
-            int offset = i * 3;
-            triangles[offset] = 0;
-            triangles[offset + 1] = i + 1;
-            triangles[offset + 2] = i + 2;
-        }
-
-        // construct sides
-
-        int bottomOffset = subdivisions * 3;
-        for (int i = 0, n = subdivisions - 1; i < n; i++)
-        {
-            int offset = i * 3 + bottomOffset;
-            triangles[offset] = i + 1;
-            triangles[offset + 1] = subdivisions + 1;
-            triangles[offset + 2] = i + 2;
-        }
-
-        mesh.vertices = vertices;
-        mesh.uv = uv;
-        mesh.triangles = triangles;
-        mesh.RecalculateBounds();
-        mesh.RecalculateNormals();
-
-        return mesh;
-    }
-
-    private static Mesh GenerateCircleMesh()
-    {
-        var circle = new Mesh();
-        var vertices = new List<Vector3>(CircleVertexCount);
-        var indices = new int[CircleIndexCount];
-        var segmentWidth = Mathf.PI * 1.9f / CircleSegmentCount;
-        var angle = 0f;
-
-        vertices.Add(Vector3.zero);
-        for (int i = 1; i < CircleVertexCount; ++i)
-        {
-            vertices.Add(new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)));
-            angle -= segmentWidth;
-            if (i > 1)
-            {
-                var j = (i - 2) * 3;
-                indices[j + 0] = 0;
-                indices[j + 1] = i - 1;
-                indices[j + 2] = i;
-            }
-        }
-        circle.SetVertices(vertices);
-        circle.SetIndices(indices, MeshTopology.Triangles, 0);
-        circle.RecalculateBounds();
-        return circle;
-    }
+    [HideInInspector]
+    public Vector3 position, direction;
 
     [Range(0f, 100f)]
     public float radiusInner = .5f, radiusOuter = .30f;
     [Range(1, 360f)]
     public float angle;
     float lastAngle, radiusInnerLast, radiusOuterLast;
+
+    void Awake()
+    {
+        coneFilter = GetComponent<MeshFilter>();
+        coneCollider = GetComponent<MeshCollider>();
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        var abj = collider.GetComponent<AbicraftObject>();
+
+        if (abj && !collisions.Contains(abj))
+        {
+            collisions.Add(abj);
+        }
+    }
+
+    void Update()
+    {
+        if (cursor)
+        {
+            if (radiusInnerLast != radiusInner || radiusOuterLast != radiusOuter || angle != lastAngle)
+            {
+                Destroy(coneFilter.sharedMesh);
+
+                coneFilter.sharedMesh = tube();
+                coneCollider.sharedMesh = coneFilter.sharedMesh;
+
+                radiusInnerLast = radiusInner;
+                lastAngle = angle;
+                radiusOuterLast = radiusOuter;
+            }
+
+            //transform.rotation = Quaternion.Euler(obj.transform.rotation.eulerAngles + new Vector3(0, angle * 0.5f -90f, 0));
+            Vector3 look;
+
+            if (cursor)
+            {
+                look = (cursor.transform.position - obj.transform.position).normalized;
+            }
+            else
+            {
+                look = direction;
+            }
+
+            look.y = 0;
+
+            transform.rotation = Quaternion.Euler(Quaternion.LookRotation(look).eulerAngles + new Vector3(0, angle * 0.5f - 90f, 0));
+            transform.position = obj.transform.position;
+        }
+    }
+
+    public void Create()
+    {
+        Destroy(coneFilter.sharedMesh);
+
+        coneFilter.sharedMesh = tube();
+        coneCollider.sharedMesh = coneFilter.sharedMesh;
+
+        Vector3 look;
+
+        look = direction;
+        look.y = 0;
+
+        transform.rotation = Quaternion.Euler(Quaternion.LookRotation(look).eulerAngles + new Vector3(0, angle * 0.5f - 90f, 0));
+        transform.position = position;
+    }
 
     private Mesh tube()
     {
@@ -405,18 +378,18 @@ public class Cone : MonoBehaviour
 
         //mesh.RecalculateNormals();
         mesh.RecalculateBounds();
-        mesh.Optimize();
+        //mesh.Optimize();
+        
+        return mesh;
 
-        int x = 0;
+        /*int x = 0;
         foreach (Vector3 pos in vertices)
         {
             TextMesh tm = GameObject.Instantiate(fmprefab, pos, Quaternion.identity) as TextMesh;
             tm.name = (x).ToString();
             tm.text = (x++).ToString();
             tm.transform.parent = transform;
-        }
-        
-        return mesh;
+        }*/
     }
 }
  

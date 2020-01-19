@@ -31,7 +31,7 @@ namespace AbicraftMonos.Action
         {
             rigid = GetComponent<Rigidbody>();
 
-            destroyWholeGameobject = true;
+            despawnWholeGameobject = true;
         }
 
         public void MoveToStartPoint()

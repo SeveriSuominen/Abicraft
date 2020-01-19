@@ -10,6 +10,7 @@ namespace AbicraftMonos.Action
         // if null.
         public GameObject target;
 
+        public bool ResetOriginalPosition;
         // How long the object should shake for.
         public float shakeDuration = 10f;
 
@@ -19,24 +20,29 @@ namespace AbicraftMonos.Action
 
         public Vector3 originalPos;
 
+        
+
         void Start()
         {
-            destroyWholeGameobject = false;
+            despawnWholeGameobject = false;
             originalPos = target.transform.localPosition;
         }
 
         void FixedUpdate()
         {
+         
             if (shakeDuration > 0)
             {
-                target.transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+                target.transform.localPosition = target.transform.localPosition + Random.insideUnitSphere * shakeAmount;
 
                 shakeDuration -= Time.deltaTime * decreaseFactor;
             }
             else
             {
                 shakeDuration = 0f;
-                target.transform.localPosition = originalPos;
+
+                if (ResetOriginalPosition)
+                    target.transform.localPosition = originalPos;
 
                 CompleteActionAs(true);
             }

@@ -15,14 +15,15 @@ namespace AbicraftNodes.Action
     {
         public static readonly List<AbicraftObject> IsAnimating = new List<AbicraftObject>();
 
-        /*[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public string AnimationTrigger;*/
+        [Output]
+        public float LengthSeconds;
+
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
         private AbicraftObject obj;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public float  Speed;
+        public float  Speed = 1;
 
         [HideInInspector]
         public int    selectedIndex;
@@ -34,27 +35,30 @@ namespace AbicraftNodes.Action
         //-----------------------------------------------------------------------------
 
         AnimatorOverrideController overrideController;
-        string prevLoadAnim;
-        Animator animator;
-        ResourceRequest request;
-        AnimatorStateInfo[] layerInfo;
+        int prevLoadAnimPathHash;
+        string prevLoadAnimName;
 
-        public override void Initialize(AbicraftNodeExecution execution)
-        {
-           
-        }
+        Animator animator;
+   
+        AnimatorStateInfo[] layerInfo;
+        List<AnimatorClipInfo[]> clipInfos = new List<AnimatorClipInfo[]>();
+
+        public AnimationClip clip;
+        Animation org_clip;
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-
             obj = GetInputValue<AbicraftObject>(e, "Obj");
             animator = obj.GetComponent<Animator>();
 
-            obj.GetComponent<NavMeshAgent>().ResetPath();
+            var navAgent = obj.GetComponent<NavMeshAgent>();
+
+            if (navAgent)
+                navAgent.ResetPath();
 
             clips = animator.runtimeAnimatorController.animationClips;
 
-            if (obj)
+            if (obj && clip)
             {
                 if (animator != null)
                 {
@@ -63,6 +67,8 @@ namespace AbicraftNodes.Action
                    
                     if (animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController))
                     {
+                        AddObjectToIterationIndex<float>(e, "LengthSeconds", clip.length / (Speed));
+
                         if (!IsAnimating.Contains(obj))
                             IsAnimating.Add(obj);
 
@@ -75,10 +81,11 @@ namespace AbicraftNodes.Action
 
                         animator.runtimeAnimatorController = overrideController;
                         
-                        LoadAnimation(clips[selectedIndex]);
+                        LoadAnimation(clip);
 
-                        yield return new WaitForSeconds(clips[selectedIndex].length / (Speed));
+                        yield return new WaitForSeconds(clip.length / (Speed));
 
+                        UnloadPreviousLoadAnimation();
                         animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
 
                         if (IsAnimating.Contains(obj))
@@ -89,25 +96,33 @@ namespace AbicraftNodes.Action
             yield return null;
         }
 
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
+        {
+            if(port.fieldName.Equals("LengthSeconds"))
+            {
+                return GetObjectByIterationIndex<float>(e, "LengthSeconds");
+            }
+
+            return GetInputValue<AbicraftLifeline>(e, "In");
+        }
+
+        ///<summary>Set and play clip on override contoller</summary>
         void LoadAnimClip(AnimationClip clip)
         {
-            overrideController["ElfMage_Attack3"] = clip;
+            overrideController[clipInfos[0][0].clip.name] = clip;
 
             // Push back state
             for (int i = 0; i < animator.layerCount; i++)
             {
-                animator.Play("OVERRIDE", i, 0);
+                animator.Play(layerInfo[i].fullPathHash, i, 0);
             }
-            //animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
-            //overrideController.a;
-            // Force an update
-            animator.Update(0.0f);
 
-            //animator.ResetTrigger("StartOverride");
-            //animator.SetTrigger("StartOverride");
+            // Force an update
+            //animator.Update(0.0f);
         }
 
-        public void LoadAnimation(AnimationClip clip)
+        ///<summary>Load animation to override controller</summary>
+        void LoadAnimation(AnimationClip clip)
         {
             //Save current state
             layerInfo = new AnimatorStateInfo[animator.layerCount];
@@ -115,21 +130,22 @@ namespace AbicraftNodes.Action
             for (int i = 0; i < animator.layerCount; i++)
             {
                 layerInfo[i] = animator.GetCurrentAnimatorStateInfo(i);
+                clipInfos.Add( animator.GetCurrentAnimatorClipInfo(i));
             }
- 
-            LoadAnimClip(clip);
+            prevLoadAnimName = clipInfos[0][0].clip.name;
 
-            prevLoadAnim = "ElfMage_Attack3";
+            LoadAnimClip(clip);
         }
 
-        public void UnloadPreviousLoadAnimation()
+        ///<summary>Unload animation from override controller</summary>
+        void UnloadPreviousLoadAnimation()
         {
             for (int i = 0; i < animator.layerCount; i++)
             {
                 layerInfo[i] = animator.GetCurrentAnimatorStateInfo(i);
             }
 
-            overrideController[prevLoadAnim] = null;
+            overrideController[prevLoadAnimName] = null;
 
             for (int i = 0; i < animator.layerCount; i++)
             {
