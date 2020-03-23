@@ -15,6 +15,12 @@ MonoBehaviour:
   GlobalStates:
   - {fileID: 11400000, guid: 2899c6d116708444088529803858c625, type: 2}
   - {fileID: 11400000, guid: 273faa2a9b6a73642bc047c6b3366e80, type: 2}
+  GlobalAttributes:
+  - {fileID: 11400000, guid: f2e7cd60c59815e489d0348341ccb574, type: 2}
+  - {fileID: 11400000, guid: 3ef25d0319ebbc04a818e1f2dbf9bff3, type: 2}
+  - {fileID: 11400000, guid: 0899d2bd0aa094240b6208b2959ef861, type: 2}
+  - {fileID: 11400000, guid: 74f00e795129c2a46812edb6784ef124, type: 2}
+  - {fileID: 11400000, guid: bd10beb071b26bc4e8fb1d965708f64d, type: 2}
   InstantiateToPool:
   - {fileID: 1310777319, guid: 2d21526a5035708438599f53bac96756, type: 3}
   - {fileID: 7304414733767880615, guid: bb8cdcfb73df2fb47a70244cf79b6325, type: 3}
@@ -231,6 +237,22 @@ MonoBehaviour:
     - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
+    - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
+    - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
     scannedAssetStatePaths:
+    - Assets/Abicraft/Examples/Abicraft/States/HolyShaking.asset
+    - Assets/Abicraft/Examples/Abicraft/States/Poisoned.asset
+    - Assets/Abicraft/Examples/Abicraft/States/HolyShaking.asset
+    - Assets/Abicraft/Examples/Abicraft/States/Poisoned.asset
     - Assets/Abicraft/Examples/Abicraft/States/HolyShaking.asset
     - Assets/Abicraft/Examples/Abicraft/States/Poisoned.asset

@@ -9,8 +9,9 @@ namespace AbicraftCore
     [CreateAssetMenu(fileName = "AbicraftGlobalDataFile", menuName = "Abicraft/Global data file", order = 2)]
     public class AbicraftGlobalDataFile : ScriptableObject
     {
-        public List<AbicraftState>  GlobalStates = new List<AbicraftState>();
-        public List<AbicraftObject> InstantiateToPool = new List<AbicraftObject>();
+        public List<AbicraftState>      GlobalStates      = new List<AbicraftState>();
+        public List<AbicraftAttribute>  GlobalAttributes  = new List<AbicraftAttribute>();
+        public List<AbicraftObject>     InstantiateToPool = new List<AbicraftObject>();
 
         [HideInInspector]
         public InspectorCache cache;

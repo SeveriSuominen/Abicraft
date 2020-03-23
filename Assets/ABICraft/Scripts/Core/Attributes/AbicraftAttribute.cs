@@ -6,7 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attribute", menuName = "Abicraft/Object/Attribute", order = 2)]
 public class AbicraftAttribute : ScriptableObject
 {
-    public string AttributeName;
+    public string       AttributeName;
+    public AttributeCategory Category;
+
+    public enum AttributeCategory
+    {
+        Base,
+        Special
+    }
 
     public enum Type
     {

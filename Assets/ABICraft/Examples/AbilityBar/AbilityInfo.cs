@@ -12,15 +12,4 @@ public class AbilityInfo : MonoBehaviour
     public RawImage icon;
     public Image cooldownFiller;
     public Text timerText;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

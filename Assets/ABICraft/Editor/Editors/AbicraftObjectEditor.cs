@@ -7,7 +7,7 @@ using UnityEngine;
 namespace AbicraftNodes.Editors
 {
     [CustomEditor(typeof(AbicraftObject))]
-    public class AbicraftObjectEditor : Editor
+    public class AbicraftObjectEditor : AbicratEditor
     {
         int instantiatePoolAmount;
 
@@ -21,7 +21,7 @@ namespace AbicraftNodes.Editors
 
             if (abicraftObject.InstantiateObjectToPool)
                 abicraftObject.InstantiateToPoolAmount = EditorGUILayout.IntField(abicraftObject.InstantiateToPoolAmount);
-
+        
             if (GUI.changed)
             {
                 EditorUtility.SetDirty(target);

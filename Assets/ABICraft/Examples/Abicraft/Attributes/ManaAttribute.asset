@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ManaAttribute
   m_EditorClassIdentifier: 
   AttributeName: Mana
+  Category: 1

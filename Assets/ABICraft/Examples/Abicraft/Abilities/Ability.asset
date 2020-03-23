@@ -1016,11 +1016,11 @@ MonoBehaviour:
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 472
-    y: 438
+    x: 1244.6571
+    y: 817
     width: 60
     height: 422.46118
-  dir: left
+  dir: right
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-1450810139861958971
