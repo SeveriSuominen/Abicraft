@@ -46,8 +46,8 @@ namespace AbicraftNodes.Object
             collider.convex = true;
             collider.isTrigger = true;
 
-            cone.position = GetInputValue<Vector3>(e, "Position", Position);
-            cone.direction = GetInputValue<Vector3>(e, "Direction", Direction);
+            cone.position    = GetInputValue<Vector3>(e, "Position", Position);
+            cone.direction   = GetInputValue<Vector3>(e, "Direction", Direction);
             cone.radiusInner = GetInputValue<float>(e, "radiusInner", radiusInner); 
             cone.radiusOuter = GetInputValue<float>(e, "radiusOuter", radiusOuter);
             cone.angle = GetInputValue<float>(e, "angle", angle); 

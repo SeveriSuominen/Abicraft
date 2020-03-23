@@ -5,7 +5,7 @@ using UnityEngine;
 namespace AbicraftMonos.Action
 {
     //[RequireComponent(typeof(Rigidbody))]
-    public class Missile : AbicraftActionMono
+    public class SkillShot : AbicraftActionMono
     {
         public Vector3 towards;
         public float StartSpeed, EndSpeed;

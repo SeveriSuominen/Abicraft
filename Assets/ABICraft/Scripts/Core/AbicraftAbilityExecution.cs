@@ -79,6 +79,11 @@ namespace AbicraftCore
             initial_snapshot = AbicraftGameStateSnapshot.TakeSnapshot;
         }
 
+        public void End()
+        {
+            dispatcher.EndAbicraftAbilityExecution(this);
+        }
+
         public void Reset()
         {
             current_node_executions.Add(

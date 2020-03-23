@@ -36,7 +36,7 @@ namespace AbicraftNodes.Action
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             AbicraftObject temp = AbicraftObjectPool.Spawn(GetInputValue(e, "missile", missile), null);
-            Missile shot = temp.gameObject.AddComponent<Missile>();
+            SkillShot shot = temp.gameObject.AddComponent<SkillShot>();
 
             shot.startpoint = GetInputValue<Vector3>(e, "startPosition");
             shot.towards    = GetInputValue<Vector3>(e, "direction");

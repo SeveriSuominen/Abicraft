@@ -15,7 +15,7 @@ namespace AbicraftNodes.Object
         public override void Evaluate(AbicraftNodeExecution execution)
         {
             AbicraftGameStateSnapshot snapshot = execution.ae.initial_snapshot;
-
+          
             AbicraftObject obj;
 
             if ((obj = snapshot.camera.GetComponent<AbicraftObject>()) == null)
