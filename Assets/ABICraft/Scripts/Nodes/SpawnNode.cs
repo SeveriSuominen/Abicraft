@@ -20,6 +20,8 @@ namespace AbicraftNodes.Action
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public Vector3 spawnPosition, spawnRotation;
 
+        public bool RandomYRot;
+
         public override void Initialize(AbicraftNodeExecution execution)
         {
            
@@ -29,10 +31,15 @@ namespace AbicraftNodes.Action
         {
             AddLoopKey(e);
 
+            var rotation = GetInputValue<Vector3>(e, "spawnRotation", spawnRotation);
+
+            if (RandomYRot)
+                rotation.y = Random.Range(0, 180);
+
             AbicraftObject abj = AbicraftObjectPool.Spawn (
                 GetInputValue<AbicraftObject>(e, "ObjectToSpawn", ObjectToSpawn),
                 GetInputValue<Vector3>(e, "spawnPosition", spawnPosition),
-                Quaternion.Euler(GetInputValue<Vector3>(e, "spawnRotation", spawnRotation)),
+                Quaternion.Euler(rotation),
                 null
             );
 

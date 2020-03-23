@@ -37,7 +37,6 @@ namespace AbicraftNodes.Action
                 while (e.IsBlocked())
                 {
                     AbicraftSignal signal = GetInputValue<AbicraftSignal>(e, "ActiveSignal", null);
-                    Debug.Log(signal);
 
                     if ((recast.ActionIsComplete && recast.ActionWasSuccess) || (signal != null && signal.Active))
                     {

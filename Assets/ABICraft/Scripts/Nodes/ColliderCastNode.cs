@@ -54,7 +54,6 @@ namespace AbicraftNodes.Action
                 yield return new WaitForFixedUpdate();
 
                 Collisions = cast.abj_collisions;
-                Debug.Log(cast.abj_collisions.Count);
 
                 Destroy(cast);
                 Destroy(controller);
