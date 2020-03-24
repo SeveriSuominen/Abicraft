@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2336338970257520569}
   - component: {fileID: 2336338970257520568}
   - component: {fileID: 6389469509475229666}
-  - component: {fileID: 8452418291476228672}
   m_Layer: 2
   m_Name: CircleCastCollinder
   m_TagString: Untagged
@@ -117,16 +116,3 @@ MonoBehaviour:
   PoolIndex: 0
   IsSceneObject: 0
   IsPoolingClone: 0
---- !u!65 &8452418291476228672
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2336338970257520575}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.95, y: 0.95, z: 200}
-  m_Center: {x: 0, y: 0, z: 0}

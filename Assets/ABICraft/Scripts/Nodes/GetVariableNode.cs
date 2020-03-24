@@ -24,9 +24,6 @@ namespace AbicraftNodes.Action
 
                 if (index >= 0)
                 {
-                    Debug.Log(index);
-                    Debug.Log(e.ae.variables[graph.variableDefinitions[selectedIndex - 1].VARIABLE_NAME]);
-
                     return e.ae.variables[graph.variableDefinitions[selectedIndex - 1].VARIABLE_NAME];
                 }
                 else

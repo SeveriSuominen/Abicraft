@@ -15,7 +15,8 @@ namespace AbicraftNodeEditor {
     [CustomNodeEditor(typeof(AbicraftNode))]
     public class NodeEditor : AbicraftNodeEditor.Internal.NodeEditorBase<NodeEditor, NodeEditor.CustomNodeEditorAttribute, AbicraftNode> {
 
-        private readonly Color DEFAULTCOLOR = new Color32(255, 255,255, 255);//new Color32(90, 97, 105, 255);
+        private   readonly Color DEFAULTCOLOR = new Color32(255, 255,255, 255);//new Color32(90, 97, 105, 255);
+        protected readonly Color ERRORCOLOR = new Color(1f, 0.55f, 0.55f, 1f);
         public readonly static float width = 208;
         /// <summary> Fires every whenever a node was modified through the editor </summary>
         public static Action<AbicraftNode> onUpdateNode;

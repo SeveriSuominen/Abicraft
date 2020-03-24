@@ -9,11 +9,10 @@ using AbicraftNodes.Meta;
 
 namespace AbicraftNodes.Action
 {
-    [DisallowMultipleComponent]
     public class ColliderCastNode : AbicraftExecutionNode
     {
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
-        public AbicraftObject markerCollider;
+        public AbicraftObject collider;
 
         [Output]
         public AbicraftSignal Casted;
@@ -28,7 +27,7 @@ namespace AbicraftNodes.Action
         {
             Casted = new AbicraftSignal();
 
-            AbicraftObject abj_marker = AbicraftObjectPool.Spawn(GetInputValue(e, "markerCollider", markerCollider), null);
+            AbicraftObject abj_marker = AbicraftObjectPool.Spawn(GetInputValue(e, "markerCollider", collider), null);
             ObjectToMouseController controller = abj_marker.gameObject.AddComponent<ObjectToMouseController>();
 
             AbicraftGameStateSnapshot snapshot = e.ae.initial_snapshot;
@@ -37,7 +36,8 @@ namespace AbicraftNodes.Action
 
             controller.abj = abj_marker;
             controller.cam = snapshot.camera;
-            controller.keyCode = KeyCode.Mouse1;
+            controller.keyCode = KeyCode.Mouse0;
+
             controller.StartActionMono(e.ae.GetCooldownLeft(), false);
 
             while ((controller && !controller.ActionIsComplete))

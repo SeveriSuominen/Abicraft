@@ -24,11 +24,11 @@ namespace AbicraftNodes.Action
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbicraftObject obj = e.ae.senderObject;
+            AbicraftObject abj = e.ae.senderObject;
 
-            if(obj != null)
+            if(abj != null)
             {
-                Recast recast = obj.gameObject.AddComponent<Recast>();
+                Recast recast = abj.gameObject.AddComponent<Recast>();
                 //recast.keyCode = KeyCode;
 
                 //Automatically ending actionmono as FALSE after cooldown elapsed so we dont proceed with ability execution;

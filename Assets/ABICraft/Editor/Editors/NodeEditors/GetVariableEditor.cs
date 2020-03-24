@@ -65,11 +65,17 @@ namespace AbicraftNodes.Editors
             GUIStyle styleW = new GUIStyle(EditorStyles.popup);
             styleW.normal.textColor = node.selectedIndex == 0 ? Color.red : Color.black;
 
+            Color col = GUI.color;
+            if (node.selectedIndex == 0)
+            {
+                GUI.color = ERRORCOLOR;
+            }
+
             node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, variableNames.ToArray(), styleW);
+            GUI.color = col;
 
             if(lastSelectedIndex != node.selectedIndex)
             {
-
                 // SHOULD BE MAX ONE
                 List<NodePort> portConnections = new List<NodePort>();  
                 foreach(var dport in node.DynamicOutputs)
