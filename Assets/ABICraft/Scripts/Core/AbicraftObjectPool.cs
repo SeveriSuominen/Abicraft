@@ -1,4 +1,5 @@
 ﻿using AbicraftMonos;
+using AbicraftMonos.Action;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,22 +57,28 @@ namespace AbicraftCore
 
         public static bool Despawn(GameObject gameObj)
         {
-            AbicraftObject obj;
+            AbicraftObject abj;
 
-            if (gameObj && (obj = gameObj.GetComponent<AbicraftObject>()))
+            if (gameObj && (abj = gameObj.GetComponent<AbicraftObject>()))
             {
-                return Despawn(obj);
+                return Despawn(abj);
             }
             Debug.LogError("Abicraft: Trying to despawn object from pool with gameObject instance that is not AbicraftObject");
             return false;
         }
 
-        public static bool Despawn(AbicraftObject obj)
+        public static bool Despawn(AbicraftObject abj)
         {
             for (int i = 0; i < pool.Count; i++)
             {
-                if (pool[i] == obj && pool[i].ActivePool)
+                if (pool[i] == abj && pool[i].ActivePool)
                 {
+                    AbicraftActionMono[] monos = abj.GetComponents<AbicraftActionMono>();
+                    for (int j = 0; j < monos.Length; j++)
+                    {
+                        monos[j].ResetWhenPooled();
+                    }
+
                     pool[i].transform.SetParent(abicraftObjectPoolParent.transform);
                     pool[i].ActivePool = false;
 
@@ -82,7 +89,7 @@ namespace AbicraftCore
                 }
             }
             Debug.LogWarning("Abicraft: Couldn't find object to despawn. Destroing instead.");
-            GameObject.Destroy(obj.gameObject);
+            GameObject.Destroy(abj.gameObject);
             return false;
         }
 

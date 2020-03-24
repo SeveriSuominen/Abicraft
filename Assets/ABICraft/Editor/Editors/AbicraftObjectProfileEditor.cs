@@ -19,23 +19,24 @@ namespace AbicraftNodes.Editors
         
             GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
 
-            GUILayout.BeginVertical(gstyle);
+            GUILayout.BeginVertical();
             GUILayout.Label("Name", EditorStyles.boldLabel);
             GuiLine(1);
             GuiSpace(5);
             profile.TypeName = GUILayout.TextField(profile.TypeName);
 
             GuiSpace(5);
-            GUILayout.Label("Passive abilites are looped until life time ends or passive ability is interupted", gstyle);
+            
 
             GUILayout.EndVertical();
             GuiSpace(5);
 
-            GUILayout.BeginVertical(gstyle);
+            GUILayout.BeginVertical();
             GUILayout.Label("Attributes", EditorStyles.boldLabel);
             GuiLine(1);
             GuiSpace(5);
             GUILayout.Label("Base", EditorStyles.boldLabel);
+            GUILayout.Label("Base attributes are automatically included in every Abicraft object.", gstyle);
             GuiSpace(5);
             GuiLine(1);
             GuiSpace(5);

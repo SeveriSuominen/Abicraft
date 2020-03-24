@@ -8,6 +8,7 @@ using UnityEngine;
 public class StateApplyTimedWrapper : AbicraftActionMono
 {
     public AbicraftObject obj;
+    public AbicraftObject senderObject;
     public AbicraftState state;
     public float passiveAbilityLifetime;
 
@@ -24,7 +25,7 @@ public class StateApplyTimedWrapper : AbicraftActionMono
     {
         if (obj)
         {
-            obj.RemoveState(state);
+            obj.RemoveState(senderObject, state);
         }
     }
 

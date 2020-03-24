@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: MagicDamageAttribute
   m_EditorClassIdentifier: 
   AttributeName: Magic Damage
+  AttributeIcon: {fileID: 2800000, guid: ec4f51b6ab99c154795b2ba4da579564, type: 3}
+  Category: 0

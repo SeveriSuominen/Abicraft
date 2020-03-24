@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ManaAttribute
   m_EditorClassIdentifier: 
   AttributeName: Mana
-  Category: 1
+  AttributeIcon: {fileID: 2800000, guid: 8fcdc58a7201c274b80eebb47c3a2809, type: 3}
+  Category: 0

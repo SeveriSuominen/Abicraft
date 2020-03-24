@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: PhysicalDamageAttribute
   m_EditorClassIdentifier: 
   AttributeName: Physical Damage
+  AttributeIcon: {fileID: 2800000, guid: 2fe76ab4503873e4a9576e67dd334d24, type: 3}
+  Category: 0

@@ -531,7 +531,7 @@ namespace AbicraftNodeEditor {
                         culledNodes.Add(node);
                         continue;
                     }
-                } else if (culledNodes.Contains(node)) continue;
+                } else if (culledNodes != null && culledNodes.Contains(node)) continue;
 
                 if (e.type == EventType.Repaint) {
                     removeEntries.Clear();

@@ -84,12 +84,12 @@ namespace AbicraftNodes.Editors
             GuiLine(1);
             GuiSpace(5);
             EditorGUIUtility.SetIconSize(new Vector2(16, 16));
-
+            GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
             if (abicraft)
             {
                 for (int i = 0; i < node.allSelectedIndices.Count; i++)
                 {
-                    GUILayout.BeginHorizontal();
+                    GUILayout.BeginHorizontal(gstyle);
 
                     GUIStyle style = new GUIStyle();
                     style.fontSize = 13;

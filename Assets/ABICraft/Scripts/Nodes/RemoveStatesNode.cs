@@ -48,7 +48,7 @@ namespace AbicraftNodes.Action
                 {
                     var state = AbicraftGlobalContext.abicraft.dataFile.GlobalStates[index-1];
 
-                    obj.RemoveState(state);
+                    obj.RemoveState(e.ae.senderObject, state);
                 }
             }
 

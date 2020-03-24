@@ -47,10 +47,11 @@ namespace AbicraftNodes.Editors
             // if(node.icon != null)
             // GUI.DrawTexture(new Rect(10, 10, 60, 60), node.icon, ScaleMode.ScaleToFit, true, 10.0F);
 
-            GUILayout.Space(15);
+            GUILayout.Space(25);
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Out"), GUIContent.none);
-            GUILayout.Space(15);
-            Rect dotRect = new Rect(80, 35, 100, 0);
+            GUILayout.Space(5);
+
+            Rect dotRect = new Rect(80, 45, 100, 0);
             dotRect.size = new Vector2(50, 50);
 
             if (node.graph)
@@ -60,8 +61,8 @@ namespace AbicraftNodes.Editors
                 styleName.alignment = TextAnchor.MiddleCenter;
                 styleName.fontSize = 18;
 
-                GuiSpace(5);
-                GuiLine(1);
+                GuiSpace(20);
+                GuiLine(2);
                 GuiSpace(5);
 
                 GUILayout.Label(node.graph.AbilityName, styleName);
@@ -82,7 +83,7 @@ namespace AbicraftNodes.Editors
                 GUI.color = Color.white;
 
                 GuiSpace(5);
-                GuiLine(1);
+                GuiLine(2);
                 GuiSpace(5);
 
                 GUILayout.Label("Ability name", style);

@@ -55,6 +55,11 @@ namespace AbicraftMonos.Action
             
         }
 
+        public virtual void ResetWhenPooled()
+        {
+
+        }
+
         public void StartActionMono(float completeAfterSeconds, bool completeAs)
         {
             this.CompleteAfterSecondsAmount = completeAfterSeconds;

@@ -10,8 +10,8 @@ public class AttributeChangeTimedWrapper : AbicraftActionMono
     public AbicraftObject    obj;
     public AbicraftAttribute attribute;
 
-    public float setToValue;
-           float differenceToOriginal;
+    public int setToValue;
+           int differenceToOriginal;
 
 
     AbicraftAttribute.AbicraftObjectAttribute attributeObject;

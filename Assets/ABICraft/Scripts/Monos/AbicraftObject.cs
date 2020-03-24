@@ -32,6 +32,16 @@ namespace AbicraftMonos
         public AbicraftAttribute.AbicraftObjectAttributeMap attributes { get; private set; }
         public readonly List<AbicraftState> activeStates = new List<AbicraftState>();
 
+        public enum Interaction
+        {
+            Success,
+            Failed,
+            ImmuneToState,
+            DontHaveAttribute,
+            AlreadyHasState,
+            AllwaysMustHaveState
+        }
+
         void Awake()
         {
             ImplementProfile();
@@ -43,7 +53,6 @@ namespace AbicraftMonos
                 Debug.LogError("Abicraft: Physical Abicraft objects without rigidBody not allowed: " + gameObject.name);
                 return;
             }
-
             AbicraftGlobalContext.AllObjects.Add(this);
         }
 
@@ -62,22 +71,46 @@ namespace AbicraftMonos
                 //APPLYING STATES TO OBJECT;
                 for (int i = 0; i < Profile.allwaysHasStates.Count; i++)
                 {
-                    ApplyState(activeStates[i]);
+                    ApplyState(null, activeStates[i]);
                 }
             }
         }
+        public int GetAttributeAmount(AbicraftObject senderObject, AbicraftAttribute attribute)
+        {
+            AbicraftAttribute.AbicraftObjectAttribute attributeObject;
 
-        public void SetAttributeValue(AbicraftAttribute attribute, float setTo, float seconds)
+            if ((attributeObject = attributes[attribute]) != null)
+            {
+                return attributeObject.baseValue;
+            }
+            return -1;
+        }
+
+        public  Interaction SetAttributeValue(AbicraftObject senderObject, AbicraftAttribute attribute, int setTo)
         {
             AbicraftAttribute.AbicraftObjectAttribute attributeObject;
 
             if ((attributeObject = attributes[attribute]) != null)
             {
                 attributeObject.baseValue = setTo;
+                return Interaction.Success;
             }
+            return Interaction.DontHaveAttribute;
         }
 
-        public void SetAttributeValueForSeconds(AbicraftAttribute attribute, float setTo, float seconds)
+        public Interaction ImpactAttributeValue(AbicraftObject senderObject, AbicraftAttribute attribute, int amount)
+        {
+            AbicraftAttribute.AbicraftObjectAttribute attributeObject;
+
+            if ((attributeObject = attributes[attribute]) != null)
+            {
+                attributeObject.baseValue = attributeObject.baseValue + amount;
+                return Interaction.Success;
+            }
+            return Interaction.DontHaveAttribute;
+        }
+
+        public Interaction SetAttributeValueForSeconds(AbicraftObject senderObject, AbicraftAttribute attribute, int setTo, float seconds)
         {
             AbicraftAttribute.AbicraftObjectAttribute attributeObject;
 
@@ -90,10 +123,12 @@ namespace AbicraftMonos
                 wrapper.setToValue = setTo;
 
                 wrapper.StartActionMono(seconds, true);
+                return Interaction.Success;
             }
+            return Interaction.DontHaveAttribute;
         }
 
-        public void IncreaseAttributeForSeconds(AbicraftAttribute attribute, float amount, float seconds)
+        public Interaction ImpactAttributeForSeconds(AbicraftObject senderObject, AbicraftAttribute attribute, int amount, float seconds)
         {
             AbicraftAttribute.AbicraftObjectAttribute attributeObject;
 
@@ -106,91 +141,131 @@ namespace AbicraftMonos
                 wrapper.setToValue = attributeObject.baseValue + amount;
 
                 wrapper.StartActionMono(seconds, true);
+
+                return Interaction.Success;
             }
+            return Interaction.DontHaveAttribute;
         }
 
-        public void ApplyStateForSeconds(AbicraftState state, float seconds = -1)
+        public Interaction ApplyStateForSeconds(AbicraftObject senderObject, AbicraftState state, float seconds = -1)
         {
             if (!activeStates.Contains(state))
             {
-                if (state.statePassiveAbility.Passive == false)
+                if(!Profile.IsImmuneToState(state))
                 {
-                    Debug.LogError("Abicraft: Only passive abilities allowed for states");
-                    return;
+                    if (state.statePassiveAbility.Passive == false)
+                    {
+                        Debug.LogError("Abicraft: Only passive abilities allowed for states");
+                        return Interaction.Failed;
+                    }
+
+                    StateApplyTimedWrapper wrapper = gameObject.AddComponent<StateApplyTimedWrapper>();
+
+                    wrapper.obj = this;
+                    wrapper.state = state;
+                    wrapper.passiveAbilityLifetime = seconds < 0 ? wrapper.state.statePassiveAbility.DefaultLifetime : seconds;
+
+                    wrapper.StartActionMono(wrapper.passiveAbilityLifetime, true);
+
+                    return Interaction.Success;
                 }
 
-                StateApplyTimedWrapper wrapper = gameObject.AddComponent<StateApplyTimedWrapper>();
-
-                wrapper.obj   = this;
-                wrapper.state = state;
-                wrapper.passiveAbilityLifetime = seconds < 0 ? wrapper.state.statePassiveAbility.DefaultLifetime : seconds;
-
-                wrapper.StartActionMono(wrapper.passiveAbilityLifetime, true);
+                return Interaction.ImmuneToState;
             }
+            return Interaction.AlreadyHasState;
         }
 
-        public void ApplyState(AbicraftState state)
+        public Interaction ApplyState(AbicraftObject senderObject, AbicraftState state)
         {
-            if (!activeStates.Contains(state) && !Profile.IsImmuneToState(state))
+            if (!activeStates.Contains(state))
             {
-                if(state.statePassiveAbility.Passive == false)
+                if (!Profile.IsImmuneToState(state))
                 {
-                    Debug.LogError("Abicraft: Only passive abilities allowed for states");
-                    return;
+                    if (state.statePassiveAbility.Passive == false)
+                    {
+                        Debug.LogError("Abicraft: Only passive abilities allowed for states");
+                        return Interaction.Failed;
+                    }
+                    AbicraftGlobalContext.abicraft.dispatcher.Dispatch(this, state.statePassiveAbility, state.statePassiveAbility.DefaultLifetime);
+                    activeStates.Add(state);
+                    return Interaction.Success;
                 }
-
-                AbicraftGlobalContext.abicraft.dispatcher.Dispatch(this, state.statePassiveAbility, state.statePassiveAbility.DefaultLifetime);
-                activeStates.Add(state);
+                return Interaction.ImmuneToState;
             }
+            return Interaction.AlreadyHasState;
         }
 
-        public void RemoveState(AbicraftState state)
+        public Interaction RemoveState(AbicraftObject senderObject, AbicraftState state)
         {
-            if (activeStates.Contains(state) && !Profile.AllwaysHasState(state))
+            if (activeStates.Contains(state))
             {
-                AbicraftAbilityDispatcher dispatcher = AbicraftGlobalContext.abicraft.dispatcher;
-                List<AbicraftAbilityExecution> executions = dispatcher.GetActiveExecutionsBySenderObject(state.statePassiveAbility, this);
-
-                for (int i = 0; i < executions.Count; i++)
+                if (!Profile.AllwaysHasState(state))
                 {
-                    dispatcher.EndAbicraftAbilityExecution(executions[i]);
-                }
+                    AbicraftAbilityDispatcher dispatcher = AbicraftGlobalContext.abicraft.dispatcher;
+                    List<AbicraftAbilityExecution> executions = dispatcher.GetActiveExecutionsBySenderObject(state.statePassiveAbility, this);
 
-                StateApplyTimedWrapper[] wrappers = GetComponents<StateApplyTimedWrapper>();
+                    for (int i = 0; i < executions.Count; i++)
+                    {
+                        dispatcher.EndAbicraftAbilityExecution(executions[i]);
+                    }
 
-                for (int i = 0; i < wrappers.Length; i++)
-                {
-                    if(wrappers[i].state == state)
-                        wrappers[i].CompleteActionAs(true);
+                    StateApplyTimedWrapper[] wrappers = GetComponents<StateApplyTimedWrapper>();
+
+                    for (int i = 0; i < wrappers.Length; i++)
+                    {
+                        if (wrappers[i].state == state)
+                            wrappers[i].CompleteActionAs(true);
+                    }
+                    activeStates.Remove(state);
+                    return Interaction.Success;
                 }
-                activeStates.Remove(state);
+                return Interaction.AllwaysMustHaveState;
             }
+            return Interaction.Success;
         }
 
-        public void RemoveStates(params AbicraftState[] states)
+        public List<Interaction> RemoveStates(AbicraftObject senderObject, params AbicraftState[] states)
         {
+            List<Interaction> interactions = new List<Interaction>();
+
             for (int i = 0; i < states.Length; i++)
             {
-                RemoveState(states[i]);
+                interactions.Add(RemoveState(senderObject, states[i]));
             }
+
+            return interactions;
         }
 
-        public void RemoveAllStates()
+        public List<Interaction> RemoveAllStates(AbicraftObject senderObject)
         {
+            List<Interaction> interactions = new List<Interaction>();
+
             for (int i = 0; i < activeStates.Count; i++)
             {
-                if(!Profile.AllwaysHasState(activeStates[i]))
+                if (!Profile.AllwaysHasState(activeStates[i]))
+                {
                     activeStates.RemoveAt(i);
+                    interactions.Add(Interaction.Success);
+                }
+                interactions.Add(Interaction.AllwaysMustHaveState);
             }
+            return interactions;
         }
 
-        public void RemoveAllStatesTypeOf(AbicraftState.StateType stateType)
+        public List<Interaction> RemoveAllStatesTypeOf(AbicraftObject senderObject, AbicraftState.StateType stateType)
         {
+            List<Interaction> interactions = new List<Interaction>();
+
             for (int i = 0; i < activeStates.Count; i++)
             {
                 if (activeStates[i].type == stateType && !Profile.AllwaysHasState(activeStates[i]))
+                {
                     activeStates.RemoveAt(i);
+                    interactions.Add(Interaction.Success);
+                }
+                interactions.Add(Interaction.AllwaysMustHaveState);
             }
+            return interactions;
         }
 
         public void ResetObject()
@@ -198,6 +273,8 @@ namespace AbicraftMonos
             transform.position   = Original.transform.position;
             transform.rotation   = Original.transform.rotation;
             transform.localScale = Original.transform.localScale;
+
+            ImplementProfile();
         }
     }
 }

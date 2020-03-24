@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: HealthAttribute
   m_EditorClassIdentifier: 
   AttributeName: Health
+  AttributeIcon: {fileID: 2800000, guid: 035e6fc27cf963b41bc57ccdca4a0bfb, type: 3}
+  Category: 0

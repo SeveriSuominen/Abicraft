@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ArmorAttribute
   m_EditorClassIdentifier: 
   AttributeName: Armor
+  AttributeIcon: {fileID: 2800000, guid: d14376b301e61484497606508d37d0bb, type: 3}
+  Category: 0

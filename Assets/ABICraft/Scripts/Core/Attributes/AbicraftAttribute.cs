@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AbicraftCore;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,20 @@ using UnityEngine;
 public class AbicraftAttribute : ScriptableObject
 {
     public string       AttributeName;
+    public Texture2D    AttributeIcon;
     public AttributeCategory Category;
+
+    public static AbicraftAttribute Attribute(string name)
+    {
+        for (int i = 0; i < AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes.Count; i++)
+        {
+            var attr = AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes[i];
+
+            if (attr.AttributeName == name)
+                return attr;
+        }
+        return null;
+    }
 
     public enum AttributeCategory
     {
@@ -30,12 +44,22 @@ public class AbicraftAttribute : ScriptableObject
 
         public AbicraftObjectAttributeMap(AbicraftObjectProfile profile)
         {
-            ATTRIBUTES = new AbicraftObjectAttribute[profile.attributes.Count];
+            //TEMPORARY
+            List<AbicraftAttribute> all_attrs = AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes;
+            ATTRIBUTES = new AbicraftObjectAttribute[all_attrs.Count];
 
+            for (int i = 0; i < all_attrs.Count; i++)
+            {
+                ATTRIBUTES[i] = new AbicraftObjectAttribute(all_attrs[i]);
+            }
+           
+
+            //ATTRIBUTES = new AbicraftObjectAttribute[profile.attributes.Count];
+            /*
             for (int i = 0; i < profile.attributes.Count; i++)
             {
                 ATTRIBUTES[i] = new AbicraftObjectAttribute(profile.attributes[i]);
-            }
+            }*/
         }
 
         public AbicraftObjectAttribute this[AbicraftAttribute attribute]
@@ -61,14 +85,12 @@ public class AbicraftAttribute : ScriptableObject
         public AbicraftAttribute attribute;
 
         public AnimationCurve powerCurve;
-        public float baseValue;
+        public int baseValue;
 
         public AbicraftObjectAttribute(){}
-        public AbicraftObjectAttribute(AbicraftObjectAttribute attributeObject)
+        public AbicraftObjectAttribute(AbicraftAttribute attribute)
         {
-            this.attribute  = attributeObject.attribute;
-            this.powerCurve = attributeObject.powerCurve;
-            this.baseValue  = attributeObject.baseValue;
+            this.attribute = attribute;
         }
     }
 }

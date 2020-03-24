@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using AbicraftMonos.Action;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecalFade : MonoBehaviour
+public class DecalFade : AbicraftActionMono
 {
     public float FadeOverSeconds;
     float elapsed;
@@ -16,6 +17,17 @@ public class DecalFade : MonoBehaviour
         rnd = GetComponent<MeshRenderer>();
     }
 
+    public override void ResetWhenPooled()
+    {
+        active = true;
+        Color col = rnd.material.GetColor("_Color");
+        col.a = 1;
+
+        elapsed = 0;
+
+        rnd.material.SetColor("_Color", col);
+    }
+
     void FixedUpdate()
     {
         if (active)
@@ -27,8 +39,9 @@ public class DecalFade : MonoBehaviour
             rnd.material.SetColor("_Color", col);
 
             if (elapsed > FadeOverSeconds)
+            {
                 active = false;
+            }
         }
-  
     }
 }

@@ -87,12 +87,12 @@ namespace AbicraftNodes.Editors
             GuiSpace(5);
 
             EditorGUIUtility.SetIconSize(new Vector2(16, 16));
-
+            GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
             if (abicraft)
             {
                 for (int i = 0; i < node.allSelectedIndices.Count; i++)
                 {
-                    GUILayout.BeginHorizontal();
+                    GUILayout.BeginHorizontal(gstyle);
                   
 
                     GUIStyle styleState = new GUIStyle();

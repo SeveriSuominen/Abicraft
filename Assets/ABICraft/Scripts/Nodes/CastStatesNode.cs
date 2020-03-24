@@ -22,10 +22,7 @@ namespace AbicraftNodes.Action
         [HideInInspector]
         public List<int> allSelectedIndices = new List<int>();
 
-        public override void Initialize(AbicraftNodeExecution execution)
-        {
-           
-        }
+        public override void Initialize(AbicraftNodeExecution execution){}
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
@@ -39,7 +36,7 @@ namespace AbicraftNodes.Action
 
                     if (!obj.activeStates.Contains(state))
                     {
-                        obj.ApplyStateForSeconds(state);
+                        obj.ApplyStateForSeconds(e.ae.senderObject, state);
                     }
                 }
             }
