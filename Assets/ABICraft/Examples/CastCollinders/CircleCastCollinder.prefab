@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6389469509475229666}
   - component: {fileID: 8452418291476228672}
   m_Layer: 2
-  m_Name: Test_marker
+  m_Name: CircleCastCollinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   Profile: {fileID: 11400000, guid: cc78fdf9b10aa7d40bb1af0a0e027164, type: 2}
   rigidBody: {fileID: 0}
   InstantiateObjectToPool: 1
-  InstantiateToPoolAmount: 70
+  InstantiateToPoolAmount: 80
   Original: {fileID: 0}
   ActivePool: 0
   PoolIndex: 0

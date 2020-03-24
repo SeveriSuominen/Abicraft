@@ -14,13 +14,19 @@ public class ShowAttributeText : MonoBehaviour
     void Start()
     {
         attr = AbicraftAttribute.Attribute("Mana");
-
-        abj.SetAttributeValue(abj, attr, 1000);
         text = GetComponent<Text>();
     }
 
     void Update()
     {
-        text.text = abj.GetAttributeAmount(abj, attr).ToString();
+        string txt = "";
+
+        var list = abj.attributes.GetList();
+
+        for (int i = 0; i < list.Length; i++)
+        {
+            txt += "(" + list[i].attribute.name + " : " + list[i].baseValue + "), ";
+        }
+        text.text = txt;
     }
 }

@@ -20,7 +20,17 @@ namespace AbicraftNodes.Action
         {
             if (e != null)
             {
-                return e.ae.variables[graph.variableDefinitions[selectedIndex].VARIABLE_NAME];
+                var index = selectedIndex - 1;
+
+                if (index >= 0)
+                {
+                    Debug.Log(index);
+                    Debug.Log(e.ae.variables[graph.variableDefinitions[selectedIndex - 1].VARIABLE_NAME]);
+
+                    return e.ae.variables[graph.variableDefinitions[selectedIndex - 1].VARIABLE_NAME];
+                }
+                else
+                    return default;
             }
             return default;
         }

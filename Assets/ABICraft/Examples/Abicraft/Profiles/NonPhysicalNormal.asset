@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeName: NormalNonPhysical
   PhysicalObject: 0
+  Targetable: 0

@@ -3,22 +3,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static AbicraftAttribute;
+
 [System.Serializable]
 [CreateAssetMenu(fileName = "ObjectType", menuName = "Abicraft/Types/ObjectProfile", order = 2)]
 public class AbicraftObjectProfile : ScriptableObject
 {
     public string TypeName;
     public bool PhysicalObject;
+    public bool Targetable;
 
-    public readonly List<AbicraftAttribute.AbicraftObjectAttribute>    attributes        = new List<AbicraftAttribute.AbicraftObjectAttribute>();
-    public readonly List<AbicraftState>                                allwaysHasStates  = new List<AbicraftState>();
-    public readonly List<AbicraftState>                                immuneToStates    = new List<AbicraftState>();
+    public List<AbicraftAttribute.AbicraftObjectAttribute>    attributeObjects        = new List<AbicraftAttribute.AbicraftObjectAttribute>();
+    public List<AbicraftState>                                allwaysHasStates  = new List<AbicraftState>();
+    public List<AbicraftState>                                immuneToStates    = new List<AbicraftState>();
 
-    public bool HasAttribute(AbicraftAttribute attribute)
+     
+
+    public AbicraftObjectAttribute AddAttributeObject(AbicraftAttribute attribute)
     {
-        for (int i = 0; i < attributes.Count; i++)
+        var contains = false;
+
+        for (int i = 0; i < attributeObjects.Count; i++)
         {
-            if (attributes[i].attribute == attribute)
+            if (attributeObjects[i].attribute == attribute)
+            {
+                contains = true;
+                break;
+            }
+        }
+
+        if (!contains)
+        {
+            attributeObjects.Add(new AbicraftObjectAttribute(attribute));
+            return attributeObjects[attributeObjects.Count - 1];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public AbicraftObjectAttribute GetAttributeObject(AbicraftAttribute attribute)
+    {
+        for (int i = 0; i < attributeObjects.Count; i++)
+        {
+            if (attributeObjects[i].attribute == attribute)
+                return attributeObjects[i];
+        }
+        return null;
+    }
+
+    public bool HasAttributeObject(AbicraftAttribute attribute)
+    {
+        for (int i = 0; i < attributeObjects.Count; i++)
+        {
+            if (attributeObjects[i].attribute == attribute)
                 return true;
         }
         return false; 

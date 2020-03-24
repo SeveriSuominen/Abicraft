@@ -18,6 +18,11 @@ namespace AbicraftNodes.Editors
 
         
             GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
+            GUIStyle bstyle = new GUIStyle(EditorStyles.boldLabel);
+            GUIStyle b2style = new GUIStyle(EditorStyles.boldLabel);
+
+            b2style.fontSize = 14;
+            bstyle.fontSize = 12;
 
             GUILayout.BeginVertical();
             GUILayout.Label("Name", EditorStyles.boldLabel);
@@ -32,23 +37,38 @@ namespace AbicraftNodes.Editors
             GuiSpace(5);
 
             GUILayout.BeginVertical();
-            GUILayout.Label("Attributes", EditorStyles.boldLabel);
+            GUILayout.Label("Attributes", b2style);
             GuiLine(1);
             GuiSpace(5);
-            GUILayout.Label("Base", EditorStyles.boldLabel);
+            GUILayout.Label("Base", bstyle);
             GUILayout.Label("Base attributes are automatically included in every Abicraft object.", gstyle);
             GuiSpace(5);
             GuiLine(1);
+            GuiSpace(5);
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Name", bstyle, GUILayout.Width(125));
+            GUILayout.Label("Base value", bstyle, GUILayout.Width(135));
+            GUILayout.Label("Scaling", bstyle, GUILayout.Width(125));
+            GUILayout.EndHorizontal();
             GuiSpace(5);
 
             foreach (var attr in AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes)
             {
                 if(attr.Category == AbicraftAttribute.AttributeCategory.Base)
                 {
+                    AbicraftAttribute.AbicraftObjectAttribute attrObj = null;
+
+                    if ((attrObj = profile.GetAttributeObject(attr)) == null)
+                        attrObj = profile.AddAttributeObject(attr);
+
                     GUILayout.BeginHorizontal();
-
-                    GUILayout.Label(attr.AttributeName);
-
+                    
+                    GUILayout.Label(attr.AttributeName, GUILayout.Width(125));
+                    attrObj.baseValue = EditorGUILayout.IntField(attrObj.baseValue, GUILayout.Width(125));
+                    GUILayout.Space(10);
+                    attrObj.scaling = GUILayout.Toggle(attrObj.scaling, "", GUILayout.Width(15));
+                    EditorGUILayout.CurveField(attrObj.powerCurve, GUILayout.Width(250));
                     GUILayout.EndHorizontal();
                 }
             }
@@ -56,8 +76,9 @@ namespace AbicraftNodes.Editors
             GuiSpace(5);
             GuiLine(1);
             GuiSpace(5);
-            GUILayout.Label("Special", EditorStyles.boldLabel);
+            GUILayout.Label("Special", bstyle);
             GuiSpace(5);
+            GuiLine(1);
 
             foreach (var attr in AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes)
             {
@@ -73,8 +94,16 @@ namespace AbicraftNodes.Editors
                     GUILayout.EndHorizontal();
                 }
             }
-            GUILayout.EndVertical();
+            GuiSpace(5);
+            GUILayout.Label("Options", b2style);
+            GuiLine(1);
+            GuiSpace(5);
 
+            profile.PhysicalObject = GUILayout.Toggle(profile.PhysicalObject, "Physical Object");
+            profile.Targetable = GUILayout.Toggle(profile.Targetable, "Targetable");
+
+            GUILayout.EndVertical();
+            GuiSpace(5);
             GuiLine(1);
 
             //if (abicraftObject.InstantiateObjectToPool)

@@ -42,24 +42,20 @@ public class AbicraftAttribute : ScriptableObject
 
         public int Count { get { return ATTRIBUTES.Length; } }
 
+
+        public AbicraftObjectAttribute[] GetList()
+        {
+            return ATTRIBUTES;
+        }
+
         public AbicraftObjectAttributeMap(AbicraftObjectProfile profile)
         {
-            //TEMPORARY
-            List<AbicraftAttribute> all_attrs = AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes;
-            ATTRIBUTES = new AbicraftObjectAttribute[all_attrs.Count];
-
-            for (int i = 0; i < all_attrs.Count; i++)
+            ATTRIBUTES = new AbicraftObjectAttribute[profile.attributeObjects.Count];
+            
+            for (int i = 0; i < profile.attributeObjects.Count; i++)
             {
-                ATTRIBUTES[i] = new AbicraftObjectAttribute(all_attrs[i]);
+                ATTRIBUTES[i] = new AbicraftObjectAttribute(profile.attributeObjects[i]);
             }
-           
-
-            //ATTRIBUTES = new AbicraftObjectAttribute[profile.attributes.Count];
-            /*
-            for (int i = 0; i < profile.attributes.Count; i++)
-            {
-                ATTRIBUTES[i] = new AbicraftObjectAttribute(profile.attributes[i]);
-            }*/
         }
 
         public AbicraftObjectAttribute this[AbicraftAttribute attribute]
@@ -86,11 +82,22 @@ public class AbicraftAttribute : ScriptableObject
 
         public AnimationCurve powerCurve;
         public int baseValue;
+        public bool scaling;
 
         public AbicraftObjectAttribute(){}
+
         public AbicraftObjectAttribute(AbicraftAttribute attribute)
         {
-            this.attribute = attribute;
+            this.attribute  = attribute;
+            this.powerCurve = new AnimationCurve();
+        }
+
+        public AbicraftObjectAttribute(AbicraftObjectAttribute attributeObj)
+        {
+            this.attribute  = attributeObj.attribute;
+            this.powerCurve = attributeObj.powerCurve;
+            this.baseValue  = attributeObj.baseValue;
+            this.scaling    = attributeObj.scaling;
         }
     }
 }

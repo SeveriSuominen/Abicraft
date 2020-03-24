@@ -37,9 +37,12 @@ namespace AbicraftNodes.Editors
             dotRect.size = new Vector2(16, 16);
             dotRect.y += 6;
 
-            /*GUI.color =  node.data.statusColor;
-            GUI.DrawTexture(dotRect, NodeEditorResources.dot);
-            GUI.color = Color.white;*/
+            if(node.selectedIndex == 0)
+            {
+                GUI.color = Color.red;
+                GUI.DrawTexture(dotRect, NodeEditorResources.dot);
+                GUI.color = Color.white;
+            }
         }
 
         public override void OnBodyGUI()
@@ -50,19 +53,40 @@ namespace AbicraftNodes.Editors
             List<string> variableNames = new List<string>();
             List<Type>   variableTypes = new List<Type>();
 
+            variableNames.Add("None");
+            variableTypes.Add(typeof(object));
+
             for (int i = 0; i < node.graph.variableDefinitions.Count; i++)
             {
                 variableNames.Add(node.graph.variableDefinitions[i].VARIABLE_NAME);
                 variableTypes.Add(node.graph.variableDefinitions[i].VARIABLE_TYPE);
             }
 
-            node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, variableNames.ToArray());
+            GUIStyle styleW = new GUIStyle(EditorStyles.popup);
+            styleW.normal.textColor = node.selectedIndex == 0 ? Color.red : Color.black;
+
+            node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, variableNames.ToArray(), styleW);
 
             if(lastSelectedIndex != node.selectedIndex)
             {
-                node.ClearDynamicPorts();
-                node.AddDynamicOutput(variableTypes[node.selectedIndex], AbicraftNode.ConnectionType.Multiple, AbicraftNode.TypeConstraint.None, "Value");
 
+                // SHOULD BE MAX ONE
+                List<NodePort> portConnections = new List<NodePort>();  
+                foreach(var dport in node.DynamicOutputs)
+                {
+                    portConnections = dport.GetConnections();
+                }
+
+                node.ClearDynamicPorts();
+
+                node.AddDynamicOutput(variableTypes[node.selectedIndex], AbicraftNode.ConnectionType.Multiple, AbicraftNode.TypeConstraint.None, "Value");
+                NodePort port = node.GetOutputPort("Value");
+
+                for (int i = 0; i < portConnections.Count; i++)
+                {
+                    port.Connect(portConnections[i]);
+                }
+               
                 lastSelectedIndex = node.selectedIndex;
             }
 

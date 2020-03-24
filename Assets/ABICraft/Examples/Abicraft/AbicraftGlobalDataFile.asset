@@ -65,6 +65,8 @@ MonoBehaviour:
     - obj: {fileID: 0}
       indirectIndex: 6
     - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
       indirectIndex: 0
     - obj: {fileID: 0}
       indirectIndex: 1
@@ -225,18 +227,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 273faa2a9b6a73642bc047c6b3366e80, type: 2}
     - {fileID: 11400000, guid: 2899c6d116708444088529803858c625, type: 2}
     scannedAssetAbjsPaths:
-    - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
-    - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
-    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
-    - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
-    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
-    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
-    - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
-    - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
-    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
-    - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
-    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
-    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
     - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
     - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
     - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab

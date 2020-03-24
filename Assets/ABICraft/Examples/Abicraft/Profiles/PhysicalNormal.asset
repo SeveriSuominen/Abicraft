@@ -14,3 +14,106 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeName: NormalPhysical
   PhysicalObject: 1
+  Targetable: 1
+  attributeObjects:
+  - attribute: {fileID: 11400000, guid: f2e7cd60c59815e489d0348341ccb574, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 25
+    scaling: 1
+  - attribute: {fileID: 11400000, guid: 3ef25d0319ebbc04a818e1f2dbf9bff3, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 700
+    scaling: 0
+  - attribute: {fileID: 11400000, guid: 0899d2bd0aa094240b6208b2959ef861, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 35
+    scaling: 1
+  - attribute: {fileID: 11400000, guid: 74f00e795129c2a46812edb6784ef124, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 475
+    scaling: 0
+  - attribute: {fileID: 11400000, guid: bd10beb071b26bc4e8fb1d965708f64d, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 78
+    scaling: 1
+  allwaysHasStates: []
+  immuneToStates: []
