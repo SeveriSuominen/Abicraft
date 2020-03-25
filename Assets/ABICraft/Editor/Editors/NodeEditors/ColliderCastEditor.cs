@@ -112,10 +112,9 @@ namespace AbicraftNodes.Editors
                 GUILayout.Label("Selected Collinder object dont have any Unity collinder components attached. At least one collinder component is required to cast area.", gstyle);
             }
 
-            if (!noColliders && !colliderHasTrigger)
+            if (node.collider && !noColliders && !colliderHasTrigger)
             {
                 GuiSpace(5);
-
                 GUILayout.Label("At least one of the colliders need to have IsTrigger setting true", gstyle);
                 GuiSpace(5);
 

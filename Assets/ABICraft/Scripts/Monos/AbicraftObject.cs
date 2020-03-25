@@ -39,7 +39,8 @@ namespace AbicraftMonos
             ImmuneToState,
             DontHaveAttribute,
             AlreadyHasState,
-            AllwaysMustHaveState
+            AllwaysMustHaveState,
+            NoCastEffectsSet
         }
 
         void Awake()
@@ -75,10 +76,25 @@ namespace AbicraftMonos
                 }
             }
         }
+
+        public void ValidateAttributeObject(ref AbicraftAttribute.AbicraftObjectAttribute attributeObj)
+        {
+            int max = 0;
+
+            if((max = Max(attributeObj.attribute)) != int.MinValue)
+            {
+                attributeObj.baseValue = attributeObj.baseValue > max ? max : attributeObj.baseValue;
+            }
+        }
+
+        public Interaction CastAttributeOn(int amount, AbicraftObject senderObject, AbicraftAttribute attribute)
+        {
+            return Cast(amount, attribute, senderObject, this);
+        }
+
         public int GetAttributeAmount(AbicraftObject senderObject, AbicraftAttribute attribute)
         {
             AbicraftAttribute.AbicraftObjectAttribute attributeObject;
-
             if ((attributeObject = attributes[attribute]) != null)
             {
                 return attributeObject.baseValue;
@@ -86,13 +102,16 @@ namespace AbicraftMonos
             return -1;
         }
 
-        public  Interaction SetAttributeValue(AbicraftObject senderObject, AbicraftAttribute attribute, int setTo)
+        public  Interaction SetAttributeValue(AbicraftObject senderObject, AbicraftAttribute attr, int setTo)
         {
-            AbicraftAttribute.AbicraftObjectAttribute attributeObject;
+            AbicraftAttribute.AbicraftObjectAttribute attributeObj;
 
-            if ((attributeObject = attributes[attribute]) != null)
+            if ((attributeObj = attributes[attr]) != null)
             {
-                attributeObject.baseValue = setTo;
+                attributeObj.baseValue = setTo;
+
+                ValidateAttributeObject(ref attributeObj);
+
                 return Interaction.Success;
             }
             return Interaction.DontHaveAttribute;
@@ -100,11 +119,14 @@ namespace AbicraftMonos
 
         public Interaction ImpactAttributeValue(AbicraftObject senderObject, AbicraftAttribute attribute, int amount)
         {
-            AbicraftAttribute.AbicraftObjectAttribute attributeObject;
+            AbicraftAttribute.AbicraftObjectAttribute attributeObj;
 
-            if ((attributeObject = attributes[attribute]) != null)
+            if ((attributeObj = attributes[attribute]) != null)
             {
-                attributeObject.baseValue = attributeObject.baseValue + amount;
+                attributeObj.baseValue = attributeObj.baseValue + amount;
+
+                ValidateAttributeObject(ref attributeObj);
+
                 return Interaction.Success;
             }
             return Interaction.DontHaveAttribute;
@@ -275,6 +297,105 @@ namespace AbicraftMonos
             transform.localScale = Original.transform.localScale;
 
             ImplementProfile();
+        }
+
+        public int Max(AbicraftAttribute attr)
+        {
+            AbicraftAttribute.AttributeEffect max_effect = null;
+            int value = 0;
+
+            for (int i = 0; i < attr.effects.Count; i++)
+            {
+                if (attr.effects[i].effect == AbicraftAttribute.AttributeEffect.Effect.Max)
+                {
+                    max_effect = attr.effects[i];
+                }
+            }
+
+            if (max_effect != null && max_effect.options.Count > 0)
+            {
+                for (int i = 0; i < max_effect.options.Count; i++)
+                {
+                    var effectoption = max_effect.options[i];
+
+                    switch (effectoption.option)
+                    {
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Add:
+                            value += GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Substract:
+                            Debug.Log(GetAttributeAmount(this, effectoption.attribute));
+                            value -= GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Multiply:
+                            value *= GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Divide:
+                            value /= GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                    }
+                }
+                return value;
+            }
+            else
+            {
+                return int.MinValue;
+            }
+        }
+
+        public Interaction Cast(int amount, AbicraftAttribute attr, AbicraftObject self, AbicraftObject target)
+        {
+            List<AbicraftAttribute.AttributeEffect> casteffects = new List<AbicraftAttribute.AttributeEffect>();
+
+            for (int i = 0; i < attr.effects.Count; i++)
+            {
+                if (attr.effects[i].effect == AbicraftAttribute.AttributeEffect.Effect.OnCast)
+                {
+                    casteffects.Add(attr.effects[i]);
+                }
+            }
+
+            for (int i = 0; i < casteffects.Count; i++)
+            {
+                int value = amount;
+
+                if (casteffects[i] != null && casteffects[i].options.Count > 0)
+                {
+                    for (int j = 0; j < casteffects[i].options.Count; j++)
+                    {
+                        var effectoption = casteffects[i].options[j];
+                        var optionAbj = effectoption.targetOption == AbicraftAttribute.AttributeEffect.TargetOption.Target ?
+                            target :
+                            self;
+
+                        switch (effectoption.operation)
+                        {
+                            case AbicraftAttribute.AttributeEffect.OperationOption.Amount:
+                                switch (effectoption.option)
+                                {
+                                    case AbicraftAttribute.AttributeEffect.EffectOption.Add:
+                                        value = Mathf.FloorToInt(value + (optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount));
+                                        break;
+                                    case AbicraftAttribute.AttributeEffect.EffectOption.Substract:
+                                        value = Mathf.FloorToInt(value - (optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount));
+                                        break;
+                                    case AbicraftAttribute.AttributeEffect.EffectOption.Multiply:
+                                        Debug.Log(optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount);
+                                        value = Mathf.FloorToInt(value * (optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount));
+                                        break;
+                                    case AbicraftAttribute.AttributeEffect.EffectOption.Divide:
+                                        value = Mathf.FloorToInt(value / (optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount));
+                                        break;
+                                }
+                                break;
+                            case AbicraftAttribute.AttributeEffect.OperationOption.Cast:
+                                optionAbj.ImpactAttributeValue(self, effectoption.attribute, Mathf.FloorToInt(value * effectoption.amount));
+                                break;
+                        }
+                    }
+                }
+            }
+            return Interaction.Success;
         }
     }
 }

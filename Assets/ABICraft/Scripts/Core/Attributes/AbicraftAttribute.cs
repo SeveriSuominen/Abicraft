@@ -11,6 +11,8 @@ public class AbicraftAttribute : ScriptableObject
     public Texture2D    AttributeIcon;
     public AttributeCategory Category;
 
+    public List<AttributeEffect> effects = new List<AttributeEffect>();
+
     public static AbicraftAttribute Attribute(string name)
     {
         for (int i = 0; i < AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes.Count; i++)
@@ -23,12 +25,63 @@ public class AbicraftAttribute : ScriptableObject
         return null;
     }
 
+    [System.Serializable]
+    public class AttributeEffect
+    {
+        public Effect effect;
+
+        public List<AttributeEffectOption> options = new List<AttributeEffectOption>();
+
+        [System.Serializable]
+        public class AttributeEffectOption
+        {
+            public OperationOption   operation;
+            public EffectOption      option;
+            public EffectCastOption  castoption;
+            public TargetOption      targetOption;
+            public float amount;
+            public AbicraftAttribute attribute;
+            public int attribute_index;
+        }
+
+
+        [System.Serializable]
+        public enum OperationOption
+        {
+            Amount, Cast
+        }
+
+        [System.Serializable]
+        public enum TargetOption
+        {
+            Self, Target
+        }
+
+        [System.Serializable]
+        public enum EffectOption
+        {
+            Substract, Add, Divide, Multiply
+        }
+
+        [System.Serializable]
+        public enum EffectCastOption
+        {
+            Value, Substract, Add, Divide, Multiply
+        }
+
+        [System.Serializable]
+        public enum Effect
+        {
+            Max, Min, OnCast,  
+        }
+    }
+    [System.Serializable]
     public enum AttributeCategory
     {
         Base,
         Special
     }
-
+    [System.Serializable]
     public enum Type
     {
         Increasive,

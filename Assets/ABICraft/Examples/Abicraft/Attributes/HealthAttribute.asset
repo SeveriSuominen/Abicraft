@@ -15,3 +15,20 @@ MonoBehaviour:
   AttributeName: Health
   AttributeIcon: {fileID: 2800000, guid: 035e6fc27cf963b41bc57ccdca4a0bfb, type: 3}
   Category: 0
+  effects:
+  - effect: 0
+    options:
+    - operation: 0
+      option: 0
+      castoption: 0
+      targetOption: 0
+      amount: 0
+      attribute: {fileID: 11400000, guid: f2e7cd60c59815e489d0348341ccb574, type: 2}
+      attribute_index: 0
+    - operation: 0
+      option: 1
+      castoption: 0
+      targetOption: 0
+      amount: 0
+      attribute: {fileID: 11400000, guid: a21cc6f818040244588698c700b55b82, type: 2}
+      attribute_index: 5

@@ -14,7 +14,6 @@ namespace AbicraftNodes.Editors
     [CustomNodeEditor(typeof(AlterAttributesNode))]
     public class AlterAttributesEditor : NodeEditor
     {
-
         AlterAttributesNode node;
         AbicraftObject obj;
 
@@ -79,11 +78,6 @@ namespace AbicraftNodes.Editors
             {
                 for (int i = 0; i < node.allSelectedIndices.Count; i++)
                 {
-                    /*if (!node.HasPort(node.allSelectedIndices[i].attribute.AttributeName + "Amount"))
-                        node.AddDynamicInput(
-                            typeof(int), Meta.AbicraftNode.ConnectionType.Override, Meta.AbicraftNode.TypeConstraint.Strict, node.allSelectedIndices[i].attribute.AttributeName + "Amount"
-                        );*/
-
                     GUILayout.BeginVertical(gstyle);
                     GUILayout.BeginHorizontal();
 

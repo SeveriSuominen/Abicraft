@@ -14,6 +14,8 @@ public class ShowAttributeText : MonoBehaviour
     void Start()
     {
         attr = AbicraftAttribute.Attribute("Mana");
+
+        abj.SetAttributeValue(abj, attr, 50000);
         text = GetComponent<Text>();
     }
 
@@ -21,6 +23,15 @@ public class ShowAttributeText : MonoBehaviour
     {
         string txt = "";
 
+        if(Input.GetKeyDown(KeyCode.X))
+            Debug.Log(abj.Max(AbicraftAttribute.Attribute("Mana")));
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log(abj.CastAttributeOn(200, abj, AbicraftAttribute.Attribute("Damage")));
+        }
+         
+        
         var list = abj.attributes.GetList();
 
         for (int i = 0; i < list.Length; i++)

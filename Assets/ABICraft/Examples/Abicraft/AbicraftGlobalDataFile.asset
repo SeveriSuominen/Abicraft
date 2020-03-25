@@ -21,6 +21,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0899d2bd0aa094240b6208b2959ef861, type: 2}
   - {fileID: 11400000, guid: 74f00e795129c2a46812edb6784ef124, type: 2}
   - {fileID: 11400000, guid: bd10beb071b26bc4e8fb1d965708f64d, type: 2}
+  - {fileID: 11400000, guid: a21cc6f818040244588698c700b55b82, type: 2}
+  - {fileID: 11400000, guid: 74414dca89d139b47a7f3ed63b752a12, type: 2}
+  - {fileID: 11400000, guid: f9ea9bdc3e6d72244bb0e657fb5c3d83, type: 2}
   InstantiateToPool:
   - {fileID: 1310777319, guid: 2d21526a5035708438599f53bac96756, type: 3}
   - {fileID: 7304414733767880615, guid: bb8cdcfb73df2fb47a70244cf79b6325, type: 3}

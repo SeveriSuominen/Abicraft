@@ -10,19 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b3764910ff30c24489654b71b9636b5, type: 3}
-  m_Name: ManaAttribute
+  m_Name: MaxManaAttribute
   m_EditorClassIdentifier: 
-  AttributeName: Mana
+  AttributeName: MaxMana
   AttributeIcon: {fileID: 2800000, guid: 8fcdc58a7201c274b80eebb47c3a2809, type: 3}
   Category: 0
-  effects:
-  - effect: 0
-    global_option: 0
-    options:
-    - operation: 0
-      option: 1
-      castoption: 0
-      targetOption: 0
-      amount: 0
-      attribute: {fileID: 11400000, guid: 74414dca89d139b47a7f3ed63b752a12, type: 2}
-      attribute_index: 6
+  effects: []

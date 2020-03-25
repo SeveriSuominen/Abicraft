@@ -113,7 +113,34 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    baseValue: 78
+    baseValue: 100
     scaling: 1
+  - attribute: {fileID: 11400000, guid: a21cc6f818040244588698c700b55b82, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 1370
+    scaling: 0
+  - attribute: {fileID: 11400000, guid: 74414dca89d139b47a7f3ed63b752a12, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 2300
+    scaling: 0
+  - attribute: {fileID: 11400000, guid: f9ea9bdc3e6d72244bb0e657fb5c3d83, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 300
+    scaling: 0
   allwaysHasStates: []
   immuneToStates: []
