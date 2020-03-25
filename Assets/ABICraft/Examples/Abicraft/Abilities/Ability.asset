@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 344, y: -1656}
+  position: {x: 296, y: -1544}
   ports:
     keys:
     - LengthSeconds
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 1112, y: -1560}
+  position: {x: 1112, y: -1528}
   ports:
     keys:
     - Obj
@@ -305,15 +305,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 760, y: -1752}
+  position: {x: 744, y: -1720}
   ports:
     keys:
     - Value
     values:
     - _fieldName: Value
       _node: {fileID: -7987081629297196161}
-      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
+      _typeQualifiedName: 
       connections:
       - fieldName: spawnPosition
         node: {fileID: 7907375629695810021}
@@ -323,6 +322,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   selectedIndex: 1
+  GetGlobalVariable: 1
+  lastGetGlobalVariableSetting: 1
 --- !u!114 &-7522183169122339744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 248, y: -1352}
+  position: {x: 248, y: -1256}
   ports:
     keys:
     - BlockForSeconds
@@ -666,9 +667,6 @@ MonoBehaviour:
       _typeQualifiedName: AbicraftMonos.AbicraftObject, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: Obj
-        node: {fileID: -4854140344437649971}
-        reroutePoints: []
       - fieldName: ObjFrom
         node: {fileID: -4092510729781600199}
         reroutePoints: []
@@ -717,7 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -776, y: -2296}
+  position: {x: -776, y: -2328}
   ports:
     keys:
     - In
@@ -768,7 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -779.77313, y: -1833.5294}
+  position: {x: -796.1262, y: -1875.4838}
   ports:
     keys:
     - Value
@@ -815,6 +813,10 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   VariableName: SENDER_OBJECT
+  SetGlobalVariable: 1
+  lastVariableName: SENDER_OBJECT
+  lastGlobalVariableSetting: 1
+  definitionsNeedUpdating: 0
 --- !u!114 &-4969922472809966316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,61 +936,6 @@ MonoBehaviour:
   Parallel: 1
   Obj: {fileID: 0}
   Objs: []
---- !u!114 &-4854140344437649971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e195c9ffa07cc44ead649b4f194aa4c, type: 3}
-  m_Name: Towards Cursor
-  m_EditorClassIdentifier: 
-  abicraft: {fileID: 0}
-  graph: {fileID: 11400000}
-  position: {x: 1464, y: -1208}
-  ports:
-    keys:
-    - Obj
-    - direction
-    - distance
-    values:
-    - _fieldName: Obj
-      _node: {fileID: -4854140344437649971}
-      _typeQualifiedName: AbicraftMonos.AbicraftObject, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: Obj
-        node: {fileID: -6005224081321813426}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: direction
-      _node: {fileID: -4854140344437649971}
-      _typeQualifiedName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: distance
-      _node: {fileID: -4854140344437649971}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  Obj: {fileID: 0}
-  direction: {x: 0.03305919, y: 0, z: 0.99806285}
-  distance: 1.581188
-  onlyYAxis: 1
 --- !u!114 &-4092510729781600199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,7 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 984, y: -792}
+  position: {x: 984, y: -760}
   ports:
     keys:
     - ObjFrom
@@ -1061,8 +1008,8 @@ MonoBehaviour:
       _dynamic: 0
   ObjFrom: {fileID: 0}
   ObjTo: {fileID: 0}
-  direction: {x: -0.5730579, y: 0, z: -0.7705508}
-  distance: 17.620739
+  direction: {x: -0.8255446, y: 0, z: -0.3357943}
+  distance: 8.635352
   onlyYAxis: 1
 --- !u!114 &-4042522081520979988
 MonoBehaviour:
@@ -1078,7 +1025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -8, y: -1496}
+  position: {x: -33.9375, y: -1505.4315}
   ports:
     keys:
     - Obj
@@ -1156,7 +1103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -552, y: -2296}
+  position: {x: -552, y: -2328}
   ports:
     keys:
     - Obj
@@ -1209,8 +1156,8 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   Obj: {fileID: 0}
-  selectedIndex: 2
-  lastIndex: 2
+  selectedIndex: 5
+  lastIndex: 5
   allSelectedIndices:
   - attribute: {fileID: 11400000, guid: 74f00e795129c2a46812edb6784ef124, type: 2}
     conditionMode: 0
@@ -1232,17 +1179,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: -802.4175
     y: -2345.7583
-    width: 708.06226
-    height: 430.68787
+    width: 702.2892
+    height: 383.18945
   color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 641.06226
-    y: 348
-    width: 60
-    height: 380.68787
-  dir: right
+    x: -307
+    y: 655.18945
+    width: 642.2892
+    height: 35
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-1450810139861958971
@@ -1259,7 +1206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 1176, y: -472}
+  position: {x: 1176, y: -536}
   ports:
     keys:
     - value
@@ -1321,7 +1268,6 @@ MonoBehaviour:
   - {fileID: -8027160770006434060}
   - {fileID: -8633622033341772163}
   - {fileID: 8327971193711794164}
-  - {fileID: -4854140344437649971}
   - {fileID: -4969922472809966316}
   - {fileID: 1111397858057658086}
   - {fileID: -6005224081321813426}
@@ -1351,9 +1297,7 @@ MonoBehaviour:
   areas:
   - {fileID: -1614466956963830831}
   - {fileID: 3603061485013581011}
-  variableDefinitions:
-  - VARIABLE_NAME: COLLIDER_CAST_POSITION
-  - VARIABLE_NAME: SENDER_OBJECT
+  variableDefinitions: []
   icon: {fileID: 2800000, guid: 8c6832fa0ead60d418932883844f8172, type: 3}
   AbilityName: Thunder struct
   Cooldown: 4
@@ -1505,7 +1449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -8, y: -1736}
+  position: {x: -72, y: -1896}
   ports:
     keys:
     - In
@@ -1698,7 +1642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -328, y: -2296}
+  position: {x: -328, y: -2328}
   ports:
     keys:
     - Obj
@@ -1834,7 +1778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -376, y: -1752}
+  position: {x: -376, y: -1816}
   ports:
     keys:
     - collider
@@ -1929,8 +1873,7 @@ MonoBehaviour:
     Active: 1
   Collisions:
   - {fileID: 0}
-  - {fileID: 0}
-  Position: {x: -1.1938691, y: -1.3472176, z: -22.453533}
+  Position: {x: -58.5244, y: 2.6972294, z: -20.624193}
 --- !u!114 &3109593120006286493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,7 +1888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 328, y: -1896}
+  position: {x: 248, y: -1864}
   ports:
     keys:
     - Value
@@ -1992,6 +1935,10 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   VariableName: COLLIDER_CAST_POSITION
+  SetGlobalVariable: 1
+  lastVariableName: COLLIDER_CAST_POSITION
+  lastGlobalVariableSetting: 1
+  definitionsNeedUpdating: 0
 --- !u!114 &3603061485013581011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,18 +1954,18 @@ MonoBehaviour:
   areaName: DEFAULT
   areaRect:
     serializedVersion: 2
-    x: -799.46265
-    y: -1861.3137
-    width: 254.40808
-    height: 340.13147
+    x: -815.59814
+    y: -1913.7101
+    width: 249.36755
+    height: 480.77625
   color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 402.40808
-    y: 920
+    x: 775.36755
+    y: 1612
     width: 60
-    height: 290.13147
+    height: 430.77625
   dir: right
   dragginArea: 0
   resisingArea: 0
@@ -2097,7 +2044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -779.77313, y: -1657.5294}
+  position: {x: -801.93774, y: -1585.4315}
   ports:
     keys:
     - Obj
@@ -2488,6 +2435,6 @@ MonoBehaviour:
       _dynamic: 0
   ObjFrom: {fileID: 0}
   PosTo: {x: 0, y: 0, z: 0}
-  direction: {x: 0.028084569, y: 0, z: -0.9996034}
-  distance: 39.915356
+  direction: {x: -0.97467583, y: 0, z: -0.1915524}
+  distance: 34.32829
   onlyYAxis: 1

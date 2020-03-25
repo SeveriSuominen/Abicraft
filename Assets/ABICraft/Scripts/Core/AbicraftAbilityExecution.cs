@@ -15,7 +15,7 @@ namespace AbicraftCore
         public float elapsedCooldown, elapsedPassiveLifetime, passiveLifetime;
 
         public AbicraftObject senderObject;
-
+        
         //Taking initial snapshot when execution starts, to get original start point data,
         //like player original position.
         public AbicraftGameStateSnapshot initial_snapshot;
@@ -32,8 +32,8 @@ namespace AbicraftCore
 
         public AbicraftAbilityExecution(AbicraftAbilityDispatcher dispatcher, AbicraftAbility Ability, AbicraftObject senderObject, AbicraftNode startExecNode)
         {
-            this.Ability = Ability;
-            this.senderObject = senderObject;
+            this.Ability         = Ability;
+            this.senderObject    = senderObject;
             this.elapsedCooldown = 0;
 
             this.guid = Guid.NewGuid().ToString();
@@ -108,6 +108,10 @@ namespace AbicraftCore
         {
             return Ability.Cooldown - elapsedCooldown;
         }
-    }
 
+        public float GetTimeElapsedSinceExecute()
+        {
+            return elapsedCooldown;
+        }
+    }
 }

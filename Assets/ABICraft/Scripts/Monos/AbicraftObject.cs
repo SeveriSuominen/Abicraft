@@ -324,7 +324,6 @@ namespace AbicraftMonos
                             value += GetAttributeAmount(this, effectoption.attribute);
                             break;
                         case AbicraftAttribute.AttributeEffect.EffectOption.Substract:
-                            Debug.Log(GetAttributeAmount(this, effectoption.attribute));
                             value -= GetAttributeAmount(this, effectoption.attribute);
                             break;
                         case AbicraftAttribute.AttributeEffect.EffectOption.Multiply:
@@ -380,7 +379,6 @@ namespace AbicraftMonos
                                         value = Mathf.FloorToInt(value - (optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount));
                                         break;
                                     case AbicraftAttribute.AttributeEffect.EffectOption.Multiply:
-                                        Debug.Log(optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount);
                                         value = Mathf.FloorToInt(value * (optionAbj.GetAttributeAmount(self, effectoption.attribute) * effectoption.amount));
                                         break;
                                     case AbicraftAttribute.AttributeEffect.EffectOption.Divide:

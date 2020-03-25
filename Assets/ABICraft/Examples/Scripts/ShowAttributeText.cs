@@ -1,4 +1,5 @@
-﻿using AbicraftMonos;
+﻿using AbicraftCore;
+using AbicraftMonos;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,8 +24,8 @@ public class ShowAttributeText : MonoBehaviour
     {
         string txt = "";
 
-        if(Input.GetKeyDown(KeyCode.X))
-            Debug.Log(abj.Max(AbicraftAttribute.Attribute("Mana")));
+        if (Input.GetKeyDown(KeyCode.X))
+            AbicraftGlobalContext.UpdateGlobalVariableDefinitions();
 
         if (Input.GetKeyDown(KeyCode.Z))
         {

@@ -47,8 +47,15 @@ namespace AbicraftNodes.Editors
 
         public override void OnBodyGUI()
         {
-
+       
+            GuiSpace(10);
             node = target as GetVariableNode;
+
+            if (node.GetGlobalVariable != node.lastGetGlobalVariableSetting)
+            {
+                node.selectedIndex = 0;
+                node.lastGetGlobalVariableSetting = node.GetGlobalVariable;
+            }
 
             List<string> variableNames = new List<string>();
             List<Type>   variableTypes = new List<Type>();
@@ -56,10 +63,12 @@ namespace AbicraftNodes.Editors
             variableNames.Add("None");
             variableTypes.Add(typeof(object));
 
-            for (int i = 0; i < node.graph.variableDefinitions.Count; i++)
+            var variableDefinitions = node.GetGlobalVariable ? AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions : node.graph.variableDefinitions;
+
+            for (int i = 0; i < variableDefinitions.Count; i++)
             {
-                variableNames.Add(node.graph.variableDefinitions[i].VARIABLE_NAME);
-                variableTypes.Add(node.graph.variableDefinitions[i].VARIABLE_TYPE);
+                variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
+                variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
             }
 
             GUIStyle styleW = new GUIStyle(EditorStyles.popup);
@@ -95,6 +104,10 @@ namespace AbicraftNodes.Editors
                
                 lastSelectedIndex = node.selectedIndex;
             }
+
+            GuiSpace(5);
+            GuiLine(1);
+            GuiSpace(5);
 
             base.OnBodyGUI();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AbicraftMonos;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,17 +28,19 @@ namespace AbicraftCore.Variables
             }
         }
 
-        public void Set(string name, object value, Type type)
+        public void Set(AbicraftAbilityExecution setterAE, string name, object value, Type type)
         {
             if (VARIABLES.ContainsKey(name))
             {
                 AbicraftAbilityVariable variable = VARIABLES[name];
 
+                variable.setterObj      = setterAE.senderObject;
+                variable.setterAEGuid   = setterAE.guid;
                 variable.VARIABLE_VALUE = value;
-                variable.VARIABLE_TYPE = type;
+                variable.VARIABLE_TYPE  = type;
             }
             else
-                VARIABLES.Add(name, new AbicraftAbilityVariable(value, type));
+                VARIABLES.Add(name, new AbicraftAbilityVariable(setterAE, value, type));
         }
     }
 
@@ -45,13 +48,19 @@ namespace AbicraftCore.Variables
     [System.Serializable]
     public class AbicraftAbilityVariable
     {
+        public AbicraftObject setterObj;
+        public string         setterAEGuid;
+
         public object VARIABLE_VALUE;
         public Type   VARIABLE_TYPE;
 
-        public AbicraftAbilityVariable(object VARIABLE_VALUE, Type VARIABLE_TYPE)
+        public AbicraftAbilityVariable(AbicraftAbilityExecution setterAE, object VARIABLE_VALUE, Type VARIABLE_TYPE)
         {
+            this.setterObj    = setterAE.senderObject;
+            this.setterAEGuid = setterAE.guid;
+
             this.VARIABLE_VALUE = VARIABLE_VALUE;
-            this.VARIABLE_TYPE = VARIABLE_TYPE;
+            this.VARIABLE_TYPE  = VARIABLE_TYPE;
         }
 
         public void SetVariableValue(object Value)

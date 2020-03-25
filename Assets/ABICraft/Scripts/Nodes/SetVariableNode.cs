@@ -20,6 +20,16 @@ namespace AbicraftNodes.Action
     public class SetVariableNode : AbicraftExecutionNode
     {
         public string VariableName;
+        public bool   SetGlobalVariable;
+
+        [HideInInspector]
+        public string lastVariableName;
+
+        [HideInInspector]
+        public bool   lastGlobalVariableSetting;
+
+        [HideInInspector]
+        public bool   definitionsNeedUpdating;
 
         [Input(connectionType = ConnectionType.Override)]
         public Any Value;
@@ -43,15 +53,19 @@ namespace AbicraftNodes.Action
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             object value = GetInputValue<object>(e, "Value");
-            Type type = GetDefitionType();
+            Type type    = GetDefitionType();
 
             if (value != null && type != null)
             {
-                e.ae.variables.Set(VariableName, value, GetDefitionType());
+                if (SetGlobalVariable)
+                {
+                    AbicraftGlobalContext.GlobalVariables.Set(e.ae, VariableName, value, GetDefitionType());
+                }
+                else
+                {
+                    e.ae.variables.Set(e.ae, VariableName, value, GetDefitionType());
+                }
             }
-          
-            //Convert.ChangeType(e.ae.variables[VariableName], GetDefitionType()));
-
             yield return null;
         }
     }

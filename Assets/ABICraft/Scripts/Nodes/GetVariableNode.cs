@@ -16,6 +16,11 @@ namespace AbicraftNodes.Action
         [HideInInspector]
         public int selectedIndex;
 
+        public bool GetGlobalVariable;
+
+        [HideInInspector]
+        public bool lastGetGlobalVariableSetting;
+
         public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             if (e != null)
@@ -24,7 +29,14 @@ namespace AbicraftNodes.Action
 
                 if (index >= 0)
                 {
-                    return e.ae.variables[graph.variableDefinitions[selectedIndex - 1].VARIABLE_NAME];
+                    if (GetGlobalVariable)
+                    {                     
+                        return AbicraftGlobalContext.GlobalVariables[AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions[selectedIndex - 1].VARIABLE_NAME];
+                    }
+                    else
+                    {
+                        return e.ae.variables[graph.variableDefinitions[selectedIndex - 1].VARIABLE_NAME];
+                    }
                 }
                 else
                     return default;

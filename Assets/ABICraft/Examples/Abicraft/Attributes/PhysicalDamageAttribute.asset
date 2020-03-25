@@ -19,6 +19,13 @@ MonoBehaviour:
   - effect: 2
     options:
     - operation: 0
+      option: 0
+      castoption: 0
+      targetOption: 1
+      amount: 1
+      attribute: {fileID: 11400000, guid: f2e7cd60c59815e489d0348341ccb574, type: 2}
+      attribute_index: 0
+    - operation: 0
       option: 3
       castoption: 0
       targetOption: 0

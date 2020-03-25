@@ -1,4 +1,5 @@
-﻿using AbicraftMonos;
+﻿using AbicraftCore.Variables;
+using AbicraftMonos;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace AbicraftCore
         public List<AbicraftState>      GlobalStates      = new List<AbicraftState>();
         public List<AbicraftAttribute>  GlobalAttributes  = new List<AbicraftAttribute>();
         public List<AbicraftObject>     InstantiateToPool = new List<AbicraftObject>();
+
+        [SerializeField]
+        public List<AbicraftAbilityVariableDefinition> GlobalVariableDefinitions = new List<AbicraftAbilityVariableDefinition>();
 
         [HideInInspector]
         public InspectorCache cache;

@@ -134,9 +134,12 @@ namespace AbicraftNodeEditor {
                 if(node && node.GetType() == typeof(AbicraftNodes.Action.SetVariableNode))
                 {
                     AbicraftNodes.Action.SetVariableNode variable = node as AbicraftNodes.Action.SetVariableNode;
-                    graph.variableDefinitions.Add(
-                        new AbicraftCore.Variables.AbicraftAbilityVariableDefinition(variable.GetVariableName(), variable.GetDefitionType())
-                    );
+                    var varDef = new AbicraftCore.Variables.AbicraftAbilityVariableDefinition(variable.GetVariableName(), variable.GetDefitionType());
+
+                    if (!variable.SetGlobalVariable)
+                    {
+                        graph.variableDefinitions.Add(varDef);
+                    }
                 }
             }
         }

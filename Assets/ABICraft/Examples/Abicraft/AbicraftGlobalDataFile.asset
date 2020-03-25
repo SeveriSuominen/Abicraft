@@ -31,6 +31,9 @@ MonoBehaviour:
   - {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
   - {fileID: 7753225171569340631, guid: f75c4d5fe8b852d4a871e39218fa0174, type: 3}
   - {fileID: 6389469509475229666, guid: c088e315d1f5bc946aeff9d22a633a7a, type: 3}
+  GlobalVariableDefinitions:
+  - VARIABLE_NAME: COLLIDER_CAST_POSITION
+  - VARIABLE_NAME: SENDER_OBJECT
   cache:
     selectedTab: 0
     lastTab: 0
