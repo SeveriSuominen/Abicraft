@@ -9,7 +9,7 @@ using AbicraftMonos.Action;
 
 namespace AbicraftNodes.Action
 {
-    public class RecastNode : AbicraftExecutionNode
+    public class BlockUntilSignalNode : AbicraftExecutionNode
     {
         //public KeyCode KeyCode;
         //public string Key;

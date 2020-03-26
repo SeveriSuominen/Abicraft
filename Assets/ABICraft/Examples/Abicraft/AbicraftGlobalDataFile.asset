@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e920244f5055d064ea08854ee0599fd3, type: 3}
   m_Name: AbicraftGlobalDataFile
   m_EditorClassIdentifier: 
+  AbicraftCanvasPrefab: {fileID: 4512129445058977273, guid: 300fc8b7c2ca90e44b5ea6d63756c744,
+    type: 3}
   GlobalStates:
   - {fileID: 11400000, guid: 2899c6d116708444088529803858c625, type: 2}
   - {fileID: 11400000, guid: 273faa2a9b6a73642bc047c6b3366e80, type: 2}
@@ -31,6 +33,7 @@ MonoBehaviour:
   - {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
   - {fileID: 7753225171569340631, guid: f75c4d5fe8b852d4a871e39218fa0174, type: 3}
   - {fileID: 6389469509475229666, guid: c088e315d1f5bc946aeff9d22a633a7a, type: 3}
+  - {fileID: 3353175211128172070, guid: 21234af5439e32c4f8e45215d0817539, type: 3}
   GlobalVariableDefinitions:
   - VARIABLE_NAME: COLLIDER_CAST_POSITION
   - VARIABLE_NAME: SENDER_OBJECT
@@ -101,6 +104,8 @@ MonoBehaviour:
     - obj: {fileID: 0}
       indirectIndex: 8
     - obj: {fileID: 0}
+      indirectIndex: 8
+    - obj: {fileID: 0}
       indirectIndex: 9
     - obj: {fileID: 0}
       indirectIndex: 10
@@ -160,6 +165,18 @@ MonoBehaviour:
       indirectIndex: 8
     - obj: {fileID: 0}
       indirectIndex: 9
+    - obj: {fileID: 0}
+      indirectIndex: 10
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
+      indirectIndex: 11
     - obj: {fileID: 0}
       indirectIndex: 10
     - obj: {fileID: 0}
@@ -224,26 +241,35 @@ MonoBehaviour:
       indirectIndex: 0
     scannedAssetAbjs:
     - {fileID: 6389469509475229666, guid: c088e315d1f5bc946aeff9d22a633a7a, type: 3}
+    - {fileID: 3353175211128172070, guid: 21234af5439e32c4f8e45215d0817539, type: 3}
     - {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
+    - {fileID: 1478289198579942002, guid: 1566e129d2649fd4aad6d0c0c4146c12, type: 3}
     - {fileID: 532906627, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
     - {fileID: 7753225171569340631, guid: f75c4d5fe8b852d4a871e39218fa0174, type: 3}
     - {fileID: 7304414733767880615, guid: bb8cdcfb73df2fb47a70244cf79b6325, type: 3}
+    - {fileID: 1922982562566879953, guid: db19f27ceb8abe54091261c92c239fa5, type: 3}
     - {fileID: 1310777319, guid: 2d21526a5035708438599f53bac96756, type: 3}
     scannedStates:
     - {fileID: 11400000, guid: 273faa2a9b6a73642bc047c6b3366e80, type: 2}
     - {fileID: 11400000, guid: 2899c6d116708444088529803858c625, type: 2}
     scannedAssetAbjsPaths:
     - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/AbicraftGUI/AbicraftGUILog/Prefabs/ObjectImpactGUIObject.prefab
     - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Abicraft/Examples/CastCollinders/ArrowRTCollinder.prefab
     - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
     - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
+    - Assets/Abicraft/Examples/Prefabs/TEST.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
     - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/AbicraftGUI/AbicraftGUILog/Prefabs/ObjectImpactGUIObject.prefab
     - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Abicraft/Examples/CastCollinders/ArrowRTCollinder.prefab
     - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
     - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
+    - Assets/Abicraft/Examples/Prefabs/TEST.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
     scannedAssetStatePaths:
     - Assets/Abicraft/Examples/Abicraft/States/HolyShaking.asset

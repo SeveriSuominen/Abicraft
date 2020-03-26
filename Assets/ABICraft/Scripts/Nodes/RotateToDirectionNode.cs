@@ -11,22 +11,14 @@ namespace AbicraftNodes.Action
     public class RotateToDirectionNode : AbicraftExecutionNode
     {
 
-        [Input(typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
+        [Input(typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
         public AbicraftObject Obj;
 
-        [Input(typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never)]
+        [Input(typeConstraint = TypeConstraint.Strict, backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Override)]
         public Vector3 direction;
-
-      
-        public override void Initialize(AbicraftNodeExecution execution)
-        {
-
-        }
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
-            AbicraftGameStateSnapshot context = AbicraftGameStateSnapshot.TakeSnapshot;
-
             var lookPos = GetInputValue<Vector3>(e, "direction", Vector3.zero);
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);

@@ -17,7 +17,7 @@ namespace AbicraftCore
             Neutral
         }
 
-        public string    name;
+        public string    StateName;
         public Texture2D icon;
         public StateType type;
 

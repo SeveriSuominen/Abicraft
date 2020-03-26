@@ -23,20 +23,40 @@ namespace AbicraftNodes.Action
         [Output]
         public Vector3 Position;
 
+        public ColliderCastMode castMode;
+
+        [System.Serializable]
+        public enum ColliderCastMode
+        {
+            MousePosition,
+            StaticPositionRT,
+        }
+
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             Casted = new AbicraftSignal();
 
             AbicraftObject abj_marker = AbicraftObjectPool.Spawn(GetInputValue(e, "markerCollider", collider), null);
-            ObjectToMouseController controller = abj_marker.gameObject.AddComponent<ObjectToMouseController>();
-
             AbicraftGameStateSnapshot snapshot = e.ae.initial_snapshot;
+
+            CastController controller = null;
+
+            switch (castMode)
+            {
+                case ColliderCastMode.MousePosition:
+                    controller = abj_marker.gameObject.AddComponent<ObjectToMouseCastController>(); 
+                    break;
+                case ColliderCastMode.StaticPositionRT:
+                    controller = abj_marker.gameObject.AddComponent<StaticPositionRTCastController>();
+                    break;
+            }
 
             controller.despawnWholeGameobject = false;
 
-            controller.abj = abj_marker;
+            controller.senderObject = e.ae.senderObject;
+            controller.castcollider_abj = abj_marker;
             controller.cam = snapshot.camera;
-            controller.keyCode = KeyCode.Mouse0;
+            controller.keyCode  = KeyCode.Mouse0;
 
             controller.StartActionMono(e.ae.GetCooldownLeft(), false);
 

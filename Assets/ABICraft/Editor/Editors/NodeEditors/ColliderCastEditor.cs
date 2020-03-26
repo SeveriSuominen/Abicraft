@@ -102,7 +102,8 @@ namespace AbicraftNodes.Editors
                 GUI.color = ERRORCOLOR;
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("collider"), new GUIContent("Collider"));
-
+            node.castMode = (ColliderCastNode.ColliderCastMode)EditorGUILayout.EnumPopup(node.castMode);
+             
             GUI.color = col;
             GUILayout.EndVertical();
 

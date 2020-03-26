@@ -124,7 +124,6 @@ namespace AbicraftMonos
             if ((attributeObj = attributes[attribute]) != null)
             {
                 attributeObj.baseValue = attributeObj.baseValue + amount;
-
                 ValidateAttributeObject(ref attributeObj);
 
                 return Interaction.Success;
@@ -189,6 +188,8 @@ namespace AbicraftMonos
 
                     wrapper.StartActionMono(wrapper.passiveAbilityLifetime, true);
 
+                    AbicraftGUI.Instance.SpawnObjectImpact(this, state);
+
                     return Interaction.Success;
                 }
 
@@ -210,6 +211,8 @@ namespace AbicraftMonos
                     }
                     AbicraftGlobalContext.abicraft.dispatcher.Dispatch(this, state.statePassiveAbility, state.statePassiveAbility.DefaultLifetime);
                     activeStates.Add(state);
+
+                    AbicraftGUI.Instance.SpawnObjectImpact(this, state);
                     return Interaction.Success;
                 }
                 return Interaction.ImmuneToState;
@@ -342,7 +345,7 @@ namespace AbicraftMonos
             }
         }
 
-        public Interaction Cast(int amount, AbicraftAttribute attr, AbicraftObject self, AbicraftObject target)
+        Interaction Cast(int amount, AbicraftAttribute attr, AbicraftObject self, AbicraftObject target)
         {
             List<AbicraftAttribute.AttributeEffect> casteffects = new List<AbicraftAttribute.AttributeEffect>();
 
@@ -387,7 +390,11 @@ namespace AbicraftMonos
                                 }
                                 break;
                             case AbicraftAttribute.AttributeEffect.OperationOption.Cast:
-                                optionAbj.ImpactAttributeValue(self, effectoption.attribute, Mathf.FloorToInt(value * effectoption.amount));
+                                var finalValue = Mathf.FloorToInt(value * effectoption.amount);
+                                optionAbj.ImpactAttributeValue(self, effectoption.attribute, finalValue);
+
+                                AbicraftGUI.Instance.SpawnObjectImpact(this, effectoption.attribute, finalValue);
+
                                 break;
                         }
                     }

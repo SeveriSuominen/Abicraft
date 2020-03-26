@@ -13,13 +13,15 @@ namespace AbicraftNodes.Action
     {
         public static uint id = 113;
 
+        [Output]
+        public AbicraftSignal CompleteSignal;
+
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AbicraftObject Obj;
 
         public bool forcePush;
 
         // How long the object should shake for.
-
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public AnimationCurve ForceOverDistanceCurve;
 
@@ -32,9 +34,11 @@ namespace AbicraftNodes.Action
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float Force = 1.0f;//, YForce = 0;
-        
+ 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
+            CompleteSignal = new AbicraftSignal();
+
             AbicraftObject obj = GetInputValue<AbicraftObject>(e, "Obj", Obj);
 
             if (obj)
@@ -47,9 +51,24 @@ namespace AbicraftNodes.Action
                 push.Range = GetInputValue<float>(e, "Range", Range);
                 push.curve = GetInputValue<AnimationCurve>(e, "Curve", ForceOverDistanceCurve);
                 push.forcePush = this.forcePush;
+
                 push.StartActionMono();
+
+                while (!push.ActionIsComplete)
+                {
+                    yield return new WaitForFixedUpdate();
+                }
+                CompleteSignal.Active = true;
             }
             yield return null;
+        }
+
+        public override object GetValue(AbicraftNodeExecution e, NodePort port)
+        {
+            if (port.fieldName.Equals("CompleteSignal"))
+                return CompleteSignal;
+
+            return GetInputValue<AbicraftLifeline>(e, "In");
         }
     }
 }

@@ -22,6 +22,7 @@ namespace AbicraftCore
         {
             List<AbicraftAbility> abilityGraphs = new List<AbicraftAbility>();
 
+            #if UNITY_EDITOR
             string[] temp = AssetDatabase.GetAllAssetPaths();
             List<string> resultPaths = new List<string>();
 
@@ -37,6 +38,8 @@ namespace AbicraftCore
                     }
                 }
             }
+            #endif
+
             return abilityGraphs;
         }
 

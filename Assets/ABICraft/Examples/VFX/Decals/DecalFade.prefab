@@ -107,6 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6ac38e4d305a043aa7f3a052ba4cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  despawnWholeGameobject: 0
+  FromAlpha: 0.8
+  ToAlpha: 0
   FadeOverSeconds: 3
 --- !u!114 &7753225171569340631
 MonoBehaviour:

@@ -42,12 +42,24 @@ namespace AbicraftCore
                     pool[i].gameObject.SetActive(true);
                     pool[i].ActivePool = true;
 
+                    AbicraftActionMono[] abjmonos = pool[i].GetComponents<AbicraftActionMono>();
+                    for (int j = 0; j < abjmonos.Length; j++)
+                    {
+                        abjmonos[j].OnSpawn();
+                    }
+
                     return pool[i];
                 }
             }
             Debug.LogWarning("Abicraft: Pool didnt find unactive object to spawn, using Instantiate instead, using Instantiate method will affect performance, consider increase AbicraftObject start instantiate amount or if not pooled, pool object");
 
             AbicraftObject instantiated = GameObject.Instantiate(obj.gameObject, obj.transform.position, obj.transform.rotation, parent).GetComponent<AbicraftObject>();
+
+            AbicraftActionMono[] monos = instantiated.GetComponents<AbicraftActionMono>();
+            for (int j = 0; j < monos.Length; j++)
+            {
+                monos[j].OnSpawn();
+            }
 
             instantiated.transform.rotation = rotation;
             instantiated.transform.position = position;

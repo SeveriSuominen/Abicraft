@@ -335,7 +335,7 @@ public class AbicraftInspector : EditorWindow
             {
                 AbicraftState state = scannedStates[i];
 
-                if (!string.IsNullOrEmpty(filter) && state.name.IndexOf(filter, System.StringComparison.CurrentCultureIgnoreCase) == -1)
+                if (!string.IsNullOrEmpty(filter) && state.StateName.IndexOf(filter, System.StringComparison.CurrentCultureIgnoreCase) == -1)
                 {
                     // Skip if a filter is applied and we don't match
                     continue;
@@ -376,7 +376,7 @@ public class AbicraftInspector : EditorWindow
                     }
                 }
 
-                if (GUILayout.Button(new GUIContent(scannedStates[i].name, scannedStates[i].icon), style, GUILayout.Width(200)))
+                if (GUILayout.Button(new GUIContent(scannedStates[i].StateName, scannedStates[i].icon), style, GUILayout.Width(200)))
                 {
                     if (keyDown)
                     {
@@ -510,7 +510,7 @@ public class AbicraftInspector : EditorWindow
             GUILayout.BeginVertical();
             GUILayout.Space(15);
             GUILayout.Label("Name", fieldmargin);
-            state.name = EditorGUILayout.TextField(state.name);
+            state.StateName = EditorGUILayout.TextField(state.StateName);
             GUILayout.EndVertical();
 
             GUILayout.EndHorizontal();

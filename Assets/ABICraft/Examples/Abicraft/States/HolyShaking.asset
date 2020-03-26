@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8de5ff30b4e5a849b32e65d37c62d8f, type: 3}
   m_Name: HolyShaking
   m_EditorClassIdentifier: 
-  name: Holy Shaking
+  StateName: Holy Shaking
   icon: {fileID: 2800000, guid: ffeff11180f1a09469f61d5fe789a0c7, type: 3}
-  type: 0
+  type: 1
   statePassiveAbility: {fileID: 11400000, guid: e73c24f26050d984ea0fae6be738cc14,
     type: 2}

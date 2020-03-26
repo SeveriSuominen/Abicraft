@@ -64,7 +64,7 @@ namespace AbicraftNodes.Editors
                 for (int i = 0; i < abicraft.dataFile.GlobalStates.Count; i++)
                 {
                     AbicraftState state = abicraft.dataFile.GlobalStates[i];
-                    avaibleStateContents.Add(new GUIContent(state.name, state.icon));
+                    avaibleStateContents.Add(new GUIContent(state.StateName, state.icon));
                     types.Add(state.type);
                 }
 

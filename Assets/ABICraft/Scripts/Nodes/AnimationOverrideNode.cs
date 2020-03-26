@@ -113,13 +113,9 @@ namespace AbicraftNodes.Action
             // Push back state
             for (int i = 0; i < animator.layerCount; i++)
             {
-                animator.Play(layerInfo[i].fullPathHash, i, 0);
+                //animator.Play(layerInfo[i].fullPathHash, i, 0);
             }
-
             animator.SetTrigger("OVERRIDE");
-
-            // Force an update
-            
         }
 
         ///<summary>Load animation to override controller</summary>

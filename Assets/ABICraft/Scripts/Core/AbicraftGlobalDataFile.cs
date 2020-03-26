@@ -4,12 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 namespace AbicraftCore
 {
     [System.Serializable]
     [CreateAssetMenu(fileName = "AbicraftGlobalDataFile", menuName = "Abicraft/Global data file", order = 2)]
     public class AbicraftGlobalDataFile : ScriptableObject
     {
+        public Canvas AbicraftCanvasPrefab;
+
         public List<AbicraftState>      GlobalStates      = new List<AbicraftState>();
         public List<AbicraftAttribute>  GlobalAttributes  = new List<AbicraftAttribute>();
         public List<AbicraftObject>     InstantiateToPool = new List<AbicraftObject>();
