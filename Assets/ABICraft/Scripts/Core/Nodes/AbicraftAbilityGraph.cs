@@ -39,8 +39,24 @@ namespace AbicraftNodeEditor {
             return node;
         }
 
-        /// <summary> Safely remove a node and all its connections </summary>
-        /// <param name="node"> The node to remove </param>
+        /// <summary> Remove all node graph areas </summary>
+        /// <param name="area"> Node graph area to remove</param>
+        public virtual void RemoveArea(Area area)
+        {
+            for (int i = 0; i < areas.Count; i++)
+            {
+                if(areas[i] == area)
+                {
+                    areas.RemoveAt(i);
+                    if (Application.isPlaying) DestroyImmediate(area, true);
+                    break;
+                }                
+            }
+        }
+
+
+        /// <summary> Remove all node graph areas </summary>
+        /// <param name="node"> Remove all node graph areas</param>
         public virtual void RemoveAllAreas()
         {
             for (int i = 0; i < areas.Count; i++)

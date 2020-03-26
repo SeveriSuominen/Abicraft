@@ -22,9 +22,15 @@ namespace AbicraftNodeEditor {
         public static Texture2D nodeHighlight { get { return _nodeHighlight != null ? _nodeHighlight : _nodeHighlight = Resources.Load<Texture2D>("xnode_node_highlight"); } }
         private static Texture2D _nodeHighlight;
 
-        public static Texture2D nodeArea { get { return _nodeArea != null ? _nodeArea : _nodeArea = Resources.Load<Texture2D>("testarea"); } }
+        public static Texture2D nodeAreaBG { get { return _nodeAreaBG != null ? _nodeAreaBG : _nodeAreaBG = Resources.Load<Texture2D>("testarea"); } }
+        private static Texture2D _nodeAreaBG;
+
+        public static Texture2D nodeArea { get { return _nodeArea != null ? _nodeArea : _nodeArea = Resources.Load<Texture2D>("testareaHeaderpsd3"); } }
         private static Texture2D _nodeArea;
 
+        public static Texture2D trashbin { get { return _trashbin != null ? _trashbin : _trashbin = Resources.Load<Texture2D>("baseline_cancel_black_36dp"); } }
+        private static Texture2D _trashbin;
+        
         public static Texture2D abicraftIcon { get { return _abicraftIcon != null ? _abicraftIcon : _abicraftIcon = Resources.Load<Texture2D>("Abicraft/big-logo"); } }
         private static Texture2D _abicraftIcon;
 

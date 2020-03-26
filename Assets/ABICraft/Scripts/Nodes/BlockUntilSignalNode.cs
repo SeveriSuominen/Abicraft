@@ -28,25 +28,19 @@ namespace AbicraftNodes.Action
 
             if(abj != null)
             {
-                Recast recast = abj.gameObject.AddComponent<Recast>();
-                //recast.keyCode = KeyCode;
-
-                //Automatically ending actionmono as FALSE after cooldown elapsed so we dont proceed with ability execution;
-                recast.StartActionMono(e.ae.Ability.Cooldown - e.ae.elapsedCooldown, false);
-
                 while (e.IsBlocked())
                 {
                     AbicraftSignal signal = GetInputValue<AbicraftSignal>(e, "ActiveSignal", null);
 
-                    if ((recast.ActionIsComplete && recast.ActionWasSuccess) || (signal != null && signal.Active))
+                    if ((signal != null && signal.Active))
                     {
                         e.ReleaseBlock();
                         break;
                     }
 
-                    if (!recast)
+                    if (signal == null || !e.ae.OnCooldown())
                     {
-                        e.ae.End();
+                        e.EndExecutionBranch();
                         break;
                     }
                     yield return new WaitForFixedUpdate();

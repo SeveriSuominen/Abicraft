@@ -410,30 +410,45 @@ namespace AbicraftNodeEditor {
                 Area area = graph.areas[n];
 
                 Vector2 vecpos = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x, area.areaRect.y));
+                Vector2 vecposAreaWidth = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x + area.areaRect.width -32, area.areaRect.y + area.areaRect.height));
+
                 Rect yrect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, area.areaRect.height);
-                Rect headerRect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, 50);
+                Rect headerRect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, 30);
 
                 GUIStyle style = new GUIStyle(NodeEditorResources.styles.nodeBody);
                 style.normal.background = NodeEditorResources.nodeArea;
                 style.padding = new RectOffset();
 
-                Rect labelRect = new Rect(yrect.x, yrect.y + (int)(10 * (zoom + 0.4f)), yrect.width, 20);
-                Rect colorRect = new Rect(yrect.x + 10, yrect.y + 10, 25, 20);
+                GUIStyle styleBG = new GUIStyle(NodeEditorResources.styles.nodeBody);
+                styleBG.normal.background = NodeEditorResources.nodeAreaBG;
+                styleBG.padding = new RectOffset();
 
-               //area.color = EditorGUI.ColorField(colorRect, GUIContent.none, area.color, false, true, false);
+                Rect labelRect  = new Rect(yrect.x, yrect.y + (int)(10 * (zoom + 0.4f)), yrect.width, 20);
+                Rect colorRect  = new Rect(yrect.x + 10, yrect.y + 10, 25, 20);
+                Rect buttonRect = new Rect(vecposAreaWidth.x, yrect.y + 8, 22, 17);
+
+                area.color = EditorGUI.ColorField(colorRect, GUIContent.none, area.color, false, true, false);
 
                 GUIStyle labelstyle = new GUIStyle(NodeEditorResources.styles.nodeHeader);
 
                 float labelZoom = (zoom + 0.4f);
 
-                labelstyle.fontSize = (int)(15 * Mathf.Clamp(labelZoom, 1, 3));
+                labelstyle.fontSize = (int)(12 * Mathf.Clamp(labelZoom, 1, 3));
                 //GUI.Label(labelRect, area.areaName, labelstyle);
                 //GUI.Label(labelRect, area.areaName, labelstyle);
+
+                GUI.color = new Color(1, 1, 1, 0.1f);
+                GUI.Box(yrect, "", styleBG);
+                GUI.color = defaultColor;
 
                 GUI.color = area.color;
                 GUI.Box(yrect, "", style);
-
                 GUI.color = defaultColor;
+
+                EditorGUIUtility.SetIconSize(new Vector2(15, 15));
+    
+                if(GUI.Button(buttonRect, new GUIContent(NodeEditorResources.trashbin)))
+                    area.graph.RemoveArea(area);
 
                 HorizResizer(area, headerRect, ref yrect);
 
@@ -443,7 +458,7 @@ namespace AbicraftNodeEditor {
                     {
                         for (int i = 0; i < graph.nodes.Count; i++)
                         {
-                            // Skip null nodes. The user could be in the process of renaming scripts, so removing them at this point is not advisable.
+                            // Skip null nodes. The user could be in the process renaming scripts, so removing them at this point is not advisable.
                             if (graph.nodes[i] == null) continue;
                             if (i >= graph.nodes.Count) return;
 
