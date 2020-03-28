@@ -24,7 +24,7 @@ namespace AbicraftNodeEditor {
 
         /// <summary> Make a field for a serialized property. Automatically displays relevant node port. </summary>
         public static void PropertyField(SerializedProperty property, GUIContent label, bool includeChildren = true, params GUILayoutOption[] options) {
-            if (property == null) throw new NullReferenceException();
+            if (property == null) return;//throw new NullReferenceException();
             AbicraftNode node = property.serializedObject.targetObject as AbicraftNode;
             NodePort port = node.GetPort(property.name);
             PropertyField(property, label, port, includeChildren);
@@ -60,6 +60,34 @@ namespace AbicraftNodeEditor {
                 default:
                     return GUIStyle.none;
             }
+        }
+
+        static void GuiLine(int i_height = 1)
+        {
+            Rect rect = default;
+            try
+            {
+                rect = EditorGUILayout.GetControlRect(false, i_height);
+            }
+            catch { }
+
+            rect.height = i_height;
+
+            EditorGUI.DrawRect(rect, new Color(0.3f, 0.3f, 0.3f, 1));
+        }
+
+        static void GuiSpace(int i_height = 1)
+        {
+            Rect rect = default;
+            try
+            {
+                rect = EditorGUILayout.GetControlRect(false, i_height);
+            }
+            catch { }
+
+            rect.height = i_height;
+
+            EditorGUI.DrawRect(rect, new Color(0, 0, 0, 0));
         }
 
         /// <summary> Make a field for a serialized property. Manual node port override. </summary>
@@ -157,11 +185,12 @@ namespace AbicraftNodeEditor {
                     // If property is an output, display a text label and put a port handle on the right side
                 }
                 else if (port.direction == NodePort.IO.Output)
-                {
+                {      
                     // Get data from [Output] attribute
                     AbicraftNode.ShowBackingValue showBacking = AbicraftNode.ShowBackingValue.Unconnected;
                     AbicraftNode.OutputAttribute outputAttribute;
                     bool dynamicPortList = false;
+                   
                     if (NodeEditorUtilities.GetCachedAttrib(port.node.GetType(), property.name, out outputAttribute))
                     {
                         dynamicPortList = outputAttribute.dynamicPortList;
@@ -184,7 +213,6 @@ namespace AbicraftNodeEditor {
                         {
                             if (usePropertyAttributes)
                             {
-                                //GUI Values are from https://github.com/Unity-Technologies/UnityCsReference/blob/master/Editor/Mono/ScriptAttributeGUI/Implementations/DecoratorDrawers.cs
                                 Rect position = GUILayoutUtility.GetRect(0, (EditorGUIUtility.singleLineHeight * 1.5f) - EditorGUIUtility.standardVerticalSpacing); //Layout adds standardVerticalSpacing after rect so we subtract it.
                                 position.yMin += EditorGUIUtility.singleLineHeight * 0.5f;
                                 position = EditorGUI.IndentedRect(position);
@@ -205,7 +233,10 @@ namespace AbicraftNodeEditor {
                     {
                         case AbicraftNode.ShowBackingValue.Unconnected:
                             // Display a label if port is connected
-                            if (port.IsConnected) EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
+                            if (port.IsConnected)
+                            {
+                                EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
+                            }
                             // Display an editable property field if port is not connected
                             else
                             {
@@ -216,15 +247,20 @@ namespace AbicraftNodeEditor {
                             break;
                         case AbicraftNode.ShowBackingValue.Never:
                             // Display a label
-                            if(port.IsConnected)
+                            if (port.IsConnected)
+                            {
                                 EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
+                            }
+                            
                             else
+                            {
                                 EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
+                            }
                             break;
                         case AbicraftNode.ShowBackingValue.Always:
                             // Display an editable property field
                             EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName), StateFieldLabelOut, GUILayout.MinWidth(30));
-                            EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
+                            EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));           
                             break;
                     }
 

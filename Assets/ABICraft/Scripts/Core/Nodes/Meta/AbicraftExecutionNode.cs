@@ -49,8 +49,6 @@ namespace AbicraftNodes.Meta
             {
                 string loopKey = e.loopKeys[e.loopKeys.Count - 1];
 
-                Debug.Log(obj.ToString());
-
                 if (loopKey == null)
                 {
                     Debug.LogError("Abicraft: Loop key is null!");

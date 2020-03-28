@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &492786974408615120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 492786974408615123}
+  - component: {fileID: 492786974408615122}
+  - component: {fileID: 492786974408615121}
+  m_Layer: 0
+  m_Name: DIMMER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &492786974408615123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492786974408615120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.959922, y: -0.09934616, z: -18.321096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &492786974408615122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492786974408615120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Profile: {fileID: 11400000, guid: cc78fdf9b10aa7d40bb1af0a0e027164, type: 2}
+  rigidBody: {fileID: 0}
+  InstantiateObjectToPool: 0
+  InstantiateToPoolAmount: 0
+  Original: {fileID: 0}
+  ActivePool: 0
+  PoolIndex: 0
+  IsSceneObject: 0
+  IsPoolingClone: 0
+--- !u!114 &492786974408615121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492786974408615120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823780dfb72f0c045a4b477d5e2aa46a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimmingInDuration: 1
+  dimmingOutDuration: 3
+  dimForSeconds: 2
+  dimTo: {r: 0.19738024, g: 0.1970452, b: 0.33962262, a: 1}

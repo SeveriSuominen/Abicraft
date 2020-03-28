@@ -25,16 +25,22 @@ namespace AbicraftCore
             return null;
         }
 
-        public static AbicraftObject Spawn(AbicraftObject obj, Transform parent)
+        public static AbicraftObject Spawn(AbicraftObject abj, Transform parent)
         {
-            return Spawn(obj, obj.transform.position, obj.transform.rotation, parent);
+            return Spawn(abj, abj.transform.position, abj.transform.rotation, parent);
         }
 
-        public static AbicraftObject Spawn(AbicraftObject obj, Vector3 position, Quaternion rotation, Transform parent)
+        public static AbicraftObject Spawn(AbicraftObject abj, Vector3 position, Quaternion rotation, Transform parent)
         {
+            if (!abj)
+            {
+                Debug.LogWarning("Abicraft: Trying to spawn NULL object");
+                return null;
+            }
+               
             for (int i = 0; i < pool.Count; i++)
             {
-                if (pool[i].name == obj.name && !pool[i].ActivePool)
+                if (pool[i].name == abj.name && !pool[i].ActivePool)
                 {
                     pool[i].transform.SetParent(parent);
                     pool[i].transform.position = position;
@@ -53,7 +59,7 @@ namespace AbicraftCore
             }
             Debug.LogWarning("Abicraft: Pool didnt find unactive object to spawn, using Instantiate instead, using Instantiate method will affect performance, consider increase AbicraftObject start instantiate amount or if not pooled, pool object");
 
-            AbicraftObject instantiated = GameObject.Instantiate(obj.gameObject, obj.transform.position, obj.transform.rotation, parent).GetComponent<AbicraftObject>();
+            AbicraftObject instantiated = GameObject.Instantiate(abj.gameObject, abj.transform.position, abj.transform.rotation, parent).GetComponent<AbicraftObject>();
 
             AbicraftActionMono[] monos = instantiated.GetComponents<AbicraftActionMono>();
             for (int j = 0; j < monos.Length; j++)
@@ -81,6 +87,9 @@ namespace AbicraftCore
 
         public static bool Despawn(AbicraftObject abj)
         {
+            if (!abj)
+                return false;
+
             for (int i = 0; i < pool.Count; i++)
             {
                 if (pool[i] == abj && pool[i].ActivePool)
@@ -101,7 +110,6 @@ namespace AbicraftCore
                 }
             }
             Debug.LogWarning("Abicraft: Couldn't find object to despawn. Destroing instead. " + abj);
-            
             GameObject.Destroy(abj.gameObject);
             return false;
         }
