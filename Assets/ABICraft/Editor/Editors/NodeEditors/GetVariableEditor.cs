@@ -47,7 +47,6 @@ namespace AbicraftNodes.Editors
 
         public override void OnBodyGUI()
         {
-       
             GuiSpace(10);
             node = target as GetVariableNode;
 
@@ -80,13 +79,39 @@ namespace AbicraftNodes.Editors
                 GUI.color = ERRORCOLOR;
             }
 
+            if (node.lastVariableCount != variableNames.Count)
+            {
+                if (node.selectedIndex > variableNames.Count - 1)
+                    node.selectedIndex = 0;
+                else
+                {
+                    bool resetted = false;
+
+                    for (int i = 0; i < variableNames.Count; i++)
+                    {
+                        if (node.selectedVariable != null && node.selectedVariable.Equals(variableNames[i]))
+                        {
+                            node.selectedIndex = i;
+                            resetted = true;
+                            break;
+                        }
+                    }
+                    if (!resetted)
+                        node.selectedIndex = 0;
+                }
+                node.lastVariableCount = variableNames.Count;
+            }
+
             node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, variableNames.ToArray(), styleW);
+
             GUI.color = col;
 
             if(lastSelectedIndex != node.selectedIndex)
             {
+                node.selectedVariable = variableNames[node.selectedIndex];
+
                 // SHOULD BE MAX ONE
-                List<NodePort> portConnections = new List<NodePort>();  
+                List <NodePort> portConnections = new List<NodePort>();  
                 foreach(var dport in node.DynamicOutputs)
                 {
                     portConnections = dport.GetConnections();

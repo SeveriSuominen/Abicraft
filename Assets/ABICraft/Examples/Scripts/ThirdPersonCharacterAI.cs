@@ -49,7 +49,7 @@ public class ThirdPersonCharacterAI : MonoBehaviour
 
             cursor.transform.position = hitpoint.point;
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 agent.SetDestination(hitpoint.point);
             }

@@ -15,7 +15,6 @@ namespace AbicraftCore
         static Abicraft abicraftInstance;
 
         public static readonly List<AbicraftObject> AllObjects = new List<AbicraftObject>();
-
         public static AbicraftAbilityVariableMap GlobalVariables = new AbicraftAbilityVariableMap();
 
         static List<AbicraftAbility> LoadAllAbilityGraphs()

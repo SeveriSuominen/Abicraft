@@ -33,6 +33,9 @@ namespace AbicraftNodes.Action
         public float Range = 0.7f;
 
         [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+        public float MaxRange = 3f;
+
+        [Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
         public float Force = 1.0f;//, YForce = 0;
  
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
@@ -49,6 +52,7 @@ namespace AbicraftNodes.Action
                 push.Force = GetInputValue<float>(e, "Force", Force);
                // push.YForce = GetInputValue<float>(e, "YForce", YForce);
                 push.Range = GetInputValue<float>(e, "Range", Range);
+                push.MaxRange = GetInputValue<float>(e, "MaxRange", MaxRange);
                 push.curve = GetInputValue<AnimationCurve>(e, "Curve", ForceOverDistanceCurve);
                 push.forcePush = this.forcePush;
 

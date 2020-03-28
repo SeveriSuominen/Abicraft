@@ -12,7 +12,7 @@ namespace AbicraftMonos.Action
 
         public AnimationCurve curve;
         public Vector3 Direction;
-        public float Range = 0.7f;
+        public float Range = 0.7f, MaxRange = 3.0f;
         public float Force = 1.0f;
         public float YForce = 0;
         private float currentRange;
@@ -46,8 +46,10 @@ namespace AbicraftMonos.Action
             {
                 currentRange = Vector3.Distance(startPoint, transform.position);
                 transform.position += Direction * (Force * curve.Evaluate(currentRange / Range));
-                
-                if (Vector3.Distance(startPoint, transform.position) > Range)
+
+                var distance = Vector3.Distance(startPoint, transform.position);
+
+                if (distance > Range || Vector3.Distance(startPoint, transform.position) > MaxRange)
                 {
                     CompleteActionAs(true);
                 }
@@ -56,7 +58,7 @@ namespace AbicraftMonos.Action
             if(Active && forcePush)
             {
                 currentRange = Vector3.Distance(startPoint, transform.position);
-                if (!downshifted && currentRange >= Range * 0.5f)
+                if (!downshifted && currentRange >= Range * 0.5f )
                 {
                     //abj.rigidBody.AddForce(new Vector3(0, -1, 0) * (YForce * 2000));
                     downshifted = true;

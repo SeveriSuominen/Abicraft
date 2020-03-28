@@ -8,6 +8,7 @@ using AbicraftNodes.Action;
 using UnityEditor;
 using AbicraftCore;
 using AbicraftMonos;
+using System;
 
 namespace AbicraftNodes.Editors
 {
@@ -88,63 +89,67 @@ namespace AbicraftNodes.Editors
             {
                 for (int i = 0; i < node.allSelectedIndices.Count; i++)
                 {
-                    GUILayout.BeginVertical(gstyle);
-                    GUILayout.BeginHorizontal();
-
-                    GUIStyle style = new GUIStyle();
-                    style.fontSize = 12;
-                    style.normal.textColor = Color.white;
-
-                    GUIStyle hstyle = new GUIStyle();
-                    hstyle.fontSize = 11;
-                    hstyle.normal.textColor = Color.white;
-
-                    GUIStyle astyle = new GUIStyle(EditorStyles.boldLabel);
-                    astyle.fontSize = 12;
-                    astyle.normal.textColor = Color.yellow;
-
-                    GUIContent content = null;
-
-                    for (int j = 0; j < attrs.Count; j++)
+                    try
                     {
-                        if (attrs[j] == node.allSelectedIndices[i].attribute)
+                        GUILayout.BeginVertical(gstyle);
+                        GUILayout.BeginHorizontal();
+
+                        GUIStyle style = new GUIStyle();
+                        style.fontSize = 12;
+                        style.normal.textColor = Color.white;
+
+                        GUIStyle hstyle = new GUIStyle();
+                        hstyle.fontSize = 11;
+                        hstyle.normal.textColor = Color.white;
+
+                        GUIStyle astyle = new GUIStyle(EditorStyles.boldLabel);
+                        astyle.fontSize = 12;
+                        astyle.normal.textColor = Color.yellow;
+
+                        GUIContent content = null;
+
+                        for (int j = 0; j < attrs.Count; j++)
                         {
-                            content = avaibleAttrContents[j];
+                            if (attrs[j] == node.allSelectedIndices[i].attribute)
+                            {
+                                content = avaibleAttrContents[j];
+                            }
+                        }
+
+                        if (content != null)
+                        {
+                            GUILayout.Label(content, style);
+
+                            if (GUILayout.Button("X", GUILayout.MaxWidth(15), GUILayout.MaxHeight(15)))
+                                node.allSelectedIndices.RemoveAt(i);
+                        }
+
+                        GUILayout.EndHorizontal();
+
+                        GuiLine(1);
+
+                        GUILayout.Label("Cast Source", hstyle);
+                        node.allSelectedIndices[i].mode = (CastAttributesNode.CastSourceMode)EditorGUILayout.EnumPopup(node.allSelectedIndices[i].mode);
+
+                        GUILayout.Label("Amount", hstyle);
+
+                        if (node.allSelectedIndices[i].mode == CastAttributesNode.CastSourceMode.Manual)
+                            node.allSelectedIndices[i].amount = EditorGUILayout.IntField(node.allSelectedIndices[i].amount);
+                        else
+                        {
+                            GUILayout.Label("AUTOMATIC", astyle);
+                            GuiSpace(5);
+                        }
+                        GUILayout.EndVertical();
+
+                        if (i != node.allSelectedIndices.Count - 1)
+                        {
+                            GuiSpace(1);
+                            GuiLine(1);
+                            GuiSpace(1);
                         }
                     }
-
-                    if(content != null)
-                    {
-                        GUILayout.Label(content, style);
-
-                        if (GUILayout.Button("X", GUILayout.MaxWidth(15), GUILayout.MaxHeight(15)))
-                            node.allSelectedIndices.RemoveAt(i);
-                    }
-
-                    GUILayout.EndHorizontal();
-
-                    GuiLine(1);
-
-                    GUILayout.Label("Cast Source", hstyle);
-                    node.allSelectedIndices[i].mode   = (CastAttributesNode.CastSourceMode)EditorGUILayout.EnumPopup(node.allSelectedIndices[i].mode);
-
-                    GUILayout.Label("Amount", hstyle);
-                  
-                    if(node.allSelectedIndices[i].mode == CastAttributesNode.CastSourceMode.Manual)
-                        node.allSelectedIndices[i].amount = EditorGUILayout.IntField(node.allSelectedIndices[i].amount);
-                    else
-                    {
-                        GUILayout.Label("AUTOMATIC", astyle);
-                        GuiSpace(5);
-                    }
-                    GUILayout.EndVertical();
-
-                    if (i != node.allSelectedIndices.Count - 1)
-                    {
-                        GuiSpace(1);
-                        GuiLine(1);
-                        GuiSpace(1);
-                    }
+                    catch (ArgumentException e) { }
                 }
             }
             GuiSpace(5);

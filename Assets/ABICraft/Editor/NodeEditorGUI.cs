@@ -569,7 +569,10 @@ namespace AbicraftNodeEditor {
                 Rect xrect = new Rect(nodePos, new Vector2(nodeEditor.GetWidth(), 4000));
                 GUILayout.BeginArea(xrect);
 
-                bool selected = selectionCache.Contains(graph.nodes[n]);
+                bool selected = false;
+
+                if(selectionCache != null && graph != null)
+                    selected = selectionCache.Contains(graph.nodes[n]);
 
                 if (selected) {
                     GUIStyle style = new GUIStyle(nodeEditor.GetBodyStyle(node));

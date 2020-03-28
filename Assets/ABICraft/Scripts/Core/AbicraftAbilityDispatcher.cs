@@ -43,6 +43,29 @@ namespace AbicraftCore
             if (AbilityOnCooldown(senderObject, ability))
                 return;
 
+            DispatchAbility(senderObject, ability, passiveLifetime);
+        }
+
+        /// <summary> Executes AbicraftAbility </summary>
+        public void DispatchIgnoreCooldown(AbicraftObject senderObject, AbicraftAbility ability, float passiveLifetime = -1)
+        {
+            if (!ability)
+            {
+                Debug.LogError("Abicraft: Trying to dispatch ability that is null");
+                return;
+            }
+
+            if (!senderObject)
+            {
+                Debug.LogError("Abicraft: Cannot dispatch ability with null senderObject");
+                return;
+            }
+            DispatchAbility(senderObject, ability, passiveLifetime);
+        }
+
+        /// <summary> Executes AbicraftAbility </summary>
+        void DispatchAbility(AbicraftObject senderObject, AbicraftAbility ability, float passiveLifetime = -1)
+        {
             float usePassiveLifetime = passiveLifetime == -1 ? ability.DefaultLifetime : passiveLifetime;
 
             AbicraftNode exe = getSortForExecuteNodes(ability)[0];

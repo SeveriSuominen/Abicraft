@@ -8,6 +8,7 @@ using AbicraftNodes.Action;
 using UnityEditor;
 using AbicraftCore;
 using AbicraftMonos;
+using System;
 
 namespace AbicraftNodes.Editors
 {
@@ -92,40 +93,43 @@ namespace AbicraftNodes.Editors
             {
                 for (int i = 0; i < node.allSelectedIndices.Count; i++)
                 {
-                    GUILayout.BeginHorizontal(gstyle);
-                  
-
-                    GUIStyle styleState = new GUIStyle();
-                    styleState.fontSize = 13;
-
-                    if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Negative))
-                        styleState.normal.textColor = new Color32(255, 38, 0, 255);
-                    if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Positive))
-                        styleState.normal.textColor = Color.green;
-                    if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Neutral))
-                        styleState.normal.textColor = Color.yellow;
-
-                    GUILayout.Label(avaibleStateContents[node.allSelectedIndices[i]], styleState);
-
-                    if(GUILayout.Button("X", GUILayout.MaxWidth(15), GUILayout.MaxHeight(15)))
-                        node.allSelectedIndices.RemoveAt(i);
-
-                    GUILayout.EndHorizontal();
-
-                    GUIStyle styleLabel = new GUIStyle();
-                    styleLabel.normal.textColor = Color.white;
-
-                    GuiSpace(5);
-
-                    GUILayout.Label("Cast for seconds", styleLabel);
-                    EditorGUILayout.FloatField(2);
-
-                    if(i != node.allSelectedIndices.Count - 1)
+                    try
                     {
+                        GUILayout.BeginHorizontal(gstyle);
+ 
+                        GUIStyle styleState = new GUIStyle();
+                        styleState.fontSize = 13;
+
+                        if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Negative))
+                            styleState.normal.textColor = new Color32(255, 38, 0, 255);
+                        if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Positive))
+                            styleState.normal.textColor = Color.green;
+                        if (types[node.allSelectedIndices[i]].Equals(AbicraftState.StateType.Neutral))
+                            styleState.normal.textColor = Color.yellow;
+
+                        GUILayout.Label(avaibleStateContents[node.allSelectedIndices[i]], styleState);
+
+                        if(GUILayout.Button("X", GUILayout.MaxWidth(15), GUILayout.MaxHeight(15)))
+                            node.allSelectedIndices.RemoveAt(i);
+
+                        GUILayout.EndHorizontal();
+
+                        GUIStyle styleLabel = new GUIStyle();
+                        styleLabel.normal.textColor = Color.white;
+
                         GuiSpace(5);
-                        GuiLine(1);
-                        GuiSpace(5);
+
+                        GUILayout.Label("Cast for seconds", styleLabel);
+                        EditorGUILayout.FloatField(2);
+
+                        if(i != node.allSelectedIndices.Count - 1)
+                        {
+                            GuiSpace(5);
+                            GuiLine(1);
+                            GuiSpace(5);
+                        }
                     }
+                    catch (ArgumentException e) { }
                 }
             }
 

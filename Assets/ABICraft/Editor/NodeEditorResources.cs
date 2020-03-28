@@ -28,7 +28,7 @@ namespace AbicraftNodeEditor {
         public static Texture2D nodeArea { get { return _nodeArea != null ? _nodeArea : _nodeArea = Resources.Load<Texture2D>("testareaHeaderpsd3"); } }
         private static Texture2D _nodeArea;
 
-        public static Texture2D trashbin { get { return _trashbin != null ? _trashbin : _trashbin = Resources.Load<Texture2D>("baseline_cancel_black_36dp"); } }
+        public static Texture2D trashbin { get { return _trashbin != null ? _trashbin : _trashbin = Resources.Load<Texture2D>("google_material_design/baseline_cancel_black_36dp"); } }
         private static Texture2D _trashbin;
         
         public static Texture2D abicraftIcon { get { return _abicraftIcon != null ? _abicraftIcon : _abicraftIcon = Resources.Load<Texture2D>("Abicraft/big-logo"); } }

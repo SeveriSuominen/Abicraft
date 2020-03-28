@@ -181,16 +181,33 @@ namespace AbicraftNodeEditor {
         }
 
         /// <summary>Creates a new C# Class.</summary>
-        //[MenuItem("Assets/Create/xNode/Node C# Script", false, 89)]
-        private static void CreateNode() {
-            string[] guids = AssetDatabase.FindAssets("xNode_NodeTemplate.cs");
+        [MenuItem("Assets/Create/Abicraft/Script/ExecutionNode", false, 89)]
+        private static void CreateExecutionNode() {
+            string[] guids = AssetDatabase.FindAssets("AbicraftExecutionNodeTemplate.cs");
             if (guids.Length == 0) {
-                Debug.LogWarning("xNode_NodeTemplate.cs.txt not found in asset database");
+                Debug.LogWarning("AbicraftExecutionNodeTemplate.cs.txt not found in asset database");
                 return;
             }
             string path = AssetDatabase.GUIDToAssetPath(guids[0]);
             CreateFromTemplate(
-                "NewNode.cs",
+                "NewAbicraftExecutionNode.cs",
+                path
+            );
+        }
+
+        /// <summary>Creates a new C# Class.</summary>
+        [MenuItem("Assets/Create/Abicraft/Script/ValueNode", false, 89)]
+        private static void CreateValueNode()
+        {
+            string[] guids = AssetDatabase.FindAssets("AbicraftValueNodeTemplate.cs");
+            if (guids.Length == 0)
+            {
+                Debug.LogWarning("AbicraftValueNodeTemplate.cs.txt not found in asset database");
+                return;
+            }
+            string path = AssetDatabase.GUIDToAssetPath(guids[0]);
+            CreateFromTemplate(
+                "NewAbicraftValueNode.cs",
                 path
             );
         }

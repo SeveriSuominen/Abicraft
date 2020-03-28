@@ -32,12 +32,11 @@ namespace AbicraftNodeEditor {
                 Object[] objs = AssetDatabase.LoadAllAssetRepresentationsAtPath (assetpath);
                 for (int k = 0; k < objs.Length; k++) {
                     AbicraftNode node = objs[k] as AbicraftNode;
-                    if (node.GetType () == scriptType) {
-                        if (node != null && node.graph != null) {
-                            // Delete the node and notify the user
-                            Debug.LogWarning (node.name + " of " + node.graph + " depended on deleted script and has been removed automatically.", node.graph);
-                            node.graph.RemoveNode (node);
-                        }
+                    if (node != null && node.graph != null && node.GetType() == scriptType)
+                    {
+                        // Delete the node and notify the user
+                        Debug.LogWarning (node.name + " of " + node.graph + " depended on deleted script and has been removed automatically.", node.graph);
+                        node.graph.RemoveNode (node);
                     }
                 }
             }

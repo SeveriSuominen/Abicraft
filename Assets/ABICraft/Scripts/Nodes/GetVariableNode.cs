@@ -14,9 +14,15 @@ namespace AbicraftNodes.Action
     public class GetVariableNode : AbicraftValueNode
     {
         [HideInInspector]
-        public int selectedIndex;
+        public int    selectedIndex, lastVariableCount;
+
+        [HideInInspector]
+        public string selectedVariable;
+
 
         public bool GetGlobalVariable;
+
+
 
         [HideInInspector]
         public bool lastGetGlobalVariableSetting;

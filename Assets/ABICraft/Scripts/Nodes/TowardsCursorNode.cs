@@ -26,7 +26,7 @@ namespace AbicraftNodes.Math
 
             if (obj != null)
             {
-                AbicraftGameStateSnapshot snapshot = e.ae.initial_snapshot;
+                AbicraftGameStateSnapshot snapshot = AbicraftGameStateSnapshot.TakeSnapshot;
                 distance = Vector3.Distance(obj.transform.position, snapshot.mousePosition3D);
                 direction = (snapshot.mousePosition3D - obj.transform.position).normalized;
 

@@ -1,0 +1,45 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+using AbicraftNodeEditor;
+using AbicraftCore;
+using AbicraftMonos;
+using AbicraftNodes.Meta;
+
+namespace AbicraftNodes.Custom.Value
+{
+	public class #SCRIPTNAME# : AbicraftValueNode {
+
+		/* Example of node input field */
+		[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+		public Vector3 EXAMPLE_INPUT_POSITION01; 
+
+		/* Example of node input field */
+		[Input(connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
+		public Vector3 EXAMPLE_INPUT_POSITION02; 
+
+		/* Example node output field */
+		[Output]
+		public float EXAMPLE_OUTPUT_VALUE; 
+
+		// Return value when another node is requesting output field value
+		public override object GetValue(AbicraftNodeExecution e, NodePort port) {
+
+			this.EXAMPLE_OUTPUT_VALUE = Vector3.Distance
+			(
+				GetInputValue<Vector3>(e, "EXAMPLE_INPUT_POSITION01", Vector3.zero),
+				GetInputValue<Vector3>(e, "EXAMPLE_INPUT_POSITION02", Vector3.zero)
+			);
+
+			//Example returning of data
+			switch(port.fieldName)
+			{
+				case "EXAMPLE_OUTPUT_VALUE":
+					return EXAMPLE_OUTPUT_VALUE;
+				default:
+					return default;
+			}
+		}
+	}
+}
