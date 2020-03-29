@@ -8,7 +8,7 @@ using UnityEngine;
 namespace AbicraftNodes.Editors
 {
     [CustomEditor(typeof(Abicraft))]
-    public class AbicraftEditor : Editor
+    public class AbicraftEditor : AbicratInspectorEditor
     {
         Abicraft abicraft;
 
@@ -17,8 +17,46 @@ namespace AbicraftNodes.Editors
             if (!abicraft)
                 abicraft = target as Abicraft;
 
-            GUILayout.Label("Abicraft global data file");
+            GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
+            GUIStyle bstyle = new GUIStyle(EditorStyles.boldLabel);
+            GUIStyle poolbtnstyle = new GUIStyle(EditorStyles.miniButton);
+            poolbtnstyle.normal.textColor = new Color(0.7f, 0, 0);
+
+            GuiSpace(5);
+            GUILayout.Label("Abicraft global data file", bstyle);
+            GuiSpace(5);
+
             abicraft.dataFile = EditorGUILayout.ObjectField(abicraft.dataFile, typeof(AbicraftGlobalDataFile), false) as AbicraftGlobalDataFile;
+
+            GuiSpace(5);
+            GuiLine(1);
+            GuiSpace(5);
+
+            GUILayout.Label("Abicraft object pool", bstyle);
+
+            for (int i = 0; i < abicraft.InstantiateToPool.Count; i++)
+            {
+                GUILayout.BeginHorizontal(gstyle);
+
+                GUI.enabled = abicraft.InstantiateToPool[i].includeForScene;
+
+                if(GUILayout.Button("Detach", poolbtnstyle))
+                {
+                    abicraft.InstantiateToPool.RemoveAt(i);
+                }
+
+                GUILayout.Label(abicraft.InstantiateToPool[i].abjRef.name, GUILayout.Width(200));
+
+               
+                GuiSpace(10);
+                GUILayout.Label("Amount", GUILayout.Width(50));
+                abicraft.InstantiateToPool[i].abjRef.InstantiateToPoolAmount = abicraft.InstantiateToPool[i].amountForScene = EditorGUILayout.IntField(abicraft.InstantiateToPool[i].amountForScene, GUILayout.Width(100));
+                GUI.enabled = true;
+
+                abicraft.InstantiateToPool[i].includeForScene = GUILayout.Toggle(abicraft.InstantiateToPool[i].includeForScene, "Include to scene");
+
+                GUILayout.EndHorizontal();
+            }
 
             if (GUI.changed)
             {

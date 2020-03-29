@@ -8,7 +8,7 @@ using UnityEngine;
 namespace AbicraftNodes.Editors
 {
     [CustomEditor(typeof(AbicraftObjectProfile))]
-    public class AbicraftObjectProfileEditor : AbicratEditor
+    public class AbicraftObjectProfileEditor : AbicratInspectorEditor
     {
         int instantiatePoolAmount;
 

@@ -188,8 +188,8 @@ namespace AbicraftMonos
 
                     wrapper.StartActionMono(wrapper.passiveAbilityLifetime, true);
 
-                    AbicraftGUI.Instance.SpawnObjectImpact(this, state);
-
+                    if(AbicraftGUI.Instance)
+                        AbicraftGUI.Instance.SpawnObjectImpact(this, state);
                     return Interaction.Success;
                 }
 
@@ -393,8 +393,8 @@ namespace AbicraftMonos
                                 var finalValue = Mathf.FloorToInt(value * effectoption.amount);
                                 optionAbj.ImpactAttributeValue(self, effectoption.attribute, finalValue);
 
-                                AbicraftGUI.Instance.SpawnObjectImpact(this, effectoption.attribute, finalValue);
-
+                                if(AbicraftGUI.Instance)
+                                    AbicraftGUI.Instance.SpawnObjectImpact(this, effectoption.attribute, finalValue);
                                 break;
                         }
                     }

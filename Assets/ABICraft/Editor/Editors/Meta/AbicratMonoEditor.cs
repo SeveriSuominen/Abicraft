@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class AbicratEditor : Editor
+public class AbicratInspectorEditor : Editor
 {
     protected void GuiLine(int i_height = 1)
     {

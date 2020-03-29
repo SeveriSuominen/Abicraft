@@ -113,7 +113,7 @@ namespace AbicraftNodes.Action
         void LoadAnimClip(AnimationClip clip)
         {
             overrideController["OVERRIDE_THIS"] = clip;
-
+       
             animator.Update(0.0f);
             // Push back state
             for (int i = 0; i < animator.layerCount; i++)
@@ -121,8 +121,6 @@ namespace AbicraftNodes.Action
                 animator.Play("OVERRIDE", i);
                 //animator.Play(layerInfo[i].fullPathHash, i, 0);
             }
-
-            //animator.SetTrigger("OVERRIDE");
         }
 
         ///<summary>Load animation to override controller</summary>

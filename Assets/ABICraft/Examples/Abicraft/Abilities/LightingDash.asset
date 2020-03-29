@@ -210,7 +210,9 @@ MonoBehaviour:
     values:
     - _fieldName: Value
       _node: {fileID: -7299125272940492017}
-      _typeQualifiedName: 
+      _typeQualifiedName: System.Collections.Generic.List`1[[AbicraftMonos.AbicraftObject,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: Objs
         node: {fileID: 2252609637154283171}
@@ -312,7 +314,7 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   SpawnedObject: {fileID: 0}
-  ObjectToSpawn: {fileID: 492786974408615122, guid: d96ec78d0b1f0054b895de519e6cb6a5,
+  ObjectToSpawn: {fileID: 2021165405953049768, guid: d96ec78d0b1f0054b895de519e6cb6a5,
     type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
   spawnRotation: {x: 0, y: 0, z: 0}
@@ -545,7 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 1112, y: -136}
+  position: {x: 1208, y: -120}
   ports:
     keys:
     - value
@@ -1098,7 +1100,7 @@ MonoBehaviour:
   - {fileID: -1299137218977971914}
   areas: []
   variableDefinitions: []
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 8c6832fa0ead60d418932883844f8172, type: 3}
   AbilityName: Thunder
   Cooldown: 5
   Passive: 0
@@ -1152,7 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 72, y: 568}
+  position: {x: 40, y: 568}
   ports:
     keys:
     - camera
@@ -1643,7 +1645,9 @@ MonoBehaviour:
     values:
     - _fieldName: Value
       _node: {fileID: 6008664449251498055}
-      _typeQualifiedName: 
+      _typeQualifiedName: System.Collections.Generic.List`1[[AbicraftMonos.AbicraftObject,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: Objs
         node: {fileID: 6037431672561792154}

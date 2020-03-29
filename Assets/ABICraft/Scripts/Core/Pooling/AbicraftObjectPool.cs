@@ -57,7 +57,7 @@ namespace AbicraftCore
                     return pool[i];
                 }
             }
-            Debug.LogWarning("Abicraft: Pool didnt find unactive object to spawn, using Instantiate instead, using Instantiate method will affect performance, consider increase AbicraftObject start instantiate amount or if not pooled, pool object");
+            Debug.LogWarning("Abicraft: Pool didnt find unactive object to spawn, using Instantiate instead, using Instantiate method will affect performance, consider increase AbicraftObject start instantiate amount or if not pooled, pool object: " + abj.name);
 
             AbicraftObject instantiated = GameObject.Instantiate(abj.gameObject, abj.transform.position, abj.transform.rotation, parent).GetComponent<AbicraftObject>();
 
@@ -114,11 +114,6 @@ namespace AbicraftCore
             return false;
         }
 
-        public static void LoadAllContextPooledObjects(bool reinitialize = false)
-        {
-            LoadPooledObjects(AbicraftGlobalContext.AllObjects, reinitialize);
-        }
-
         static void Initialize()
         {
             string poolParentName = "AbicraftObjectPool";
@@ -129,7 +124,7 @@ namespace AbicraftCore
         }
 
         // Update is called once per frame
-        public static void LoadPooledObjects(List<AbicraftObject> objects, bool reinitialize = false)
+        public static void LoadPooledObjects(List<AbicraftObjectPoolInstantiate> objects, bool reinitialize = false)
         {
             if (reinitialize)
             {
@@ -147,14 +142,14 @@ namespace AbicraftCore
 
             for (int i = 0; i < objects.Count; i++)
             {
-                AbicraftObject objRef = objects[i];
+                AbicraftObject objRef = objects[i].abjRef;
 
-                if (!objRef.gameObject.activeSelf)
+                if (!objRef.gameObject.activeSelf || !objects[i].includeForScene)
                     continue;
 
                 if (!alreadyInstantiated.Contains(objRef.name) && objRef.InstantiateObjectToPool)
                 {
-                    for (int j = 0; j < objRef.InstantiateToPoolAmount; j++)
+                    for (int j = 0; j < objects[i].amountForScene; j++)
                     {
                         string name = objRef.gameObject.name;
                         GameObject objInstantiated = GameObject.Instantiate(objRef.gameObject, abicraftObjectPoolParent.transform);

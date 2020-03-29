@@ -4834,7 +4834,7 @@ GameObject:
   - component: {fileID: 2875871225378372442}
   - component: {fileID: 660720212}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: LightingStrike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9649,8 +9649,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Profile: {fileID: 11400000, guid: cc78fdf9b10aa7d40bb1af0a0e027164, type: 2}
   rigidBody: {fileID: 0}
-  InstantiateObjectToPool: 0
-  InstantiateToPoolAmount: 0
+  InstantiateObjectToPool: 1
+  InstantiateToPoolAmount: 50
   Original: {fileID: 0}
   ActivePool: 0
   PoolIndex: 0

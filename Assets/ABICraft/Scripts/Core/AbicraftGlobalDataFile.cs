@@ -2,6 +2,7 @@
 using AbicraftMonos;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 namespace AbicraftCore
 {
     [System.Serializable]
+
     [CreateAssetMenu(fileName = "AbicraftGlobalDataFile", menuName = "Abicraft/Global data file", order = 2)]
     public class AbicraftGlobalDataFile : ScriptableObject
     {

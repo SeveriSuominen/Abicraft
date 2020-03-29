@@ -16,16 +16,18 @@ namespace AbicraftMonos
         [HideInInspector]
         public AbicraftAbilityDispatcher dispatcher;
 
+        public List<AbicraftObjectPoolInstantiate> InstantiateToPool = new List<AbicraftObjectPoolInstantiate>();
+
         private void Awake()
         {
             if (!AbicraftGlobalContext.abicraft)
-                AbicraftGlobalContext.AddAbicraftInstance(this);
+                AbicraftGlobalContext.TryInjectAbicraftInstance();
         }
 
         private void Update()
         {
             if (!AbicraftGlobalContext.abicraft)
-                AbicraftGlobalContext.AddAbicraftInstance(this);
+                AbicraftGlobalContext.TryInjectAbicraftInstance();
         }
 
         public void Inject()
@@ -52,8 +54,7 @@ namespace AbicraftMonos
                     }
                 );
 
-                AbicraftObjectPool.LoadPooledObjects(dataFile.InstantiateToPool);
-                AbicraftObjectPool.LoadAllContextPooledObjects();
+                AbicraftObjectPool.LoadPooledObjects(InstantiateToPool);
             }
         }
     }

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace AbicraftNodes.Editors
 {
     [CustomEditor(typeof(AbicraftAttribute))]
-    public class AbicraftAttributeEditor : AbicratEditor
+    public class AbicraftAttributeEditor : AbicratInspectorEditor
     {
         int instantiatePoolAmount;
         Texture2D iconUP, iconDOWN;

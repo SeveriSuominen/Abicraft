@@ -27,21 +27,19 @@ namespace AbicraftNodes.Action
 
         public override int IterationCount(AbicraftNodeExecution e)
         {
-            return objs.Count;
+            return objs != null ? objs.Count : 0;
         }
 
         public override object GetValue(AbicraftNodeExecution e, NodePort port)
         {
             object @base = base.GetValue(e, port);
 
-            if (objs == null)
-            {
+            if(objs == null)
                 objs = GetInputValue<List<AbicraftObject>>(e, "Objs", Objs);
-            }
 
             if (port.fieldName.Equals("Obj"))
             {
-                if (e != null)
+                if (e != null && objs != null)
                 {
                     int indexOfObj = -1;
 

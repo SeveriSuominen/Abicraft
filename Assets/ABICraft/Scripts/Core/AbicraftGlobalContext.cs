@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace AbicraftCore
 {
+    [InitializeOnLoad]
     public static class AbicraftGlobalContext
     {
         public static Abicraft abicraft { get { return GetAbicraftInstance(); } private set { } }
@@ -17,11 +18,64 @@ namespace AbicraftCore
         public static readonly List<AbicraftObject> AllObjects = new List<AbicraftObject>();
         public static AbicraftAbilityVariableMap GlobalVariables = new AbicraftAbilityVariableMap();
 
+        static AbicraftGlobalContext()
+        {
+            TryInjectAbicraftInstance();
+        }
+
+        public static List<AbicraftObject> LoadAllAbjs(bool excludeSceneObjects = false)
+        {
+            if (Application.isPlaying)
+                return new List<AbicraftObject>();
+
+            List<AbicraftObject> abjs = excludeSceneObjects ? 
+                new List<AbicraftObject>((AbicraftObject[])GameObject.FindObjectsOfType(typeof(AbicraftObject))) : 
+                new List<AbicraftObject>();
+
+#if UNITY_EDITOR
+            string[] temp = AssetDatabase.GetAllAssetPaths();
+            List<string> resultPaths = new List<string>();
+            foreach (string s in temp)
+            {
+                if (s.Contains(".prefab"))
+                {
+                    AbicraftObject abj = AssetDatabase.LoadAssetAtPath<AbicraftObject>(s);
+
+                    if (abj)
+                    {
+                        abjs.Add(abj);
+                    }
+                }
+            }
+#endif
+            return abjs;
+        }
+
+        public static void TryInjectAbicraftInstance()
+        {
+            Abicraft[] scene_abicraft = GameObject.FindObjectsOfType(typeof(Abicraft)) as Abicraft[];
+
+            if (scene_abicraft.Length > 1)
+            {
+                Debug.LogError("There is more than one Abicraft component on Scene, only one allowed");
+                return;
+
+            }
+            else if (scene_abicraft.Length == 1)
+            {
+                Abicraft abicraft = scene_abicraft[0];
+                abicraft.enabled = true;
+                abicraft.Inject();
+
+                UpdateGlobalVariableDefinitions();
+            }
+        }
+
         static List<AbicraftAbility> LoadAllAbilityGraphs()
         {
             List<AbicraftAbility> abilityGraphs = new List<AbicraftAbility>();
 
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             string[] temp = AssetDatabase.GetAllAssetPaths();
             List<string> resultPaths = new List<string>();
 
@@ -37,7 +91,7 @@ namespace AbicraftCore
                     }
                 }
             }
-            #endif
+#endif
 
             return abilityGraphs;
         }
@@ -46,7 +100,7 @@ namespace AbicraftCore
         {
             var graphs = LoadAllAbilityGraphs();
 
-            if (graphs.Count == 0)
+            if (!abicraft || graphs.Count == 0)
                 return;
 
             abicraft.dataFile.GlobalVariableDefinitions.Clear();

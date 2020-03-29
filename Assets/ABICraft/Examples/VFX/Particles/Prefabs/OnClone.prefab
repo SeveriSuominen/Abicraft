@@ -4770,8 +4770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Profile: {fileID: 11400000, guid: cc78fdf9b10aa7d40bb1af0a0e027164, type: 2}
   rigidBody: {fileID: 0}
-  InstantiateObjectToPool: 1
-  InstantiateToPoolAmount: 500
+  InstantiateObjectToPool: 0
+  InstantiateToPoolAmount: 25
   Original: {fileID: 0}
   ActivePool: 0
   PoolIndex: 0

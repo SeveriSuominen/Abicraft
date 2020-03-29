@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 492786974408615123}
-  - component: {fileID: 492786974408615122}
   - component: {fileID: 492786974408615121}
+  - component: {fileID: 2021165405953049768}
   m_Layer: 0
   m_Name: DIMMER
   m_TagString: Untagged
@@ -32,27 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &492786974408615122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492786974408615120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Profile: {fileID: 11400000, guid: cc78fdf9b10aa7d40bb1af0a0e027164, type: 2}
-  rigidBody: {fileID: 0}
-  InstantiateObjectToPool: 0
-  InstantiateToPoolAmount: 0
-  Original: {fileID: 0}
-  ActivePool: 0
-  PoolIndex: 0
-  IsSceneObject: 0
-  IsPoolingClone: 0
 --- !u!114 &492786974408615121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,3 +48,24 @@ MonoBehaviour:
   dimmingOutDuration: 3
   dimForSeconds: 2
   dimTo: {r: 0.19738024, g: 0.1970452, b: 0.33962262, a: 1}
+--- !u!114 &2021165405953049768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492786974408615120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01337aab9a985849a7b164916c40af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Profile: {fileID: 11400000, guid: cc78fdf9b10aa7d40bb1af0a0e027164, type: 2}
+  rigidBody: {fileID: 0}
+  InstantiateObjectToPool: 1
+  InstantiateToPoolAmount: 10
+  Original: {fileID: 0}
+  ActivePool: 0
+  PoolIndex: 0
+  IsSceneObject: 0
+  IsPoolingClone: 0
