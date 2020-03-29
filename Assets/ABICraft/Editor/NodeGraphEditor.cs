@@ -60,7 +60,7 @@ namespace AbicraftNodeEditor {
             }
             menu.AddSeparator("");
             menu.AddItem(new GUIContent("Add area"), false, () => CreateArea(pos));
-            menu.AddItem(new GUIContent("Remove all areas"), false, () => RemoveAllAreas());
+            //menu.AddItem(new GUIContent("Remove all areas"), false, () => RemoveAllAreas());
             menu.AddSeparator("");
             if (NodeEditorWindow.copyBuffer != null && NodeEditorWindow.copyBuffer.Length > 0) menu.AddItem(new GUIContent("Paste"), false, () => NodeEditorWindow.current.PasteNodes(pos));
             else menu.AddDisabledItem(new GUIContent("Paste"));
@@ -217,11 +217,12 @@ namespace AbicraftNodeEditor {
             if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
         }
 
+        /*
         public virtual void RemoveAllAreas()
         {
             target.RemoveAllAreas();
             if (NodeEditorPreferences.GetSettings().autoSave) AssetDatabase.SaveAssets();
-        }
+        }*/
 
         [AttributeUsage(AttributeTargets.Class)]
         public class CustomNodeGraphEditorAttribute : Attribute,

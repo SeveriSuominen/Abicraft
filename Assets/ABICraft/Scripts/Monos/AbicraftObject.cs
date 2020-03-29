@@ -79,11 +79,16 @@ namespace AbicraftMonos
 
         public void ValidateAttributeObject(ref AbicraftAttribute.AbicraftObjectAttribute attributeObj)
         {
-            int max = 0;
+            int max = 0, min = 0;
 
             if((max = Max(attributeObj.attribute)) != int.MinValue)
             {
                 attributeObj.baseValue = attributeObj.baseValue > max ? max : attributeObj.baseValue;
+            }
+
+            if ((min = Min(attributeObj.attribute)) != int.MinValue)
+            {
+                attributeObj.baseValue = attributeObj.baseValue < min ? min: attributeObj.baseValue;
             }
         }
 
@@ -320,6 +325,49 @@ namespace AbicraftMonos
                 for (int i = 0; i < max_effect.options.Count; i++)
                 {
                     var effectoption = max_effect.options[i];
+
+                    switch (effectoption.option)
+                    {
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Add:
+                            value += GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Substract:
+                            value -= GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Multiply:
+                            value *= GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                        case AbicraftAttribute.AttributeEffect.EffectOption.Divide:
+                            value /= GetAttributeAmount(this, effectoption.attribute);
+                            break;
+                    }
+                }
+                return value;
+            }
+            else
+            {
+                return int.MinValue;
+            }
+        }
+
+        public int Min(AbicraftAttribute attr)
+        {
+            AbicraftAttribute.AttributeEffect min_effect = null;
+            int value = 0;
+
+            for (int i = 0; i < attr.effects.Count; i++)
+            {
+                if (attr.effects[i].effect == AbicraftAttribute.AttributeEffect.Effect.Min)
+                {
+                    min_effect = attr.effects[i];
+                }
+            }
+
+            if (min_effect != null && min_effect.options.Count > 0)
+            {
+                for (int i = 0; i < min_effect.options.Count; i++)
+                {
+                    var effectoption = min_effect.options[i];
 
                     switch (effectoption.option)
                     {

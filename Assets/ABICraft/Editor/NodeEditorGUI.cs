@@ -487,7 +487,6 @@ namespace AbicraftNodeEditor {
                     area.areaRect.x += Event.current.delta.x;
                     area.areaRect.y += Event.current.delta.y;
                 }
-
                 area.areaRect.width  = yrect.width;
                 area.areaRect.height = yrect.height;
             }      

@@ -54,19 +54,19 @@ namespace AbicraftNodeEditor {
             }
         }
 
-
-        /// <summary> Remove all node graph areas </summary>
-        /// <param name="node"> Remove all node graph areas</param>
+        /*
+       /// <summary> Remove all node graph areas </summary>
+       /// <param name="node"> Remove all node graph areas</param>
         public virtual void RemoveAllAreas()
         {
-            for (int i = 0; i < areas.Count; i++)
-            {
-                Area area = areas[i];
+           for (int i = 0; i < areas.Count; i++)
+           {
+               Area area = areas[i];
 
-                areas.RemoveAt(i);
-                if (Application.isPlaying) DestroyImmediate(area, true);
-            }
-        }
+               areas.RemoveAt(i);
+               if (Application.isPlaying) DestroyImmediate(area, true);
+           }
+        }*/
 
         /// <summary> Add a node to the graph by type </summary>
         public virtual Area AddArea(Type type)
