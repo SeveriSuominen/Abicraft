@@ -302,11 +302,11 @@ MonoBehaviour:
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 1334.1553
-    y: 2293
-    width: 60
-    height: 454.87842
-  dir: right
+    x: 162
+    y: 2438.8784
+    width: 1097.1553
+    height: 55
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-8272383787257951889
@@ -608,11 +608,11 @@ MonoBehaviour:
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 392
-    y: 1839.541
-    width: 195.67224
-    height: 55
-  dir: down
+    x: 514.67224
+    y: 1078
+    width: 60
+    height: 461.54102
+  dir: right
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-7199176628907002001
@@ -2456,8 +2456,8 @@ MonoBehaviour:
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 560.1759
-    y: 980
+    x: 646.1759
+    y: 1346
     width: 60
     height: 412.76416
   dir: right
