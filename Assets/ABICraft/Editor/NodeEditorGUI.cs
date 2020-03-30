@@ -410,7 +410,7 @@ namespace AbicraftNodeEditor {
                 Area area = graph.areas[n];
 
                 Vector2 vecpos = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x, area.areaRect.y));
-                Vector2 vecposAreaWidth = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x + area.areaRect.width -32, area.areaRect.y + area.areaRect.height));
+                Vector2 vecposAreaWidth = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x + area.areaRect.width, area.areaRect.y + area.areaRect.height));
 
                 Rect yrect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, area.areaRect.height);
                 Rect headerRect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, 30);
@@ -423,9 +423,15 @@ namespace AbicraftNodeEditor {
                 styleBG.normal.background = NodeEditorResources.nodeAreaBG;
                 styleBG.padding = new RectOffset();
 
+                GUIStyle styleVisibleBtn = new GUIStyle(EditorStyles.miniButton);
+                styleVisibleBtn.normal.textColor = Color.blue;
+                styleVisibleBtn.padding = new RectOffset();
+
                 Rect labelRect  = new Rect(yrect.x, yrect.y + (int)(10 * (zoom + 0.4f)), yrect.width, 20);
                 Rect colorRect  = new Rect(yrect.x + 10, yrect.y + 10, 25, 20);
-                Rect buttonRect = new Rect(vecposAreaWidth.x, yrect.y + 8, 22, 17);
+
+                Rect RemovebuttonRect  = new Rect(vecposAreaWidth.x - 32, yrect.y + 8, 22, 18);
+                Rect VisiblebuttonRect = new Rect(vecposAreaWidth.x - 60, yrect.y + 8, 22, 17);
 
                 area.color = EditorGUI.ColorField(colorRect, GUIContent.none, area.color, false, true, false);
 
@@ -437,18 +443,32 @@ namespace AbicraftNodeEditor {
                 //GUI.Label(labelRect, area.areaName, labelstyle);
                 //GUI.Label(labelRect, area.areaName, labelstyle);
 
-                GUI.color = new Color(1, 1, 1, 0.1f);
-                GUI.Box(yrect, "", styleBG);
-                GUI.color = defaultColor;
-
                 GUI.color = area.color;
                 GUI.Box(yrect, "", style);
                 GUI.color = defaultColor;
 
+                if (area.Visible)
+                {
+                    GUI.color = new Color(1, 1, 1, 0.1f);
+                    GUI.Box(yrect, "", styleBG);
+                    GUI.color = defaultColor;
+                }
+
                 EditorGUIUtility.SetIconSize(new Vector2(15, 15));
-    
-                if(GUI.Button(buttonRect, new GUIContent(NodeEditorResources.trashbin)))
+
+                if ( GUI.Button(RemovebuttonRect, new GUIContent(NodeEditorResources.trashbinNormalRed)))
                     area.graph.RemoveArea(area);
+
+                Color bgcol = GUI.backgroundColor;
+        
+                GUI.backgroundColor = area.Visible ? Color.white : new Color(0,15f, 0.15f, 0.15f);
+
+                if (GUI.Button(VisiblebuttonRect, new GUIContent(NodeEditorResources.eye), styleVisibleBtn))
+                {
+                    area.Visible = !area.Visible;
+                }
+
+                GUI.backgroundColor = bgcol;
 
                 HorizResizer(area, headerRect, ref yrect);
 
@@ -527,12 +547,40 @@ namespace AbicraftNodeEditor {
 
             List<NodePort> removeEntries = new List<NodePort>();
 
-
             //DrawAreas
             DrawAreas();
 
             if (e.type == EventType.Layout) culledNodes = new List<AbicraftNode>();
             for (int n = 0; n < graph.nodes.Count; n++) {
+
+                bool notVisible = false;
+
+                for (int i = 0; i < graph.areas.Count; i++)
+                {
+                    Area area = graph.areas[i];
+
+                    Vector2 vecpos = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x, area.areaRect.y));
+                    Vector2 vecposAreaWidth = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x + area.areaRect.width, area.areaRect.y + area.areaRect.height));
+
+                    Rect yrect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, area.areaRect.height);
+
+                    // Skip null nodes. The user could be in the process renaming scripts, so removing them at this point is not advisable.
+                    if (graph.nodes[n] == null) continue;
+
+
+                    AbicraftNode anode = graph.nodes[n];
+
+                    if (yrect.Contains(GridToWindowPositionNoClipped(anode.position)))
+                    {
+                        notVisible = !area.Visible;
+                    }
+                }
+
+                if (notVisible)
+                {
+                    continue;
+                }
+                
                 // Skip null nodes. The user could be in the process of renaming scripts, so removing them at this point is not advisable.
                 if (graph.nodes[n] == null) continue;
                 if (n >= graph.nodes.Count) return;
