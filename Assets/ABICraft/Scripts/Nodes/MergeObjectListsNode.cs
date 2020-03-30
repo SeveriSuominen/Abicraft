@@ -30,6 +30,9 @@ namespace AbicraftNodes.Object
 
                     for (int i = 0; i < values.Length; i++)
                     {
+                        if (values[i] == null)
+                            continue;
+
                         for (int j = 0; j < values[i].Count; j++)
                         {
                             merged.Add(values[i][j]);

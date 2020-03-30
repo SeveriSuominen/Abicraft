@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 7753225171569340631, guid: f75c4d5fe8b852d4a871e39218fa0174, type: 3}
   - {fileID: 6389469509475229666, guid: c088e315d1f5bc946aeff9d22a633a7a, type: 3}
   - {fileID: 3353175211128172070, guid: 21234af5439e32c4f8e45215d0817539, type: 3}
+  - {fileID: 660720212, guid: 24faf99e0dd259346ba8e7751a22f448, type: 3}
   GlobalVariableDefinitions:
   - VARIABLE_NAME: COLLIDER_CAST_POSITION
   - VARIABLE_NAME: COLLINDER_CAST_COLLISIONS
@@ -47,19 +48,27 @@ MonoBehaviour:
     - obj: {fileID: 0}
       indirectIndex: 0
     - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
       indirectIndex: 0
-    - obj: {fileID: 0}
-      indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 1
     - obj: {fileID: 0}
       indirectIndex: 0
     - obj: {fileID: 0}
@@ -81,6 +90,20 @@ MonoBehaviour:
     - obj: {fileID: 0}
       indirectIndex: 1
     - obj: {fileID: 0}
+      indirectIndex: 0
+    - obj: {fileID: 0}
+      indirectIndex: 0
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
+      indirectIndex: 0
+    - obj: {fileID: 0}
+      indirectIndex: 0
+    - obj: {fileID: 0}
+      indirectIndex: 0
+    - obj: {fileID: 0}
+      indirectIndex: 1
+    - obj: {fileID: 0}
       indirectIndex: 1
     - obj: {fileID: 0}
       indirectIndex: 1
@@ -179,6 +202,8 @@ MonoBehaviour:
     - obj: {fileID: 0}
       indirectIndex: 11
     - obj: {fileID: 0}
+      indirectIndex: 11
+    - obj: {fileID: 0}
       indirectIndex: 10
     - obj: {fileID: 0}
       indirectIndex: 11
@@ -226,27 +251,16 @@ MonoBehaviour:
       indirectIndex: 6
     - obj: {fileID: 0}
       indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 0
-    - obj: {fileID: 0}
-      indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 0
-    - obj: {fileID: 0}
-      indirectIndex: 0
-    - obj: {fileID: 0}
-      indirectIndex: 1
-    - obj: {fileID: 0}
-      indirectIndex: 0
-    - obj: {fileID: 0}
-      indirectIndex: 0
     scannedAssetAbjs:
     - {fileID: 6389469509475229666, guid: c088e315d1f5bc946aeff9d22a633a7a, type: 3}
+    - {fileID: 6389469509475229666, guid: 11ffe438bf0b41d4f9633661b557b251, type: 3}
     - {fileID: 3353175211128172070, guid: 21234af5439e32c4f8e45215d0817539, type: 3}
     - {fileID: 7352726752509946184, guid: 82ee17247cb3e7a4b8119b256023d404, type: 3}
+    - {fileID: 660720212, guid: 24faf99e0dd259346ba8e7751a22f448, type: 3}
     - {fileID: 1478289198579942002, guid: 1566e129d2649fd4aad6d0c0c4146c12, type: 3}
     - {fileID: 532906627, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
     - {fileID: 7753225171569340631, guid: f75c4d5fe8b852d4a871e39218fa0174, type: 3}
+    - {fileID: 2021165405953049768, guid: d96ec78d0b1f0054b895de519e6cb6a5, type: 3}
     - {fileID: 7304414733767880615, guid: bb8cdcfb73df2fb47a70244cf79b6325, type: 3}
     - {fileID: 1922982562566879953, guid: db19f27ceb8abe54091261c92c239fa5, type: 3}
     - {fileID: 1310777319, guid: 2d21526a5035708438599f53bac96756, type: 3}
@@ -255,27 +269,65 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2899c6d116708444088529803858c625, type: 2}
     scannedAssetAbjsPaths:
     - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/CastCollinders/EmptyCastCollinder.prefab
     - Assets/Abicraft/Examples/AbicraftGUI/AbicraftGUILog/Prefabs/ObjectImpactGUIObject.prefab
     - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/Lighting/LightingStrike.prefab
     - Assets/Abicraft/Examples/CastCollinders/ArrowRTCollinder.prefab
     - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
     - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
+    - Assets/Abicraft/Examples/Prefabs/DIMMER.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
     - Assets/Abicraft/Examples/Prefabs/TEST.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
     - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/CastCollinders/EmptyCastCollinder.prefab
     - Assets/Abicraft/Examples/AbicraftGUI/AbicraftGUILog/Prefabs/ObjectImpactGUIObject.prefab
     - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/Lighting/LightingStrike.prefab
     - Assets/Abicraft/Examples/CastCollinders/ArrowRTCollinder.prefab
     - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
     - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
+    - Assets/Abicraft/Examples/Prefabs/DIMMER.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
+    - Assets/Abicraft/Examples/Prefabs/TEST.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
+    - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/CastCollinders/EmptyCastCollinder.prefab
+    - Assets/Abicraft/Examples/AbicraftGUI/AbicraftGUILog/Prefabs/ObjectImpactGUIObject.prefab
+    - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/Lighting/LightingStrike.prefab
+    - Assets/Abicraft/Examples/CastCollinders/ArrowRTCollinder.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
+    - Assets/Abicraft/Examples/Prefabs/DIMMER.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
+    - Assets/Abicraft/Examples/Prefabs/TEST.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
+    - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/CastCollinders/EmptyCastCollinder.prefab
+    - Assets/Abicraft/Examples/AbicraftGUI/AbicraftGUILog/Prefabs/ObjectImpactGUIObject.prefab
+    - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/Lighting/LightingStrike.prefab
+    - Assets/Abicraft/Examples/CastCollinders/ArrowRTCollinder.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
+    - Assets/Abicraft/Examples/Prefabs/DIMMER.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
+    - Assets/Abicraft/Examples/Prefabs/TEST.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
+    - Assets/Abicraft/Examples/CastCollinders/CircleCastCollinder.prefab
+    - Assets/Abicraft/Examples/CastCollinders/EmptyCastCollinder.prefab
+    - Assets/Abicraft/Examples/AbicraftGUI/AbicraftGUILog/Prefabs/ObjectImpactGUIObject.prefab
+    - Assets/Abicraft/Examples/VFX/Materials/TestMissile.prefab
+    - Assets/Abicraft/Examples/VFX/Particles/Prefabs/Lighting/LightingStrike.prefab
+    - Assets/Abicraft/Examples/CastCollinders/ArrowRTCollinder.prefab
+    - Assets/Standard Assets/Characters/ThirdPersonCharacter/Prefabs/ThirdPersonController.prefab
+    - Assets/Abicraft/Examples/VFX/Decals/DecalFade.prefab
+    - Assets/Abicraft/Examples/Prefabs/DIMMER.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnClone.prefab
     - Assets/Abicraft/Examples/Prefabs/TEST.prefab
     - Assets/Abicraft/Examples/VFX/Particles/Prefabs/OnDespawn.prefab
     scannedAssetStatePaths:
-    - Assets/Abicraft/Examples/Abicraft/States/HolyShaking.asset
-    - Assets/Abicraft/Examples/Abicraft/States/Poisoned.asset
-    - Assets/Abicraft/Examples/Abicraft/States/HolyShaking.asset
-    - Assets/Abicraft/Examples/Abicraft/States/Poisoned.asset
     - Assets/Abicraft/Examples/Abicraft/States/HolyShaking.asset
     - Assets/Abicraft/Examples/Abicraft/States/Poisoned.asset

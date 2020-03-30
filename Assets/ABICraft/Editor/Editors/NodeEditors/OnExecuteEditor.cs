@@ -86,6 +86,11 @@ namespace AbicraftNodes.Editors
                 GuiLine(2);
                 GuiSpace(5);
 
+                GUIStyle estyle = new GUIStyle(EditorStyles.textField);
+                estyle.border = new RectOffset(0, 0, 0, 0);
+                estyle.normal.textColor = Color.white;
+                
+      
                 GUILayout.Label("Ability name", style);
                 node.graph.AbilityName = EditorGUILayout.TextField(node.graph.AbilityName);
 

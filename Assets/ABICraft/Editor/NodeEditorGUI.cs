@@ -596,10 +596,10 @@ namespace AbicraftNodeEditor {
 
                 var hold = GUI.backgroundColor;
                 //Draw node contents
-
+                GUI.backgroundColor = new Color(0.75f, 0.75f, 0.75f);
                 nodeEditor.OnHeaderGUI(labelstyle);
                 nodeEditor.OnBodyGUI();
-                
+                GUI.backgroundColor = hold;
 
                 //If user changed a value, notify other scripts through onUpdateNode
                 if (EditorGUI.EndChangeCheck()) {

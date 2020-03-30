@@ -470,8 +470,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Profile: {fileID: 11400000, guid: b22470f919ae0db4e97bb84489088757, type: 2}
   rigidBody: {fileID: 0}
-  InstantiateObjectToPool: 0
-  InstantiateToPoolAmount: 0
+  InstantiateObjectToPool: 1
+  InstantiateToPoolAmount: 20
   Original: {fileID: 0}
   ActivePool: 0
   PoolIndex: 0
@@ -6616,6 +6616,9 @@ MonoBehaviour:
   - abjRef: {fileID: 3353175211128172070, guid: 21234af5439e32c4f8e45215d0817539,
       type: 3}
     amountForScene: 100
+    includeForScene: 1
+  - abjRef: {fileID: 596528845}
+    amountForScene: 20
     includeForScene: 1
 --- !u!1 &1648088226
 GameObject:
