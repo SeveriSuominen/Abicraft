@@ -53,23 +53,26 @@ namespace AbicraftNodes.Editors
             GUILayout.EndHorizontal();
             GuiSpace(5);
 
-            foreach (var attr in AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes)
+            if (AbicraftGlobalContext.HasValidAbicraftInstance())
             {
-                if(attr.Category == AbicraftAttribute.AttributeCategory.Base)
+                foreach (var attr in AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes)
                 {
-                    AbicraftAttribute.AbicraftObjectAttribute attrObj = null;
+                    if (attr.Category == AbicraftAttribute.AttributeCategory.Base)
+                    {
+                        AbicraftAttribute.AbicraftObjectAttribute attrObj = null;
 
-                    if ((attrObj = profile.GetAttributeObject(attr)) == null)
-                        attrObj = profile.AddAttributeObject(attr);
+                        if ((attrObj = profile.GetAttributeObject(attr)) == null)
+                            attrObj = profile.AddAttributeObject(attr);
 
-                    GUILayout.BeginHorizontal();
-                    
-                    GUILayout.Label(attr.AttributeName, GUILayout.Width(125));
-                    attrObj.baseValue = EditorGUILayout.IntField(attrObj.baseValue, GUILayout.Width(125));
-                    GUILayout.Space(10);
-                    attrObj.scaling = GUILayout.Toggle(attrObj.scaling, "", GUILayout.Width(15));
-                    EditorGUILayout.CurveField(attrObj.powerCurve, GUILayout.Width(250));
-                    GUILayout.EndHorizontal();
+                        GUILayout.BeginHorizontal();
+
+                        GUILayout.Label(attr.AttributeName, GUILayout.Width(125));
+                        attrObj.baseValue = EditorGUILayout.IntField(attrObj.baseValue, GUILayout.Width(125));
+                        GUILayout.Space(10);
+                        attrObj.scaling = GUILayout.Toggle(attrObj.scaling, "", GUILayout.Width(15));
+                        EditorGUILayout.CurveField(attrObj.powerCurve, GUILayout.Width(250));
+                        GUILayout.EndHorizontal();
+                    }
                 }
             }
 
@@ -79,19 +82,21 @@ namespace AbicraftNodes.Editors
             GUILayout.Label("Special", bstyle);
             GuiSpace(5);
             GuiLine(1);
-
-            foreach (var attr in AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes)
+            if (AbicraftGlobalContext.HasValidAbicraftInstance())
             {
-                if (attr.Category == AbicraftAttribute.AttributeCategory.Special)
+                foreach (var attr in AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes)
                 {
-                    GUILayout.BeginHorizontal();
-
-                    if (GUILayout.Toggle(true, "", GUILayout.Width(11)))
+                    if (attr.Category == AbicraftAttribute.AttributeCategory.Special)
                     {
+                        GUILayout.BeginHorizontal();
 
+                        if (GUILayout.Toggle(true, "", GUILayout.Width(11)))
+                        {
+
+                        }
+                        GUILayout.Label(attr.AttributeName);
+                        GUILayout.EndHorizontal();
                     }
-                    GUILayout.Label(attr.AttributeName);
-                    GUILayout.EndHorizontal();
                 }
             }
             GuiSpace(5);
