@@ -567,7 +567,6 @@ namespace AbicraftNodeEditor {
                     // Skip null nodes. The user could be in the process renaming scripts, so removing them at this point is not advisable.
                     if (graph.nodes[n] == null) continue;
 
-
                     AbicraftNode anode = graph.nodes[n];
 
                     if (yrect.Contains(GridToWindowPositionNoClipped(anode.position)))

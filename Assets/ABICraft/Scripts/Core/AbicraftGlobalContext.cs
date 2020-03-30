@@ -51,6 +51,11 @@ namespace AbicraftCore
             return abjs;
         }
 
+        public static bool HasValidAbicraftInstance()
+        {
+            return abicraft && abicraft.dataFile;
+        }
+
         public static void TryInjectAbicraftInstance()
         {
             Abicraft[] scene_abicraft = GameObject.FindObjectsOfType(typeof(Abicraft)) as Abicraft[];
@@ -100,10 +105,8 @@ namespace AbicraftCore
         {
             var graphs = LoadAllAbilityGraphs();
 
-            if (!abicraft || graphs.Count == 0)
+            if (!HasValidAbicraftInstance() || graphs.Count == 0)
                 return;
-
-            abicraft.dataFile.GlobalVariableDefinitions.Clear();
 
             for (int i = 0; i < graphs.Count; i++)
             {
@@ -120,6 +123,7 @@ namespace AbicraftCore
                        
                         if (variable.SetGlobalVariable)
                         {
+                            Debug.Log(HasValidAbicraftInstance());
                             abicraft.dataFile.GlobalVariableDefinitions.Add(varDef);
                         }
                     }
@@ -129,7 +133,7 @@ namespace AbicraftCore
 
         static Abicraft GetAbicraftInstance()
         {
-            return abicraftInstance;
+            return abicraftInstance ??  null;
         }
 
         public static void AddAbicraftInstance(Abicraft abicraft)

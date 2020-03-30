@@ -29,8 +29,11 @@ namespace AbicraftMonos
 
             if (!canvas)
             {
-                var gobj = Instantiate(AbicraftGlobalContext.abicraft.dataFile.AbicraftCanvasPrefab.gameObject);
-                canvas = gobj.GetComponent<Canvas>();
+                if (AbicraftGlobalContext.HasValidAbicraftInstance())
+                {
+                    var gobj = Instantiate(AbicraftGlobalContext.abicraft.dataFile.AbicraftCanvasPrefab.gameObject);
+                    canvas = gobj.GetComponent<Canvas>();
+                }
             }
         }
 

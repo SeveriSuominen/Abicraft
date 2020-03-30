@@ -15,6 +15,9 @@ public class AbicraftAttribute : ScriptableObject
 
     public static AbicraftAttribute Attribute(string name)
     {
+        if (!AbicraftGlobalContext.HasValidAbicraftInstance())
+            return null;
+
         for (int i = 0; i < AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes.Count; i++)
         {
             var attr = AbicraftGlobalContext.abicraft.dataFile.GlobalAttributes[i];

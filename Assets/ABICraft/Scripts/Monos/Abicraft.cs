@@ -41,7 +41,7 @@ namespace AbicraftMonos
             {
                 if (!dataFile)
                 {
-                    Debug.LogError("Abicraft: Missing data file reference");
+                    Debug.LogError("Abicraft: Missing data file reference, set abicraft data file to Abicraft component");
                     return;
                 }
 
