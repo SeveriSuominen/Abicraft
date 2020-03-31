@@ -6,6 +6,7 @@ using static AbicraftNodeEditor.NodeEditor;
 using AbicraftNodeEditor;
 using AbicraftNodes;
 using UnityEditor;
+using AbicraftCore;
 
 namespace AbicraftNodes.Editors
 {
@@ -62,7 +63,7 @@ namespace AbicraftNodes.Editors
                 styleName.fontSize = 18;
 
                 GuiSpace(20);
-                GuiLine(2);
+                GuiLine(1);
                 GuiSpace(5);
 
                 GUILayout.Label(node.graph.AbilityName, styleName);
@@ -83,14 +84,19 @@ namespace AbicraftNodes.Editors
                 GUI.color = Color.white;
 
                 GuiSpace(5);
-                GuiLine(2);
+                GuiLine(1);
                 GuiSpace(5);
 
                 GUIStyle estyle = new GUIStyle(EditorStyles.textField);
                 estyle.border = new RectOffset(0, 0, 0, 0);
                 estyle.normal.textColor = Color.white;
-                
-      
+
+                if (!AbicraftGlobalContext.HasValidAbicraftInstance())
+                {
+                    Helpbox("Abicraft component with data file reference in the current scene is required", MessageType.Error);
+                    GuiLine(1);
+                }
+
                 GUILayout.Label("Ability name", style);
                 node.graph.AbilityName = EditorGUILayout.TextField(node.graph.AbilityName);
 

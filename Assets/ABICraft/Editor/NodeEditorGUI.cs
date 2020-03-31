@@ -326,6 +326,7 @@ namespace AbicraftNodeEditor {
                 //If a null node is found, return. This can happen if the nodes associated script is deleted. It is currently not possible in Unity to delete a null asset.
                 if (node == null) continue;
 
+              
                 // Draw full connections and output > reroute
                 foreach (NodePort output in node.Outputs) {
                     //Needs cleanup. Null checks are ugly
@@ -334,18 +335,64 @@ namespace AbicraftNodeEditor {
 
                     Color portColor = graphEditor.GetPortColor(output);
                     for (int k = 0; k < output.ConnectionCount; k++) {
+
                         NodePort input = output.GetConnection(k);
+
+                        bool InputinHiddenArea = false, OutputinHiddenArea = false;
+                        Rect InputareaRect = default, OutputareaRect = default;
+                        Area InputArea = default, OutputArea = default;
+
+                        for (int n = 0; n < graph.areas.Count; n++)
+                        {
+                            Area area = graph.areas[n];
+                            Vector2 vecpos = GridToWindowPositionNoClipped(new Vector2(area.areaRect.x, area.areaRect.y));
+                            Rect yrect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, area.areaRect.height);
+
+                            AbicraftNode anode = input.node;
+
+                            // Skip null nodes. The user could be in the process renaming scripts, so removing them at this point is not advisable.
+                            if (anode == null) continue;
+
+                            if (yrect.Contains(GridToWindowPositionNoClipped(output.node.position)))
+                            {
+                                OutputinHiddenArea = !area.Visible;
+                                OutputareaRect = new Rect(area.areaRect.x + area.areaRect.width - 10, area.areaRect.y, 25, 50);
+                                OutputArea = area;
+                            }
+
+                            if (yrect.Contains(GridToWindowPositionNoClipped(anode.position)))
+                            {
+                                InputinHiddenArea = !area.Visible;
+                                InputareaRect = new Rect(area.areaRect.x, area.areaRect.y, 25, 50);
+                                InputArea = area;
+                            }
+                        }
 
                         Gradient noodleGradient = graphEditor.GetNoodleGradient(output, input);
                         float noodleThickness = graphEditor.GetNoodleThickness(output, input);
                         NoodlePath noodlePath = graphEditor.GetNoodlePath(output, input);
                         NoodleStroke noodleStroke = graphEditor.GetNoodleStroke(output, input);
-
+                      
                         // Error handling
                         if (input == null) continue; //If a script has been updated and the port doesn't exist, it is removed and null is returned. If this happens, return.
                         if (!input.IsConnectedTo(output)) input.Connect(output);
                         Rect toRect;
                         if (!_portConnectionPoints.TryGetValue(input, out toRect)) continue;
+
+                        if (InputinHiddenArea && InputArea.lockedNodes.Contains(input.node))
+                        {
+                            toRect   = InputareaRect;
+                        }
+
+                        if (OutputinHiddenArea && OutputArea.lockedNodes.Contains(output.node))
+                        {
+                            fromRect = OutputareaRect;
+                        }
+
+                        if(InputinHiddenArea && OutputinHiddenArea && InputArea.lockedNodes.Contains(input.node) && OutputArea.lockedNodes.Contains(output.node))
+                        {
+                            toRect = fromRect = Rect.zero;
+                        }
 
                         List<Vector2> reroutePoints = output.GetReroutePoints(k);
 
@@ -416,7 +463,7 @@ namespace AbicraftNodeEditor {
                 Rect headerRect = new Rect(vecpos.x, vecpos.y, area.areaRect.width, 30);
 
                 GUIStyle style = new GUIStyle(NodeEditorResources.styles.nodeBody);
-                style.normal.background = NodeEditorResources.nodeArea;
+                style.normal.background = area.Visible ? NodeEditorResources.nodeArea : NodeEditorResources.areaHeaderNotVisible;
                 style.padding = new RectOffset();
 
                 GUIStyle styleBG = new GUIStyle(NodeEditorResources.styles.nodeBody);
@@ -470,24 +517,34 @@ namespace AbicraftNodeEditor {
 
                 GUI.backgroundColor = bgcol;
 
-                HorizResizer(area, headerRect, ref yrect);
+                if(area.Visible)
+                    HorizResizer(area, headerRect, ref yrect);
 
                 if (headerRect.Contains(Event.current.mousePosition))
                 {
                     if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
                     {
-                        for (int i = 0; i < graph.nodes.Count; i++)
+                        if (area.Visible)
                         {
-                            // Skip null nodes. The user could be in the process renaming scripts, so removing them at this point is not advisable.
-                            if (graph.nodes[i] == null) continue;
-                            if (i >= graph.nodes.Count) return;
+                            for (int i = 0; i < graph.nodes.Count; i++)
+                            {
+                                // Skip null nodes. The user could be in the process renaming scripts, so removing them at this point is not advisable.
+                                if (graph.nodes[i] == null) continue;
+                                if (i >= graph.nodes.Count) return;
 
-                            AbicraftNode node = graph.nodes[i];
+                                AbicraftNode node = graph.nodes[i];
 
-                            if (yrect.Contains(GridToWindowPositionNoClipped(node.position)) && !area.movingNodes.Contains(node))
-                                area.movingNodes.Add(node);
+                                if (yrect.Contains(GridToWindowPositionNoClipped(node.position)) && !area.movingNodes.Contains(node))
+                                {
+                                    area.movingNodes.Add(node);
+                                }
+                            }
                         }
-
+                        else
+                        {
+                            area.movingNodes = new List<AbicraftNode>(area.lockedNodes);
+                        }
+                     
                         area.dragginArea = true;
                     }
                     if (Event.current.type == EventType.MouseUp)
@@ -509,6 +566,31 @@ namespace AbicraftNodeEditor {
                 }
                 area.areaRect.width  = yrect.width;
                 area.areaRect.height = yrect.height;
+
+                if (area.Visible != area.lastVisibleStatus)
+                {
+                    if(area.Visible)
+                        area.lockedNodes.Clear();
+                    else
+                    {
+                        area.lockedNodes.Clear();
+
+                        for (int i = 0; i < graph.nodes.Count; i++)
+                        {
+                            // Skip null nodes. The user could be in the process renaming scripts, so removing them at this point is not advisable.
+                            if (graph.nodes[i] == null) continue;
+                            if (i >= graph.nodes.Count) return;
+
+                            AbicraftNode node = graph.nodes[i];
+
+                            if (yrect.Contains(GridToWindowPositionNoClipped(node.position)) && !area.movingNodes.Contains(node))
+                            {
+                                area.lockedNodes.Add(node);
+                            }
+                        }
+                    }
+                    area.lastVisibleStatus = area.Visible;
+                }
             }      
         }
 
@@ -571,7 +653,10 @@ namespace AbicraftNodeEditor {
 
                     if (yrect.Contains(GridToWindowPositionNoClipped(anode.position)))
                     {
-                        notVisible = !area.Visible;
+                        if (area.lockedNodes.Contains(anode) && !area.Visible)
+                        {
+                            notVisible = true;
+                        }
                     }
                 }
 

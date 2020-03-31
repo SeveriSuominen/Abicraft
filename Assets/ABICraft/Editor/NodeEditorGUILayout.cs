@@ -165,8 +165,12 @@ namespace AbicraftNodeEditor {
                             } //EditorGUILayout.LabelField(label != null ? label : new GUIContent(property.displayName));
                             // Display an editable property field if port is not connected
                             else {
-                                EditorGUILayout.LabelField(property.displayName, StateFieldLabelIn);
-                                EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
+                                try
+                                {
+                                    EditorGUILayout.LabelField(property.displayName, StateFieldLabelIn);
+                                    EditorGUILayout.PropertyField(property, GUIContent.none, includeChildren, GUILayout.MinWidth(30));
+                                }
+                                catch(ArgumentException e){}   
                             }
                             break;
                         case AbicraftNode.ShowBackingValue.Never:
