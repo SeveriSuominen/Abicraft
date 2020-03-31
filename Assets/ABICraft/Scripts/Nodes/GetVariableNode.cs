@@ -19,10 +19,10 @@ namespace AbicraftNodes.Action
         [HideInInspector]
         public string selectedVariable;
 
+        [HideInInspector]
+        public AbicraftAbility getFromAbilityGlobal, lastSelectedAbilityGlobal;
 
         public bool GetGlobalVariable;
-
-
 
         [HideInInspector]
         public bool lastGetGlobalVariableSetting;

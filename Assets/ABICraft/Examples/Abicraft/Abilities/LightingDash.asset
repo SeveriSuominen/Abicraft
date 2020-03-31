@@ -92,6 +92,10 @@ MonoBehaviour:
   selectedIndex: 3
   lastVariableCount: 4
   selectedVariable: COLLINDER_CAST_COLLISIONS2
+  getFromAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+    type: 2}
+  lastSelectedAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+    type: 2}
   GetGlobalVariable: 1
   lastGetGlobalVariableSetting: 1
 --- !u!114 &-7096254373306765496
@@ -310,7 +314,7 @@ MonoBehaviour:
   - {fileID: 7400004, guid: f03e10c73f30b4ab4aa8ea8f1cc16d36, type: 3}
   - {fileID: 7400006, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
   - {fileID: 7400008, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
-  - {fileID: 7400000, guid: aff4837f06290f94da6bc0e53a1decda, type: 2}
+  - {fileID: 7400000, guid: 7973fc351b8c16840ae51e0a9c262c0d, type: 2}
   - {fileID: 7400000, guid: fc62cd0388606ff43b832f19820e0a0d, type: 2}
   clip: {fileID: 7400000, guid: e9934b01202c655488c6dd98969c7fd0, type: 2}
 --- !u!114 &-6654816567211060109
@@ -1642,6 +1646,10 @@ MonoBehaviour:
   selectedIndex: 2
   lastVariableCount: 4
   selectedVariable: COLLINDER_CAST_COLLISIONS
+  getFromAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+    type: 2}
+  lastSelectedAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+    type: 2}
   GetGlobalVariable: 1
   lastGetGlobalVariableSetting: 1
 --- !u!114 &6037431672561792154

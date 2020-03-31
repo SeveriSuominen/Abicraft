@@ -20,6 +20,9 @@ namespace AbicraftCore
         public List<AbicraftAttribute>  GlobalAttributes  = new List<AbicraftAttribute>();
         public List<AbicraftObject>     InstantiateToPool = new List<AbicraftObject>();
 
+        //[HideInInspector]
+        public List<AbicraftAbility> AllAbilityGraphs = new List<AbicraftAbility>();
+
         [SerializeField]
         public List<AbicraftAbilityVariableDefinition> GlobalVariableDefinitions = new List<AbicraftAbilityVariableDefinition>();
 

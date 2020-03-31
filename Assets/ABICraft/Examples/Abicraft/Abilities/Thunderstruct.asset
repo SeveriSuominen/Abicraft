@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 168, y: -1656}
+  position: {x: 334.0531, y: -1743.9104}
   ports:
     keys:
     - Value
@@ -306,8 +306,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: -327
-    y: 1232.3812
+    x: -504
+    y: 972.3812
     width: 1097.1553
     height: 55
   dir: down
@@ -350,6 +350,8 @@ MonoBehaviour:
   selectedIndex: 1
   lastVariableCount: 2
   selectedVariable: SENDER_OBJECT
+  getFromAbilityGlobal: {fileID: 0}
+  lastSelectedAbilityGlobal: {fileID: 0}
   GetGlobalVariable: 0
   lastGetGlobalVariableSetting: 0
 --- !u!114 &-8272018421768582889
@@ -584,9 +586,10 @@ MonoBehaviour:
   collider: {fileID: 6389469509475229666, guid: 11ffe438bf0b41d4f9633661b557b251,
     type: 3}
   Casted:
-    Active: 0
-  Collisions: []
-  Position: {x: 24.027607, y: -1.2638842, z: -7.33999}
+    Active: 1
+  Collisions:
+  - {fileID: 0}
+  Position: {x: 13.3790245, y: -1.2638842, z: 11.658887}
   castMode: 1
 --- !u!114 &-7371627076222104400
 MonoBehaviour:
@@ -607,7 +610,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -1017.8495
     y: -1844.1846
-    width: 265.98364
+    width: 274.54468
     height: 491.54102
   color: {r: 1, g: 0.8595643, b: 0, a: 0.5}
   graph: {fileID: 11400000}
@@ -615,8 +618,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 55.267456
-    y: 580
+    x: 485.54468
+    y: 854
     width: 60
     height: 461.54102
   dir: right
@@ -1545,8 +1548,9 @@ MonoBehaviour:
     type: 3}
   Casted:
     Active: 1
-  Collisions: []
-  Position: {x: 14.097112, y: -1.2638842, z: 0.9479911}
+  Collisions:
+  - {fileID: 0}
+  Position: {x: 7.7776113, y: -1.2638842, z: 20.612953}
   castMode: 1
 --- !u!114 &-4092510729781600199
 MonoBehaviour:
@@ -1620,8 +1624,8 @@ MonoBehaviour:
       _dynamic: 0
   ObjFrom: {fileID: 0}
   ObjTo: {fileID: 0}
-  direction: {x: 0.88716096, y: 0, z: -0.45502138}
-  distance: 18.441992
+  direction: {x: -0.9208254, y: 0, z: -0.28520977}
+  distance: 5.3265734
   onlyYAxis: 1
 --- !u!114 &-4042522081520979988
 MonoBehaviour:
@@ -1910,18 +1914,18 @@ MonoBehaviour:
     x: 175.61823
     y: -1304.5127
     width: 265.47473
-    height: 573.2958
+    height: 549
   color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   graph: {fileID: 11400000}
   lockedNodes: []
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 547
-    y: 1247.2958
-    width: 205.47473
-    height: 55
-  dir: down
+    x: 1415
+    y: 1721
+    width: 60
+    height: 519
+  dir: left
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-3200226061663081922
@@ -2166,8 +2170,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 736
-    y: 600
+    x: 2816
+    y: 2045
     width: 60
     height: 997.2893
   dir: left
@@ -2392,11 +2396,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 1120.6238
-    y: 297
-    width: 60
-    height: 402.5046
-  dir: right
+    x: 417
+    y: 10.504608
+    width: 1394.4747
+    height: 55
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-1450810139861958971
@@ -2475,7 +2479,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -1023.4125
     y: -1264.627
-    width: 706.32294
+    width: 561.16943
     height: 464.40295
   color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   graph: {fileID: 11400000}
@@ -2483,8 +2487,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 491.32294
-    y: 420
+    x: 201.16943
+    y: 907
     width: 60
     height: 434.40295
   dir: right
@@ -2760,7 +2764,8 @@ MonoBehaviour:
   - {fileID: 1082043915184227140}
   - {fileID: -3305999757658728810}
   variableDefinitions:
-  - VARIABLE_NAME: SENDER_OBJECT
+  - global_owner_ability: {fileID: 0}
+    VARIABLE_NAME: SENDER_OBJECT
   icon: {fileID: 2800000, guid: 8c6832fa0ead60d418932883844f8172, type: 3}
   AbilityName: Thunderstruct
   Cooldown: 7
@@ -3014,8 +3019,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 1262
-    y: 1154.9688
+    x: -542
+    y: 254.96881
     width: 661.9907
     height: 55
   dir: down
@@ -3099,8 +3104,8 @@ MonoBehaviour:
   lastVisibleStatus: 1
   areaRect:
     serializedVersion: 2
-    x: -685.3143
-    y: -1717.9026
+    x: -519.26117
+    y: -1805.813
     width: 1086.3541
     height: 345
   color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
@@ -3109,8 +3114,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: -43
-    y: -297
+    x: 544
+    y: 980
     width: 60
     height: 315
   dir: left
@@ -3156,6 +3161,8 @@ MonoBehaviour:
   selectedIndex: 1
   lastVariableCount: 2
   selectedVariable: SENDER_OBJECT
+  getFromAbilityGlobal: {fileID: 0}
+  lastSelectedAbilityGlobal: {fileID: 0}
   GetGlobalVariable: 0
   lastGetGlobalVariableSetting: 0
 --- !u!114 &2133965638292026469
@@ -3189,6 +3196,8 @@ MonoBehaviour:
   selectedIndex: 1
   lastVariableCount: 2
   selectedVariable: SENDER_OBJECT
+  getFromAbilityGlobal: {fileID: 0}
+  lastSelectedAbilityGlobal: {fileID: 0}
   GetGlobalVariable: 0
   lastGetGlobalVariableSetting: 0
 --- !u!114 &2145584105979581439
@@ -3336,11 +3345,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 86
-    y: 1545.6304
-    width: 944.8884
-    height: 55
-  dir: down
+    x: 739
+    y: 1178
+    width: 60
+    height: 345.63037
+  dir: left
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &2510303978273801968
@@ -3378,6 +3387,8 @@ MonoBehaviour:
   selectedIndex: 2
   lastVariableCount: 4
   selectedVariable: COLLINDER_CAST_COLLISIONS
+  getFromAbilityGlobal: {fileID: 11400000}
+  lastSelectedAbilityGlobal: {fileID: 11400000}
   GetGlobalVariable: 1
   lastGetGlobalVariableSetting: 1
 --- !u!114 &3000100379373411281
@@ -3394,7 +3405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -660.0207, y: -1629.6743}
+  position: {x: -493.9676, y: -1717.5847}
   ports:
     keys:
     - collider
@@ -3486,8 +3497,7 @@ MonoBehaviour:
     Active: 1
   Collisions:
   - {fileID: 0}
-  - {fileID: 0}
-  Position: {x: 28.783293, y: -1.2638842, z: 0.8977542}
+  Position: {x: -6.9566135, y: -1.2638842, z: 15.165478}
   castMode: 1
 --- !u!114 &3109593120006286493
 MonoBehaviour:
@@ -3503,7 +3513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -56, y: -1656}
+  position: {x: 110.0531, y: -1743.9104}
   ports:
     keys:
     - Value
@@ -3591,6 +3601,8 @@ MonoBehaviour:
   selectedIndex: 1
   lastVariableCount: 2
   selectedVariable: SENDER_OBJECT
+  getFromAbilityGlobal: {fileID: 0}
+  lastSelectedAbilityGlobal: {fileID: 0}
   GetGlobalVariable: 0
   lastGetGlobalVariableSetting: 0
 --- !u!114 &3603061485013581011
@@ -3641,7 +3653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -388.0207, y: -1581.6743}
+  position: {x: -221.96759, y: -1669.5847}
   ports:
     keys:
     - ActiveSignal
@@ -3732,6 +3744,8 @@ MonoBehaviour:
   selectedIndex: 1
   lastVariableCount: 2
   selectedVariable: SENDER_OBJECT
+  getFromAbilityGlobal: {fileID: 0}
+  lastSelectedAbilityGlobal: {fileID: 0}
   GetGlobalVariable: 0
   lastGetGlobalVariableSetting: 0
 --- !u!114 &4892826370159456583
@@ -3905,6 +3919,8 @@ MonoBehaviour:
   selectedIndex: 1
   lastVariableCount: 2
   selectedVariable: SENDER_OBJECT
+  getFromAbilityGlobal: {fileID: 0}
+  lastSelectedAbilityGlobal: {fileID: 0}
   GetGlobalVariable: 0
   lastGetGlobalVariableSetting: 0
 --- !u!114 &5488910674394861224
@@ -4071,8 +4087,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Obj: {fileID: 0}
-  direction: {x: -0.9925854, y: 0.118757255, z: 0.025900945}
-  distance: 32.105362
+  direction: {x: 0.99877703, y: -0.003943429, z: 0.049284954}
+  distance: 21.132212
   onlyYAxis: 0
 --- !u!114 &6816965311708664088
 MonoBehaviour:
@@ -4111,6 +4127,8 @@ MonoBehaviour:
   selectedIndex: 1
   lastVariableCount: 2
   selectedVariable: SENDER_OBJECT
+  getFromAbilityGlobal: {fileID: 0}
+  lastSelectedAbilityGlobal: {fileID: 0}
   GetGlobalVariable: 0
   lastGetGlobalVariableSetting: 0
 --- !u!114 &6912427896967370463
@@ -4208,8 +4226,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Obj: {fileID: 0}
-  direction: {x: -0.99001324, y: 0, z: -0.1409515}
-  distance: 33.079075
+  direction: {x: -0.94488716, y: 0, z: -0.32737187}
+  distance: 20.864586
   onlyYAxis: 1
 --- !u!114 &7851160134424547686
 MonoBehaviour:

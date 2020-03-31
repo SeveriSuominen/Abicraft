@@ -77,6 +77,8 @@ namespace AbicraftCore.Variables
     [System.Serializable]
     public class AbicraftAbilityVariableDefinition
     {
+        public AbicraftAbility global_owner_ability;
+
         public string VARIABLE_NAME;
         public Type   VARIABLE_TYPE;
 
@@ -84,6 +86,13 @@ namespace AbicraftCore.Variables
         {
             this.VARIABLE_NAME = VARIABLE_NAME;
             this.VARIABLE_TYPE = VARIABLE_TYPE;
+        }
+
+        public AbicraftAbilityVariableDefinition(AbicraftAbility global_owner_ability, string VARIABLE_NAME, Type VARIABLE_TYPE)
+        {
+            this.VARIABLE_NAME = VARIABLE_NAME;
+            this.VARIABLE_TYPE = VARIABLE_TYPE;
+            this.global_owner_ability = global_owner_ability;
         }
     }
 }

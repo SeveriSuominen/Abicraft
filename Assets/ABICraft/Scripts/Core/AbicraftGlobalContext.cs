@@ -108,6 +108,10 @@ namespace AbicraftCore
             if (!HasValidAbicraftInstance() || graphs.Count == 0)
                 return;
 
+
+            if (graphs.Count > 0)
+                abicraft.dataFile.AllAbilityGraphs = new List<AbicraftAbility>(graphs);
+
             abicraft.dataFile.GlobalVariableDefinitions.Clear();
 
             for (int i = 0; i < graphs.Count; i++)
@@ -121,7 +125,7 @@ namespace AbicraftCore
                     if (node && node.GetType() == typeof(AbicraftNodes.Action.SetVariableNode))
                     {
                         AbicraftNodes.Action.SetVariableNode variable = node as AbicraftNodes.Action.SetVariableNode;
-                        var varDef = new AbicraftCore.Variables.AbicraftAbilityVariableDefinition(variable.GetVariableName(), variable.GetDefitionType());
+                        var varDef = new AbicraftCore.Variables.AbicraftAbilityVariableDefinition(graph, variable.GetVariableName(), variable.GetDefitionType());
                        
                         if (variable.SetGlobalVariable)
                         {

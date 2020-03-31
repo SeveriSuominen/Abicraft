@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -72, y: 104}
+  position: {x: -56, y: 104}
   ports:
     keys:
     - Obj
@@ -430,6 +430,7 @@ MonoBehaviour:
   - {fileID: -8136315360290801697}
   - {fileID: -975739399240416125}
   - {fileID: 5663600481390113585}
+  - {fileID: 1285755871996644303}
   areas: []
   variableDefinitions: []
   icon: {fileID: 2800000, guid: b6b8ab34516f88e419c5aa4e8964eae9, type: 3}
@@ -437,6 +438,65 @@ MonoBehaviour:
   Cooldown: 0.4
   Passive: 0
   DefaultLifetime: 0
+--- !u!114 &1285755871996644303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5de4016a2bbcd44d8a236469a250906, type: 3}
+  m_Name: Set Variable
+  m_EditorClassIdentifier: 
+  abicraft: {fileID: 0}
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 248}
+  ports:
+    keys:
+    - Value
+    - In
+    - Out
+    values:
+    - _fieldName: Value
+      _node: {fileID: 1285755871996644303}
+      _typeQualifiedName: AbicraftNodes.Action.Any, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: In
+      _node: {fileID: 1285755871996644303}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: Out
+      _node: {fileID: 1285755871996644303}
+      _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  In:
+    index: 0
+    mono: {fileID: 0}
+  Out:
+    index: 0
+    mono: {fileID: 0}
+  VariableName: gaageli
+  SetGlobalVariable: 1
+  lastVariableName: gaageli
+  lastGlobalVariableSetting: 1
+  definitionsNeedUpdating: 0
 --- !u!114 &5663600481390113585
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -86,18 +86,23 @@ namespace AbicraftNodes.Editors
 
             for (int i = 0; i < variableDefinitions.Count; i++)
             {
-                variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
-                variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
+                if (node.GetGlobalVariable)
+                {
+                    if(variableDefinitions[i].global_owner_ability == node.getFromAbilityGlobal)
+                    {
+                        variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
+                        variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
+                    }
+                }
+                else
+                {
+                    variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
+                    variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
+                }
             }
 
             GUIStyle styleW = new GUIStyle(EditorStyles.popup);
             styleW.normal.textColor = node.selectedIndex == 0 ? Color.red : Color.black;
-
-            Color col = GUI.color;
-            if (node.selectedIndex == 0)
-            {
-                GUI.color = ERRORCOLOR;
-            }
 
             if (node.lastVariableCount != variableNames.Count)
             {
@@ -122,10 +127,49 @@ namespace AbicraftNodes.Editors
                 node.lastVariableCount = variableNames.Count;
             }
 
+            if(node.GetGlobalVariable && AbicraftGlobalContext.HasValidAbicraftInstance())
+            {
+                List<string> ability_names = new List<string>();
+                List<AbicraftAbility> abilities = new List<AbicraftAbility>();
+
+                ability_names.Add("None");
+                abilities.Add(null);
+
+                for (int i = 0; i < AbicraftGlobalContext.abicraft.dataFile.AllAbilityGraphs.Count; i++)
+                {
+                    ability_names.Add(AbicraftGlobalContext.abicraft.dataFile.AllAbilityGraphs[i].AbilityName);
+                    abilities.Add(AbicraftGlobalContext.abicraft.dataFile.AllAbilityGraphs[i]);
+                }
+
+                int indexofability = 0;
+
+                if (node.getFromAbilityGlobal)
+                {
+                    indexofability = ability_names.IndexOf(node.getFromAbilityGlobal.AbilityName);
+
+                    if (indexofability < 0 || indexofability > ability_names.Count - 1)
+                        indexofability = 0;
+                }
+                node.getFromAbilityGlobal = abilities[EditorGUILayout.Popup(indexofability, ability_names.ToArray())];
+            }
+
+            if(node.getFromAbilityGlobal != node.lastSelectedAbilityGlobal)
+            {
+                node.selectedIndex = 0;
+                node.lastSelectedAbilityGlobal = node.getFromAbilityGlobal;
+            }
+
+            GuiSpace(5);
+
+            Color col = GUI.color;
+            if (node.selectedIndex == 0)
+            {
+                GUI.color = ERRORCOLOR;
+            }
+
             node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, variableNames.ToArray(), styleW);
             GUI.color = col;
 
-         
             if (node.GetGlobalVariable && !hasDataFile)
             {
                 Helpbox("Could not fetch global variables, abicraft data file reference missing", MessageType.Error);
