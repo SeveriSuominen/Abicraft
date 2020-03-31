@@ -46,6 +46,8 @@ namespace AbicraftNodes.Action
         public AnimationClip clip;
         Animation org_clip;
 
+        bool unloaded = true;
+
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             obj = GetInputValue<AbicraftObject>(e, "Obj");
@@ -66,34 +68,37 @@ namespace AbicraftNodes.Action
                 {
                     var speed = GetInputValue<float>(e, "Speed", Speed);
 
-                    if (IsAnimating.Contains(obj) && overrideController != null)
-                       animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+                    /*if (IsAnimating.Contains(obj) && overrideController != null)
+                       animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;*/
 
-                    if (animator.runtimeAnimatorController.GetType() != typeof(AnimatorOverrideController))
+                    if (animator.runtimeAnimatorController.GetType() == typeof(AnimatorOverrideController))
                     {
-                        AddObjectToIterationIndex<float>(e, "LengthSeconds", clip.length / (speed));
-
-                        if (!IsAnimating.Contains(obj))
-                            IsAnimating.Add(obj);
-
-                        animator.speed = speed;
-                        overrideController = new AnimatorOverrideController();
-
-                        if (!overrideController.runtimeAnimatorController)
-                            overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
-
-                        animator.runtimeAnimatorController = overrideController;
-
-                        LoadAnimation(clip);
-
-                        yield return new WaitForSeconds(clip.length / (speed));
-
                         UnloadPreviousLoadAnimation();
-                        animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
 
-                        if (IsAnimating.Contains(obj))
-                            IsAnimating.Remove(obj);
+                        if (overrideController)
+                            animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+
+                        unloaded = true;
                     }
+
+                    AddObjectToIterationIndex<float>(e, "LengthSeconds", clip.length / (speed));
+
+                    animator.speed = speed;
+
+                    overrideController = new AnimatorOverrideController();
+                    overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
+
+                    animator.runtimeAnimatorController = overrideController;
+
+                    LoadAnimation(clip);
+                    unloaded = false;
+
+                    yield return new WaitForSeconds(clip.length / (speed));
+
+                    UnloadPreviousLoadAnimation();
+                    animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+
+                    unloaded = true;   
                 }
             }
             yield return null;
@@ -113,7 +118,7 @@ namespace AbicraftNodes.Action
         void LoadAnimClip(AnimationClip clip)
         {
             overrideController["OVERRIDE_THIS"] = clip;
-       
+
             animator.Update(0.0f);
             // Push back state
             for (int i = 0; i < animator.layerCount; i++)
@@ -142,6 +147,9 @@ namespace AbicraftNodes.Action
         ///<summary>Unload animation from override controller</summary>
         void UnloadPreviousLoadAnimation()
         {
+            if (layerInfo == null)
+                return;
+
             for (int i = 0; i < animator.layerCount; i++)
             {
                 layerInfo[i] = animator.GetCurrentAnimatorStateInfo(i);

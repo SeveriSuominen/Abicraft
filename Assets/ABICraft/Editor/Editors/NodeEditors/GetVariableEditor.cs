@@ -67,19 +67,27 @@ namespace AbicraftNodes.Editors
             variableNames.Add("None");
             variableTypes.Add(typeof(object));
 
+            List<AbicraftCore.Variables.AbicraftAbilityVariableDefinition> variableDefinitions;
+
             if (AbicraftGlobalContext.HasValidAbicraftInstance())
             {
-                var variableDefinitions = node.GetGlobalVariable ? AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions : node.graph.variableDefinitions;
-
-                for (int i = 0; i < variableDefinitions.Count; i++)
-                {
-                    variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
-                    variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
-                }
+                variableDefinitions = node.GetGlobalVariable ? AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions : node.graph.variableDefinitions;
+            }
+            else if(!node.GetGlobalVariable)
+            {
+                variableDefinitions = node.graph.variableDefinitions;
+                hasDataFile = false;
             }
             else
             {
+                variableDefinitions = new List<AbicraftCore.Variables.AbicraftAbilityVariableDefinition>();
                 hasDataFile = false;
+            }
+
+            for (int i = 0; i < variableDefinitions.Count; i++)
+            {
+                variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
+                variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
             }
 
             GUIStyle styleW = new GUIStyle(EditorStyles.popup);

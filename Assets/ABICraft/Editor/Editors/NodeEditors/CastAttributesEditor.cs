@@ -50,11 +50,11 @@ namespace AbicraftNodes.Editors
             List<GUIContent> avaibleAttrContents = new List<GUIContent>();
             List<AbicraftAttribute> attrs = new List<AbicraftAttribute>();
 
-            if (abicraft)
-            {
-                avaibleAttrContents.Add(new GUIContent("None"));
-                attrs.Add(null);
+            avaibleAttrContents.Add(new GUIContent("None"));
+            attrs.Add(null);
 
+            if (AbicraftGlobalContext.HasValidAbicraftInstance())
+            {
                 for (int i = 0; i < abicraft.dataFile.GlobalAttributes.Count; i++)
                 {
                     AbicraftAttribute attr = abicraft.dataFile.GlobalAttributes[i];
@@ -75,6 +75,7 @@ namespace AbicraftNodes.Editors
                     }
                 }
             }
+       
 
             base.OnBodyGUI();
 
@@ -85,7 +86,7 @@ namespace AbicraftNodes.Editors
 
             GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
 
-            if (abicraft)
+            if (AbicraftGlobalContext.HasValidAbicraftInstance())
             {
                 for (int i = 0; i < node.allSelectedIndices.Count; i++)
                 {
@@ -156,6 +157,11 @@ namespace AbicraftNodes.Editors
             GuiLine(1);
             GuiSpace(5);
             EditorGUIUtility.SetIconSize(Vector2.zero);
+
+            if(!AbicraftGlobalContext.HasValidAbicraftInstance())
+            {
+                Helpbox("Could not fetch attributes, abicraft data file reference missing", MessageType.Error);
+            }
 
             GUILayout.Label("Available Attributes", NodeEditorGUILayout.GetFieldStyle("In"));
             node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, avaibleAttrContents.ToArray()); //selectedIndex = EditorGUILayout.Popup(selectedIndex, strings);

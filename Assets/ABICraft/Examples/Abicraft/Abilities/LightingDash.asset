@@ -89,8 +89,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  selectedIndex: 0
-  lastVariableCount: 1
+  selectedIndex: 3
+  lastVariableCount: 4
   selectedVariable: COLLINDER_CAST_COLLISIONS2
   GetGlobalVariable: 1
   lastGetGlobalVariableSetting: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 56, y: 280}
+  position: {x: 8, y: 184}
   ports:
     keys:
     - SpawnedObject
@@ -264,10 +264,10 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: In
-        node: {fileID: 6838305375313248969}
+        node: {fileID: -6654816567211060109}
         reroutePoints: []
       - fieldName: In
-        node: {fileID: -6654816567211060109}
+        node: {fileID: 6838305375313248969}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   - {fileID: 7400004, guid: f03e10c73f30b4ab4aa8ea8f1cc16d36, type: 3}
   - {fileID: 7400006, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
   - {fileID: 7400008, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
-  - {fileID: 7400000, guid: 7973fc351b8c16840ae51e0a9c262c0d, type: 2}
+  - {fileID: 7400000, guid: aff4837f06290f94da6bc0e53a1decda, type: 2}
   - {fileID: 7400000, guid: fc62cd0388606ff43b832f19820e0a0d, type: 2}
   clip: {fileID: 7400000, guid: e9934b01202c655488c6dd98969c7fd0, type: 2}
 --- !u!114 &-6654816567211060109
@@ -512,21 +512,21 @@ MonoBehaviour:
   lastVisibleStatus: 1
   areaRect:
     serializedVersion: 2
-    x: 248.07101
-    y: -453.81055
-    width: 297.5235
-    height: 361.2552
+    x: 279.1118
+    y: -370.01605
+    width: 305
+    height: 241.17444
   color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   graph: {fileID: 11400000}
   lockedNodes: []
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 557.5235
-    y: 567
-    width: 60
-    height: 331.2552
-  dir: right
+    x: -199
+    y: 5.1744385
+    width: 245
+    height: 55
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-4574650952877393115
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 648, y: 216}
+  position: {x: 856, y: 168}
   ports:
     keys:
     - Obj
@@ -648,6 +648,10 @@ MonoBehaviour:
     mono: {fileID: 0}
   Obj: {fileID: 0}
   Clip: {fileID: 8300000, guid: 8f245708743aa324eaae7f741756e316, type: 3}
+  SetAudioSourceSettings: 0
+  priority: 128
+  volume: 1
+  pitch: 3
 --- !u!114 &-3457373945829759135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 56, y: 728}
+  position: {x: 8, y: 632}
   ports:
     keys:
     - ObjectToDespawn
@@ -937,51 +941,6 @@ MonoBehaviour:
   - attribute: {fileID: 11400000, guid: 74f00e795129c2a46812edb6784ef124, type: 2}
     conditionMode: 0
     amount: 0
---- !u!114 &-2041496409241340553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23ab838a9a481f84db0c2f9fb2fb1534, type: 3}
-  m_Name: Merge Object Lists
-  m_EditorClassIdentifier: 
-  abicraft: {fileID: 0}
-  graph: {fileID: 11400000}
-  position: {x: 299.31064, y: -243.01233}
-  ports:
-    keys:
-    - ObjectList
-    - ObjectListOut
-    values:
-    - _fieldName: ObjectList
-      _node: {fileID: -2041496409241340553}
-      _typeQualifiedName: System.Collections.Generic.List`1[[AbicraftMonos.AbicraftObject,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ObjectListOut
-        node: {fileID: 5458071082473458078}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 2
-      _dynamic: 0
-    - _fieldName: ObjectListOut
-      _node: {fileID: -2041496409241340553}
-      _typeQualifiedName: System.Collections.Generic.List`1[[AbicraftMonos.AbicraftObject,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  ObjectList: []
-  ObjectListOut: []
 --- !u!114 &-1642806312397433570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,7 +1016,6 @@ MonoBehaviour:
   - {fileID: -2114534270442593684}
   - {fileID: -6450620041851178359}
   - {fileID: 5458071082473458078}
-  - {fileID: -2041496409241340553}
   - {fileID: 0}
   areas:
   - {fileID: -5762312930070722612}
@@ -1150,7 +1108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 1736, y: -296}
+  position: {x: 1736, y: -392}
   ports:
     keys:
     - Obj
@@ -1198,6 +1156,10 @@ MonoBehaviour:
     mono: {fileID: 0}
   Obj: {fileID: 0}
   Clip: {fileID: 8300000, guid: 980a7185daaa4c94999051c544cfeb93, type: 3}
+  SetAudioSourceSettings: 0
+  priority: 128
+  volume: 0
+  pitch: 0
 --- !u!114 &4044556121452386590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,7 +1441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 299.31064, y: -371.01245}
+  position: {x: 328, y: -280}
   ports:
     keys:
     - ObjectList
@@ -1509,9 +1471,6 @@ MonoBehaviour:
       connections:
       - fieldName: Objs
         node: {fileID: 6037431672561792154}
-        reroutePoints: []
-      - fieldName: ObjectList
-        node: {fileID: -2041496409241340553}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1580,7 +1539,7 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   TargetObj: {fileID: 0}
-  selectedIndex: 1
+  selectedIndex: 0
   lastIndex: 1
   allSelectedIndices:
   - attribute: {fileID: 11400000, guid: f9ea9bdc3e6d72244bb0e657fb5c3d83, type: 2}
@@ -1680,8 +1639,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  selectedIndex: 0
-  lastVariableCount: 1
+  selectedIndex: 2
+  lastVariableCount: 4
   selectedVariable: COLLINDER_CAST_COLLISIONS
   GetGlobalVariable: 1
   lastGetGlobalVariableSetting: 1
@@ -1699,7 +1658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 728, y: -104}
+  position: {x: 696, y: -72}
   ports:
     keys:
     - Obj
@@ -1815,7 +1774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 648, y: 392}
+  position: {x: 712, y: 392}
   ports:
     keys:
     - Obj
@@ -1863,6 +1822,10 @@ MonoBehaviour:
     mono: {fileID: 0}
   Obj: {fileID: 0}
   Clip: {fileID: 8300000, guid: 24e25bf4605b1774585ebd229d4efc49, type: 3}
+  SetAudioSourceSettings: 0
+  priority: 128
+  volume: 0
+  pitch: 0
 --- !u!114 &6972665846327187418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,7 +2028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 56, y: 584}
+  position: {x: 8, y: 488}
   ports:
     keys:
     - BlockForSeconds

@@ -108,6 +108,8 @@ namespace AbicraftCore
             if (!HasValidAbicraftInstance() || graphs.Count == 0)
                 return;
 
+            abicraft.dataFile.GlobalVariableDefinitions.Clear();
+
             for (int i = 0; i < graphs.Count; i++)
             {
                 var graph = graphs[i];
@@ -123,7 +125,6 @@ namespace AbicraftCore
                        
                         if (variable.SetGlobalVariable)
                         {
-                            Debug.Log(HasValidAbicraftInstance());
                             abicraft.dataFile.GlobalVariableDefinitions.Add(varDef);
                         }
                     }

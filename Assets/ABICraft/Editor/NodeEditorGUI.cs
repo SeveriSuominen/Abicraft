@@ -356,7 +356,7 @@ namespace AbicraftNodeEditor {
                             if (yrect.Contains(GridToWindowPositionNoClipped(output.node.position)))
                             {
                                 OutputinHiddenArea = !area.Visible;
-                                OutputareaRect = new Rect(area.areaRect.x + area.areaRect.width - 10, area.areaRect.y, 25, 50);
+                                OutputareaRect = new Rect(area.areaRect.x + area.areaRect.width - 20, area.areaRect.y, 25, 50);
                                 OutputArea = area;
                             }
 

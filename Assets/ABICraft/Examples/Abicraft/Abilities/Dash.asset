@@ -61,8 +61,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   Obj: {fileID: 0}
-  direction: {x: -0.80815256, y: -0.0033956943, z: 0.5889633}
-  distance: 24.540894
+  direction: {x: 0.99963754, y: -0.0035158608, z: 0.026691152}
+  distance: 23.702126
   onlyYAxis: 0
 --- !u!114 &-4588525759139716927
 MonoBehaviour:
@@ -434,7 +434,7 @@ MonoBehaviour:
   variableDefinitions: []
   icon: {fileID: 2800000, guid: b6b8ab34516f88e419c5aa4e8964eae9, type: 3}
   AbilityName: Dash
-  Cooldown: 12
+  Cooldown: 0.4
   Passive: 0
   DefaultLifetime: 0
 --- !u!114 &5663600481390113585

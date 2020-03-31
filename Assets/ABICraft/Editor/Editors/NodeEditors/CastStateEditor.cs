@@ -56,7 +56,7 @@ namespace AbicraftNodes.Editors
 
             Texture2D icon = null;
 
-            if (abicraft)
+            if (AbicraftGlobalContext.HasValidAbicraftInstance())
             {
                 avaibleStateContents.Add(new GUIContent("None"));
                 types.Add(AbicraftState.StateType.Neutral);
@@ -89,7 +89,7 @@ namespace AbicraftNodes.Editors
 
             EditorGUIUtility.SetIconSize(new Vector2(16, 16));
             GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
-            if (abicraft)
+            if (AbicraftGlobalContext.HasValidAbicraftInstance())
             {
                 for (int i = 0; i < node.allSelectedIndices.Count; i++)
                 {
@@ -138,7 +138,10 @@ namespace AbicraftNodes.Editors
             GuiSpace(5);
 
             EditorGUIUtility.SetIconSize(Vector2.zero);
-
+            if (!AbicraftGlobalContext.HasValidAbicraftInstance())
+            {
+                Helpbox("Could not fetch states, abicraft data file reference missing", MessageType.Error);
+            }
             GUILayout.Label("Available States", NodeEditorGUILayout.GetFieldStyle("In"));
             node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, avaibleStateContents.ToArray()); //selectedIndex = EditorGUILayout.Popup(selectedIndex, strings);
 

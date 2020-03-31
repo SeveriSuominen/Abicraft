@@ -28,10 +28,10 @@ namespace AbicraftNodes.Editors
             Rect dotRect = GUILayoutUtility.GetLastRect();
             dotRect.size = new Vector2(16, 16);
             dotRect.y += 6;
-            /*
+
             GUI.color = Color.red;
             GUI.DrawTexture(dotRect, NodeEditorResources.dot);
-            GUI.color = Color.white;*/
+            GUI.color = Color.white;
         }
 
         public override void OnBodyGUI()
