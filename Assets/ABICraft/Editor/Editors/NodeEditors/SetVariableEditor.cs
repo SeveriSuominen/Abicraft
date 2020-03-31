@@ -103,8 +103,8 @@ namespace AbicraftNodes.Editors
                 gstyle.normal.textColor = Color.white;
                 gstyle.fontSize = 11;
 
-                GUILayout.Label("Global variable definitions need to be updated after changes", gstyle);
-                GuiSpace(5);
+                Helpbox("Global variable definitions needs to be updated after changes", MessageType.Warning);
+
                 if (GUILayout.Button("Update"))
                 {
                     AbicraftGlobalContext.UpdateGlobalVariableDefinitions();

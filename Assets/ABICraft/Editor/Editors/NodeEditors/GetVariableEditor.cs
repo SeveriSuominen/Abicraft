@@ -47,6 +47,9 @@ namespace AbicraftNodes.Editors
 
         public override void OnBodyGUI()
         {
+            GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
+            gstyle.normal.textColor = Color.white;
+
             GuiSpace(10);
             node = target as GetVariableNode;
 
@@ -56,18 +59,27 @@ namespace AbicraftNodes.Editors
                 node.lastGetGlobalVariableSetting = node.GetGlobalVariable;
             }
 
+            bool hasDataFile = true;
+
             List<string> variableNames = new List<string>();
             List<Type>   variableTypes = new List<Type>();
 
             variableNames.Add("None");
             variableTypes.Add(typeof(object));
 
-            var variableDefinitions = node.GetGlobalVariable ? AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions : node.graph.variableDefinitions;
-
-            for (int i = 0; i < variableDefinitions.Count; i++)
+            if (AbicraftGlobalContext.HasValidAbicraftInstance())
             {
-                variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
-                variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
+                var variableDefinitions = node.GetGlobalVariable ? AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions : node.graph.variableDefinitions;
+
+                for (int i = 0; i < variableDefinitions.Count; i++)
+                {
+                    variableNames.Add(variableDefinitions[i].VARIABLE_NAME);
+                    variableTypes.Add(variableDefinitions[i].VARIABLE_TYPE);
+                }
+            }
+            else
+            {
+                hasDataFile = false;
             }
 
             GUIStyle styleW = new GUIStyle(EditorStyles.popup);
@@ -103,8 +115,13 @@ namespace AbicraftNodes.Editors
             }
 
             node.selectedIndex = EditorGUILayout.Popup(node.selectedIndex, variableNames.ToArray(), styleW);
-
             GUI.color = col;
+
+         
+            if (node.GetGlobalVariable && !hasDataFile)
+            {
+                Helpbox("Could not fetch global variables, abicraft data file reference missing", MessageType.Error);
+            }
 
             if(lastSelectedIndex != node.selectedIndex)
             {

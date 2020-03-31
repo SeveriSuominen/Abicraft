@@ -45,15 +45,14 @@ namespace AbicraftNodes.Editors
                     abicraft.InstantiateToPool.RemoveAt(i);
                 }
 
-                GUILayout.Label(abicraft.InstantiateToPool[i].abjRef.name, GUILayout.Width(200));
+                GUILayout.Label(abicraft.InstantiateToPool[i].abjRef.name, GUILayout.Width(120));
 
-               
-                GuiSpace(10);
+                GuiSpace(5);
                 GUILayout.Label("Amount", GUILayout.Width(50));
-                abicraft.InstantiateToPool[i].abjRef.InstantiateToPoolAmount = abicraft.InstantiateToPool[i].amountForScene = EditorGUILayout.IntField(abicraft.InstantiateToPool[i].amountForScene, GUILayout.Width(100));
+                abicraft.InstantiateToPool[i].abjRef.InstantiateToPoolAmount = abicraft.InstantiateToPool[i].amountForScene = EditorGUILayout.IntField(abicraft.InstantiateToPool[i].amountForScene, GUILayout.Width(40));
                 GUI.enabled = true;
 
-                abicraft.InstantiateToPool[i].includeForScene = GUILayout.Toggle(abicraft.InstantiateToPool[i].includeForScene, "Include to scene");
+                abicraft.InstantiateToPool[i].includeForScene = GUILayout.Toggle(abicraft.InstantiateToPool[i].includeForScene, "Include");
 
                 GUILayout.EndHorizontal();
             }

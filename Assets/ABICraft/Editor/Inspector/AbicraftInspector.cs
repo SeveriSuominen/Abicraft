@@ -67,88 +67,101 @@ public class AbicraftInspector : EditorWindow
 
     void OnGUI()
     {
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 12;
+        style.alignment = TextAnchor.MiddleCenter;
+        style.wordWrap = true;
+
+        GUIStyle styleNoDatafile = new GUIStyle();
+        styleNoDatafile.fontSize = 12;
+        styleNoDatafile.alignment = TextAnchor.MiddleCenter;
+        styleNoDatafile.wordWrap = true;
+        styleNoDatafile.normal.textColor = Color.red;
+
+        Rect rect = EditorGUILayout.GetControlRect();
+        rect.width = 500;
+        rect.x = (position.width * 0.5f) - (rect.width * 0.5f);
+        rect.y = position.height * 0.5f - 100;
+
         if (AbicraftGlobalContext.abicraft)
         {
-            if (!Application.isPlaying)
+            if (AbicraftGlobalContext.abicraft.dataFile)
             {
-                if (AbicraftGlobalContext.abicraft.dataFile.cache == null)
+                if (!Application.isPlaying)
                 {
-                    AbicraftGlobalContext.abicraft.dataFile.cache = new InspectorCache();
-                    EditorUtility.SetDirty(AbicraftGlobalContext.abicraft.dataFile);
+                    if (AbicraftGlobalContext.abicraft.dataFile.cache == null)
+                    {
+                        AbicraftGlobalContext.abicraft.dataFile.cache = new InspectorCache();
+                        EditorUtility.SetDirty(AbicraftGlobalContext.abicraft.dataFile);
+                    }
+                    else
+                    {
+                        AbicraftGlobalContext.abicraft.dataFile.cache.scannedSceneObjs = scannedSceneObjs.Count > 0 ? scannedSceneObjs : AbicraftGlobalContext.abicraft.dataFile.cache.scannedSceneObjs;
+                        AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjs = scannedAssetAbjs.Count > 0 ? scannedAssetAbjs : AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjs;
+                        AbicraftGlobalContext.abicraft.dataFile.cache.scannedStates = scannedStates.Count > 0 ? scannedStates : AbicraftGlobalContext.abicraft.dataFile.cache.scannedStates;
+
+                        AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjsPaths = scannedAssetAbjsPaths.Count > 0 ? scannedAssetAbjsPaths : AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjsPaths;
+                        AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetStatePaths = scannedAssetStatePaths.Count > 0 ? scannedAssetStatePaths : AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetStatePaths;
+
+                        EditorUtility.SetDirty(AbicraftGlobalContext.abicraft.dataFile);
+                    }
                 }
                 else
                 {
-                    AbicraftGlobalContext.abicraft.dataFile.cache.scannedSceneObjs = scannedSceneObjs.Count > 0 ? scannedSceneObjs : AbicraftGlobalContext.abicraft.dataFile.cache.scannedSceneObjs;
-                    AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjs = scannedAssetAbjs.Count > 0 ? scannedAssetAbjs : AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjs;
-                    AbicraftGlobalContext.abicraft.dataFile.cache.scannedStates = scannedStates.Count > 0 ? scannedStates : AbicraftGlobalContext.abicraft.dataFile.cache.scannedStates;
+                    if (AbicraftGlobalContext.abicraft.dataFile.cache != null)
+                    {
+                        scannedSceneObjs = AbicraftGlobalContext.abicraft.dataFile.cache.scannedSceneObjs;
+                        scannedAssetAbjs = AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjs;
+                        scannedStates = AbicraftGlobalContext.abicraft.dataFile.cache.scannedStates;
 
-                    AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjsPaths = scannedAssetAbjsPaths.Count > 0 ? scannedAssetAbjsPaths : AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjsPaths;
-                    AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetStatePaths = scannedAssetStatePaths.Count > 0 ? scannedAssetStatePaths : AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetStatePaths;
+                        scannedAssetAbjsPaths = AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjsPaths;
+                        scannedAssetStatePaths = AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetStatePaths;
+                    }
+                }
 
-                    EditorUtility.SetDirty(AbicraftGlobalContext.abicraft.dataFile);
+                selectedTab = Tabs(ref selectedTab, "Setup", "Objects", "Abilities", "States", "Types", "Attributes", "Pooling");
+
+                if (selectedTab != lastTab)
+                {
+                    if (selectedTab == 1)
+                    {
+                        if (!Application.isPlaying)
+                        {
+                            scannedAssetAbjs.Clear();
+                            LoadPrefabAbjsContaining();
+                        }
+                    }
+
+                    if (selectedTab == 3)
+                    {
+                        if (!Application.isPlaying)
+                        {
+                            scannedStates.Clear();
+                            LoadPrefabStatesContaining();
+                        }
+                    }
+
+                    lastTab = selectedTab;
+                }
+
+                switch (selectedTab)
+                {
+                    case 1:
+                        ObjectViews();
+                        break;
+                    case 3:
+                        StateViews();
+                        break;
                 }
             }
             else
             {
-                if (AbicraftGlobalContext.abicraft.dataFile.cache != null)
-                {
-                    scannedSceneObjs = AbicraftGlobalContext.abicraft.dataFile.cache.scannedSceneObjs;
-                    scannedAssetAbjs = AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjs;
-                    scannedStates = AbicraftGlobalContext.abicraft.dataFile.cache.scannedStates;
-
-                    scannedAssetAbjsPaths = AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetAbjsPaths;
-                    scannedAssetStatePaths = AbicraftGlobalContext.abicraft.dataFile.cache.scannedAssetStatePaths;
-                }
-            }
-
-            selectedTab = Tabs(ref selectedTab, "Setup", "Objects", "Abilities", "States", "Types", "Attributes", "Pooling");
-
-            if(selectedTab != lastTab)
-            {
-                if (selectedTab == 1)
-                {
-                    if (!Application.isPlaying)
-                    {
-                        scannedAssetAbjs.Clear();
-                        LoadPrefabAbjsContaining();
-                    }
-                }
-
-                if (selectedTab == 3)
-                {
-                    if (!Application.isPlaying)
-                    {
-                        scannedStates.Clear();
-                        LoadPrefabStatesContaining();
-                    }
-                }
-
-                lastTab = selectedTab;
-            }
-
-            switch (selectedTab)
-            {
-                case 1:
-                    ObjectViews();
-                    break;
-                case 3:
-                    StateViews();
-                    break;
+                GUI.Label(rect, "Abicraft Instance found, but reference to\ndata file must be setted", styleNoDatafile);
             }
         }
         else
         {
-            GUIStyle style = new GUIStyle();
-            style.fontSize = 15;
-            style.alignment = TextAnchor.MiddleCenter;
-
-            Rect rect = EditorGUILayout.GetControlRect();
-
-            rect.width = 500;
-            rect.x = (position.width * 0.5f) - (rect.width * 0.5f);
-            rect.y =  position.height * 0.5f - 100;
-
-            GUI.Label(rect, "Looks like there is no Abicraft component instance injected, click button to scan or create new instance", style);
+            GUI.Label(rect, "Looks like there is no Abicraft component instance injected, \n click button to scan for existing instance", style);
 
             EditorGUIUtility.SetIconSize(new Vector2(32, 32));
 

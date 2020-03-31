@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -200, y: -328}
+  position: {x: -200, y: -280}
   ports:
     keys:
     - Value
@@ -89,8 +89,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  selectedIndex: 3
-  lastVariableCount: 4
+  selectedIndex: 0
+  lastVariableCount: 1
   selectedVariable: COLLINDER_CAST_COLLISIONS2
   GetGlobalVariable: 1
   lastGetGlobalVariableSetting: 1
@@ -918,14 +918,14 @@ MonoBehaviour:
     serializedVersion: 2
     x: 273.85757
     y: -465.945
-    width: 252
+    width: 251.15198
     height: 166.87012
   color: {r: 0.0047169924, g: 0.8658644, b: 1, a: 0.5}
   graph: {fileID: 11400000}
   activeResizer:
     serializedVersion: 2
-    x: 1161
-    y: 422
+    x: 745.152
+    y: 110
     width: 60
     height: 136.87012
   dir: right
@@ -979,7 +979,7 @@ MonoBehaviour:
   icon: {fileID: 2800000, guid: 8c6832fa0ead60d418932883844f8172, type: 3}
   AbilityName: Thunder
   Cooldown: 5
-  Passive: 0
+  Passive: 1
   DefaultLifetime: 0
 --- !u!114 &855723333433622289
 MonoBehaviour:
@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -200, y: -504}
+  position: {x: -200, y: -520}
   ports:
     keys:
     - Value
@@ -1588,8 +1588,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  selectedIndex: 2
-  lastVariableCount: 4
+  selectedIndex: 0
+  lastVariableCount: 1
   selectedVariable: COLLINDER_CAST_COLLISIONS
   GetGlobalVariable: 1
   lastGetGlobalVariableSetting: 1
@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -200, y: -120}
+  position: {x: -264, y: -24}
   ports:
     keys:
     - In

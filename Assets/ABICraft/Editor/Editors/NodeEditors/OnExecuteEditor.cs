@@ -113,8 +113,7 @@ namespace AbicraftNodes.Editors
                     GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
                     gstyle.normal.textColor = Color.white;
 
-                    GuiSpace(5);
-                    GUILayout.Label("Passive abilites are looped until life time ends or passive ability is interupted", gstyle);
+                    Helpbox("Passive abilites are looped until life time ends or passive ability is interupted", MessageType.Info);
 
                     GuiSpace(5);
                     GUILayout.Label("Default lifetime seconds", style);

@@ -40,6 +40,9 @@ namespace AbicraftNodeEditor {
         public static Texture2D trashbinFocusedRed { get { return _trashbinFocusedRed != null ? _trashbinFocusedRed : _trashbinFocusedRed = Resources.Load<Texture2D>("google_material_design/remove_btn_red_focused"); } }
         private static Texture2D _trashbinFocusedRed;
 
+        public static Texture2D warningIcon { get { return _warningIcon != null ? _warningIcon : _warningIcon = Resources.Load<Texture2D>("google_material_design/warning_icon"); } }
+        private static Texture2D _warningIcon;
+
         public static Texture2D abicraftIcon { get { return _abicraftIcon != null ? _abicraftIcon : _abicraftIcon = Resources.Load<Texture2D>("Abicraft/big-logo"); } }
         private static Texture2D _abicraftIcon;
 
