@@ -1,5 +1,6 @@
 ﻿using AbicraftCore;
 using AbicraftMonos;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -36,25 +37,35 @@ namespace AbicraftNodes.Editors
 
             for (int i = 0; i < abicraft.InstantiateToPool.Count; i++)
             {
-                GUILayout.BeginHorizontal(gstyle);
-
-                GUI.enabled = abicraft.InstantiateToPool[i].includeForScene;
-
-                if(GUILayout.Button("Detach", poolbtnstyle))
+                if (abicraft.InstantiateToPool[i] != null && abicraft.InstantiateToPool[i].abjRef != null)
                 {
-                    abicraft.InstantiateToPool.RemoveAt(i);
+                    try
+                    {
+                        GUILayout.BeginHorizontal(gstyle);
+
+                        GUI.enabled = abicraft.InstantiateToPool[i].includeForScene;
+
+                        if (GUILayout.Button("Detach", poolbtnstyle))
+                        {
+                            abicraft.InstantiateToPool.RemoveAt(i);
+                        }
+
+                        GUILayout.Label(abicraft.InstantiateToPool[i].abjRef.name, GUILayout.Width(120));
+
+                        GuiSpace(5);
+                        GUILayout.Label("Amount", GUILayout.Width(50));
+                        abicraft.InstantiateToPool[i].abjRef.InstantiateToPoolAmount = abicraft.InstantiateToPool[i].amountForScene = EditorGUILayout.IntField(abicraft.InstantiateToPool[i].amountForScene, GUILayout.Width(40));
+                        GUI.enabled = true;
+
+                        abicraft.InstantiateToPool[i].includeForScene = GUILayout.Toggle(abicraft.InstantiateToPool[i].includeForScene, "Include");
+
+                        GUILayout.EndHorizontal();
+                    }
+                    catch (ArgumentException e)
+                    {
+
+                    }
                 }
-
-                GUILayout.Label(abicraft.InstantiateToPool[i].abjRef.name, GUILayout.Width(120));
-
-                GuiSpace(5);
-                GUILayout.Label("Amount", GUILayout.Width(50));
-                abicraft.InstantiateToPool[i].abjRef.InstantiateToPoolAmount = abicraft.InstantiateToPool[i].amountForScene = EditorGUILayout.IntField(abicraft.InstantiateToPool[i].amountForScene, GUILayout.Width(40));
-                GUI.enabled = true;
-
-                abicraft.InstantiateToPool[i].includeForScene = GUILayout.Toggle(abicraft.InstantiateToPool[i].includeForScene, "Include");
-
-                GUILayout.EndHorizontal();
             }
 
             if (GUI.changed)

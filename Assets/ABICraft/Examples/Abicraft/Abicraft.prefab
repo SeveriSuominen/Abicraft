@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8547746190672328745}
   - component: {fileID: 8547746190672328750}
   - component: {fileID: 1539146614}
+  - component: {fileID: 1539146615}
   m_Layer: 0
   m_Name: Abicraft
   m_TagString: Untagged
@@ -59,3 +60,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useObjectImpactGUIObject: {fileID: 1366109417, guid: 21234af5439e32c4f8e45215d0817539,
     type: 3}
+--- !u!114 &1539146615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547746190672328751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e6504315a556247b716be3bfacdc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataFile: {fileID: 11400000, guid: e695731140daafc4eb819a755f121624, type: 2}
+  dispatcher: {fileID: 0}
+  InstantiateToPool: []

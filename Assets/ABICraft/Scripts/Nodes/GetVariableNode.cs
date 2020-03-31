@@ -31,13 +31,13 @@ namespace AbicraftNodes.Action
         {
             if (e != null)
             {
-                var index = selectedIndex - 1;
+                var index = selectedIndex;
 
                 if (index >= 0)
                 {
                     if (GetGlobalVariable)
-                    {                     
-                        return AbicraftGlobalContext.GlobalVariables[AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions[selectedIndex - 1].VARIABLE_NAME];
+                    {
+                        return AbicraftGlobalContext.GlobalVariables[AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions[selectedIndex].VARIABLE_NAME];
                     }
                     else
                     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ThirdPersonCharacterController : MonoBehaviour
+public class ObjectToCursorPosition : MonoBehaviour
 {
     public Transform  pivot, toObj;
     public GameObject cursor;

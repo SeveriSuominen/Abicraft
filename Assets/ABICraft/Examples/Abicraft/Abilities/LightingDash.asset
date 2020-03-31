@@ -91,7 +91,7 @@ MonoBehaviour:
       _dynamic: 1
   selectedIndex: 3
   lastVariableCount: 4
-  selectedVariable: COLLINDER_CAST_COLLISIONS2
+  selectedVariable: COLLINDER_CAST_COLLISIONS_OTHER
   getFromAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
     type: 2}
   lastSelectedAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
@@ -526,11 +526,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: -199
-    y: 5.1744385
-    width: 245
-    height: 55
-  dir: down
+    x: 593
+    y: 240
+    width: 60
+    height: 211.17444
+  dir: left
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-4574650952877393115

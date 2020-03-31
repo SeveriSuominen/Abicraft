@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ThirdPersonCharacterAI : MonoBehaviour
+public class ThirdPersonController : MonoBehaviour
 {
     public RaycastHit hitpoint;
-    static GameObject cursor;
+    public GameObject cursor;
 
     [Range(0, 1)]
     public float animationSpeedMultiplier;
@@ -44,10 +44,8 @@ public class ThirdPersonCharacterAI : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitpoint))
         {
-            if (!cursor)
-                cursor = GameObject.Find("Cursor");
-
-            cursor.transform.position = hitpoint.point;
+            if(cursor)
+                cursor.transform.position = hitpoint.point;
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
