@@ -16,7 +16,7 @@ public class ShowAttributeText : MonoBehaviour
     {
         attr = AbicraftAttribute.Attribute("Mana");
 
-        abj.SetAttributeValue(abj, attr, 50000);
+        //abj.SetAttributeValue(abj, attr, 50000);
         text = GetComponent<Text>();
     }
 
@@ -33,12 +33,12 @@ public class ShowAttributeText : MonoBehaviour
         }
          
         
-        /*var list = abj.attributes.GetList();
+        var list = abj.attributes.GetList();
 
         for (int i = 0; i < list.Length; i++)
         {
             txt += "(" + list[i].attribute.name + " : " + list[i].baseValue + "), ";
         }
-        text.text = txt;*/
+        text.text = txt;
     }
 }

@@ -86,7 +86,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    baseValue: 475
+    baseValue: 700
     scaling: 0
   - attribute: {fileID: 11400000, guid: bd10beb071b26bc4e8fb1d965708f64d, type: 2}
     powerCurve:
@@ -131,7 +131,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    baseValue: 2300
+    baseValue: 1200
     scaling: 0
   - attribute: {fileID: 11400000, guid: f9ea9bdc3e6d72244bb0e657fb5c3d83, type: 2}
     powerCurve:
@@ -141,6 +141,15 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     baseValue: 300
+    scaling: 0
+  - attribute: {fileID: 11400000, guid: 573fc9462b8265c42966f021dd030cf1, type: 2}
+    powerCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    baseValue: 30
     scaling: 0
   allwaysHasStates: []
   immuneToStates: []

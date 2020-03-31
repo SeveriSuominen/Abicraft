@@ -75,7 +75,7 @@ public class AbicraftAttribute : ScriptableObject
         [System.Serializable]
         public enum Effect
         {
-            Max, Min, OnCast,  
+            Max, Min, OnCast, Regenerate 
         }
     }
     [System.Serializable]

@@ -1921,11 +1921,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 1415
-    y: 1317.2932
-    width: 205.47473
-    height: 55
-  dir: down
+    x: 717
+    y: 1048
+    width: 60
+    height: 372.2932
+  dir: left
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-3200226061663081922
@@ -2170,8 +2170,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 900.2875
-    y: 1404
+    x: -143.71252
+    y: 674
     width: 60
     height: 997.2893
   dir: right
@@ -2487,11 +2487,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 131
-    y: 1124
-    width: 60
-    height: 434.40295
-  dir: left
+    x: 143
+    y: 1729.403
+    width: 501.16943
+    height: 55
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-875494232790698531
@@ -3344,8 +3344,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 2602.8884
-    y: 3032
+    x: 541.8884
+    y: 1522
     width: 60
     height: 345.63037
   dir: right

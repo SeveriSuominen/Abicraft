@@ -13,7 +13,6 @@ namespace AbicraftMonos
 
         [HideInInspector]
         public Rigidbody rigidBody;
-
         [SerializeField]
         public bool InstantiateObjectToPool;
         [SerializeField]
@@ -60,6 +59,24 @@ namespace AbicraftMonos
         private void OnDestroy()
         {
             AbicraftGlobalContext.AllObjects.Remove(this);
+        }
+
+        float elapsedRegeneration;
+
+        void Update()
+        {
+            elapsedRegeneration += Time.deltaTime;
+
+            if (elapsedRegeneration < 0.2f /* regeneration rate, 5 per second*/)
+                return;
+
+            var allAttributes = attributes.GetList();
+
+            for (int i = 0; i < allAttributes.Length; i++)
+            {
+                Regenerate(elapsedRegeneration, allAttributes[i].attribute);
+            }
+            elapsedRegeneration = 0;
         }
 
         public void ImplementProfile()
@@ -391,6 +408,51 @@ namespace AbicraftMonos
             {
                 return int.MinValue;
             }
+        }
+
+        Interaction Regenerate(float deltaTime, AbicraftAttribute attr)
+        {
+            List<AbicraftAttribute.AttributeEffect> casteffects = new List<AbicraftAttribute.AttributeEffect>();
+
+            for (int i = 0; i < attr.effects.Count; i++)
+            {
+                if (attr.effects[i].effect == AbicraftAttribute.AttributeEffect.Effect.Regenerate)
+                {
+                    casteffects.Add(attr.effects[i]);
+                }
+            }
+
+            for (int i = 0; i < casteffects.Count; i++)
+            {
+                int value = 0;
+
+                if (casteffects[i] != null && casteffects[i].options.Count > 0)
+                {
+                    for (int j = 0; j < casteffects[i].options.Count; j++)
+                    {
+                        var effectoption = casteffects[i].options[j];
+                        var optionAbj = this;
+
+                        switch (effectoption.option)
+                        {
+                            case AbicraftAttribute.AttributeEffect.EffectOption.Add:
+                                value = Mathf.FloorToInt(value + (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                break;
+                            case AbicraftAttribute.AttributeEffect.EffectOption.Substract:
+                                value = Mathf.FloorToInt(value - (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                break;
+                            case AbicraftAttribute.AttributeEffect.EffectOption.Multiply:
+                                value = Mathf.FloorToInt(value * (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                break;
+                            case AbicraftAttribute.AttributeEffect.EffectOption.Divide:
+                                value = Mathf.FloorToInt(value / (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                break;
+                        }
+                    }
+                }
+                ImpactAttributeValue(this, attr, Mathf.CeilToInt(value * deltaTime));
+            }
+            return Interaction.Success;
         }
 
         Interaction Cast(int amount, AbicraftAttribute attr, AbicraftObject self, AbicraftObject target)

@@ -17,7 +17,6 @@ MonoBehaviour:
   Category: 0
   effects:
   - effect: 0
-    global_option: 0
     options:
     - operation: 0
       option: 1
@@ -26,3 +25,12 @@ MonoBehaviour:
       amount: 0
       attribute: {fileID: 11400000, guid: 74414dca89d139b47a7f3ed63b752a12, type: 2}
       attribute_index: 6
+  - effect: 3
+    options:
+    - operation: 0
+      option: 1
+      castoption: 0
+      targetOption: 0
+      amount: 0.5
+      attribute: {fileID: 11400000, guid: 573fc9462b8265c42966f021dd030cf1, type: 2}
+      attribute_index: 8

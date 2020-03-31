@@ -26,6 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a21cc6f818040244588698c700b55b82, type: 2}
   - {fileID: 11400000, guid: 74414dca89d139b47a7f3ed63b752a12, type: 2}
   - {fileID: 11400000, guid: f9ea9bdc3e6d72244bb0e657fb5c3d83, type: 2}
+  - {fileID: 11400000, guid: 573fc9462b8265c42966f021dd030cf1, type: 2}
   InstantiateToPool:
   - {fileID: 1310777319, guid: 2d21526a5035708438599f53bac96756, type: 3}
   - {fileID: 7304414733767880615, guid: bb8cdcfb73df2fb47a70244cf79b6325, type: 3}
@@ -35,10 +36,24 @@ MonoBehaviour:
   - {fileID: 6389469509475229666, guid: c088e315d1f5bc946aeff9d22a633a7a, type: 3}
   - {fileID: 3353175211128172070, guid: 21234af5439e32c4f8e45215d0817539, type: 3}
   - {fileID: 660720212, guid: 24faf99e0dd259346ba8e7751a22f448, type: 3}
+  AllAbilityGraphs:
+  - {fileID: 11400000, guid: c1683a1a5bdd7794386e96c2c14660e6, type: 2}
+  - {fileID: 11400000, guid: 04e65f6ebf9dd8d4a93dad57f65e9a96, type: 2}
+  - {fileID: 11400000, guid: e73c24f26050d984ea0fae6be738cc14, type: 2}
+  - {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5, type: 2}
   GlobalVariableDefinitions:
-  - VARIABLE_NAME: COLLIDER_CAST_POSITION
-  - VARIABLE_NAME: COLLINDER_CAST_COLLISIONS
-  - VARIABLE_NAME: COLLINDER_CAST_COLLISIONS2
+  - global_owner_ability: {fileID: 11400000, guid: 04e65f6ebf9dd8d4a93dad57f65e9a96,
+      type: 2}
+    VARIABLE_NAME: gaageli
+  - global_owner_ability: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+      type: 2}
+    VARIABLE_NAME: COLLIDER_CAST_POSITION
+  - global_owner_ability: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+      type: 2}
+    VARIABLE_NAME: COLLINDER_CAST_COLLISIONS
+  - global_owner_ability: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+      type: 2}
+    VARIABLE_NAME: COLLINDER_CAST_COLLISIONS_OTHER
   cache:
     selectedTab: 0
     lastTab: 0

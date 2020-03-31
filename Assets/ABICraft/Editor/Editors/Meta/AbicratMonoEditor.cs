@@ -1,10 +1,28 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 public class AbicratInspectorEditor : Editor
 {
+    protected void Helpbox(string text, MessageType type)
+    {
+        try
+        {
+            GuiSpace(5);
+
+            GUIStyle style = GUI.skin.GetStyle("helpbox");
+            style.normal.textColor = Color.white;
+            style.alignment = TextAnchor.UpperLeft;
+
+            EditorGUIUtility.SetIconSize(new Vector2(15, 15));
+            EditorGUILayout.HelpBox(text, type);
+            GuiSpace(5);
+        }
+        catch (ArgumentException e) { }
+    }
+
     protected void GuiLine(int i_height = 1)
     {
         Rect rect = default;
