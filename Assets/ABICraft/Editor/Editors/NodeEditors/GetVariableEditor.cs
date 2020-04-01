@@ -104,7 +104,7 @@ namespace AbicraftNodes.Editors
             GUIStyle styleW = new GUIStyle(EditorStyles.popup);
             styleW.normal.textColor = node.selectedIndex == 0 ? Color.red : Color.black;
 
-            if (node.lastVariableCount != variableNames.Count)
+            if (!BuildPipeline.isBuildingPlayer && node.lastVariableCount != variableNames.Count)
             {
                 if (node.selectedIndex > variableNames.Count - 1)
                     node.selectedIndex = 0;
@@ -204,6 +204,11 @@ namespace AbicraftNodes.Editors
             GuiSpace(5);
 
             base.OnBodyGUI();
+
+            if (GUI.changed)
+            {
+                EditorUtility.SetDirty(target);
+            }
         }
     }
 }

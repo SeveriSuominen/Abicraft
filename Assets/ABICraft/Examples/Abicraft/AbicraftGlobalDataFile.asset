@@ -42,9 +42,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e73c24f26050d984ea0fae6be738cc14, type: 2}
   - {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5, type: 2}
   GlobalVariableDefinitions:
-  - global_owner_ability: {fileID: 11400000, guid: 04e65f6ebf9dd8d4a93dad57f65e9a96,
-      type: 2}
-    VARIABLE_NAME: gaageli
   - global_owner_ability: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
       type: 2}
     VARIABLE_NAME: COLLIDER_CAST_POSITION

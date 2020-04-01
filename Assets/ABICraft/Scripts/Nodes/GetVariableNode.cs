@@ -37,7 +37,7 @@ namespace AbicraftNodes.Action
                 {
                     if (GetGlobalVariable)
                     {
-                        return AbicraftGlobalContext.GlobalVariables[AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions[selectedIndex].VARIABLE_NAME];
+                        return AbicraftGlobalContext.GlobalVariables[AbicraftGlobalContext.abicraft.dataFile.GlobalVariableDefinitions[selectedIndex-1].VARIABLE_NAME];
                     }
                     else
                     {

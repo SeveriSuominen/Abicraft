@@ -140,6 +140,8 @@ public class AbicraftAttribute : ScriptableObject
         public int baseValue;
         public bool scaling;
 
+        public float DELTA;
+
         public AbicraftObjectAttribute(){}
 
         public AbicraftObjectAttribute(AbicraftAttribute attribute)

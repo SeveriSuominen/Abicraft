@@ -138,7 +138,7 @@ namespace AbicraftMonos
             }
             return Interaction.DontHaveAttribute;
         }
-
+        
         public Interaction ImpactAttributeValue(AbicraftObject senderObject, AbicraftAttribute attribute, int amount)
         {
             AbicraftAttribute.AbicraftObjectAttribute attributeObj;
@@ -146,6 +146,32 @@ namespace AbicraftMonos
             if ((attributeObj = attributes[attribute]) != null)
             {
                 attributeObj.baseValue = attributeObj.baseValue + amount;
+                ValidateAttributeObject(ref attributeObj);
+
+                return Interaction.Success;
+            }
+            return Interaction.DontHaveAttribute;
+        }
+
+        public Interaction ImpactAttributeValueWithDelta(AbicraftObject senderObject, AbicraftAttribute attribute, float amount)
+        {
+            AbicraftAttribute.AbicraftObjectAttribute attributeObj;
+
+            if ((attributeObj = attributes[attribute]) != null)
+            {
+                if (amount < 1f && attributeObj.DELTA < 1f)
+                {
+                    attributeObj.DELTA += amount;
+                    return Interaction.Success;
+                }
+
+                if(attributeObj.DELTA > 1)
+                {
+                    amount += attributeObj.DELTA;
+                    attributeObj.DELTA = 0;
+                }
+
+                attributeObj.baseValue = Mathf.RoundToInt(attributeObj.baseValue + amount);
                 ValidateAttributeObject(ref attributeObj);
 
                 return Interaction.Success;
@@ -424,7 +450,7 @@ namespace AbicraftMonos
 
             for (int i = 0; i < casteffects.Count; i++)
             {
-                int value = 0;
+                float value = 0;
 
                 if (casteffects[i] != null && casteffects[i].options.Count > 0)
                 {
@@ -436,21 +462,22 @@ namespace AbicraftMonos
                         switch (effectoption.option)
                         {
                             case AbicraftAttribute.AttributeEffect.EffectOption.Add:
-                                value = Mathf.FloorToInt(value + (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                value = value + (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount);
                                 break;
                             case AbicraftAttribute.AttributeEffect.EffectOption.Substract:
-                                value = Mathf.FloorToInt(value - (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                value = value - (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount);
                                 break;
                             case AbicraftAttribute.AttributeEffect.EffectOption.Multiply:
-                                value = Mathf.FloorToInt(value * (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                value = value * (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount);
                                 break;
                             case AbicraftAttribute.AttributeEffect.EffectOption.Divide:
-                                value = Mathf.FloorToInt(value / (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount));
+                                value = value / (optionAbj.GetAttributeAmount(optionAbj, effectoption.attribute) * effectoption.amount);
                                 break;
                         }
                     }
                 }
-                ImpactAttributeValue(this, attr, Mathf.CeilToInt(value * deltaTime));
+                Debug.Log(attr.name + " : " + (value * deltaTime));
+                ImpactAttributeValueWithDelta(this, attr, value * deltaTime);
             }
             return Interaction.Success;
         }

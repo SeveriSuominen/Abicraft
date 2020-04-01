@@ -10,9 +10,9 @@ public class StaticPositionRTCastController : CastController
         {
             ActionMonoUpdate(Time.deltaTime);
 
-            Vector3 mousePosition = Vector3.zero;
+            Vector3 mousePosition = Vector3.zero, downRayPosition = Vector3.zero;
 
-            RaycastHit raycastHit;
+            RaycastHit raycastHit, downRay;
 
             if (Input.GetKeyDown(keyCode))
             {
@@ -24,7 +24,13 @@ public class StaticPositionRTCastController : CastController
                 mousePosition = raycastHit.point;
             }
 
+            if (Physics.Raycast(new Ray(senderObject.transform.position, Vector3.down), out downRay))
+            {
+                downRayPosition = downRay.point;
+            }
+
             this.position = this.transform.position = senderObject.transform.position;
+            this.transform.position = new Vector3(this.position.x, downRayPosition.y, this.position.z);
 
             var lookPos = (mousePosition - this.transform.position).normalized;
             lookPos.y = 90;

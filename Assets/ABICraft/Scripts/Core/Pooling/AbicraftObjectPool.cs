@@ -144,6 +144,9 @@ namespace AbicraftCore
             {
                 AbicraftObject objRef = objects[i].abjRef;
 
+                if (objRef == null)
+                    continue;
+
                 if (!objRef.gameObject.activeSelf || !objects[i].includeForScene)
                     continue;
 

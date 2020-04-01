@@ -70,6 +70,7 @@ namespace AbicraftNodes.Action
             if (controller && controller.ActionWasSuccess)
             {
                 ColliderTriggerCast cast = abj_marker.gameObject.AddComponent<ColliderTriggerCast>();
+                cast.senderObject = e.ae.senderObject;
 
                 yield return new WaitForFixedUpdate();
 

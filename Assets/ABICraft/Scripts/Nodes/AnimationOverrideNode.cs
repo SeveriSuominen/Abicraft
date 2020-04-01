@@ -53,19 +53,33 @@ namespace AbicraftNodes.Action
             obj = GetInputValue<AbicraftObject>(e, "Obj");
             animator = obj.GetComponent<Animator>();
 
+            if (!obj)
+            {
+                Debug.LogError("Abicraft: Obj null");
+                yield return null;
+            }
+
             var navAgent = obj.GetComponent<NavMeshAgent>();
 
             if (navAgent)
             {
+                /*NavMeshHit hit;
+                if (NavMesh.SamplePosition(obj.transform.position, out hit, 30f, NavMesh.AllAreas)) { }
+
+                if (Vector3.Distance(obj.transform.position, hit.position) < 0.25f)
+                {
+                    obj.transform.position = hit.position;
+                }*/
                 navAgent.ResetPath();
             }
-
-            clips = animator.runtimeAnimatorController.animationClips;
 
             if (obj && clip)
             {
                 if (animator != null)
                 {
+                    if (animator.runtimeAnimatorController)
+                        clips = animator.runtimeAnimatorController.animationClips;
+
                     var speed = GetInputValue<float>(e, "Speed", Speed);
 
                     /*if (IsAnimating.Contains(obj) && overrideController != null)

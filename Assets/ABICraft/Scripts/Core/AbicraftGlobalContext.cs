@@ -9,7 +9,9 @@ using UnityEngine;
 
 namespace AbicraftCore
 {
+#if UNITY_EDITOR
     [InitializeOnLoad]
+#endif
     public static class AbicraftGlobalContext
     {
         public static Abicraft abicraft { get { return GetAbicraftInstance(); } private set { } }
@@ -105,9 +107,8 @@ namespace AbicraftCore
         {
             var graphs = LoadAllAbilityGraphs();
 
-            if (!HasValidAbicraftInstance() || graphs.Count == 0)
+            if (!Application.isEditor || !HasValidAbicraftInstance() || graphs.Count == 0)
                 return;
-
 
             if (graphs.Count > 0)
                 abicraft.dataFile.AllAbilityGraphs = new List<AbicraftAbility>(graphs);

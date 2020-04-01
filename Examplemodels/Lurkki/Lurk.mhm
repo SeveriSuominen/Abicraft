@@ -1,0 +1,39 @@
+# Written by MakeHuman 1.1.1
+version v1.1.1
+tags Lurk
+camera 0.0 0.0 -0.0407732491305 -0.180668907517 -0.45739925507 0.9
+modifier torso/torso-vshape-decr|incr -0.620000
+modifier measure/measure-neck-height-decr|incr 0.524000
+modifier macrodetails-universal/Muscle 1.000000
+modifier macrodetails/African 0.000000
+modifier macrodetails-proportions/BodyProportions 1.000000
+modifier torso/torso-scale-horiz-decr|incr 0.374000
+modifier armslegs/r-hand-fingers-length-decr|incr 1.000000
+modifier macrodetails/Gender 1.000000
+modifier torso/torso-scale-vert-decr|incr 0.088000
+modifier head/head-angle-in|out -1.000000
+modifier macrodetails-height/Height 0.272000
+modifier breast/BreastSize 0.500000
+modifier armslegs/r-hand-fingers-diameter-decr|incr -1.000000
+modifier torso/torso-muscle-dorsi-decr|incr 0.836000
+modifier torso/torso-trans-down|up -0.116000
+modifier torso/torso-muscle-pectoral-decr|incr 0.524000
+modifier macrodetails/Age 0.500000
+modifier breast/BreastFirmness 0.500000
+modifier macrodetails/Asian 0.000000
+modifier measure/measure-neck-circ-decr|incr -1.000000
+modifier armslegs/r-hand-scale-decr|incr 1.000000
+modifier head/head-fat-decr|incr -1.000000
+modifier head/head-diamond 0.626000
+modifier head/head-age-decr|incr -0.252000
+modifier macrodetails/Caucasian 1.000000
+modifier torso/torso-scale-depth-decr|incr 1.000000
+modifier armslegs/r-hand-fingers-distance-decr|incr 1.000000
+modifier armslegs/r-hand-trans-in|out 1.000000
+modifier macrodetails-universal/Weight 0.000000
+skeleton unity.mhskel
+eyes Low-Poly 1cc97a30-85a1-42e6-a9f7-b3e753732baa
+clothesHideFaces True
+skinMaterial skins/default.mhmat
+material Low-Poly 1cc97a30-85a1-42e6-a9f7-b3e753732baa eyes/materials/brown.mhmat
+subdivide False

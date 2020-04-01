@@ -9,6 +9,9 @@ using AbicraftMonos;
 public class ColliderTriggerCast : MonoBehaviour
 {
     public List<AbicraftObject> abj_collisions = new List<AbicraftObject>();
+    public AbicraftObject senderObject;
+
+    public bool ignoreSenderObject = true;
 
     private void OnTriggerStay(Collider collider)
     {
@@ -16,7 +19,8 @@ public class ColliderTriggerCast : MonoBehaviour
 
         if (abj && !abj_collisions.Contains(abj))
         {
-            abj_collisions.Add(abj);
+            if(ignoreSenderObject && abj != senderObject)
+                abj_collisions.Add(abj);
         }
     }
 }

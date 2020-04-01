@@ -312,11 +312,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 1176.1553
-    y: 2022
-    width: 60
-    height: 328.35693
-  dir: right
+    x: -387
+    y: 635.35693
+    width: 1097.1553
+    height: 55
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-8272383787257951889
@@ -604,8 +604,7 @@ MonoBehaviour:
   Collisions:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  Position: {x: 6.0044336, y: -1.2638842, z: 8.765599}
+  Position: {x: 8.1984215, y: -1.2638842, z: 10.324144}
   castMode: 1
 --- !u!114 &-7371627076222104400
 MonoBehaviour:
@@ -1782,9 +1781,8 @@ MonoBehaviour:
     type: 3}
   Casted:
     Active: 1
-  Collisions:
-  - {fileID: 0}
-  Position: {x: 4.9215045, y: -1.2638842, z: 4.256074}
+  Collisions: []
+  Position: {x: 10.263872, y: -1.2638842, z: 5.263211}
   castMode: 1
 --- !u!114 &-4042522081520979988
 MonoBehaviour:
@@ -2086,11 +2084,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 645
-    y: 934
+    x: 1136.0746
+    y: 1222
     width: 60
     height: 372.2932
-  dir: left
+  dir: right
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-3200226061663081922
@@ -2339,8 +2337,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 929.2875
-    y: 1408
+    x: 774.2875
+    y: -137
     width: 60
     height: 997.2893
   dir: right
@@ -2507,18 +2505,18 @@ MonoBehaviour:
     x: -1012.8524
     y: -2465.59
     width: 820.2389
-    height: 443.97107
+    height: 1350.8859
   color: {r: 0, g: 1, b: 0.1294117, a: 0.4745098}
   graph: {fileID: 11400000}
   lockedNodes: []
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 80
-    y: 797.97107
-    width: 760.2389
-    height: 55
-  dir: down
+    x: -682.7611
+    y: -966
+    width: 60
+    height: 1320.8859
+  dir: right
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-1450810139861958971
@@ -2607,8 +2605,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 586.16943
-    y: 1347
+    x: 317.16943
+    y: 711
     width: 60
     height: 434.40295
   dir: right
@@ -3335,8 +3333,8 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 257
-    y: 1315.3499
+    x: -949
+    y: -28.650208
     width: 1081.0503
     height: 55
   dir: down
@@ -3574,11 +3572,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 702
-    y: 166
-    width: 60
-    height: 515.76
-  dir: left
+    x: -67
+    y: 1468.76
+    width: 944.8884
+    height: 55
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &3000100379373411281
@@ -3696,7 +3694,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Position: {x: 10.669829, y: -1.2638842, z: -2.3903847}
+  Position: {x: 11.327781, y: -1.2638842, z: 2.159639}
   castMode: 1
 --- !u!114 &3109593120006286493
 MonoBehaviour:

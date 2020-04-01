@@ -84,7 +84,7 @@ namespace AbicraftNodes.Math
             distance  = Vector3.Distance(originPos, towardsPos);
             direction = (towardsPos - originPos).normalized;
 
-            if (port.fieldName.Equals("distance"))
+            if (port.fieldName.Equals("Distance"))
                 return distance;
             else
                 return direction;
