@@ -16,6 +16,10 @@ namespace AbicraftNodes.Meta
         protected Dictionary<string, List<string>> loopKeys = new Dictionary<string, List<string>>();
 
         [HideInInspector]
+        public string alt_name;
+        [HideInInspector]
+        public bool use_alt_name;
+        [HideInInspector]
         /// <summary> Injected abicraft component instance</summary>
         public Abicraft abicraft;
 

@@ -156,8 +156,8 @@ namespace AbicraftNodes.Editors
                             GUILayout.BeginHorizontal(gstyle);
 
                             var effectoption = attribute.effects[i].options[j];
-                            effectoption.attribute = attributes[effectoption.attribute_index = EditorGUILayout.Popup(effectoption.attribute_index, attr_contents.ToArray())];
-                            effectoption.option = (AbicraftAttribute.AttributeEffect.EffectOption)EditorGUILayout.EnumPopup(effectoption.option, GUILayout.Width(100));
+                            effectoption.option = (AbicraftAttribute.AttributeEffect.EffectOption)EditorGUILayout.EnumPopup(effectoption.option, GUILayout.Width(60));
+                            effectoption.attribute = attributes[effectoption.attribute_index = EditorGUILayout.Popup(effectoption.attribute_index, attr_contents.ToArray(), GUILayout.Width(100))];                          
                             effectoption.amount = EditorGUILayout.FloatField(effectoption.amount);
                             GUILayout.Label("Per point");
 

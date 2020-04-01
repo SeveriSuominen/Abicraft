@@ -47,9 +47,11 @@ namespace AbicraftNodes.Editors
 
         public override void OnBodyGUI()
         {
+            GUILayout.BeginHorizontal();
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("In"),  new GUIContent("In" ));
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Out"), new GUIContent("Out"));
-
+            GUILayout.EndHorizontal();
+            
             node = target as SetVariableNode;
 
             GuiSpace(5);

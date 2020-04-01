@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb65ec113a5dbc41a4cf6cb3d1433c5, type: 3}
   m_Name: Sender Object
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 360, y: 520}
@@ -69,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ca62bd4ce893a4eaa96d3852e84a0b, type: 3}
   m_Name: Get Variable
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: -248, y: -392}
@@ -110,6 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4107310f94fc849b397a2fe035fcf6, type: 3}
   m_Name: Spawn
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 8, y: 184}
@@ -209,6 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f61b0ba41d0e84681357bfee0904e1, type: 3}
   m_Name: Animation Override
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 584, y: 824}
@@ -329,6 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc88138469177584d9bf423b8168a836, type: 3}
   m_Name: Shake
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 888, y: 648}
@@ -423,6 +433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb65ec113a5dbc41a4cf6cb3d1433c5, type: 3}
   m_Name: Sender Object
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 2216, y: 440}
@@ -526,11 +538,11 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 593
-    y: 240
-    width: 60
-    height: 211.17444
-  dir: left
+    x: 644
+    y: 1202.1744
+    width: 245
+    height: 55
+  dir: down
   dragginArea: 0
   resisingArea: 0
 --- !u!114 &-4574650952877393115
@@ -545,6 +557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525a157e43948d4498af44de26746789, type: 3}
   m_Name: Multiply
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 1208, y: -88}
@@ -602,6 +616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b408bb153d4eb624aad05e1e9c3538db, type: 3}
   m_Name: Audio
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 856, y: 168}
@@ -668,6 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc88138469177584d9bf423b8168a836, type: 3}
   m_Name: Shake
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 2184, y: 56}
@@ -768,6 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9d4abd0f6982b43812454c000a8e83, type: 3}
   m_Name: Block Execution
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 360, y: 136}
@@ -829,6 +849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba484f0740e1454c863a6f5da5c365e, type: 3}
   m_Name: Despawn
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 8, y: 632}
@@ -890,6 +912,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2b8487a1894704f870e8f77feb012e, type: 3}
   m_Name: Has Attribute Amount
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 2504, y: 328}
@@ -1075,6 +1099,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b52e0f29cda109438037db424baba19, type: 3}
   m_Name: Camera
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 360, y: 360}
@@ -1110,6 +1136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b408bb153d4eb624aad05e1e9c3538db, type: 3}
   m_Name: Audio
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 1736, y: -392}
@@ -1176,6 +1204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9d4abd0f6982b43812454c000a8e83, type: 3}
   m_Name: Block Execution
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 2472, y: -504}
@@ -1237,6 +1267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4107310f94fc849b397a2fe035fcf6, type: 3}
   m_Name: Spawn
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 1736, y: -136}
@@ -1344,6 +1376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b52e0f29cda109438037db424baba19, type: 3}
   m_Name: Camera
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 1208, y: -328}
@@ -1379,6 +1413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9d4abd0f6982b43812454c000a8e83, type: 3}
   m_Name: Block Execution
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 1208, y: -232}
@@ -1443,6 +1479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ab838a9a481f84db0c2f9fb2fb1534, type: 3}
   m_Name: Merge Object Lists
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 328, y: -280}
@@ -1494,6 +1532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2c6d827b4b9be479c2d31436cba9e1, type: 3}
   m_Name: Cast Attributes
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 2568, y: -8}
@@ -1562,6 +1602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba484f0740e1454c863a6f5da5c365e, type: 3}
   m_Name: Despawn
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 2584, y: -296}
@@ -1623,6 +1665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ca62bd4ce893a4eaa96d3852e84a0b, type: 3}
   m_Name: Get Variable
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: -248, y: -632}
@@ -1664,6 +1708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc92f6c68e0e11642b7943b2874397a6, type: 3}
   m_Name: For Each Object
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 696, y: -72}
@@ -1780,6 +1826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b408bb153d4eb624aad05e1e9c3538db, type: 3}
   m_Name: Audio
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 712, y: 392}
@@ -1880,9 +1928,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cb7f3928c5b704f9c88c8847faaa59, type: 3}
   m_Name: On Execute
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -248, y: -152}
+  position: {x: -248, y: -168}
   ports:
     keys:
     - In
@@ -1937,6 +1987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc88138469177584d9bf423b8168a836, type: 3}
   m_Name: Shake
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 2184, y: -456}
@@ -2034,6 +2086,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9d4abd0f6982b43812454c000a8e83, type: 3}
   m_Name: Block Execution
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 8, y: 488}
@@ -2095,6 +2149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44468cfa2207b164fbddc0fc5f04b9ac, type: 3}
   m_Name: Get Position
   m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
   position: {x: 1208, y: 72}

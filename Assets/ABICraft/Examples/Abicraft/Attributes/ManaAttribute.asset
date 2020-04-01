@@ -31,6 +31,6 @@ MonoBehaviour:
       option: 1
       castoption: 0
       targetOption: 0
-      amount: 0.5
+      amount: 1
       attribute: {fileID: 11400000, guid: 573fc9462b8265c42966f021dd030cf1, type: 2}
       attribute_index: 8

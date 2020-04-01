@@ -80,12 +80,16 @@ namespace AbicraftNodes.Editors
 
             GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));
             gstyle.normal.textColor = Color.white;
+
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.white;
+            style.margin = new RectOffset(3, 0, 0, 0);
             // if(node.icon != null)
             // GUI.DrawTexture(new Rect(10, 10, 60, 60), node.icon, ScaleMode.ScaleToFit, true, 10.0F);
-            GUILayout.BeginVertical();
+            GUILayout.BeginHorizontal();
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("In"),  new GUIContent("In"));
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Out"), new GUIContent("Out"));
-            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
 
             GuiSpace(5);
             GuiLine(1);
@@ -102,6 +106,9 @@ namespace AbicraftNodes.Editors
                 GUI.color = ERRORCOLOR;
 
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("collider"), new GUIContent("Collider"));
+            GuiSpace(5);
+
+            GUILayout.Label("Mode", style);
             node.castMode = (ColliderCastNode.ColliderCastMode)EditorGUILayout.EnumPopup(node.castMode);
              
             GUI.color = col;

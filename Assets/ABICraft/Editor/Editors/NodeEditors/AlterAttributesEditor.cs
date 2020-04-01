@@ -65,11 +65,21 @@ namespace AbicraftNodes.Editors
                 }
             }
 
-            base.OnBodyGUI();
+            GUILayout.BeginHorizontal();
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("In"), new GUIContent("In"));
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Out"), new GUIContent("Out"));
+            GUILayout.EndHorizontal();
 
             GuiSpace(5);
             GuiLine(1);
             GuiSpace(5);
+
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Obj"), new GUIContent("Obj"));
+
+            GuiSpace(5);
+            GuiLine(1);
+            GuiSpace(5);
+
             EditorGUIUtility.SetIconSize(new Vector2(16, 16));
 
             GUIStyle gstyle = new GUIStyle(GUI.skin.GetStyle("HelpBox"));

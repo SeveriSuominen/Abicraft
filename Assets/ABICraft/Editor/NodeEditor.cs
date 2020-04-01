@@ -37,7 +37,7 @@ namespace AbicraftNodeEditor {
             if (style == null)
                 useStyle = NodeEditorResources.styles.nodeHeader;
 
-            GUILayout.Label(target.name, useStyle, GUILayout.Height(30));
+            GUILayout.Label(target.use_alt_name && target.alt_name != null ? target.alt_name: target.name, useStyle, GUILayout.Height(30));
         }
         
         /// <summary> Draws standard field editors for all public fields </summary>

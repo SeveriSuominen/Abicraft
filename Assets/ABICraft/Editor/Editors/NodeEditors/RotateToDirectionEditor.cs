@@ -10,7 +10,7 @@ using AbicraftNodes.Action;
 namespace AbicraftNodes.Editors
 {
     [CustomNodeEditor(typeof(RotateToDirectionNode))]
-    public class RotateToCursorEditor : NodeEditor
+    public class RotateToDirectionEditor : NodeEditor
     {
         public Texture2D icon;
 
