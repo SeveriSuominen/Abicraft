@@ -48,12 +48,25 @@ namespace AbicraftNodes.Editors
 
         public override void OnBodyGUI()
         {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.white;
+            style.margin.top = 3;
             GuiSpace(10);
             node = target as MergeObjectListsNode;
 
             GUILayout.BeginHorizontal();
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("ObjectList"),    new GUIContent("Lists"));
             NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("ObjectListOut"), new GUIContent("Merged"));
+            GUILayout.EndHorizontal();
+
+            GuiSpace(5);
+            GuiLine(1);
+            GuiSpace(5);
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Create Unique List", style);
+            GuiSpace(5);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("CreateUniqueList"), new GUIContent(""));
             GUILayout.EndHorizontal();
         }
     }

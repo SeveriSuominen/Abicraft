@@ -11,17 +11,16 @@ namespace AbicraftNodes.Object
 {
 	public class MergeObjectListsNode : AbicraftValueNode {
 
-		/* Example of node input field */
-		[Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple, typeConstraint = TypeConstraint.Strict)]
-		public List<AbicraftObject> ObjectList; 
+        [Input(backingValue = ShowBackingValue.Never, connectionType = ConnectionType.Multiple, typeConstraint = TypeConstraint.Strict)]
+		public List<AbicraftObject> ObjectList;
 
-		/* Example node output field */
 		[Output]
-		public List<AbicraftObject> ObjectListOut; 
+		public List<AbicraftObject> ObjectListOut;
 
-		// Return value when another node is requesting output field value
-		public override object GetValue(AbicraftNodeExecution e, NodePort port) {
-			//Example returning of data
+        [HideInInspector]
+        public bool CreateUniqueList;
+
+        public override object GetValue(AbicraftNodeExecution e, NodePort port) {
 			switch(port.fieldName)
 			{
 				case "ObjectListOut":
@@ -35,7 +34,15 @@ namespace AbicraftNodes.Object
 
                         for (int j = 0; j < values[i].Count; j++)
                         {
-                            merged.Add(values[i][j]);
+                            if (CreateUniqueList)
+                            {
+                                if(!merged.Contains(values[i][j]))
+                                    merged.Add(values[i][j]);
+                            }
+                            else
+                            {
+                                merged.Add(values[i][j]);
+                            }  
                         }
                     }
 					return merged;

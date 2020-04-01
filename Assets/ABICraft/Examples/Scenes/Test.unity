@@ -1879,7 +1879,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1539146615, guid: 1ad4c9f9f8cba1f4bbd08f005c395a60, type: 3}
       propertyPath: InstantiateToPool.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1539146615, guid: 1ad4c9f9f8cba1f4bbd08f005c395a60, type: 3}
       propertyPath: InstantiateToPool.Array.data[0].abjRef
@@ -1957,6 +1957,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1539146615, guid: 1ad4c9f9f8cba1f4bbd08f005c395a60, type: 3}
       propertyPath: InstantiateToPool.Array.data[5].includeForScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539146615, guid: 1ad4c9f9f8cba1f4bbd08f005c395a60, type: 3}
+      propertyPath: InstantiateToPool.Array.data[6].abjRef
+      value: 
+      objectReference: {fileID: 7753225171569340631, guid: f75c4d5fe8b852d4a871e39218fa0174,
+        type: 3}
+    - target: {fileID: 1539146615, guid: 1ad4c9f9f8cba1f4bbd08f005c395a60, type: 3}
+      propertyPath: InstantiateToPool.Array.data[6].amountForScene
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539146615, guid: 1ad4c9f9f8cba1f4bbd08f005c395a60, type: 3}
+      propertyPath: InstantiateToPool.Array.data[6].includeForScene
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8547746190672328745, guid: 1ad4c9f9f8cba1f4bbd08f005c395a60,
@@ -2234,9 +2247,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3600151397768429503, guid: c43498c98d48e4b43a3f4c0b00ae65a8,
         type: 3}
+      propertyPath: abilities.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600151397768429503, guid: c43498c98d48e4b43a3f4c0b00ae65a8,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 2104462872}
+    - target: {fileID: 3600151397768429503, guid: c43498c98d48e4b43a3f4c0b00ae65a8,
+        type: 3}
+      propertyPath: abilities.Array.data[2].ability
+      value: 
+      objectReference: {fileID: 11400000, guid: c1683a1a5bdd7794386e96c2c14660e6,
+        type: 2}
+    - target: {fileID: 3600151397768429503, guid: c43498c98d48e4b43a3f4c0b00ae65a8,
+        type: 3}
+      propertyPath: abilities.Array.data[2].key
+      value: 51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43498c98d48e4b43a3f4c0b00ae65a8, type: 3}
 --- !u!4 &5006512736250173279 stripped
