@@ -474,20 +474,24 @@ namespace AbicraftNodeEditor {
                 styleVisibleBtn.normal.textColor = Color.blue;
                 styleVisibleBtn.padding = new RectOffset();
 
-                Rect labelRect  = new Rect(yrect.x, yrect.y + (int)(10 * (zoom + 0.4f)), yrect.width, 20);
+                var zoomMode = zoom > 2f;
+                var zoomModeOffset = zoomMode ? 10f : 0.2f;
+
+                Rect nameLabelRect  = new Rect(yrect.x + 15, yrect.y + (int)(4 * (zoom + zoomModeOffset)), yrect.width - 15, 20);
                 Rect colorRect  = new Rect(yrect.x + 10, yrect.y + 10, 25, 20);
 
-                Rect RemovebuttonRect  = new Rect(vecposAreaWidth.x - 32, yrect.y + 8, 22, 18);
-                Rect VisiblebuttonRect = new Rect(vecposAreaWidth.x - 60, yrect.y + 8, 22, 17);
-
-                area.color = EditorGUI.ColorField(colorRect, GUIContent.none, area.color, false, true, false);
+                Rect RemovebuttonRect  = new Rect(vecposAreaWidth.x - 42, yrect.y + 8, 32, 18);
+                Rect VisiblebuttonRect = new Rect(vecposAreaWidth.x - 70, yrect.y + 8, 22, 17);
+                Rect EditRect = new Rect(vecposAreaWidth.x - 98, yrect.y + 8, 22, 18);
 
                 GUIStyle labelstyle = new GUIStyle(NodeEditorResources.styles.nodeHeader);
 
+                labelstyle.alignment = zoomMode ? TextAnchor.MiddleCenter : TextAnchor.MiddleLeft;
+
                 float labelZoom = (zoom + 0.4f);
 
-                labelstyle.fontSize = (int)(12 * Mathf.Clamp(labelZoom, 1, 3));
-                //GUI.Label(labelRect, area.areaName, labelstyle);
+                labelstyle.fontSize = (int)(9 * Mathf.Clamp(labelZoom, 1, 3));
+
                 //GUI.Label(labelRect, area.areaName, labelstyle);
 
                 GUI.color = area.color;
@@ -501,7 +505,11 @@ namespace AbicraftNodeEditor {
                     GUI.color = defaultColor;
                 }
 
-                EditorGUIUtility.SetIconSize(new Vector2(15, 15));
+                GUI.Label(nameLabelRect, area.areaName, labelstyle);
+
+                //area.areaName = GUI.TextField(labelRect, area.areaName);
+
+                EditorGUIUtility.SetIconSize(new Vector2(16, 16));
 
                 if ( GUI.Button(RemovebuttonRect, new GUIContent(NodeEditorResources.trashbinNormalRed)))
                     area.graph.RemoveArea(area);
@@ -513,6 +521,11 @@ namespace AbicraftNodeEditor {
                 if (GUI.Button(VisiblebuttonRect, new GUIContent(NodeEditorResources.eye), styleVisibleBtn))
                 {
                     area.Visible = !area.Visible;
+                }
+
+                if (GUI.Button(EditRect, new GUIContent(NodeEditorResources.penNormalGreen)))
+                {
+                    AreaEditPopup.Show(area, 200);
                 }
 
                 GUI.backgroundColor = bgcol;
@@ -591,7 +604,7 @@ namespace AbicraftNodeEditor {
                     }
                     area.lastVisibleStatus = area.Visible;
                 }
-            }      
+            }
         }
 
         private void DrawNodes() {

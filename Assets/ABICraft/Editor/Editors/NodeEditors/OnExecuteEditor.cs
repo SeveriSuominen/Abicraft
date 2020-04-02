@@ -103,8 +103,7 @@ namespace AbicraftNodes.Editors
                 GUILayout.Label("Ability icon", style);
                 node.graph.icon = EditorGUILayout.ObjectField(node.graph.icon, typeof(Texture2D), false) as Texture2D;
 
-                GUILayout.Label("Ability cooldown seconds", style);
-                node.graph.Cooldown = EditorGUILayout.FloatField(node.graph.Cooldown);
+                NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("Cooldown"), new GUIContent(""));
 
                 GuiSpace(5);
                 GuiLine(1);

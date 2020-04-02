@@ -13,14 +13,15 @@ namespace AbicraftNodes
         public static uint id = 100;
         public Texture2D icon;
 
-        public override void Initialize(AbicraftNodeExecution execution)
-        {
+        [HideInInspector]
+        [Input(backingValue = ShowBackingValue.Unconnected, connectionType = ConnectionType.Override, typeConstraint = TypeConstraint.Strict)]
 
-        }
+        public float Cooldown;
 
         public override IEnumerator ExecuteNode(AbicraftNodeExecution e)
         {
             //TAKING INPUT SNAPSHOT WHEN STARTING EXECUTE 
+            graph.Cooldown = GetInputValue(e, "Cooldown", Cooldown);
             yield return null;
         }
 

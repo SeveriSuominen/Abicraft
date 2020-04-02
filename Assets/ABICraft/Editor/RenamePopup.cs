@@ -3,22 +3,24 @@ using UnityEngine;
 
 namespace AbicraftNodeEditor {
     /// <summary> Utility for renaming assets </summary>
-    public class RenamePopup : EditorWindow {
-        public static RenamePopup current { get; private set; }
-        public Object target;
-        public string input;
+    public class AreaEditPopup : EditorWindow {
+        public static AreaEditPopup current { get; private set; }
+        public Area target;
+        public string name_input;
+        public Color  color_input;
 
         private bool firstFrame = true;
 
         /// <summary> Show a rename popup for an asset at mouse position. Will trigger reimport of the asset on apply.
-        public static RenamePopup Show(Object target, float width = 200) {
-            RenamePopup window = EditorWindow.GetWindow<RenamePopup>(true, "Rename " + target.name, true);
+        public static AreaEditPopup Show(Area target, float width = 200) {
+            AreaEditPopup window = EditorWindow.GetWindow<AreaEditPopup>(true, "Edit area " + target.name, true);
             if (current != null) current.Close();
             current = window;
             window.target = target;
-            window.input = target.name;
-            window.minSize = new Vector2(100, 44);
+            window.name_input  = target.areaName;
+            window.minSize = new Vector2(100, 100);
             window.position = new Rect(0, 0, width, 44);
+            window.color_input = target.color;
             GUI.FocusControl("ClearAllFocus");
             window.UpdatePositionToMouse();
             return window;
@@ -35,7 +37,7 @@ namespace AbicraftNodeEditor {
 
         private void OnLostFocus() {
             // Make the popup close on lose focus
-            Close();
+            //Close();
         }
 
         private void OnGUI() {
@@ -43,10 +45,23 @@ namespace AbicraftNodeEditor {
                 UpdatePositionToMouse();
                 firstFrame = false;
             }
-            input = EditorGUILayout.TextField(input);
+            GUILayout.Label("Area name");
+            name_input  = EditorGUILayout.TextField(name_input);
+            GUILayout.Label("Area color");
+            color_input = EditorGUILayout.ColorField(GUIContent.none, color_input, false, true, false);
             Event e = Event.current;
+            GUILayout.Space(3);
+            if (GUILayout.Button("Apply") || (e.isKey && e.keyCode == KeyCode.Return))
+            {
+                target.areaName = name_input;
+                target.color    = color_input;
+                AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
+                Close();
+                target.TriggerOnValidate();
+            }
+
             // If input is empty, revert name to default instead
-            if (input == null || input.Trim() == "") {
+            /*if (input == null || input.Trim() == "") {
                 if (GUILayout.Button("Revert to default") || (e.isKey && e.keyCode == KeyCode.Return)) {
                     target.name = NodeEditorUtilities.NodeDefaultName(target.GetType());
                     AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
@@ -56,13 +71,8 @@ namespace AbicraftNodeEditor {
             }
             // Rename asset to input text
             else {
-                if (GUILayout.Button("Apply") || (e.isKey && e.keyCode == KeyCode.Return)) {
-                    target.name = input;
-                    AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
-                    Close();
-					target.TriggerOnValidate();
-                }
-            }
+               
+            }*/
         }
     }
 }

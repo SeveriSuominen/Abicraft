@@ -476,7 +476,6 @@ namespace AbicraftMonos
                         }
                     }
                 }
-                Debug.Log(attr.name + " : " + (value * deltaTime));
                 ImpactAttributeValueWithDelta(this, attr, value * deltaTime);
             }
             return Interaction.Success;

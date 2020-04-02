@@ -153,7 +153,7 @@ namespace AbicraftNodes.Action
                 layerInfo[i] = animator.GetCurrentAnimatorStateInfo(i);
                 clipInfos.Add( animator.GetCurrentAnimatorClipInfo(i));
             }
-            prevLoadAnimName = clipInfos[0][0].clip.name;
+            //prevLoadAnimName = clipInfos[0][0].clip.name;
 
             LoadAnimClip(clip);
         }

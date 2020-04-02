@@ -297,9 +297,9 @@ namespace AbicraftNodeEditor {
                     if (EditorGUIUtility.editingTextField) break;
                     else if (e.keyCode == KeyCode.F) Home();
                     if (NodeEditorUtilities.IsMac()) {
-                        if (e.keyCode == KeyCode.Return) RenameSelectedNode();
+                        //if (e.keyCode == KeyCode.Return) RenameSelectedNode();
                     } else {
-                        if (e.keyCode == KeyCode.F2) RenameSelectedNode();
+                        //if (e.keyCode == KeyCode.F2) RenameSelectedNode();
                     }
                     if (e.keyCode == KeyCode.A) {
                         if (Selection.objects.Any(x => graph.nodes.Contains(x as AbicraftNode))) {
@@ -390,17 +390,17 @@ namespace AbicraftNodeEditor {
         }
 
         /// <summary> Initiate a rename on the currently selected node </summary>
-        public void RenameSelectedNode() {
+        /*public void RenameSelectedNode() {
             if (Selection.objects.Length == 1 && Selection.activeObject is AbicraftNode) {
                 AbicraftNode node = Selection.activeObject as AbicraftNode;
                 Vector2 size;
                 if (nodeSizes.TryGetValue(node, out size)) {
-                    RenamePopup.Show(Selection.activeObject, size.x);
+                    AreaEditPopup.Show(Selection.activeObject, size.x);
                 } else {
-                    RenamePopup.Show(Selection.activeObject);
+                    AreaEditPopup.Show(Selection.activeObject);
                 }
             }
-        }
+        }*/
 
         /// <summary> Draw this node on top of other nodes by placing it last in the graph.nodes list </summary>
         public void MoveNodeToTop(AbicraftNode node) {

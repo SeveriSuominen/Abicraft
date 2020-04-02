@@ -16,7 +16,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 360, y: 520}
+  position: {x: -456, y: 1416}
   ports:
     keys:
     - Obj
@@ -75,7 +75,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -72, y: 216}
+  position: {x: -300.60355, y: 256.33313}
   ports:
     keys:
     - SpawnedObject
@@ -128,7 +128,10 @@ MonoBehaviour:
       _node: {fileID: -7096254373306765496}
       _typeQualifiedName: AbicraftCore.AbicraftLifeline, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: Out
+        node: {fileID: 7131964626660625469}
+        reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 2
@@ -173,7 +176,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 584, y: 824}
+  position: {x: 310.69543, y: 289.7445}
   ports:
     keys:
     - LengthSeconds
@@ -250,32 +253,6 @@ MonoBehaviour:
   Speed: 1
   selectedIndex: 0
   clips:
-  - {fileID: 7400000, guid: dffa50cfe77e0434bbfa71245b3dd529, type: 3}
-  - {fileID: 7400000, guid: 6fb3851da6a6f5948ab6892bee8ba920, type: 3}
-  - {fileID: 7400006, guid: 6fb3851da6a6f5948ab6892bee8ba920, type: 3}
-  - {fileID: 7400010, guid: 6fb3851da6a6f5948ab6892bee8ba920, type: 3}
-  - {fileID: 7400014, guid: 6fb3851da6a6f5948ab6892bee8ba920, type: 3}
-  - {fileID: 7400000, guid: b1a5e04ae51004842aba06704a6c2903, type: 3}
-  - {fileID: 7400002, guid: bb141fc9a700c9c4ca7e6dadb8acf24b, type: 3}
-  - {fileID: 7400000, guid: 1c52c953c83c2254a9fa72d50250f028, type: 3}
-  - {fileID: 7400000, guid: bb141fc9a700c9c4ca7e6dadb8acf24b, type: 3}
-  - {fileID: 7400002, guid: 1c52c953c83c2254a9fa72d50250f028, type: 3}
-  - {fileID: 7400000, guid: 1cb8ed3cbba15f0479fbae54e0a963df, type: 3}
-  - {fileID: 7400000, guid: f2bed5dc5afacff44a00de8daae9703b, type: 3}
-  - {fileID: 7400002, guid: f2bed5dc5afacff44a00de8daae9703b, type: 3}
-  - {fileID: 7400000, guid: 1062212255550964e974f3ffb3cbaae3, type: 3}
-  - {fileID: 7400002, guid: 1062212255550964e974f3ffb3cbaae3, type: 3}
-  - {fileID: 7400002, guid: d89ea37480b6d75458aa38843e9688dc, type: 3}
-  - {fileID: 7400004, guid: d89ea37480b6d75458aa38843e9688dc, type: 3}
-  - {fileID: 7400008, guid: d89ea37480b6d75458aa38843e9688dc, type: 3}
-  - {fileID: 7400014, guid: d89ea37480b6d75458aa38843e9688dc, type: 3}
-  - {fileID: 7400002, guid: f03e10c73f30b4ab4aa8ea8f1cc16d36, type: 3}
-  - {fileID: 7400004, guid: 51dd2e4c869794f75a0df7d54b210214, type: 3}
-  - {fileID: 7400000, guid: 51dd2e4c869794f75a0df7d54b210214, type: 3}
-  - {fileID: 7400004, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
-  - {fileID: 7400004, guid: f03e10c73f30b4ab4aa8ea8f1cc16d36, type: 3}
-  - {fileID: 7400006, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
-  - {fileID: 7400008, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}
   - {fileID: 7400000, guid: 7973fc351b8c16840ae51e0a9c262c0d, type: 2}
   - {fileID: 7400000, guid: fc62cd0388606ff43b832f19820e0a0d, type: 2}
   clip: {fileID: 7400000, guid: e9934b01202c655488c6dd98969c7fd0, type: 2}
@@ -295,7 +272,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 888, y: 648}
+  position: {x: 789.9404, y: 664.8834}
   ports:
     keys:
     - Obj
@@ -477,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b492c5dad4c187c438cd9a7a82f6bb9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaName: DEFAULT
+  areaName: Merge
   Visible: 1
   lastVisibleStatus: 1
   areaRect:
@@ -492,9 +469,43 @@ MonoBehaviour:
   movingNodes: []
   activeResizer:
     serializedVersion: 2
-    x: 478
-    y: 855.17444
+    x: 1719
+    y: 350.17444
     width: 245
+    height: 55
+  dir: down
+  dragginArea: 0
+  resisingArea: 0
+--- !u!114 &-5108970986589493906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b492c5dad4c187c438cd9a7a82f6bb9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaName: Effects
+  Visible: 1
+  lastVisibleStatus: 1
+  areaRect:
+    serializedVersion: 2
+    x: 752.84863
+    y: 159.3125
+    width: 289.4701
+    height: 758.41003
+  color: {r: 1, g: 0.85647917, b: 0, a: 0.5}
+  graph: {fileID: 11400000}
+  lockedNodes: []
+  movingNodes: []
+  activeResizer:
+    serializedVersion: 2
+    x: 1721
+    y: 1523.41
+    width: 229.4701
     height: 55
   dir: down
   dragginArea: 0
@@ -558,6 +569,40 @@ MonoBehaviour:
   value: 0
   Value: 0
   Multiplier: 0.4
+--- !u!114 &-4005830521846838614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b492c5dad4c187c438cd9a7a82f6bb9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaName: Animate
+  Visible: 1
+  lastVisibleStatus: 1
+  areaRect:
+    serializedVersion: 2
+    x: 274.23218
+    y: 250.89893
+    width: 292.61816
+    height: 287.40784
+  color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+  graph: {fileID: 11400000}
+  lockedNodes: []
+  movingNodes: []
+  activeResizer:
+    serializedVersion: 2
+    x: 1178.6182
+    y: 821
+    width: 60
+    height: 257.40784
+  dir: right
+  dragginArea: 0
+  resisingArea: 0
 --- !u!114 &-3596205311748008194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,7 +619,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 856, y: 168}
+  position: {x: 789.9404, y: 216.88342}
   ports:
     keys:
     - Obj
@@ -642,7 +687,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 2184, y: 56}
+  position: {x: 2136, y: 136}
   ports:
     keys:
     - Obj
@@ -744,7 +789,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 360, y: 136}
+  position: {x: 312, y: 24}
   ports:
     keys:
     - BlockForSeconds
@@ -807,7 +852,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -72, y: 680}
+  position: {x: -300.60355, y: 736.3331}
   ports:
     keys:
     - ObjectToDespawn
@@ -998,12 +1043,17 @@ MonoBehaviour:
   - {fileID: -6450620041851178359}
   - {fileID: 5458071082473458078}
   - {fileID: 0}
+  - {fileID: 1845921516105239499}
   areas:
   - {fileID: -5762312930070722612}
+  - {fileID: -5108970986589493906}
+  - {fileID: 2140815579375598348}
+  - {fileID: 1999875169773554801}
+  - {fileID: -4005830521846838614}
   variableDefinitions: []
   icon: {fileID: 2800000, guid: 8c6832fa0ead60d418932883844f8172, type: 3}
   AbilityName: Thunder
-  Cooldown: 5
+  Cooldown: 0
   Passive: 0
   DefaultLifetime: 0
 --- !u!114 &855723333433622289
@@ -1056,7 +1106,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 360, y: 360}
+  position: {x: -456, y: 1336}
   ports:
     keys:
     - camera
@@ -1077,6 +1127,117 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   camera: {fileID: 0}
+--- !u!114 &1845921516105239499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ca62bd4ce893a4eaa96d3852e84a0b, type: 3}
+  m_Name: Get Variable
+  m_EditorClassIdentifier: 
+  alt_name: 
+  use_alt_name: 0
+  abicraft: {fileID: 0}
+  graph: {fileID: 11400000}
+  position: {x: -120, y: -472}
+  ports:
+    keys:
+    - Value
+    values:
+    - _fieldName: Value
+      _node: {fileID: 1845921516105239499}
+      _typeQualifiedName: System.Collections.Generic.List`1[[AbicraftMonos.AbicraftObject,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ObjectList
+        node: {fileID: 5458071082473458078}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  selectedIndex: 2
+  lastVariableCount: 3
+  selectedVariable: COLLINDER_CAST_COLLISIONS
+  getFromAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+    type: 2}
+  lastSelectedAbilityGlobal: {fileID: 11400000, guid: 6e587d9bc8e2f394a933395e5bb15fb5,
+    type: 2}
+  GetGlobalVariable: 1
+  lastGetGlobalVariableSetting: 1
+--- !u!114 &1999875169773554801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b492c5dad4c187c438cd9a7a82f6bb9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaName: 'Spawn '
+  Visible: 1
+  lastVisibleStatus: 1
+  areaRect:
+    serializedVersion: 2
+    x: -354.85696
+    y: 176.43481
+    width: 315.30945
+    height: 707.4082
+  color: {r: 0.20425421, g: 0.7554285, b: 0.9622642, a: 0.5}
+  graph: {fileID: 11400000}
+  lockedNodes: []
+  movingNodes: []
+  activeResizer:
+    serializedVersion: 2
+    x: 869.30945
+    y: 853
+    width: 60
+    height: 677.4082
+  dir: right
+  dragginArea: 0
+  resisingArea: 0
+--- !u!114 &2140815579375598348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b492c5dad4c187c438cd9a7a82f6bb9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaName: Wait
+  Visible: 1
+  lastVisibleStatus: 1
+  areaRect:
+    serializedVersion: 2
+    x: 275.6181
+    y: -38.40088
+    width: 294.02002
+    height: 227.39001
+  color: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+  graph: {fileID: 11400000}
+  lockedNodes: []
+  movingNodes: []
+  activeResizer:
+    serializedVersion: 2
+    x: 1182.02
+    y: 532
+    width: 60
+    height: 197.39001
+  dir: right
+  dragginArea: 0
+  resisingArea: 0
 --- !u!114 &3732920347063825979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,7 +1322,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 2472, y: -504}
+  position: {x: 2472, y: -472}
   ports:
     keys:
     - BlockForSeconds
@@ -1224,7 +1385,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 1736, y: -136}
+  position: {x: 1736, y: -168}
   ports:
     keys:
     - SpawnedObject
@@ -1436,7 +1597,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 322.36316, y: -256.07867}
+  position: {x: 328, y: -264}
   ports:
     keys:
     - ObjectList
@@ -1450,6 +1611,9 @@ MonoBehaviour:
       connections:
       - fieldName: Value
         node: {fileID: 6008664449251498055}
+        reroutePoints: []
+      - fieldName: Value
+        node: {fileID: 1845921516105239499}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1557,7 +1721,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 2584, y: -296}
+  position: {x: 2472, y: -312}
   ports:
     keys:
     - ObjectToDespawn
@@ -1620,7 +1784,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -248, y: -440}
+  position: {x: -360, y: -328}
   ports:
     keys:
     - Value
@@ -1663,7 +1827,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 696, y: -72}
+  position: {x: 824, y: -120}
   ports:
     keys:
     - Obj
@@ -1781,7 +1945,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: 712, y: 392}
+  position: {x: 789.9404, y: 440.88342}
   ports:
     keys:
     - Obj
@@ -1883,11 +2047,12 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -248, y: -184}
+  position: {x: -1096, y: -280}
   ports:
     keys:
     - In
     - Out
+    - Cooldown
     values:
     - _fieldName: In
       _node: {fileID: 7131964626660625469}
@@ -1912,9 +2077,21 @@ MonoBehaviour:
       - fieldName: In
         node: {fileID: -3454352794523941342}
         reroutePoints: []
+      - fieldName: In
+        node: {fileID: -7096254373306765496}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: Cooldown
+      _node: {fileID: 7131964626660625469}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
       _dynamic: 0
   In:
     index: 0
@@ -1923,6 +2100,7 @@ MonoBehaviour:
     index: 0
     mono: {fileID: 0}
   icon: {fileID: 2800000, guid: 3a823b94be09e204fba3434bfb4683a5, type: 3}
+  Cooldown: 0
 --- !u!114 &7626011366022753586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2038,7 +2216,7 @@ MonoBehaviour:
   use_alt_name: 0
   abicraft: {fileID: 0}
   graph: {fileID: 11400000}
-  position: {x: -72, y: 536}
+  position: {x: -300.60355, y: 576.3331}
   ports:
     keys:
     - BlockForSeconds

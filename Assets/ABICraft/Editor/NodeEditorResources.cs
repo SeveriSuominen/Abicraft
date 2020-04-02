@@ -34,6 +34,9 @@ namespace AbicraftNodeEditor {
         public static Texture2D trashbin { get { return _trashbin != null ? _trashbin : _trashbin = Resources.Load<Texture2D>("google_material_design/baseline_cancel_black_36dp"); } }
         private static Texture2D _trashbin;
 
+        public static Texture2D penNormalGreen { get { return _penNormalGreen != null ? _penNormalGreen : _penNormalGreen = Resources.Load<Texture2D>("google_material_design/pen_btn_green"); } }
+        private static Texture2D _penNormalGreen;
+
         public static Texture2D trashbinNormalRed { get { return _trashbinNormalRed != null ? _trashbinNormalRed : _trashbinNormalRed = Resources.Load<Texture2D>("google_material_design/remove_btn_red_normal"); } }
         private static Texture2D _trashbinNormalRed;
 

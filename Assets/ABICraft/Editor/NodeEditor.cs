@@ -167,7 +167,7 @@ namespace AbicraftNodeEditor {
             if (Selection.objects.Length == 1 && Selection.activeObject is AbicraftNode) {
                 AbicraftNode node = Selection.activeObject as AbicraftNode;
                 menu.AddItem(new GUIContent("Move To Top"), false, () => NodeEditorWindow.current.MoveNodeToTop(node));
-                menu.AddItem(new GUIContent("Rename"), false, NodeEditorWindow.current.RenameSelectedNode);
+                //menu.AddItem(new GUIContent("Rename"), false, NodeEditorWindow.current.RenameSelectedNode);
             }
 
             // Add actions to any number of selected nodes
